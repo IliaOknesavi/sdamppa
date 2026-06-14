@@ -2,15 +2,52 @@
 @import 'katex/dist/katex.min.css';
 
 /* ============================================================
-   КОДЕКС — design tokens (dark scholarly codex)
-   Homage to the dotted-grid notebook · illuminated-gold accents
+   КОДЕКС — design tokens.
+   Default = light theme in the ITMO visual language
+   (white surfaces, near-black text, coral #e75239 accent, Golos Text).
+   [data-theme="dark"] = the original "scholarly codex" dark theme.
+   Components reference these vars, so the whole UI flips with the attribute.
    ============================================================ */
 @theme {
-	--font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-	--font-body: 'Newsreader', Georgia, serif;
+	--font-display: 'Golos Text', system-ui, sans-serif;
+	--font-body: 'Golos Text', system-ui, sans-serif;
 	--font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-	/* ink / surface scale */
+	/* surfaces (light / ITMO) */
+	--color-ink-900: #e9e9eb;
+	--color-ink-850: #ffffff;
+	--color-ink-800: #f6f6f7;
+	--color-ink-700: #eeeef0;
+	--color-ink-600: #e1e1e4;
+	--color-ink-500: #c4c4c9;
+
+	/* text (light) */
+	--color-parch-100: #1d1d1b;
+	--color-parch-200: #333132;
+	--color-parch-300: #565553;
+	--color-parch-muted: #8b8a8e;
+
+	/* accent — ITMO coral */
+	--color-gold-300: #f08a76;
+	--color-gold-400: #e75239;
+	--color-gold-500: #d23d22;
+	--color-gold-600: #be1e2d;
+
+	/* semantic (tuned for white background) */
+	--color-verdant: #1f9d63;
+	--color-azure: #2b6fd6;
+	--color-rose: #be1e2d;
+}
+
+:root {
+	--accent: var(--color-gold-400);
+	--accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
+	--accent-line: color-mix(in srgb, var(--accent) 38%, transparent);
+	color-scheme: light;
+}
+
+/* ---------- dark "codex" theme ---------- */
+[data-theme='dark'] {
 	--color-ink-900: #0b0c10;
 	--color-ink-850: #0e0f14;
 	--color-ink-800: #14161d;
@@ -18,28 +55,20 @@
 	--color-ink-600: #262a36;
 	--color-ink-500: #3a3f4f;
 
-	/* parchment / text */
 	--color-parch-100: #f4ecd8;
 	--color-parch-200: #e8dcc0;
 	--color-parch-300: #cdbf9e;
 	--color-parch-muted: #9a917d;
 
-	/* illuminated gold (primary accent) */
 	--color-gold-300: #f3d08a;
 	--color-gold-400: #e7b35c;
 	--color-gold-500: #d29a3e;
 	--color-gold-600: #a8762a;
 
-	/* semantic */
-	--color-verdant: #6fae8e; /* derivation / success */
-	--color-azure: #6f9cd6; /* intuition / info */
-	--color-rose: #cd6f7a; /* warning / star tasks */
-}
+	--color-verdant: #6fae8e;
+	--color-azure: #6f9cd6;
+	--color-rose: #cd6f7a;
 
-:root {
-	--accent: var(--color-gold-400);
-	--accent-soft: color-mix(in srgb, var(--accent) 22%, transparent);
-	--accent-line: color-mix(in srgb, var(--accent) 45%, transparent);
 	color-scheme: dark;
 }
 
@@ -53,13 +82,20 @@ body {
 	font-family: var(--font-body);
 	color: var(--color-parch-200);
 	background-color: var(--color-ink-850);
-	/* dotted-grid texture — direct nod to the handwritten konspekt paper */
-	background-image:
-		radial-gradient(circle at center, color-mix(in srgb, var(--color-ink-500) 55%, transparent) 1px, transparent 1.4px);
-	background-size: 26px 26px;
-	background-attachment: fixed;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+/* dotted-grid texture only in the dark codex theme (clean white in ITMO light) */
+[data-theme='dark'] body {
+	background-image: radial-gradient(
+		circle at center,
+		color-mix(in srgb, var(--color-ink-500) 55%, transparent) 1px,
+		transparent 1.4px
+	);
+	background-size: 26px 26px;
+	background-attachment: fixed;
 }
 
 ::selection {
@@ -67,17 +103,16 @@ body {
 	color: var(--color-parch-100);
 }
 
-/* thin scholarly scrollbar */
 * {
 	scrollbar-width: thin;
-	scrollbar-color: var(--color-ink-600) transparent;
+	scrollbar-color: var(--color-ink-500) transparent;
 }
 *::-webkit-scrollbar {
 	width: 10px;
 	height: 10px;
 }
 *::-webkit-scrollbar-thumb {
-	background: var(--color-ink-600);
+	background: var(--color-ink-500);
 	border-radius: 99px;
 	border: 2px solid transparent;
 	background-clip: content-box;
@@ -88,10 +123,10 @@ h2,
 h3,
 h4 {
 	font-family: var(--font-display);
-	font-weight: 500;
+	font-weight: 700;
 	color: var(--color-parch-100);
-	letter-spacing: -0.01em;
-	line-height: 1.1;
+	letter-spacing: -0.02em;
+	line-height: 1.08;
 }
 
 a {
@@ -104,27 +139,19 @@ pre {
 	font-family: var(--font-mono);
 }
 
-/* small-caps scholarly label */
 .label {
 	font-family: var(--font-mono);
 	text-transform: uppercase;
-	letter-spacing: 0.18em;
+	letter-spacing: 0.16em;
 	font-size: 0.66rem;
 	color: var(--color-parch-muted);
 }
 
-/* gilded hairline rule */
 .rule-gold {
 	height: 1px;
-	background: linear-gradient(
-		90deg,
-		transparent,
-		var(--accent-line),
-		transparent
-	);
+	background: linear-gradient(90deg, transparent, var(--accent-line), transparent);
 }
 
-/* KaTeX inherits parchment color, sits inline nicely */
 .katex {
 	color: var(--color-parch-100);
 	font-size: 1.04em;
@@ -136,7 +163,6 @@ pre {
 	padding: 0.2rem 0;
 }
 
-/* focus ring */
 :focus-visible {
 	outline: 2px solid var(--accent);
 	outline-offset: 2px;
@@ -186,16 +212,7 @@ pre {
 		transform: translateY(0);
 	}
 }
-@keyframes sheen {
-	from {
-		background-position: -120% 0;
-	}
-	to {
-		background-position: 220% 0;
-	}
-}
 
-/* staggered page-load reveal: add .reveal and style="--i: n" */
 .reveal {
 	opacity: 0;
 	animation: reveal 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
