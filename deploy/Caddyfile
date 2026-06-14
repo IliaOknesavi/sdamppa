@@ -1,0 +1,16 @@
+# Кодекс — Caddy (автоматический HTTPS из коробки).
+# Деплой: rsync -avz --delete build/ user@host:/var/www/codex/
+# Запуск: caddy run --config ./Caddyfile
+
+codex.example.com {                # ← свой домен; Caddy сам выпустит TLS
+    root * /var/www/codex          # ← сюда залит build/
+    encode gzip zstd
+
+    # Захешированные ассеты — кэш навсегда
+    @immutable path /_app/immutable/*
+    header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+    # SPA-fallback: неизвестные пути → index.html
+    try_files {path} /index.html
+    file_server
+}

@@ -1,0 +1,213 @@
+@import 'tailwindcss';
+@import 'katex/dist/katex.min.css';
+
+/* ============================================================
+   КОДЕКС — design tokens (dark scholarly codex)
+   Homage to the dotted-grid notebook · illuminated-gold accents
+   ============================================================ */
+@theme {
+	--font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+	--font-body: 'Newsreader', Georgia, serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+	/* ink / surface scale */
+	--color-ink-900: #0b0c10;
+	--color-ink-850: #0e0f14;
+	--color-ink-800: #14161d;
+	--color-ink-700: #1b1e27;
+	--color-ink-600: #262a36;
+	--color-ink-500: #3a3f4f;
+
+	/* parchment / text */
+	--color-parch-100: #f4ecd8;
+	--color-parch-200: #e8dcc0;
+	--color-parch-300: #cdbf9e;
+	--color-parch-muted: #9a917d;
+
+	/* illuminated gold (primary accent) */
+	--color-gold-300: #f3d08a;
+	--color-gold-400: #e7b35c;
+	--color-gold-500: #d29a3e;
+	--color-gold-600: #a8762a;
+
+	/* semantic */
+	--color-verdant: #6fae8e; /* derivation / success */
+	--color-azure: #6f9cd6; /* intuition / info */
+	--color-rose: #cd6f7a; /* warning / star tasks */
+}
+
+:root {
+	--accent: var(--color-gold-400);
+	--accent-soft: color-mix(in srgb, var(--accent) 22%, transparent);
+	--accent-line: color-mix(in srgb, var(--accent) 45%, transparent);
+	color-scheme: dark;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	min-height: 100dvh;
+	font-family: var(--font-body);
+	color: var(--color-parch-200);
+	background-color: var(--color-ink-850);
+	/* dotted-grid texture — direct nod to the handwritten konspekt paper */
+	background-image:
+		radial-gradient(circle at center, color-mix(in srgb, var(--color-ink-500) 55%, transparent) 1px, transparent 1.4px);
+	background-size: 26px 26px;
+	background-attachment: fixed;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+::selection {
+	background: var(--accent-soft);
+	color: var(--color-parch-100);
+}
+
+/* thin scholarly scrollbar */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-ink-600) transparent;
+}
+*::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+	background: var(--color-ink-600);
+	border-radius: 99px;
+	border: 2px solid transparent;
+	background-clip: content-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-display);
+	font-weight: 500;
+	color: var(--color-parch-100);
+	letter-spacing: -0.01em;
+	line-height: 1.1;
+}
+
+a {
+	color: inherit;
+}
+
+code,
+kbd,
+pre {
+	font-family: var(--font-mono);
+}
+
+/* small-caps scholarly label */
+.label {
+	font-family: var(--font-mono);
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	font-size: 0.66rem;
+	color: var(--color-parch-muted);
+}
+
+/* gilded hairline rule */
+.rule-gold {
+	height: 1px;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		var(--accent-line),
+		transparent
+	);
+}
+
+/* KaTeX inherits parchment color, sits inline nicely */
+.katex {
+	color: var(--color-parch-100);
+	font-size: 1.04em;
+}
+.katex-display {
+	margin: 0.9rem 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 0.2rem 0;
+}
+
+/* focus ring */
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* ============================================================
+   Animations / motion
+   ============================================================ */
+@property --ring {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 0%;
+}
+@keyframes ringfill {
+	to {
+		--ring: 100%;
+	}
+}
+@keyframes popIn {
+	from {
+		opacity: 0;
+		transform: translateY(6px) scale(0.97);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+@keyframes cardIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px) scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+@keyframes reveal {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes sheen {
+	from {
+		background-position: -120% 0;
+	}
+	to {
+		background-position: 220% 0;
+	}
+}
+
+/* staggered page-load reveal: add .reveal and style="--i: n" */
+.reveal {
+	opacity: 0;
+	animation: reveal 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+	animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.001ms !important;
+		transition-duration: 0.001ms !important;
+	}
+	.reveal {
+		opacity: 1;
+	}
+}
