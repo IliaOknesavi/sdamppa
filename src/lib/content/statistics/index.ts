@@ -106,11 +106,8 @@ export const statistics: Subject = {
 	id: 'statistics',
 	name: 'Статистика и анализ данных',
 	short: 'СтатАД',
-	blurb: String.raw`Полный курс под допсессию: теория вероятностей, математическая статистика и цепи Маркова — глубже программы.`,
-	accent: '#e7b35c',
+	blurb: String.raw`Полный курс: теория вероятностей, математическая статистика и цепи Маркова — глубже программы.`,
+	accent: '#e75239',
 	glyph: 'σ',
-	status: 'ready',
-	phases,
-	days,
-	glossary
+	courses: [{ semester: 2, year: 2026, status: 'ready', phases, days, glossary }]
 };

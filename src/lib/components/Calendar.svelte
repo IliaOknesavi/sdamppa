@@ -1,8 +1,9 @@
 <script lang="ts">
-	import type { Subject } from '$lib/types';
+	import type { Course } from '$lib/types';
 	import { progress } from '$lib/stores/progress.svelte';
 
-	let { subject }: { subject: Subject } = $props();
+	let { course, basePath, yearQ = '' }: { course: Course; basePath: string; yearQ?: string } =
+		$props();
 
 	function isCheckpoint(title: string) {
 		const t = title.toLowerCase();
@@ -11,8 +12,8 @@
 </script>
 
 <div class="cal">
-	{#each subject.phases as phase, pi}
-		{@const days = subject.days.filter((d) => d.phaseId === phase.id)}
+	{#each course.phases as phase, pi}
+		{@const days = course.days.filter((d) => d.phaseId === phase.id)}
 		<section class="phase reveal" style="--i:{pi}; --tint:{phase.hue};">
 			<header class="phase__head">
 				<h3 class="phase__title">{phase.title}</h3>
@@ -27,7 +28,7 @@
 						class:done
 						class:draft={d.draft}
 						class:cp
-						href="/{subject.id}/day/{d.n}"
+						href="{basePath}/day/{d.n}{yearQ}"
 						data-sveltekit-preload-data="hover"
 					>
 						<div class="cell__top">

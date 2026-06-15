@@ -97,6 +97,20 @@ export interface Phase {
 	hue: number;
 }
 
+/**
+ * A specific offering of a subject: one (global) semester in one program year.
+ * The day-by-day content lives here, so the same subject can branch by semester
+ * and be versioned by year (program changes over time).
+ */
+export interface Course {
+	semester: number; // global semester number: 1, 2, 3, …
+	year: number; // program version, e.g. 2026
+	status: 'ready' | 'soon';
+	phases: Phase[];
+	days: Day[]; // ordered by n
+	glossary: Glossary;
+}
+
 export interface Subject {
 	id: string; // 'statistics'
 	name: string; // full title
@@ -104,16 +118,42 @@ export interface Subject {
 	blurb: string; // codex markup, short pitch
 	accent: string; // hex → drives --accent
 	glyph: string; // single glyph for the wax-seal motif
-	status: 'ready' | 'soon';
-	phases: Phase[];
-	days: Day[]; // ordered by n
-	glossary: Glossary;
+	courses: Course[]; // offerings across semesters / years
+}
+
+export interface Direction {
+	id: string; // 'aii'
+	name: string; // 'Инженерия искусственного интеллекта'
+	short: string; // 'ИИИ'
+	blurb?: string;
+	subjects: Subject[];
 }
 
 /** Helpers shared by content modules and UI. */
-export function phaseOf(subject: Subject, day: Day): Phase | undefined {
-	return subject.phases.find((p) => p.id === day.phaseId);
+export function phaseOf(course: Course, day: Day): Phase | undefined {
+	return course.phases.find((p) => p.id === day.phaseId);
 }
-export function authoredDays(subject: Subject): number {
-	return subject.days.filter((d) => !d.draft).length;
+export function authoredDays(course: Course): number {
+	return course.days.filter((d) => !d.draft).length;
+}
+export function subjectReady(subject: Subject): boolean {
+	return subject.courses.some((c) => c.status === 'ready');
+}
+/** Distinct semesters a subject offers, ascending. */
+export function semestersOf(subject: Subject): number[] {
+	return [...new Set(subject.courses.map((c) => c.semester))].sort((a, b) => a - b);
+}
+/** Years available for a (subject, semester), newest first. */
+export function yearsOf(subject: Subject, semester: number): number[] {
+	return subject.courses
+		.filter((c) => c.semester === semester)
+		.map((c) => c.year)
+		.sort((a, b) => b - a);
+}
+/** Resolve a course by semester (+ optional year; defaults to latest year). */
+export function getCourse(subject: Subject, semester: number, year?: number): Course | undefined {
+	const matches = subject.courses.filter((c) => c.semester === semester);
+	if (!matches.length) return undefined;
+	if (year != null) return matches.find((c) => c.year === year);
+	return matches.sort((a, b) => b.year - a.year)[0];
 }

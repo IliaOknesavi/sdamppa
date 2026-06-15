@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { subjects } from '$lib/content';
+	import { directions } from '$lib/content';
 	import { tips } from '$lib/engine/tooltips.svelte';
-	import { authoredDays } from '$lib/types';
-	import RichText from '$lib/engine/RichText.svelte';
 	import { statistics } from '$lib/content/statistics';
+	import RichText from '$lib/engine/RichText.svelte';
 
-	// load the statistics glossary so the landing demo terms are live
+	// live demo terms on the landing use the statistics course glossary
 	$effect(() => {
-		tips.setGlossary(statistics.glossary);
+		tips.setGlossary(statistics.courses[0].glossary);
 	});
 </script>
 
@@ -25,29 +24,18 @@
 		</div>
 	</header>
 
-	<section class="subjects">
-		<div class="label reveal" style="--i:4">Предметы</div>
-		<div class="subjects__grid">
-			{#each subjects as s, i}
-				{@const ready = s.status === 'ready'}
-				<a
-					class="subj reveal"
-					class:soon={!ready}
-					style="--accent:{s.accent}; --i:{5 + i};"
-					href={ready ? `/${s.id}` : undefined}
-					aria-disabled={!ready}
-				>
-					<div class="subj__seal">{s.glyph}</div>
-					<div class="subj__body">
-						<h2 class="subj__name">{s.name}</h2>
-						<div class="subj__blurb"><RichText source={s.blurb} /></div>
-						<div class="subj__stat">
-							{#if ready}
-								<span>{s.days.length} дней · {authoredDays(s)} готово</span>
-								<span class="subj__go">войти →</span>
-							{:else}
-								<span class="subj__soon">скоро</span>
-							{/if}
+	<section class="dirs">
+		<div class="label reveal" style="--i:4">Направления</div>
+		<div class="dirs__grid">
+			{#each directions as d, i}
+				<a class="dir reveal" style="--i:{5 + i}" href="/{d.id}">
+					<div class="dir__short">{d.short}</div>
+					<div class="dir__body">
+						<h2 class="dir__name">{d.name}</h2>
+						{#if d.blurb}<p class="dir__blurb">{d.blurb}</p>{/if}
+						<div class="dir__stat">
+							<span>{d.subjects.length} предмет(а/ов)</span>
+							<span class="dir__go">войти →</span>
 						</div>
 					</div>
 				</a>
@@ -64,17 +52,17 @@
 		<div class="feat reveal" style="--i:9">
 			<div class="feat__ico">⚔️</div>
 			<h3>Геймификация</h3>
-			<p>XP за задачи и дни, стрики, ранги и контрольные точки-боссы в конце каждой фазы.</p>
+			<p>XP за задачи и дни, стрики, ранги и контрольные точки в конце каждой фазы.</p>
 		</div>
 		<div class="feat reveal" style="--i:10">
 			<div class="feat__ico">⌘</div>
 			<h3>Код и прод</h3>
-			<p>Каждая тема — с применением: бутстреп, Монте-Карло, цепи Маркова в Python, как в реальных задачах.</p>
+			<p>Каждая тема — с применением: бутстреп, Монте-Карло, цепи Маркова в Python, прямо на странице.</p>
 		</div>
 	</section>
 
 	<footer class="home__foot">
-		Кодекс · по конспекту курса · расширяется на новые предметы добавлением модуля контента
+		Кодекс · направление → предмет → семестр → курс · расширяется добавлением модуля контента
 	</footer>
 </div>
 
@@ -90,16 +78,15 @@
 	}
 	.hero__seal {
 		font-size: 2.4rem;
-		color: var(--color-gold-400);
-		filter: drop-shadow(0 0 14px var(--accent-soft));
+		color: var(--accent);
 	}
 	.hero__title {
 		font-family: var(--font-display);
 		font-size: clamp(3rem, 11vw, 6rem);
-		font-weight: 600;
-		letter-spacing: 0.16em;
+		font-weight: 800;
+		letter-spacing: 0.04em;
 		margin: 0.4rem 0 0.6rem;
-		background: linear-gradient(180deg, var(--color-parch-100), var(--color-gold-400));
+		background: linear-gradient(180deg, var(--color-parch-100), var(--accent));
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
@@ -117,63 +104,64 @@
 		font-size: 0.95rem;
 		padding: 1rem 1.2rem;
 		border: 1px solid var(--color-ink-600);
-		border-radius: 12px;
+		border-radius: 8px;
 		background: var(--color-ink-800);
+		text-align: left;
 	}
-	.subjects {
+	.dirs {
 		margin: 2.5rem 0;
 	}
-	.subjects .label {
+	.dirs .label {
 		margin-bottom: 0.9rem;
 	}
-	.subjects__grid {
+	.dirs__grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 1rem;
 	}
-	.subj {
+	.dir {
 		display: flex;
-		gap: 1rem;
-		padding: 1.2rem;
-		border-radius: 14px;
+		gap: 1.1rem;
+		padding: 1.4rem;
+		border-radius: 8px;
 		text-decoration: none;
 		color: var(--color-parch-200);
-		background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 8%, var(--color-ink-800)), var(--color-ink-850));
-		border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--color-ink-600));
-		transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+		background: var(--color-ink-800);
+		border: 1px solid var(--color-ink-600);
+		transition:
+			transform 0.18s,
+			box-shadow 0.18s,
+			border-color 0.18s;
 	}
-	.subj:hover {
+	.dir:hover {
 		transform: translateY(-4px);
-		box-shadow: 0 20px 44px -18px rgba(0, 0, 0, 0.85);
+		box-shadow: 0 20px 44px -22px rgba(0, 0, 0, 0.45);
 		border-color: var(--accent);
 	}
-	.subj.soon {
-		opacity: 0.6;
-		cursor: not-allowed;
-		pointer-events: none;
-	}
-	.subj__seal {
+	.dir__short {
 		display: grid;
 		place-items: center;
-		width: 3.2rem;
-		height: 3.2rem;
+		width: 3.4rem;
+		height: 3.4rem;
 		flex: none;
-		border-radius: 50%;
+		border-radius: 8px;
 		font-family: var(--font-display);
-		font-size: 1.7rem;
-		color: var(--color-ink-900);
-		background: radial-gradient(circle at 35% 30%, var(--color-gold-300), var(--accent) 60%, var(--color-gold-600));
-		box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.4), 0 0 16px var(--accent-soft);
+		font-weight: 800;
+		font-size: 1.1rem;
+		color: #fff;
+		background: linear-gradient(140deg, var(--accent), var(--color-gold-600));
 	}
-	.subj__name {
+	.dir__name {
 		font-size: 1.2rem;
 		margin: 0 0 0.3rem;
 	}
-	.subj__blurb {
+	.dir__blurb {
 		font-size: 0.85rem;
 		color: var(--color-parch-300);
+		margin: 0;
+		line-height: 1.45;
 	}
-	.subj__stat {
+	.dir__stat {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -182,13 +170,8 @@
 		font-size: 0.68rem;
 		color: var(--color-parch-muted);
 	}
-	.subj__go {
+	.dir__go {
 		color: var(--accent);
-	}
-	.subj__soon {
-		color: var(--color-gold-500);
-		text-transform: uppercase;
-		letter-spacing: 0.12em;
 	}
 	.feats {
 		display: grid;
@@ -197,8 +180,8 @@
 		margin: 2.5rem 0;
 	}
 	.feat {
-		padding: 1.2rem;
-		border-radius: 12px;
+		padding: 1.3rem;
+		border-radius: 8px;
 		background: var(--color-ink-800);
 		border: 1px solid var(--color-ink-600);
 	}

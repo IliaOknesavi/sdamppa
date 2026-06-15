@@ -1,11 +1,25 @@
 <script lang="ts">
-	import type { Subject, Day, SectionKind } from '$lib/types';
+	import type { Course, Day, SectionKind } from '$lib/types';
 	import { progress } from '$lib/stores/progress.svelte';
 	import RichText from '$lib/engine/RichText.svelte';
 	import TaskCard from './TaskCard.svelte';
 	import RunnableCode from './RunnableCode.svelte';
 
-	let { subject, day }: { subject: Subject; day: Day } = $props();
+	let {
+		course,
+		day,
+		basePath,
+		yearQ = '',
+		backHref,
+		backLabel
+	}: {
+		course: Course;
+		day: Day;
+		basePath: string;
+		yearQ?: string;
+		backHref: string;
+		backLabel: string;
+	} = $props();
 
 	const KIND: Record<SectionKind, { label: string; color: string }> = {
 		definition: { label: 'Определение', color: 'var(--color-gold-400)' },
@@ -17,15 +31,15 @@
 		plain: { label: '', color: 'var(--color-ink-500)' }
 	};
 
-	const prev = $derived(subject.days.find((d) => d.n === day.n - 1));
-	const next = $derived(subject.days.find((d) => d.n === day.n + 1));
+	const prev = $derived(course.days.find((d) => d.n === day.n - 1));
+	const next = $derived(course.days.find((d) => d.n === day.n + 1));
 	const done = $derived(progress.isDayDone(day.n));
-	const phase = $derived(subject.phases.find((p) => p.id === day.phaseId));
+	const phase = $derived(course.phases.find((p) => p.id === day.phaseId));
 </script>
 
 <article class="day">
 	<header class="day__head reveal">
-		<a class="day__back" href="/{subject.id}">← {subject.short}</a>
+		<a class="day__back" href={backHref}>← {backLabel}</a>
 		<div class="day__meta">
 			{#if phase}<span class="day__phase">{phase.title}</span>{/if}
 			{#if day.chapterRef && day.chapterRef !== '—'}<span class="day__ch">{day.chapterRef}</span>{/if}
@@ -108,8 +122,8 @@
 	</div>
 
 	<nav class="day__nav">
-		{#if prev}<a class="navlink" href="/{subject.id}/day/{prev.n}">← День {prev.n}</a>{:else}<span></span>{/if}
-		{#if next}<a class="navlink" href="/{subject.id}/day/{next.n}">День {next.n} →</a>{/if}
+		{#if prev}<a class="navlink" href="{basePath}/day/{prev.n}{yearQ}">← День {prev.n}</a>{:else}<span></span>{/if}
+		{#if next}<a class="navlink" href="{basePath}/day/{next.n}{yearQ}">День {next.n} →</a>{/if}
 	</nav>
 </article>
 
