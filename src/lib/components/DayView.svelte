@@ -279,23 +279,25 @@
 	}
 	.complete-btn {
 		width: 100%;
-		padding: 0.9rem;
-		border-radius: 11px;
+		padding: 1rem;
+		border-radius: 999px;
 		font-family: var(--font-display);
+		font-weight: 700;
 		font-size: 1.05rem;
 		cursor: pointer;
-		border: 1px solid var(--accent);
-		background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 20%, var(--color-ink-800)), var(--color-ink-800));
-		color: var(--color-gold-300);
+		border: 1.5px solid var(--violet);
+		background: var(--violet);
+		color: #fff;
 		transition: all 0.18s;
 	}
 	.complete-btn:hover {
-		background: color-mix(in srgb, var(--accent) 28%, var(--color-ink-800));
+		transform: translateY(-2px);
+		background: var(--color-gold-500);
 	}
 	.complete-btn.done {
-		border-color: var(--color-verdant);
-		color: var(--color-verdant);
-		background: color-mix(in srgb, var(--color-verdant) 12%, var(--color-ink-800));
+		border-color: var(--lime);
+		color: var(--lime-ink);
+		background: var(--lime);
 	}
 	.day__nav {
 		display: flex;
@@ -303,17 +305,19 @@
 		margin-top: 1.5rem;
 	}
 	.navlink {
-		font-family: var(--font-mono);
-		font-size: 0.8rem;
-		color: var(--color-parch-200);
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 0.85rem;
+		color: var(--color-parch-100);
 		text-decoration: none;
-		padding: 0.5rem 0.9rem;
-		border: 1px solid var(--color-ink-600);
-		border-radius: 8px;
+		padding: 0.55rem 1.2rem;
+		border: 1.5px solid var(--color-ink-500);
+		border-radius: 999px;
 		transition: all 0.15s;
 	}
 	.navlink:hover {
-		border-color: var(--accent);
-		color: var(--accent);
+		border-color: var(--violet);
+		color: var(--violet);
+		transform: translateY(-2px);
 	}
 </style>
