@@ -2,72 +2,86 @@
 @import 'katex/dist/katex.min.css';
 
 /* ============================================================
-   КОДЕКС — design tokens.
-   Default = light theme in the ITMO visual language
-   (white surfaces, near-black text, coral #e75239 accent, Golos Text).
-   [data-theme="dark"] = the original "scholarly codex" dark theme.
-   Components reference these vars, so the whole UI flips with the attribute.
+   КОДЕКС — design system in the ITMO visual language.
+   Tokens extracted from itmo.ru / abit.itmo.ru:
+   primary violet #7451f4, signature lime #e9fe96, near-black #202020,
+   white surfaces, rotating pastel category accents, Golos Text,
+   big bold headings, pill buttons/tags, outlined cards, colour blocks.
+   Default = light; [data-theme="dark"] = dark ITMO sections (#202020).
    ============================================================ */
 @theme {
 	--font-display: 'Golos Text', system-ui, sans-serif;
 	--font-body: 'Golos Text', system-ui, sans-serif;
 	--font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-	/* surfaces (light / ITMO) */
-	--color-ink-900: #e9e9eb;
+	/* surfaces (light) */
+	--color-ink-900: #ececef;
 	--color-ink-850: #ffffff;
-	--color-ink-800: #f6f6f7;
-	--color-ink-700: #eeeef0;
-	--color-ink-600: #e1e1e4;
-	--color-ink-500: #c4c4c9;
+	--color-ink-800: #f6f6f8;
+	--color-ink-700: #eeeef1;
+	--color-ink-600: #e3e3e7;
+	--color-ink-500: #c6c6cc;
 
 	/* text (light) */
-	--color-parch-100: #1d1d1b;
-	--color-parch-200: #333132;
-	--color-parch-300: #565553;
-	--color-parch-muted: #8b8a8e;
+	--color-parch-100: #202020;
+	--color-parch-200: #2c2c2c;
+	--color-parch-300: #565656;
+	--color-parch-muted: #8a8a90;
 
-	/* accent — ITMO coral */
-	--color-gold-300: #f08a76;
-	--color-gold-400: #e75239;
-	--color-gold-500: #d23d22;
-	--color-gold-600: #be1e2d;
+	/* brand violet (mapped onto the gold-* scale used across components) */
+	--color-gold-300: #a997ff;
+	--color-gold-400: #7451f4;
+	--color-gold-500: #5b3fe0;
+	--color-gold-600: #4a2fce;
 
-	/* semantic (tuned for white background) */
-	--color-verdant: #1f9d63;
-	--color-azure: #2b6fd6;
-	--color-rose: #be1e2d;
+	/* semantic */
+	--color-verdant: #2f9e63;
+	--color-azure: #4f7fe0;
+	--color-rose: #e75239;
+
+	/* ITMO signature + category palette */
+	--lime: #e9fe96;
+	--lime-ink: #38450a;
+	--violet: #7451f4;
+	--violet-soft: #a997ff;
+	--c-teal: #84c5c0;
+	--c-sky: #91d6ed;
+	--c-lavender: #acb1f9;
+	--c-peach: #f4b497;
+	--c-pink: #fd81ff;
+	--c-coral: #e75239;
 }
 
 :root {
 	--accent: var(--color-gold-400);
 	--accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
 	--accent-line: color-mix(in srgb, var(--accent) 38%, transparent);
+	--surface-dark: #202020;
 	color-scheme: light;
 }
 
-/* ---------- dark "codex" theme ---------- */
+/* ---------- dark ITMO sections theme ---------- */
 [data-theme='dark'] {
-	--color-ink-900: #0b0c10;
-	--color-ink-850: #0e0f14;
-	--color-ink-800: #14161d;
-	--color-ink-700: #1b1e27;
-	--color-ink-600: #262a36;
-	--color-ink-500: #3a3f4f;
+	--color-ink-900: #0e0e10;
+	--color-ink-850: #202020;
+	--color-ink-800: #2a2a2c;
+	--color-ink-700: #333336;
+	--color-ink-600: #3e3e42;
+	--color-ink-500: #57575c;
 
-	--color-parch-100: #f4ecd8;
-	--color-parch-200: #e8dcc0;
-	--color-parch-300: #cdbf9e;
-	--color-parch-muted: #9a917d;
+	--color-parch-100: #f5f5f5;
+	--color-parch-200: #e2e2e2;
+	--color-parch-300: #b2b2b2;
+	--color-parch-muted: #8a8a8e;
 
-	--color-gold-300: #f3d08a;
-	--color-gold-400: #e7b35c;
-	--color-gold-500: #d29a3e;
-	--color-gold-600: #a8762a;
+	--color-gold-300: #b6a6ff;
+	--color-gold-400: #8a6bff;
+	--color-gold-500: #7451f4;
+	--color-gold-600: #5b3fe0;
 
-	--color-verdant: #6fae8e;
-	--color-azure: #6f9cd6;
-	--color-rose: #cd6f7a;
+	--color-verdant: #5bd08f;
+	--color-azure: #82a8f0;
+	--color-rose: #ff7a5f;
 
 	color-scheme: dark;
 }
@@ -84,23 +98,14 @@ body {
 	background-color: var(--color-ink-850);
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
-	transition: background-color 0.3s, color 0.3s;
-}
-
-/* dotted-grid texture only in the dark codex theme (clean white in ITMO light) */
-[data-theme='dark'] body {
-	background-image: radial-gradient(
-		circle at center,
-		color-mix(in srgb, var(--color-ink-500) 55%, transparent) 1px,
-		transparent 1.4px
-	);
-	background-size: 26px 26px;
-	background-attachment: fixed;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
 }
 
 ::selection {
-	background: var(--accent-soft);
-	color: var(--color-parch-100);
+	background: var(--lime);
+	color: var(--lime-ink);
 }
 
 * {
@@ -123,10 +128,10 @@ h2,
 h3,
 h4 {
 	font-family: var(--font-display);
-	font-weight: 700;
+	font-weight: 800;
 	color: var(--color-parch-100);
-	letter-spacing: -0.02em;
-	line-height: 1.08;
+	letter-spacing: -0.025em;
+	line-height: 1.04;
 }
 
 a {
@@ -142,9 +147,55 @@ pre {
 .label {
 	font-family: var(--font-mono);
 	text-transform: uppercase;
-	letter-spacing: 0.16em;
+	letter-spacing: 0.14em;
 	font-size: 0.66rem;
 	color: var(--color-parch-muted);
+}
+
+/* ---------- ITMO building blocks ---------- */
+/* pill button (stadium) */
+.pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: 0.85rem;
+	padding: 0.6rem 1.3rem;
+	border-radius: 999px;
+	border: 1.5px solid transparent;
+	cursor: pointer;
+	text-decoration: none;
+	transition:
+		transform 0.14s,
+		background 0.16s,
+		color 0.16s,
+		border-color 0.16s;
+	white-space: nowrap;
+}
+.pill:hover {
+	transform: translateY(-2px);
+}
+.pill--solid {
+	background: var(--color-parch-100);
+	color: var(--color-ink-850);
+}
+.pill--violet {
+	background: var(--violet);
+	color: #fff;
+}
+.pill--lime {
+	background: var(--lime);
+	color: var(--lime-ink);
+}
+.pill--outline {
+	background: transparent;
+	border-color: var(--color-ink-500);
+	color: var(--color-parch-100);
+}
+.pill--outline:hover {
+	border-color: var(--accent);
+	color: var(--accent);
 }
 
 .rule-gold {
@@ -169,9 +220,7 @@ pre {
 	border-radius: 4px;
 }
 
-/* ============================================================
-   Animations / motion
-   ============================================================ */
+/* ============================================================ Animations */
 @property --ring {
 	syntax: '<percentage>';
 	inherits: false;
@@ -205,18 +254,17 @@ pre {
 @keyframes reveal {
 	from {
 		opacity: 0;
-		transform: translateY(12px);
+		transform: translateY(14px);
 	}
 	to {
 		opacity: 1;
 		transform: translateY(0);
 	}
 }
-
 .reveal {
 	opacity: 0;
 	animation: reveal 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
-	animation-delay: calc(var(--i, 0) * 70ms);
+	animation-delay: calc(var(--i, 0) * 65ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
