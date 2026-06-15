@@ -74,8 +74,7 @@
 		display: inline-block;
 		width: 0.65rem;
 		height: 1.5rem;
-		border-radius: 3px;
-		background: hsl(var(--tint) 68% 62%);
+		background: var(--blue);
 	}
 	.phase__sub {
 		font-family: var(--font-mono);

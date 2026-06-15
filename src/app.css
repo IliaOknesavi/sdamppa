@@ -28,28 +28,31 @@
 	--color-parch-300: #565656;
 	--color-parch-muted: #8a8a90;
 
-	/* brand violet (mapped onto the gold-* scale used across components) */
-	--color-gold-300: #a997ff;
-	--color-gold-400: #7451f4;
-	--color-gold-500: #5b3fe0;
-	--color-gold-600: #4a2fce;
+	/* brand: ИИИ electric blue (mapped onto the gold-* scale used across components) */
+	--color-gold-300: #5b5bff;
+	--color-gold-400: #0000ff;
+	--color-gold-500: #0000d6;
+	--color-gold-600: #0000a8;
 
 	/* semantic */
-	--color-verdant: #2f9e63;
-	--color-azure: #4f7fe0;
-	--color-rose: #e75239;
+	--color-verdant: #1f9e63;
+	--color-azure: #0000ff;
+	--color-rose: #e23b3b;
 
-	/* ITMO signature + category palette */
-	--lime: #e9fe96;
-	--lime-ink: #38450a;
-	--violet: #7451f4;
-	--violet-soft: #a997ff;
-	--c-teal: #84c5c0;
-	--c-sky: #91d6ed;
-	--c-lavender: #acb1f9;
-	--c-peach: #f4b497;
-	--c-pink: #fd81ff;
-	--c-coral: #e75239;
+	/* ИИИ signature palette: electric blue, periwinkle, pale-lavender squares */
+	--blue: #0000ff;
+	--blue-soft: #5b5bff;
+	--blue-pale: #d8d9ff;
+	/* "lime"/"violet" names kept so existing component refs keep working */
+	--lime: #d8d9ff;
+	--lime-ink: #0000ff;
+	--violet: #0000ff;
+	--violet-soft: #5b5bff;
+	--c-teal: #0000ff;
+	--c-sky: #5b5bff;
+	--c-lavender: #8a8aff;
+	--c-peach: #b9b9ff;
+	--c-pink: #0000c8;
 }
 
 :root {
@@ -74,14 +77,22 @@
 	--color-parch-300: #b2b2b2;
 	--color-parch-muted: #8a8a8e;
 
-	--color-gold-300: #b6a6ff;
-	--color-gold-400: #8a6bff;
-	--color-gold-500: #7451f4;
-	--color-gold-600: #5b3fe0;
+	--color-gold-300: #8a8aff;
+	--color-gold-400: #4d4dff;
+	--color-gold-500: #3a3aff;
+	--color-gold-600: #2a2aff;
 
 	--color-verdant: #5bd08f;
-	--color-azure: #82a8f0;
+	--color-azure: #6f8dff;
 	--color-rose: #ff7a5f;
+
+	--blue: #4d4dff;
+	--blue-soft: #8a8aff;
+	--blue-pale: #2a2a55;
+	--lime: #1c1c4d;
+	--lime-ink: #c9caff;
+	--violet: #4d4dff;
+	--violet-soft: #8a8aff;
 
 	color-scheme: dark;
 }
