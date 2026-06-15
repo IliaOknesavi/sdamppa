@@ -9,7 +9,7 @@
 <div class="page">
 	<header class="head">
 		<div class="head__text">
-			<a class="home" href="/">✦ Кодекс</a>
+			<a class="home" href="/">✦ СдамППА</a>
 			<h1>{direction.name}</h1>
 			<div class="label sub">{direction.short} · направление</div>
 		</div>

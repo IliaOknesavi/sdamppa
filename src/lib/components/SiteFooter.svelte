@@ -5,7 +5,7 @@
 <footer class="foot">
 	<div class="foot__inner">
 		<div class="foot__brand">
-			<span class="foot__mark">КОДЕКС</span>
+			<span class="foot__mark">СдамППА</span>
 			<span class="foot__tag">направление → предмет → семестр → курс</span>
 		</div>
 		<div class="foot__meta">

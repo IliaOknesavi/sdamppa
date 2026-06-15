@@ -1,5 +1,5 @@
 // =====================================================================
-//  КОДЕКС — subject-agnostic content schema.
+//  СдамППА — subject-agnostic content schema.
 //
 //  A "subject" (statistics, matan, ...) is a pluggable content module that
 //  conforms to `Subject`. The engine (tooltips, gamification, calendar,

@@ -18,7 +18,7 @@
 	</div>
 	<div class="site__main">
 		<a class="site__brand" href="/">
-			<span class="site__mark">КОДЕКС</span>
+			<span class="site__mark">СдамППА</span>
 			<span class="site__dot"></span>
 		</a>
 		<nav class="site__nav">
