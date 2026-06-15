@@ -126,6 +126,7 @@ export interface Direction {
 	name: string; // 'Инженерия искусственного интеллекта'
 	short: string; // 'ИИИ'
 	blurb?: string;
+	accent?: string; // brand colour for the direction (e.g. ИИИ electric blue)
 	subjects: Subject[];
 }
 

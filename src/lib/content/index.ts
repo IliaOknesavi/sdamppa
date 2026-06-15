@@ -13,6 +13,7 @@ export const directions: Direction[] = [
 		name: 'Инженерия искусственного интеллекта',
 		short: 'ИИИ',
 		blurb: 'Направление подготовки. Предметы делятся по семестрам, версии — по годам программы.',
+		accent: '#0000ff',
 		subjects: [statistics, matan]
 	}
 ];

@@ -1,14 +1,27 @@
 <script lang="ts">
 	import { subjectReady, semestersOf, authoredDays } from '$lib/types';
+	import Sparkle from '$lib/components/Sparkle.svelte';
 	let { data } = $props();
 	const direction = $derived(data.direction);
+	const tiles = ['blue', '', 'soft', '', 'star', 'blue', 'pale', '', 'blue'];
 </script>
 
 <div class="page">
 	<header class="head">
-		<a class="home" href="/">✦ Кодекс</a>
-		<h1>{direction.name}</h1>
-		<div class="label sub">{direction.short} · направление</div>
+		<div class="head__text">
+			<a class="home" href="/">✦ Кодекс</a>
+			<h1>{direction.name}</h1>
+			<div class="label sub">{direction.short} · направление</div>
+		</div>
+		<div class="head__art" aria-hidden="true">
+			<div class="mosaic">
+				{#each tiles as t}
+					<div class="tile tile--{t || 'empty'}">
+						{#if t === 'star'}<Sparkle size={30} color="var(--blue)" />{/if}
+					</div>
+				{/each}
+			</div>
+		</div>
 	</header>
 
 	<div class="grid">
@@ -53,12 +66,58 @@
 	.home:hover {
 		color: var(--accent);
 	}
+	.head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
 	.head h1 {
 		font-size: clamp(1.8rem, 5vw, 2.8rem);
 		margin: 0.7rem 0 0.3rem;
 	}
 	.sub {
-		margin-bottom: 2rem;
+		margin-bottom: 0;
+	}
+	.head__art {
+		flex: none;
+	}
+	.mosaic {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 6px;
+		width: 168px;
+	}
+	.tile {
+		aspect-ratio: 1;
+	}
+	.tile--blue {
+		background: var(--blue);
+	}
+	.tile--soft {
+		background: var(--blue-soft);
+	}
+	.tile--pale {
+		background: var(--blue-pale);
+	}
+	.tile--star {
+		background: var(--color-ink-850);
+		border: 1.5px solid var(--blue);
+		display: grid;
+		place-items: center;
+	}
+	.tile--empty {
+		background: transparent;
+	}
+	@media (max-width: 640px) {
+		.head {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.head__art {
+			display: none;
+		}
 	}
 	.grid {
 		display: grid;
