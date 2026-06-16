@@ -42,7 +42,7 @@ jobs:
         run: npm run build # → ./build (SPA, index.html fallback)
 
       - name: Deploy build/ via rsync over SSH
-        uses: easingthemes/ssh-deploy@v5
+        uses: easingthemes/ssh-deploy@v5.1.2
         with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
