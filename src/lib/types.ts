@@ -39,6 +39,22 @@ export type SectionKind =
 	| 'note'
 	| 'plain';
 
+/** A hoverable note attached to a token inside an annotated code block. */
+export interface CodeNote {
+	token: string; // substring in the code to make hoverable (first occurrence)
+	kind: 'syntax' | 'concept'; // syntax of C  |  algorithmic meaning
+	title: string;
+	body: string; // codex markup
+	complexity?: string; // KaTeX, shown for 'concept' notes, e.g. "O(V+E)"
+}
+/** Code example whose tokens open two kinds of tooltips: C-syntax and concept (+complexity). */
+export interface AnnotatedCode {
+	lang: string; // 'c', 'python', ...
+	code: string;
+	caption?: string;
+	notes: CodeNote[];
+}
+
 export interface Section {
 	kind?: SectionKind;
 	heading?: string;
@@ -47,6 +63,8 @@ export interface Section {
 	viz?: string;
 	/** Optional runnable/illustrative code shown right after this section's body. */
 	code?: CodeBlock;
+	/** Code example with syntax/concept tooltips on tokens. */
+	annotated?: AnnotatedCode;
 }
 
 export type Difficulty = 'base' | 'star';

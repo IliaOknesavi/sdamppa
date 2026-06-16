@@ -5,6 +5,7 @@
 	import TaskCard from './TaskCard.svelte';
 	import RunnableCode from './RunnableCode.svelte';
 	import LabStage from './LabStage.svelte';
+	import CodeAnnotated from './CodeAnnotated.svelte';
 	import { vizRegistry } from '$lib/viz/registry';
 
 	let {
@@ -73,6 +74,9 @@
 				{/if}
 				{#if s.code}
 					<RunnableCode block={s.code} />
+				{/if}
+				{#if s.annotated}
+					<CodeAnnotated data={s.annotated} />
 				{/if}
 			</section>
 		{/each}
