@@ -35,6 +35,8 @@
 			<ol>
 				{#each b.items as it}<li>{@render inlines(it)}</li>{/each}
 			</ol>
+		{:else if b.k === 'codeblock'}
+			<pre class="cx-rich-code"><code>{b.v}</code></pre>
 		{/if}
 	{/each}
 </div>
@@ -46,6 +48,23 @@
 	}
 	.cx-rich :global(p:last-child) {
 		margin-bottom: 0;
+	}
+	.cx-rich :global(.cx-rich-code) {
+		margin: 0.6em 0;
+		padding: 0.7rem 0.9rem;
+		border-radius: 8px;
+		background: var(--color-ink-900, #0c0d11);
+		border: 1px solid var(--color-ink-600);
+		overflow-x: auto;
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		line-height: 1.5;
+		color: #d8dee9;
+	}
+	.cx-rich :global(.cx-rich-code code) {
+		background: none;
+		padding: 0;
+		color: inherit;
 	}
 	.cx-rich :global(ul),
 	.cx-rich :global(ol) {
