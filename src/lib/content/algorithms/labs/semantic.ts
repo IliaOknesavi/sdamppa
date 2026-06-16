@@ -27,6 +27,7 @@ export const semanticTheory: Day[] = [
 			{
 				kind: 'definition',
 				heading: 'Меры близости векторов',
+				viz: 'cosine-vs-euclid',
 				body: String.raw`Насколько близки два вектора $a,b\in\mathbb{R}^d$ — две основные меры:
 
 - **Евклидово расстояние**: $\|a-b\|_2=\sqrt{\sum_i (a_i-b_i)^2}$ — «прямая» дистанция; меньше = ближе.
@@ -102,6 +103,7 @@ def cosine_norm(a, b):
 			{
 				kind: 'definition',
 				heading: 'k-d дерево',
+				viz: 'kdtree-build-query',
 				body: String.raw`**k-d дерево** (k-dimensional) — бинарное дерево, рекурсивно делящее пространство гиперплоскостями. На каждом уровне выбирается **ось** (циклически: $0,1,\dots,d-1,0,\dots$) и точки делятся по медиане вдоль неё: меньшие — влево, большие — вправо.
 
 - **Построение**: $O(N\log N)$ (рекурсивно по медиане).
