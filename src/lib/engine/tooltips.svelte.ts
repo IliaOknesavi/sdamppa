@@ -26,17 +26,25 @@ class TooltipManager {
 	#z = 100;
 	#hideT: ReturnType<typeof setTimeout> | undefined;
 
+	// Ad-hoc terms registered at runtime (e.g. by annotated code blocks) — resolved
+	// by the same hover/pin cards as glossary terms, so code tooltips reuse the engine.
+	adhoc = $state<Glossary>({});
+
 	setGlossary(g: Glossary) {
 		this.glossary = g ?? {};
 		this.hover = null;
 		this.pins = [];
 	}
 
+	registerAdhoc(term: GlossaryTerm) {
+		if (!this.adhoc[term.id]) this.adhoc[term.id] = term;
+	}
+
 	has(id: string): boolean {
-		return !!this.glossary[id];
+		return !!this.glossary[id] || !!this.adhoc[id];
 	}
 	get(id: string): GlossaryTerm | undefined {
-		return this.glossary[id];
+		return this.glossary[id] ?? this.adhoc[id];
 	}
 
 	showHover(id: string, rect: DOMRect) {

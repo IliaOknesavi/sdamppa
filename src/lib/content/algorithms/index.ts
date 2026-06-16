@@ -1,4 +1,9 @@
 import type { Subject, Day, Phase, Glossary, LabFile } from '$lib/types';
+import { graphs2Theory } from './labs/graphs2';
+import { amortTheory } from './labs/amort';
+import { dsuTheory } from './labs/dsu';
+import { treesTheory } from './labs/trees';
+import { maxflowTheory } from './labs/maxflow';
 
 // =====================================================================
 //  АЛГОРИТМЫ — структура «по лабам»: на каждую лабу блок теории (по
@@ -12,8 +17,10 @@ const phases: Phase[] = [
 	{ id: 'graphs', title: 'Лаба №12 · Графы', subtitle: 'обходы, Дейкстра, дорожная сеть СПб', hue: 0 },
 	{ id: 'greedy', title: 'Лаба · Жадные алгоритмы', subtitle: 'activity selection, Хаффман', hue: 0 },
 	{ id: 'dp', title: 'Лаба · Динамическое программирование', subtitle: 'рюкзак, LCS, Левенштейн', hue: 0 },
+	{ id: 'amort', title: 'Амортизационный анализ', subtitle: 'усреднение, банкир, потенциалы', hue: 0 },
 	{ id: 'dsu', title: 'Лаба · СНМ и MST', subtitle: 'union-find, Краскал/Прим', hue: 0 },
 	{ id: 'trees', title: 'Лаба · Деревья поиска', subtitle: 'BST, AVL, RB, B-дерево', hue: 0 },
+	{ id: 'maxflow', title: 'Максимальный поток', subtitle: 'Форд–Фалкерсон, Эдмондс–Карп', hue: 0 },
 	{ id: 'semantic', title: 'Лаба · Семантический поиск', subtitle: 'k-d дерево, эмбеддинги (Python)', hue: 0 }
 ];
 
@@ -404,13 +411,29 @@ const otherDays: Day[] = [
 	draft(11, 'greedy', 'Лаба', 'Жадная лаба', 'Реализация жадных алгоритмов на C.'),
 	draft(20, 'dp', 'Теория', 'Динамическое программирование', 'Рюкзак, LCS, расстояние Левенштейна; мемоизация vs табуляция.'),
 	draft(21, 'dp', 'Лаба', 'ДП лаба', 'Реализация ДП на C.'),
-	draft(30, 'dsu', 'Теория', 'СНМ и минимальное остовное дерево', 'Union-find со сжатием путей; Краскал и Прим.'),
 	draft(31, 'dsu', 'Лаба', 'СНМ/MST лаба', 'Реализация union-find и MST на C.'),
-	draft(40, 'trees', 'Теория', 'Сбалансированные деревья поиска', 'BST, повороты, AVL, красно-чёрные, B-деревья.'),
 	draft(41, 'trees', 'Лаба', 'Деревья лаба', 'Реализация дерева поиска на C.'),
 	draft(50, 'semantic', 'Теория', 'Семантический поиск', 'Эмбеддинги, k-d дерево, приближённый поиск ближайших.'),
 	draft(51, 'semantic', 'Лаба', 'Семантическая лаба (Python)', 'Реализация поиска на Python.')
 ];
+
+// порядок: теория из лекций → лаба, по фазам; n перенумеровывается сквозно
+const rePhase = (ds: Day[], pid: string): Day[] => ds.map((d) => ({ ...d, phaseId: pid }));
+const byPhase = (pid: string): Day[] => otherDays.filter((d) => d.phaseId === pid);
+const orderedDays: Day[] = [
+	...graphsDays.filter((d) => d.kind === 'theory'),
+	...rePhase(graphs2Theory, 'graphs'),
+	...graphsDays.filter((d) => d.kind === 'lab'),
+	...byPhase('greedy'),
+	...byPhase('dp'),
+	...amortTheory,
+	...dsuTheory,
+	...byPhase('dsu'),
+	...treesTheory,
+	...byPhase('trees'),
+	...maxflowTheory,
+	...byPhase('semantic')
+].map((d, i) => ({ ...d, n: i + 1 }));
 
 export const algorithms: Subject = {
 	id: 'algorithms',
@@ -425,7 +448,7 @@ export const algorithms: Subject = {
 			year: 2026,
 			status: 'ready',
 			phases,
-			days: [...graphsDays, ...otherDays].sort((a, b) => a.n - b.n),
+			days: orderedDays,
 			glossary
 		}
 	]
