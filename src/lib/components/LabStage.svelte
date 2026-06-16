@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { LabStage } from '$lib/types';
 	import { runPython } from '$lib/engine/pyodide.svelte';
+	import LabIDE from './LabIDE.svelte';
 
 	let { lab }: { lab: LabStage } = $props();
 
@@ -31,6 +32,9 @@
 	}
 </script>
 
+{#if lab.files?.length}
+	<LabIDE files={lab.files} entry={lab.entry} />
+{:else}
 <div class="lab">
 	<div class="lab__bar">
 		<span class="lab__dot"></span>
@@ -70,6 +74,7 @@
 		</div>
 	{/if}
 </div>
+{/if}
 
 <style>
 	.lab {

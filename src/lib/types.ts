@@ -79,13 +79,24 @@ export interface Checkpoint {
 	passNote?: string;
 }
 
+/** One file in the in-site lab IDE. */
+export interface LabFile {
+	path: string; // e.g. "graph.c", "lab3/list/generic.h"
+	content: string;
+	readonly?: boolean; // reference files (README, data, tests) — not edited by the student
+	lang?: string; // for the label; inferred from extension if absent
+}
+
 /** A staged in-site lab: write & check code right on the page. */
 export interface LabStage {
 	language: 'c' | 'python';
-	starter: string; // starter code shown in the editor
+	starter?: string; // single-file starter (simple labs)
 	solution?: string; // reference solution
 	/** Hidden test cases: run the code with `stdin`, output must equal `expect`. */
 	tests?: { name: string; stdin: string; expect: string }[];
+	/** Real multi-file lab — rendered as an in-site IDE (file tree + tabs + editor). */
+	files?: LabFile[];
+	entry?: string; // path opened by default
 }
 
 export interface Day {
