@@ -1,0 +1,53 @@
+name: Build & deploy to server
+
+# Автодеплой: на каждый пуш в main собираем статику (adapter-static → ./build)
+# и заливаем на твой сервер по rsync over SSH.
+#
+# Нужны секреты репозитория (Settings → Secrets and variables → Actions):
+#   DEPLOY_SSH_KEY  — приватный SSH-ключ (весь файл, включая BEGIN/END);
+#                     публичную часть положи в ~/.ssh/authorized_keys на сервере
+#   DEPLOY_HOST     — хост сервера (IP или домен)
+#   DEPLOY_USER     — пользователь SSH
+#   DEPLOY_PATH     — web-root, напр. /var/www/sdamppa
+#   DEPLOY_PORT     — (необяз.) SSH-порт, если не 22
+#
+# На сервере настрой веб-сервер из deploy/nginx.conf или deploy/Caddyfile
+# (SPA-fallback на index.html). Для C-компилятора в браузере добавь заголовки
+# COOP/COEP в конфиг веб-сервера (cross-origin isolation).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build # → ./build (SPA, index.html fallback)
+
+      - name: Deploy build/ via rsync over SSH
+        uses: easingthemes/ssh-deploy@v5
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+          REMOTE_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          TARGET: ${{ secrets.DEPLOY_PATH }}
+          SOURCE: build/
+          ARGS: '-rlptDz --delete'
