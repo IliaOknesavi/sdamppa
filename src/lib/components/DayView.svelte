@@ -6,6 +6,7 @@
 	import RunnableCode from './RunnableCode.svelte';
 	import LabStage from './LabStage.svelte';
 	import { vizRegistry } from '$lib/viz/registry';
+	import { ctx } from '$lib/copilot/context.svelte';
 
 	let {
 		course,
@@ -37,6 +38,32 @@
 	const next = $derived(course.days.find((d) => d.n === day.n + 1));
 	const done = $derived(progress.isDayDone(day.n));
 	const phase = $derived(course.phases.find((p) => p.id === day.phaseId));
+
+	// strip codex markup so the assistant gets clean text
+	const strip = (s: string) =>
+		(s ?? '')
+			.replace(/\[\[[^\]|]+\|([^\]]+)\]\]/g, '$1')
+			.replace(/\[\[([^\]]+)\]\]/g, '$1')
+			.replace(/\*\*|\*|`/g, '')
+			.trim();
+
+	// feed the current lecture's material to the Copilot assistant
+	$effect(() => {
+		const parts: string[] = [];
+		parts.push(`ЦЕЛЬ: ${strip(day.goal)}`);
+		for (const s of day.sections) {
+			const k = KIND[s.kind ?? 'plain'].label;
+			parts.push(`\n## ${k ? k + ': ' : ''}${s.heading ?? ''}\n${strip(s.body)}`);
+		}
+		const g = course.glossary ?? {};
+		const terms = Object.values(g)
+			.map((t) => `• ${t.term} — ${strip(t.short ?? '')}`)
+			.join('\n');
+		if (terms) parts.push(`\nТЕРМИНЫ:\n${terms}`);
+		if (day.lab) parts.push(`\nЛАБА (${day.lab.language}): этап с написанием кода прямо на сайте.`);
+		if (day.mastery?.length) parts.push(`\nКРИТЕРИИ УСВОЕНИЯ:\n${day.mastery.map((m) => '• ' + m).join('\n')}`);
+		ctx.set(`${phase?.title ?? ''} · ${day.unitLabel ?? 'День ' + day.n}`.trim(), day.title, parts.join('\n'));
+	});
 </script>
 
 <article class="day">

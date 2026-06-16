@@ -3,6 +3,7 @@
 	import TooltipLayer from '$lib/engine/TooltipLayer.svelte';
 	import SiteHeader from '$lib/components/SiteHeader.svelte';
 	import SiteFooter from '$lib/components/SiteFooter.svelte';
+	import Copilot from '$lib/copilot/Copilot.svelte';
 
 	let { children } = $props();
 </script>
@@ -17,6 +18,8 @@
 
 <!-- global nested-tooltip layer (hover popovers + pinned cards) -->
 <TooltipLayer />
+<!-- AI assistant (user's own Ollama) with current-lecture context -->
+<Copilot />
 
 <style>
 	.cx-app {
