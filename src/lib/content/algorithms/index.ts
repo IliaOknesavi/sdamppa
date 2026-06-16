@@ -4,6 +4,14 @@ import { amortTheory } from './labs/amort';
 import { dsuTheory } from './labs/dsu';
 import { treesTheory } from './labs/trees';
 import { maxflowTheory } from './labs/maxflow';
+// реальные переиспользуемые структуры студента из прошлого сема (algo-2025/IliaOknesavi)
+import listH from './labs/reused/list.generic.h?raw';
+import listC from './labs/reused/list.generic.c?raw';
+import vectorH from './labs/reused/vector.generic.h?raw';
+import vectorC from './labs/reused/vector.generic.c?raw';
+import comparatorsH from './labs/reused/comparators.h?raw';
+import hashH from './labs/reused/hashtable.generic.h?raw';
+import hashC from './labs/reused/hashtable.generic.c?raw';
 
 // =====================================================================
 //  АЛГОРИТМЫ — структура «по лабам»: на каждую лабу блок теории (по
@@ -103,6 +111,13 @@ const glossary: Glossary = {
 
 // --- Реальные файлы лабы №12 (для IDE на странице) -------------------
 const labFiles: LabFile[] = [
+	{ path: 'lab3/list/generic.h', readonly: true, lang: 'c', content: listH },
+	{ path: 'lab3/list/generic.c', readonly: true, lang: 'c', content: listC },
+	{ path: 'lab3/vector/generic.h', readonly: true, lang: 'c', content: vectorH },
+	{ path: 'lab3/vector/generic.c', readonly: true, lang: 'c', content: vectorC },
+	{ path: 'lab3/comparators.h', readonly: true, lang: 'c', content: comparatorsH },
+	{ path: 'lab4/hash_table/generic.h', readonly: true, lang: 'c', content: hashH },
+	{ path: 'lab4/hash_table/generic.c', readonly: true, lang: 'c', content: hashC },
 	{
 		path: 'README.md',
 		readonly: true,
