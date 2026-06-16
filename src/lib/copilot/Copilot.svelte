@@ -113,50 +113,36 @@
 		{#if showSettings}
 			<div class="cop__settings">
 				<div class="seg">
-					<button class:on={settings.s.mode === 'cloud'} onclick={() => (settings.s.mode = 'cloud')}>Ollama Cloud</button>
-					<button class:on={settings.s.mode === 'local'} onclick={() => (settings.s.mode = 'local')}>Локальный</button>
+					<button class:on={settings.s.apiType === 'ollama'} onclick={() => (settings.s.apiType = 'ollama')}>Ollama</button>
+					<button class:on={settings.s.apiType === 'openai'} onclick={() => (settings.s.apiType = 'openai')}>OpenAI-совмест.</button>
 				</div>
-				{#if settings.s.mode === 'cloud'}
-					<label>
-						<span>API-ключ Ollama Cloud</span>
-						<input bind:value={settings.s.apiKey} type="password" placeholder="ollama.com → API keys" />
-					</label>
-					<label>
-						<span>Облачная модель</span>
-						{#if models.length}
-							<select bind:value={settings.s.model}>{#each models as m}<option value={m}>{m}</option>{/each}</select>
-						{:else}
-							<input bind:value={settings.s.model} placeholder="напр. gpt-oss:120b" />
-						{/if}
-					</label>
-					<div class="cop__note">
-						Ключ — в <code>ollama.com → Settings → API keys</code>. Запросы идут на
-						<code>ollama.com</code> с твоим ключом; ключ хранится только в браузере.
-					</div>
-				{:else}
-					<label>
-						<span>Ollama URL</span>
-						<input bind:value={settings.s.baseUrl} placeholder="http://localhost:11434" />
-					</label>
-					<label>
-						<span>API-ключ <em>(необяз.)</em></span>
-						<input bind:value={settings.s.apiKey} type="password" placeholder="пусто для локального" />
-					</label>
-					<label>
-						<span>Модель</span>
-						{#if models.length}
-							<select bind:value={settings.s.model}>{#each models as m}<option value={m}>{m}</option>{/each}</select>
-						{:else}
-							<input bind:value={settings.s.model} placeholder="напр. llama3.1" />
-						{/if}
-					</label>
-					<div class="cop__note">Локальный Ollama: включи CORS — <code>OLLAMA_ORIGINS=*</code>.</div>
-				{/if}
+				<label>
+					<span>URL эндпоинта</span>
+					<input bind:value={settings.s.baseUrl} placeholder="http://localhost:11434" />
+				</label>
+				<label>
+					<span>API-ключ <em>(если нужен)</em></span>
+					<input bind:value={settings.s.apiKey} type="password" placeholder="для облака/прокси" />
+				</label>
+				<label>
+					<span>Модель</span>
+					{#if models.length}
+						<select bind:value={settings.s.model}>{#each models as m}<option value={m}>{m}</option>{/each}</select>
+					{:else}
+						<input bind:value={settings.s.model} placeholder="напр. llama3.1 / gpt-oss:120b-cloud" />
+					{/if}
+				</label>
 				<div class="cop__settings-row">
 					<button class="btn ghost" onclick={test} disabled={testing}>{testing ? '…' : 'Проверить связь'}</button>
 					<button class="btn solid" onclick={saveSettings}>Сохранить</button>
 				</div>
 				{#if testMsg}<div class="cop__test">{testMsg}</div>{/if}
+				<div class="cop__note">
+					Браузер шлёт запрос только на этот URL — нужен CORS. <strong>Облачные модели Ollama:</strong>
+					поставь Ollama локально, <code>ollama signin</code>, URL <code>http://localhost:11434</code>,
+					модель вида <code>gpt-oss:120b-cloud</code>, и <code>OLLAMA_ORIGINS=*</code>. Прямой
+					<code>ollama.com</code> из браузера не работает (нет CORS).
+				</div>
 			</div>
 		{/if}
 

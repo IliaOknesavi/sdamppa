@@ -5,26 +5,72 @@ export interface ChatMsg {
 	content: string;
 }
 
-/** List models available on the configured Ollama (also a connection test). */
+/** List models (also a connection test). Supports Ollama and OpenAI-compatible. */
 export async function listModels(): Promise<string[]> {
+	if (settings.s.apiType === 'openai') {
+		const r = await fetch(settings.base + '/v1/models', { headers: settings.authHeaders() });
+		if (!r.ok) throw new Error('HTTP ' + r.status);
+		const j = await r.json();
+		return ((j.data ?? []) as { id: string }[]).map((m) => m.id).sort();
+	}
 	const r = await fetch(settings.base + '/api/tags', { headers: settings.authHeaders() });
 	if (!r.ok) throw new Error('HTTP ' + r.status);
 	const j = await r.json();
 	return ((j.models ?? []) as { name: string }[]).map((m) => m.name).sort();
 }
 
-/** Stream a chat completion from Ollama (/api/chat, NDJSON). Calls onToken per chunk. */
+/** Stream a chat completion, dispatching to the chosen API shape. */
 export async function chatStream(
 	messages: ChatMsg[],
 	onToken: (t: string) => void,
 	signal?: AbortSignal
 ): Promise<void> {
+	return settings.s.apiType === 'openai'
+		? openaiStream(messages, onToken, signal)
+		: ollamaStream(messages, onToken, signal);
+}
+
+// --- Ollama native: POST /api/chat → NDJSON {message:{content}, done} --------
+async function ollamaStream(messages: ChatMsg[], onToken: (t: string) => void, signal?: AbortSignal) {
 	const r = await fetch(settings.base + '/api/chat', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json', ...settings.authHeaders() },
 		body: JSON.stringify({ model: settings.s.model, messages, stream: true }),
 		signal
 	});
+	await pumpLines(r, (line) => {
+		try {
+			const o = JSON.parse(line);
+			if (o.message?.content) onToken(o.message.content as string);
+		} catch {
+			/* skip */
+		}
+	});
+}
+
+// --- OpenAI-compatible: POST /v1/chat/completions → SSE "data: {...}" --------
+async function openaiStream(messages: ChatMsg[], onToken: (t: string) => void, signal?: AbortSignal) {
+	const r = await fetch(settings.base + '/v1/chat/completions', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json', ...settings.authHeaders() },
+		body: JSON.stringify({ model: settings.s.model, messages, stream: true }),
+		signal
+	});
+	await pumpLines(r, (line) => {
+		if (!line.startsWith('data:')) return;
+		const payload = line.slice(5).trim();
+		if (payload === '[DONE]') return;
+		try {
+			const o = JSON.parse(payload);
+			const t = o.choices?.[0]?.delta?.content;
+			if (t) onToken(t as string);
+		} catch {
+			/* skip */
+		}
+	});
+}
+
+async function pumpLines(r: Response, onLine: (line: string) => void) {
 	if (!r.ok || !r.body) {
 		const detail = await r.text().catch(() => '');
 		throw new Error('HTTP ' + r.status + (detail ? ': ' + detail.slice(0, 200) : ''));
@@ -40,13 +86,7 @@ export async function chatStream(
 		while ((nl = buf.indexOf('\n')) >= 0) {
 			const line = buf.slice(0, nl).trim();
 			buf = buf.slice(nl + 1);
-			if (!line) continue;
-			try {
-				const o = JSON.parse(line);
-				if (o.message?.content) onToken(o.message.content as string);
-			} catch {
-				/* skip partial line */
-			}
+			if (line) onLine(line);
 		}
 	}
 }

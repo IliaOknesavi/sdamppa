@@ -1,22 +1,24 @@
 import { browser } from '$app/environment';
 
-// Connection to the user's own Ollama (local http://localhost:11434, or a
-// remote/cloud endpoint with an API key). Stored only in localStorage and sent
-// only to that endpoint — nothing touches our servers (the site is static).
+// Connection to an LLM endpoint reachable FROM THE BROWSER (i.e. CORS-enabled):
+//  • local Ollama (http://localhost:11434) — set OLLAMA_ORIGINS=* so the browser
+//    is allowed; cloud models work here too after `ollama signin` (use a cloud
+//    model name) — the request goes to localhost, Ollama relays to the cloud;
+//  • any OpenAI-compatible endpoint / your own proxy that sends CORS headers.
+// NB: ollama.com directly does NOT send CORS headers, so a static site cannot
+// call it from the browser — route cloud models through local Ollama instead.
 export interface OllamaSettings {
-	mode: 'cloud' | 'local'; // cloud = ollama.com (API key) — основной режим
-	baseUrl: string; // used only in local mode
-	apiKey: string;
+	baseUrl: string;
+	apiKey: string; // optional Bearer token
 	model: string;
+	apiType: 'ollama' | 'openai'; // /api/chat (NDJSON)  |  /v1/chat/completions (SSE)
 }
 
-export const CLOUD_URL = 'https://ollama.com';
-
 const DEFAULTS: OllamaSettings = {
-	mode: 'cloud',
 	baseUrl: 'http://localhost:11434',
 	apiKey: '',
-	model: ''
+	model: '',
+	apiType: 'ollama'
 };
 
 class CopilotSettings {
@@ -37,12 +39,10 @@ class CopilotSettings {
 		if (browser) localStorage.setItem('copilot:ollama', JSON.stringify(this.s));
 	}
 	get base(): string {
-		return this.s.mode === 'cloud' ? CLOUD_URL : this.s.baseUrl.replace(/\/+$/, '');
+		return this.s.baseUrl.replace(/\/+$/, '');
 	}
 	get configured(): boolean {
-		return this.s.mode === 'cloud'
-			? !!this.s.apiKey && !!this.s.model
-			: !!this.s.baseUrl && !!this.s.model;
+		return !!this.s.baseUrl && !!this.s.model;
 	}
 	authHeaders(): Record<string, string> {
 		return this.s.apiKey ? { Authorization: 'Bearer ' + this.s.apiKey } : {};
