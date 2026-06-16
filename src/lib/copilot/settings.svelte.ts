@@ -4,12 +4,16 @@ import { browser } from '$app/environment';
 // remote/cloud endpoint with an API key). Stored only in localStorage and sent
 // only to that endpoint — nothing touches our servers (the site is static).
 export interface OllamaSettings {
-	baseUrl: string;
+	mode: 'cloud' | 'local'; // cloud = ollama.com (API key) — основной режим
+	baseUrl: string; // used only in local mode
 	apiKey: string;
 	model: string;
 }
 
+export const CLOUD_URL = 'https://ollama.com';
+
 const DEFAULTS: OllamaSettings = {
+	mode: 'cloud',
 	baseUrl: 'http://localhost:11434',
 	apiKey: '',
 	model: ''
@@ -33,10 +37,12 @@ class CopilotSettings {
 		if (browser) localStorage.setItem('copilot:ollama', JSON.stringify(this.s));
 	}
 	get base(): string {
-		return this.s.baseUrl.replace(/\/+$/, '');
+		return this.s.mode === 'cloud' ? CLOUD_URL : this.s.baseUrl.replace(/\/+$/, '');
 	}
 	get configured(): boolean {
-		return !!this.s.baseUrl && !!this.s.model;
+		return this.s.mode === 'cloud'
+			? !!this.s.apiKey && !!this.s.model
+			: !!this.s.baseUrl && !!this.s.model;
 	}
 	authHeaders(): Record<string, string> {
 		return this.s.apiKey ? { Authorization: 'Bearer ' + this.s.apiKey } : {};

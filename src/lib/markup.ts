@@ -21,7 +21,8 @@ export type Block =
 	| { k: 'h'; level: number; c: Inline[] }
 	| { k: 'math'; v: string }
 	| { k: 'ul'; items: Inline[][] }
-	| { k: 'ol'; items: Inline[][] };
+	| { k: 'ol'; items: Inline[][] }
+	| { k: 'codeblock'; lang: string; v: string };
 
 interface Pattern {
 	re: RegExp;
@@ -69,8 +70,37 @@ export function parseInline(src: string): Inline[] {
 export function parseBlocks(src: string): Block[] {
 	const norm = (src ?? '').replace(/\r\n?/g, '\n').trim();
 	if (!norm) return [];
-	const chunks = norm.split(/\n{2,}/);
 	const blocks: Block[] = [];
+
+	// Fence pre-pass: pull ```...``` code blocks out before blank-line splitting.
+	const lines = norm.split('\n');
+	let i = 0;
+	let buf: string[] = [];
+	const flush = () => {
+		const text = buf.join('\n').trim();
+		buf = [];
+		if (text) parseTextBlocks(text, blocks);
+	};
+	while (i < lines.length) {
+		const fence = /^\s*```(.*)$/.exec(lines[i]);
+		if (fence) {
+			flush();
+			const lang = fence[1].trim();
+			const code: string[] = [];
+			i++;
+			while (i < lines.length && !/^\s*```\s*$/.test(lines[i])) code.push(lines[i++]);
+			i++; // skip closing fence
+			blocks.push({ k: 'codeblock', lang, v: code.join('\n') });
+		} else {
+			buf.push(lines[i++]);
+		}
+	}
+	flush();
+	return blocks;
+}
+
+function parseTextBlocks(norm: string, blocks: Block[]): void {
+	const chunks = norm.split(/\n{2,}/);
 
 	for (const raw of chunks) {
 		const t = raw.trim();
@@ -109,5 +139,4 @@ export function parseBlocks(src: string): Block[] {
 		// paragraph: join soft line breaks with spaces
 		blocks.push({ k: 'p', c: parseInline(lines.join(' ')) });
 	}
-	return blocks;
 }

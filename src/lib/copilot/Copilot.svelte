@@ -3,6 +3,7 @@
 	import { settings } from './settings.svelte';
 	import { ctx } from './context.svelte';
 	import { chatStream, listModels, systemPrompt, type ChatMsg } from './client';
+	import RichText from '$lib/engine/RichText.svelte';
 
 	let open = $state(false);
 	let showSettings = $state(false);
@@ -111,33 +112,51 @@
 
 		{#if showSettings}
 			<div class="cop__settings">
-				<label>
-					<span>Ollama URL</span>
-					<input bind:value={settings.s.baseUrl} placeholder="http://localhost:11434" />
-				</label>
-				<label>
-					<span>API-ключ <em>(необяз., для облака/прокси)</em></span>
-					<input bind:value={settings.s.apiKey} type="password" placeholder="пусто для локального" />
-				</label>
-				<label>
-					<span>Модель</span>
-					{#if models.length}
-						<select bind:value={settings.s.model}>
-							{#each models as m}<option value={m}>{m}</option>{/each}
-						</select>
-					{:else}
-						<input bind:value={settings.s.model} placeholder="напр. llama3.1" />
-					{/if}
-				</label>
+				<div class="seg">
+					<button class:on={settings.s.mode === 'cloud'} onclick={() => (settings.s.mode = 'cloud')}>Ollama Cloud</button>
+					<button class:on={settings.s.mode === 'local'} onclick={() => (settings.s.mode = 'local')}>Локальный</button>
+				</div>
+				{#if settings.s.mode === 'cloud'}
+					<label>
+						<span>API-ключ Ollama Cloud</span>
+						<input bind:value={settings.s.apiKey} type="password" placeholder="ollama.com → API keys" />
+					</label>
+					<label>
+						<span>Облачная модель</span>
+						{#if models.length}
+							<select bind:value={settings.s.model}>{#each models as m}<option value={m}>{m}</option>{/each}</select>
+						{:else}
+							<input bind:value={settings.s.model} placeholder="напр. gpt-oss:120b" />
+						{/if}
+					</label>
+					<div class="cop__note">
+						Ключ — в <code>ollama.com → Settings → API keys</code>. Запросы идут на
+						<code>ollama.com</code> с твоим ключом; ключ хранится только в браузере.
+					</div>
+				{:else}
+					<label>
+						<span>Ollama URL</span>
+						<input bind:value={settings.s.baseUrl} placeholder="http://localhost:11434" />
+					</label>
+					<label>
+						<span>API-ключ <em>(необяз.)</em></span>
+						<input bind:value={settings.s.apiKey} type="password" placeholder="пусто для локального" />
+					</label>
+					<label>
+						<span>Модель</span>
+						{#if models.length}
+							<select bind:value={settings.s.model}>{#each models as m}<option value={m}>{m}</option>{/each}</select>
+						{:else}
+							<input bind:value={settings.s.model} placeholder="напр. llama3.1" />
+						{/if}
+					</label>
+					<div class="cop__note">Локальный Ollama: включи CORS — <code>OLLAMA_ORIGINS=*</code>.</div>
+				{/if}
 				<div class="cop__settings-row">
 					<button class="btn ghost" onclick={test} disabled={testing}>{testing ? '…' : 'Проверить связь'}</button>
 					<button class="btn solid" onclick={saveSettings}>Сохранить</button>
 				</div>
 				{#if testMsg}<div class="cop__test">{testMsg}</div>{/if}
-				<div class="cop__note">
-					Ключ и переписка хранятся только у тебя в браузере. Для локального Ollama включи CORS:
-					<code>OLLAMA_ORIGINS=*</code>.
-				</div>
 			</div>
 		{/if}
 
@@ -156,7 +175,13 @@
 			{#each messages as m}
 				<div class="msg {m.role}">
 					<div class="msg__who">{m.role === 'user' ? 'ты' : 'ассистент'}</div>
-					<div class="msg__body">{m.content || (streaming ? '…' : '')}</div>
+					{#if m.role === 'assistant'}
+						<div class="msg__body rich">
+							{#if m.content}<RichText source={m.content} />{:else if streaming}…{/if}
+						</div>
+					{:else}
+						<div class="msg__body">{m.content}</div>
+					{/if}
 				</div>
 			{/each}
 			{#if error}<div class="cop__err">⚠ {error}</div>{/if}
@@ -272,6 +297,27 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.6rem;
+	}
+	.seg {
+		display: flex;
+		border: 1.5px solid var(--accent, #7451f4);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	.seg button {
+		flex: 1;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 0.75rem;
+		padding: 0.4rem;
+		border: none;
+		background: transparent;
+		color: var(--accent, #7451f4);
+		cursor: pointer;
+	}
+	.seg button.on {
+		background: var(--accent, #7451f4);
+		color: #fff;
 	}
 	.cop__settings label {
 		display: flex;
