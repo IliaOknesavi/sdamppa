@@ -1,13 +1,33 @@
 <script lang="ts">
 	import { directions } from '$lib/content';
+	import type { Direction } from '$lib/types';
 	import { tips } from '$lib/engine/tooltips.svelte';
 	import { statistics } from '$lib/content/statistics';
 	import RichText from '$lib/engine/RichText.svelte';
+
+	const mainDirs = $derived(directions.filter((d) => !d.extra));
+	const extraDirs = $derived(directions.filter((d) => d.extra));
 
 	$effect(() => {
 		tips.setGlossary(statistics.courses[0].glossary);
 	});
 </script>
+
+{#snippet dirCard(d: Direction, i: number)}
+	<a
+		class="dir reveal"
+		style="--i:{3 + i}; {d.accent ? `--violet:${d.accent}` : ''}"
+		href="/{d.id}"
+	>
+		<div class="dir__badge">{d.short}</div>
+		<h3 class="dir__name">{d.name}</h3>
+		{#if d.blurb}<p class="dir__blurb">{d.blurb}</p>{/if}
+		<div class="dir__foot">
+			<span>{d.subjects.length} предмет(а/ов)</span>
+			<span class="dir__go">войти →</span>
+		</div>
+	</a>
+{/snippet}
 
 <div class="home">
 	<!-- general ITMO platform hero (violet block + lime headline) -->
@@ -41,23 +61,26 @@
 	<section class="dirs" id="dirs">
 		<h2 class="sec-h reveal" style="--i:2">Направления</h2>
 		<div class="dirs__grid">
-			{#each directions as d, i}
-				<a
-					class="dir reveal"
-					style="--i:{3 + i}; {d.accent ? `--violet:${d.accent}` : ''}"
-					href="/{d.id}"
-				>
-					<div class="dir__badge">{d.short}</div>
-					<h3 class="dir__name">{d.name}</h3>
-					{#if d.blurb}<p class="dir__blurb">{d.blurb}</p>{/if}
-					<div class="dir__foot">
-						<span>{d.subjects.length} предмет(а/ов)</span>
-						<span class="dir__go">войти →</span>
-					</div>
-				</a>
+			{#each mainDirs as d, i}
+				{@render dirCard(d, i)}
 			{/each}
 		</div>
 	</section>
+
+	{#if extraDirs.length}
+		<!-- extra / bonus track: open-source AI stack, outside the program -->
+		<section class="dirs dirs--extra" id="extra">
+			<h2 class="sec-h reveal">Доп. раздел</h2>
+			<p class="dirs__note reveal">
+				Не из программы — открытый стек ИИ: фреймворки, инференс, агенты. Учим по той же системе.
+			</p>
+			<div class="dirs__grid">
+				{#each extraDirs as d, i}
+					{@render dirCard(d, i)}
+				{/each}
+			</div>
+		</section>
+	{/if}
 
 	<!-- features -->
 	<section class="feats">
@@ -173,6 +196,16 @@
 		font-size: clamp(1.8rem, 5vw, 3rem);
 		margin: 0 0 1.2rem;
 		color: var(--violet);
+	}
+	.dirs--extra {
+		margin-top: 2.6rem;
+	}
+	.dirs__note {
+		font-size: 0.95rem;
+		color: var(--color-parch-300);
+		margin: -0.6rem 0 1.2rem;
+		max-width: 62ch;
+		line-height: 1.5;
 	}
 	.dirs__grid {
 		display: grid;

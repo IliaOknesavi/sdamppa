@@ -1,11 +1,13 @@
 <script lang="ts">
 	import type { CodeBlock } from '$lib/types';
 	import RichText from '$lib/engine/RichText.svelte';
+	import CodeView from './CodeView.svelte';
 	import { runPython, py } from '$lib/engine/pyodide.svelte';
 
 	let { block }: { block: CodeBlock } = $props();
 
 	const runnable = $derived(block.language === 'python');
+	let editing = $state(false); // python blocks: hover-разбор by default, ✎ to edit
 	let code = $state(block.code);
 	let output = $state('');
 	let error = $state(false);
@@ -61,30 +63,36 @@
 	<div class="rc__bar">
 		<span class="rc__dot"></span>
 		<span class="rc__title">{block.title}</span>
-		<span class="rc__lang">{block.language}{runnable ? ' · редактируемо' : ''}</span>
+		<span class="rc__lang">{block.language}{runnable ? (editing ? ' · правка' : ' · подсказки') : ' · только чтение'}</span>
 		<button class="rc__btn ghost" onclick={copy}>{copied ? '✓' : 'копировать'}</button>
 		{#if block.colab}
 			<button class="rc__btn colab" onclick={openColab} title="Скопировать код и открыть Colab">▷ Colab</button>
 		{/if}
 		{#if runnable}
-			<button class="rc__btn ghost" onclick={reset} disabled={code === block.code}>сброс</button>
+			<button class="rc__btn ghost" onclick={() => (editing = !editing)}>{editing ? '✓ готово' : '✎ править'}</button>
+			{#if editing}
+				<button class="rc__btn ghost" onclick={reset} disabled={code === block.code}>сброс</button>
+			{/if}
 			<button class="rc__btn run" onclick={run} disabled={running}>
 				{#if running && py.status === 'loading'}загрузка Python…{:else if running}выполняется…{:else}▶ запустить{/if}
 			</button>
 		{/if}
 	</div>
 
-	<div class="rc__editor" style="--lines:{lineCount}">
-		<textarea
-			class="rc__ta"
-			bind:value={code}
-			onkeydown={onKey}
-			spellcheck="false"
-			autocapitalize="off"
-			rows={lineCount}
-			readonly={!runnable}
-		></textarea>
-	</div>
+	{#if runnable && editing}
+		<div class="rc__editor" style="--lines:{lineCount}">
+			<textarea
+				class="rc__ta"
+				bind:value={code}
+				onkeydown={onKey}
+				spellcheck="false"
+				autocapitalize="off"
+				rows={lineCount}
+			></textarea>
+		</div>
+	{:else}
+		<CodeView {code} />
+	{/if}
 
 	{#if runnable && (ran || running)}
 		<div class="rc__out" class:err={error}>
