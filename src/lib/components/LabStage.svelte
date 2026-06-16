@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { LabStage } from '$lib/types';
 	import { runPython } from '$lib/engine/pyodide.svelte';
+	import { cc, compileAndRunC } from '$lib/engine/cc.svelte';
 	import LabIDE from './LabIDE.svelte';
 
 	let { lab }: { lab: LabStage } = $props();
 
-	let code = $state(lab.starter);
+	let code = $state(lab.starter ?? '');
 	let showSolution = $state(false);
 	let output = $state('');
 	let running = $state(false);
@@ -20,13 +21,13 @@
 			const r = await runPython(code);
 			output = r.text;
 		} else {
-			// C execution in-browser (real WASM compiler) is wired in the next update
-			output = 'Запуск C прямо на странице подключается в следующем обновлении (реальный компилятор в WASM). Пока — редактируй код и сверяйся с эталонным решением и тестами ниже.';
+			const r = await compileAndRunC([{ path: 'main.c', content: code }]);
+			output = r.text;
 		}
 		running = false;
 	}
 	function reset() {
-		code = lab.starter;
+		code = lab.starter ?? '';
 		output = '';
 		results = [];
 	}
@@ -47,7 +48,7 @@
 			</button>
 		{/if}
 		<button class="lab__btn run" onclick={run} disabled={running}>
-			{running ? '…' : isC ? '▶ запустить' : '▶ запустить'}
+			{running ? (isC && cc.status === 'loading' ? cc.detail || 'clang…' : '…') : '▶ запустить'}
 		</button>
 	</div>
 

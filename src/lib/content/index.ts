@@ -7,6 +7,7 @@ import { getCourse } from '$lib/types';
 import { statistics } from './statistics';
 import { algorithms } from './algorithms';
 import { matan } from './matan';
+import { pytorch } from './pytorch';
 
 export const directions: Direction[] = [
 	{
@@ -16,6 +17,15 @@ export const directions: Direction[] = [
 		blurb: 'Направление подготовки. Предметы делятся по семестрам, версии — по годам программы.',
 		accent: '#0000ff',
 		subjects: [statistics, algorithms, matan]
+	},
+	{
+		id: 'dl',
+		name: 'DL-фреймворки',
+		short: 'DL',
+		blurb: 'Открытый стек глубокого обучения по той же системе. Первый предмет — PyTorch.',
+		accent: '#ee4c2c',
+		extra: true,
+		subjects: [pytorch]
 	}
 ];
 

@@ -4,6 +4,9 @@ import { amortTheory } from './labs/amort';
 import { dsuTheory } from './labs/dsu';
 import { treesTheory } from './labs/trees';
 import { maxflowTheory } from './labs/maxflow';
+import { greedyTheory } from './labs/greedy';
+import { dpTheory } from './labs/dp';
+import { semanticTheory } from './labs/semantic';
 // реальные переиспользуемые структуры студента из прошлого сема (algo-2025/IliaOknesavi)
 import listH from './labs/reused/list.generic.h?raw';
 import listC from './labs/reused/list.generic.c?raw';
@@ -422,13 +425,10 @@ const draft = (n: number, phaseId: string, unitLabel: string, title: string, goa
 });
 
 const otherDays: Day[] = [
-	draft(10, 'greedy', 'Теория', 'Жадные алгоритмы', 'Activity selection, коды Хаффмана, корректность жадного выбора.'),
 	draft(11, 'greedy', 'Лаба', 'Жадная лаба', 'Реализация жадных алгоритмов на C.'),
-	draft(20, 'dp', 'Теория', 'Динамическое программирование', 'Рюкзак, LCS, расстояние Левенштейна; мемоизация vs табуляция.'),
 	draft(21, 'dp', 'Лаба', 'ДП лаба', 'Реализация ДП на C.'),
 	draft(31, 'dsu', 'Лаба', 'СНМ/MST лаба', 'Реализация union-find и MST на C.'),
 	draft(41, 'trees', 'Лаба', 'Деревья лаба', 'Реализация дерева поиска на C.'),
-	draft(50, 'semantic', 'Теория', 'Семантический поиск', 'Эмбеддинги, k-d дерево, приближённый поиск ближайших.'),
 	draft(51, 'semantic', 'Лаба', 'Семантическая лаба (Python)', 'Реализация поиска на Python.')
 ];
 
@@ -439,7 +439,9 @@ const orderedDays: Day[] = [
 	...graphsDays.filter((d) => d.kind === 'theory'),
 	...rePhase(graphs2Theory, 'graphs'),
 	...graphsDays.filter((d) => d.kind === 'lab'),
+	...greedyTheory,
 	...byPhase('greedy'),
+	...dpTheory,
 	...byPhase('dp'),
 	...amortTheory,
 	...dsuTheory,
@@ -447,6 +449,7 @@ const orderedDays: Day[] = [
 	...treesTheory,
 	...byPhase('trees'),
 	...maxflowTheory,
+	...semanticTheory,
 	...byPhase('semantic')
 ].map((d, i) => ({ ...d, n: i + 1 }));
 

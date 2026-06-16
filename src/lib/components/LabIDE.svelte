@@ -1,7 +1,23 @@
 <script lang="ts">
 	import type { LabFile } from '$lib/types';
+	import { cc, compileAndRunC } from '$lib/engine/cc.svelte';
 
 	let { files, entry }: { files: LabFile[]; entry?: string } = $props();
+
+	let busy = $state(false);
+	let output = $state('');
+	let outKind = $state<'' | 'ok' | 'err'>('');
+
+	async function build() {
+		busy = true;
+		output = '';
+		outKind = '';
+		const all = Object.entries(edits).map(([path, content]) => ({ path, content }));
+		const res = await compileAndRunC(all);
+		output = res.text;
+		outKind = res.ok ? 'ok' : 'err';
+		busy = false;
+	}
 
 	type TNode = { name: string; path?: string; dir?: TNode[] };
 	function buildTree(fs: LabFile[]): TNode[] {
@@ -109,9 +125,21 @@
 		</div>
 	</div>
 	<div class="ide__foot">
-		<button class="ide__run">собрать и проверить</button>
-		<span class="ide__note">компиляция C прямо в браузере подключается следующим шагом — пока редактируй и сверяйся с тестами</span>
+		<button class="ide__run" onclick={build} disabled={busy}>
+			{busy ? 'собираю…' : '▶ собрать и запустить'}
+		</button>
+		{#if busy && cc.status === 'loading'}
+			<span class="ide__note">clang в WASM: {cc.detail || 'загрузка'}…</span>
+		{:else if !output}
+			<span class="ide__note">настоящий clang компилирует и запускает C прямо в браузере</span>
+		{/if}
 	</div>
+	{#if output}
+		<div class="ide__out" class:err={outKind === 'err'}>
+			<div class="ide__out-bar">{outKind === 'err' ? 'ошибка' : 'вывод программы'}</div>
+			<pre>{output}</pre>
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -251,4 +279,31 @@
 		cursor: pointer;
 	}
 	.ide__note { color: #6b7280; font-size: 0.62rem; }
+	.ide__run:disabled { opacity: 0.6; cursor: progress; }
+	.ide__out {
+		border-top: 1px solid #23262e;
+		background: #0c0d11;
+	}
+	.ide__out-bar {
+		padding: 0.35rem 0.8rem;
+		font-size: 0.62rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--blue);
+		border-bottom: 1px solid #23262e;
+	}
+	.ide__out.err .ide__out-bar { color: #ff5f57; }
+	.ide__out pre {
+		margin: 0;
+		padding: 0.8rem 1rem;
+		max-height: 240px;
+		overflow: auto;
+		font-family: var(--font-mono);
+		font-size: 0.76rem;
+		line-height: 1.5;
+		color: #d8dee9;
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+	.ide__out.err pre { color: #ffb4ae; }
 </style>
