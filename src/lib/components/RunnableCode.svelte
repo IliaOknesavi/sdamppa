@@ -12,6 +12,7 @@
 	let running = $state(false);
 	let ran = $state(false);
 	let copied = $state(false);
+	let colabSent = $state(false);
 
 	async function run() {
 		running = true;
@@ -34,6 +35,14 @@
 			setTimeout(() => (copied = false), 1300);
 		}
 	}
+	// Copy the snippet and open a fresh Colab notebook (torch + GPU preinstalled there).
+	function openColab() {
+		if (typeof navigator !== 'undefined' && navigator.clipboard) navigator.clipboard.writeText(code);
+		if (typeof window !== 'undefined')
+			window.open('https://colab.research.google.com/#create=true', '_blank', 'noopener');
+		colabSent = true;
+		setTimeout(() => (colabSent = false), 2600);
+	}
 	// Tab inserts spaces instead of leaving the textarea
 	function onKey(e: KeyboardEvent) {
 		if (e.key === 'Tab') {
@@ -54,6 +63,9 @@
 		<span class="rc__title">{block.title}</span>
 		<span class="rc__lang">{block.language}{runnable ? ' · редактируемо' : ''}</span>
 		<button class="rc__btn ghost" onclick={copy}>{copied ? '✓' : 'копировать'}</button>
+		{#if block.colab}
+			<button class="rc__btn colab" onclick={openColab} title="Скопировать код и открыть Colab">▷ Colab</button>
+		{/if}
 		{#if runnable}
 			<button class="rc__btn ghost" onclick={reset} disabled={code === block.code}>сброс</button>
 			<button class="rc__btn run" onclick={run} disabled={running}>
@@ -90,6 +102,13 @@
 
 	{#if runnable && py.status === 'idle' && !ran}
 		<div class="rc__hint label">первый запуск подгрузит Python в браузер (~10 МБ, один раз)</div>
+	{/if}
+
+	{#if block.colab && !runnable}
+		<div class="rc__hint label">это настоящий PyTorch — запусти в Colab (там torch и GPU уже стоят)</div>
+	{/if}
+	{#if colabSent}
+		<div class="rc__hint label">код скопирован — вставь в новую ячейку Colab ↗</div>
 	{/if}
 </div>
 
@@ -151,6 +170,14 @@
 	.rc__btn.ghost:disabled {
 		opacity: 0.4;
 		cursor: default;
+	}
+	.rc__btn.colab {
+		background: color-mix(in srgb, #f9ab00 20%, var(--color-ink-700));
+		border-color: color-mix(in srgb, #f9ab00 55%, transparent);
+		color: #f9ab00;
+	}
+	.rc__btn.colab:hover {
+		background: color-mix(in srgb, #f9ab00 30%, var(--color-ink-700));
 	}
 	.rc__btn.run {
 		background: linear-gradient(180deg, color-mix(in srgb, var(--color-verdant) 30%, var(--color-ink-700)), var(--color-ink-700));

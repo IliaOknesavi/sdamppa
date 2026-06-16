@@ -43,6 +43,10 @@ export interface Section {
 	kind?: SectionKind;
 	heading?: string;
 	body: string; // codex markup
+	/** Optional interactive visualization id (see lib/viz/registry). Rendered after the body. */
+	viz?: string;
+	/** Optional runnable/illustrative code shown right after this section's body. */
+	code?: CodeBlock;
 }
 
 export type Difficulty = 'base' | 'star';
@@ -63,6 +67,8 @@ export interface CodeBlock {
 	code: string;
 	/** "В коде / в проде" — codex markup explaining the applied angle. */
 	explanation?: string;
+	/** Show an "Открыть в Colab" button (copies code, opens a fresh Colab). For real-torch snippets. */
+	colab?: boolean;
 }
 
 export interface Checkpoint {
@@ -71,6 +77,15 @@ export interface Checkpoint {
 	intro: string; // codex markup
 	questions: string[]; // codex markup, self-answer prompts
 	passNote?: string;
+}
+
+/** A staged in-site lab: write & check code right on the page. */
+export interface LabStage {
+	language: 'c' | 'python';
+	starter: string; // starter code shown in the editor
+	solution?: string; // reference solution
+	/** Hidden test cases: run the code with `stdin`, output must equal `expect`. */
+	tests?: { name: string; stdin: string; expect: string }[];
 }
 
 export interface Day {
@@ -85,6 +100,11 @@ export interface Day {
 	tasks: Task[];
 	mastery: string[]; // self-check criteria
 	checkpoint?: Checkpoint;
+	/** Algorithms-style units: label shown instead of "День N" (e.g. "Теория", "Этап 1"). */
+	unitLabel?: string;
+	kind?: 'theory' | 'lab';
+	/** Staged lab: in-site editor + auto-checks. */
+	lab?: LabStage;
 	/** Authored vs not-yet-filled. Drafts render a "в разработке" placeholder. */
 	draft?: boolean;
 }
@@ -127,6 +147,8 @@ export interface Direction {
 	short: string; // 'ИИИ'
 	blurb?: string;
 	accent?: string; // brand colour for the direction (e.g. ИИИ electric blue)
+	/** Extra/bonus track — rendered under a separate "Доп. раздел" block on the home page. */
+	extra?: boolean;
 	subjects: Subject[];
 }
 

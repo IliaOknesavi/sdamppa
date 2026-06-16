@@ -5,6 +5,7 @@
 import type { Direction, Subject } from '$lib/types';
 import { getCourse } from '$lib/types';
 import { statistics } from './statistics';
+import { algorithms } from './algorithms';
 import { matan } from './matan';
 
 export const directions: Direction[] = [
@@ -14,7 +15,7 @@ export const directions: Direction[] = [
 		short: 'ИИИ',
 		blurb: 'Направление подготовки. Предметы делятся по семестрам, версии — по годам программы.',
 		accent: '#0000ff',
-		subjects: [statistics, matan]
+		subjects: [statistics, algorithms, matan]
 	}
 ];
 

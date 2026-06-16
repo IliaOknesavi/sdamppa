@@ -4,6 +4,8 @@
 	import RichText from '$lib/engine/RichText.svelte';
 	import TaskCard from './TaskCard.svelte';
 	import RunnableCode from './RunnableCode.svelte';
+	import LabStage from './LabStage.svelte';
+	import { vizRegistry } from '$lib/viz/registry';
 
 	let {
 		course,
@@ -45,7 +47,7 @@
 			{#if day.chapterRef && day.chapterRef !== '—'}<span class="day__ch">{day.chapterRef}</span>{/if}
 			{#if day.est}<span class="day__est">⏱ {day.est}</span>{/if}
 		</div>
-		<h1 class="day__title"><span class="day__n">День {day.n}.</span> {day.title}</h1>
+		<h1 class="day__title"><span class="day__n">{day.unitLabel ?? 'День ' + day.n}.</span> {day.title}</h1>
 		<div class="day__goal"><RichText source={day.goal} /></div>
 	</header>
 
@@ -65,12 +67,25 @@
 				{#if k.label}<div class="sec__kind">{k.label}</div>{/if}
 				{#if s.heading}<h2 class="sec__h">{s.heading}</h2>{/if}
 				<RichText source={s.body} />
+				{#if s.viz && vizRegistry[s.viz]}
+					{@const Viz = vizRegistry[s.viz]}
+					<Viz />
+				{/if}
+				{#if s.code}
+					<RunnableCode block={s.code} />
+				{/if}
 			</section>
 		{/each}
 
 		{#if day.code}
 			<section class="reveal" style="--i:{day.sections.length + 1}">
 				<RunnableCode block={day.code} />
+			</section>
+		{/if}
+
+		{#if day.lab}
+			<section class="reveal" style="--i:{day.sections.length + 2}">
+				<LabStage lab={day.lab} />
 			</section>
 		{/if}
 
