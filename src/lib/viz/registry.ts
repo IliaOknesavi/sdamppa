@@ -51,6 +51,8 @@ import CrossProductOrientation from './CrossProductOrientation.svelte';
 import SegmentIntersection from './SegmentIntersection.svelte';
 import ConvexHull from './ConvexHull.svelte';
 import RbDeleteFixup from './RbDeleteFixup.svelte';
+import ParallelismModels from './ParallelismModels.svelte';
+import PolygonClip from './PolygonClip.svelte';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const vizRegistry: Record<string, any> = {
@@ -104,5 +106,7 @@ export const vizRegistry: Record<string, any> = {
 	'cross-product-orientation': CrossProductOrientation,
 	'segment-intersection': SegmentIntersection,
 	'convex-hull': ConvexHull,
-	'rb-delete-fixup': RbDeleteFixup
+	'rb-delete-fixup': RbDeleteFixup,
+	'parallelism-models': ParallelismModels,
+	'polygon-clip': PolygonClip
 };

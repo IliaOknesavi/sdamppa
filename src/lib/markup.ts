@@ -14,7 +14,8 @@ export type Inline =
 	| { k: 'i'; c: Inline[] }
 	| { k: 'code'; v: string }
 	| { k: 'math'; v: string; display?: boolean }
-	| { k: 'term'; id: string; label: string };
+	| { k: 'term'; id: string; label: string }
+	| { k: 'link'; href: string; c: Inline[] };
 
 export type Block =
 	| { k: 'p'; c: Inline[] }
@@ -39,6 +40,11 @@ const PATTERNS: Pattern[] = [
 	{
 		re: /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/,
 		make: (m) => ({ k: 'term', id: m[1].trim(), label: (m[2] ?? m[1]).trim() })
+	},
+	// markdown link [label](href) — for internal navigation between days/modules
+	{
+		re: /\[([^\]\n]+?)\]\(([^)\s]+?)\)/,
+		make: (m) => ({ k: 'link', href: m[2].trim(), c: parseInline(m[1]) })
 	},
 	{ re: /\*\*([^*]+?)\*\*/, make: (m) => ({ k: 'b', c: parseInline(m[1]) }) },
 	{ re: /\*([^*\n]+?)\*/, make: (m) => ({ k: 'i', c: parseInline(m[1]) }) }

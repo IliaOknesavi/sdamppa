@@ -18,6 +18,7 @@ import { vebTheory } from './labs/veb';
 import { numpyTheory } from './labs/numpy';
 import { linprogTheory } from './labs/linprog';
 import { geometryTheory } from './labs/geometry';
+import { parallelTheory } from './labs/parallel';
 import { examDays } from './labs/exam';
 // реальные переиспользуемые структуры студента из прошлого сема (algo-2025/IliaOknesavi)
 import listH from './labs/reused/list.generic.h?raw';
@@ -471,10 +472,11 @@ const orderedDays: Day[] = [
 	// №15 — Семантический поиск (финальная лаба)
 	...semanticTheory,
 	semanticLab,
-	// Прикладные темы: NumPy, ЛП, вычислительная геометрия
+	// Прикладные темы: NumPy, ЛП, вычислительная геометрия, параллелизм
 	...numpyTheory,
 	...linprogTheory,
 	...geometryTheory,
+	...parallelTheory,
 	// Экзаменационные вопросы — карта ответов
 	...examDays
 ].map((d, i) => ({ ...d, n: i + 1 }));

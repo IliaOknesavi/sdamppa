@@ -15,6 +15,7 @@
 		{:else if n.k === 'code'}<code class="cx-code">{n.v}</code>
 		{:else if n.k === 'math'}<Katex math={n.v} display={n.display} />
 		{:else if n.k === 'term'}<Term id={n.id} label={n.label} {parent} />
+		{:else if n.k === 'link'}<a class="cx-link" href={n.href}>{@render inlines(n.c)}</a>
 		{/if}
 	{/each}
 {/snippet}
@@ -101,5 +102,14 @@
 	.cx-rich :global(strong) {
 		color: var(--color-parch-100);
 		font-weight: 600;
+	}
+	.cx-rich :global(.cx-link) {
+		color: var(--accent);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		cursor: pointer;
+	}
+	.cx-rich :global(.cx-link:hover) {
+		opacity: 0.8;
 	}
 </style>
