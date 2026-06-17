@@ -12,6 +12,13 @@ import { dpLab } from './labs/dpLab';
 import { dsuLab } from './labs/dsuLab';
 import { treesLab } from './labs/treesLab';
 import { semanticLab } from './labs/semanticLab';
+import { heapsTheory } from './labs/heaps';
+import { segmentTheory } from './labs/segment';
+import { vebTheory } from './labs/veb';
+import { numpyTheory } from './labs/numpy';
+import { linprogTheory } from './labs/linprog';
+import { geometryTheory } from './labs/geometry';
+import { examDays } from './labs/exam';
 // реальные переиспользуемые структуры студента из прошлого сема (algo-2025/IliaOknesavi)
 import listH from './labs/reused/list.generic.h?raw';
 import listC from './labs/reused/list.generic.c?raw';
@@ -30,14 +37,17 @@ import hashC from './labs/reused/hashtable.generic.c?raw';
 // =====================================================================
 
 const phases: Phase[] = [
+	{ id: 'dp', title: 'Лаба №10 · Динамическое программирование', subtitle: 'рюкзак, LCS, Левенштейн', hue: 0 },
+	{ id: 'greedy', title: 'Лаба №11 · Жадные алгоритмы', subtitle: 'activity selection, Хаффман', hue: 0 },
 	{ id: 'graphs', title: 'Лаба №12 · Графы', subtitle: 'обходы, Дейкстра, дорожная сеть СПб', hue: 0 },
-	{ id: 'greedy', title: 'Лаба · Жадные алгоритмы', subtitle: 'activity selection, Хаффман', hue: 0 },
-	{ id: 'dp', title: 'Лаба · Динамическое программирование', subtitle: 'рюкзак, LCS, Левенштейн', hue: 0 },
-	{ id: 'amort', title: 'Амортизационный анализ', subtitle: 'усреднение, банкир, потенциалы', hue: 0 },
-	{ id: 'dsu', title: 'Лаба · СНМ и MST', subtitle: 'union-find, Краскал/Прим', hue: 0 },
-	{ id: 'trees', title: 'Лаба · Деревья поиска', subtitle: 'BST, AVL, RB, B-дерево', hue: 0 },
 	{ id: 'maxflow', title: 'Максимальный поток', subtitle: 'Форд–Фалкерсон, Эдмондс–Карп', hue: 0 },
-	{ id: 'semantic', title: 'Лаба · Семантический поиск', subtitle: 'k-d дерево, эмбеддинги (Python)', hue: 0 }
+	{ id: 'amort', title: 'Амортизационный анализ', subtitle: 'усреднение, банкир, потенциалы', hue: 0 },
+	{ id: 'dsu', title: 'Лаба №13 · СНМ и MST', subtitle: 'union-find, Краскал/Прим', hue: 0 },
+	{ id: 'trees', title: 'Лаба №14 · Деревья поиска', subtitle: 'BST, AVL, RB, B-дерево', hue: 0 },
+	{ id: 'extra-ds', title: 'Структуры сверх программы', subtitle: 'кучи, дерево отрезков, vEB', hue: 0 },
+	{ id: 'semantic', title: 'Лаба №15 · Семантический поиск', subtitle: 'k-d дерево, эмбеддинги (Python)', hue: 0 },
+	{ id: 'extra-app', title: 'Прикладные темы', subtitle: 'NumPy, линейное программирование, выч. геометрия', hue: 0 },
+	{ id: 'exam', title: 'Экзамен', subtitle: 'карта ответов на 29 вопросов', hue: 0 }
 ];
 
 const glossary: Glossary = {
@@ -434,21 +444,39 @@ typedef struct {
 // порядок: теория из лекций → лаба, по фазам; n перенумеровывается сквозно
 const rePhase = (ds: Day[], pid: string): Day[] => ds.map((d) => ({ ...d, phaseId: pid }));
 const orderedDays: Day[] = [
+	// №10 — Динамическое программирование
+	...dpTheory,
+	dpLab,
+	// №11 — Жадные алгоритмы
+	...greedyTheory,
+	greedyLab,
+	// №12 — Графы
 	...graphsDays.filter((d) => d.kind === 'theory'),
 	...rePhase(graphs2Theory, 'graphs'),
 	...graphsDays.filter((d) => d.kind === 'lab'),
-	...greedyTheory,
-	greedyLab,
-	...dpTheory,
-	dpLab,
+	// Максимальный поток (теория, расширяет графы)
+	...maxflowTheory,
+	// Амортизационный анализ (теория, фундамент для СНМ)
 	...amortTheory,
+	// №13 — СНМ и MST
 	...dsuTheory,
 	dsuLab,
+	// №14 — Деревья поиска
 	...treesTheory,
 	treesLab,
-	...maxflowTheory,
+	// Структуры сверх программы: кучи, дерево отрезков, vEB
+	...heapsTheory,
+	...segmentTheory,
+	...vebTheory,
+	// №15 — Семантический поиск (финальная лаба)
 	...semanticTheory,
-	semanticLab
+	semanticLab,
+	// Прикладные темы: NumPy, ЛП, вычислительная геометрия
+	...numpyTheory,
+	...linprogTheory,
+	...geometryTheory,
+	// Экзаменационные вопросы — карта ответов
+	...examDays
 ].map((d, i) => ({ ...d, n: i + 1 }));
 
 export const algorithms: Subject = {

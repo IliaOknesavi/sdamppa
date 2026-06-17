@@ -37,6 +37,20 @@ import OrderStatisticsTree from './OrderStatisticsTree.svelte';
 import CosineVsEuclid from './CosineVsEuclid.svelte';
 import MaxflowMincut from './MaxflowMincut.svelte';
 import DinicLayered from './DinicLayered.svelte';
+import HeapKinds from './HeapKinds.svelte';
+import FibonacciHeap from './FibonacciHeap.svelte';
+import PqComparison from './PqComparison.svelte';
+import BinaryHeapArray from './BinaryHeapArray.svelte';
+import SegmentTree from './SegmentTree.svelte';
+import VebTree from './VebTree.svelte';
+import NumpyVectorization from './NumpyVectorization.svelte';
+import NumpyListVsNdarray from './NumpyListVsNdarray.svelte';
+import NumpyDtypeTable from './NumpyDtypeTable.svelte';
+import LpFeasibleRegion from './LpFeasibleRegion.svelte';
+import CrossProductOrientation from './CrossProductOrientation.svelte';
+import SegmentIntersection from './SegmentIntersection.svelte';
+import ConvexHull from './ConvexHull.svelte';
+import RbDeleteFixup from './RbDeleteFixup.svelte';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const vizRegistry: Record<string, any> = {
@@ -76,5 +90,19 @@ export const vizRegistry: Record<string, any> = {
 	'order-statistics-tree': OrderStatisticsTree,
 	'cosine-vs-euclid': CosineVsEuclid,
 	'maxflow-mincut': MaxflowMincut,
-	'dinic-layered': DinicLayered
+	'dinic-layered': DinicLayered,
+	'heap-kinds': HeapKinds,
+	'fibonacci-heap': FibonacciHeap,
+	'pq-comparison': PqComparison,
+	'binary-heap-array': BinaryHeapArray,
+	'segment-tree': SegmentTree,
+	'veb-tree': VebTree,
+	'numpy-vectorization': NumpyVectorization,
+	'numpy-list-vs-ndarray': NumpyListVsNdarray,
+	'numpy-dtype-table': NumpyDtypeTable,
+	'lp-feasible-region': LpFeasibleRegion,
+	'cross-product-orientation': CrossProductOrientation,
+	'segment-intersection': SegmentIntersection,
+	'convex-hull': ConvexHull,
+	'rb-delete-fixup': RbDeleteFixup
 };
