@@ -36,7 +36,6 @@
 	let mode = $state<'naive' | 'ek'>('naive');
 	let applied = $state(0);
 	let maxed = $state(false); // «перемотано к максимуму» (наивный)
-	let irr = $state(false); // показать иррациональный случай
 
 	const script = $derived(mode === 'naive' ? NAIVE : EK);
 
@@ -144,18 +143,6 @@
 				{/if}
 			</div>
 		</div>
-	</div>
-
-	<div class="mf__irr">
-		<button class="irr-tog" onclick={() => (irr = !irr)}>{irr ? '▾' : '▸'} Иррациональный случай: наивный метод может вообще не сойтись</button>
-		{#if irr}
-			<div class="irr-body">
-				Сеть с ёмкостями e₁ = 1, e₂ = r, e₃ = 1, где r = (√5 − 1)/2 и r² = 1 − r. При неудачном выборе путей
-				p₁, p₂, p₃ остаточные способности повторяются как rⁿ, rⁿ⁺¹, 0, и поток сходится к
-				1 + 2·Σrⁱ = <b>3 + 2r ≈ 4.236</b>, но <b>никогда не достигает</b> максимума. Вывод: способ выбора пути критичен —
-				Эдмондс–Карп (BFS) сходится всегда за O(VE²).
-			</div>
-		{/if}
 	</div>
 </div>
 
@@ -328,29 +315,5 @@
 	}
 	.verdict b {
 		color: inherit;
-	}
-	.mf__irr {
-		border-top: 1.5px solid var(--color-ink-600);
-		background: var(--color-ink-800);
-		padding: 0.6rem 0.9rem;
-	}
-	.irr-tog {
-		background: none;
-		border: none;
-		color: var(--blue);
-		font-family: var(--font-mono);
-		font-size: 0.72rem;
-		cursor: pointer;
-		padding: 0;
-		text-align: left;
-	}
-	.irr-body {
-		margin-top: 0.5rem;
-		font-size: 0.82rem;
-		line-height: 1.5;
-		color: var(--color-parch-200);
-	}
-	.irr-body b {
-		color: var(--color-parch-100);
 	}
 </style>

@@ -54,6 +54,7 @@ import RbDeleteFixup from './RbDeleteFixup.svelte';
 import ParallelismModels from './ParallelismModels.svelte';
 import PolygonClip from './PolygonClip.svelte';
 import MaxflowNaiveVsEk from './MaxflowNaiveVsEk.svelte';
+import MaxflowIrrational from './MaxflowIrrational.svelte';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const vizRegistry: Record<string, any> = {
@@ -110,5 +111,6 @@ export const vizRegistry: Record<string, any> = {
 	'rb-delete-fixup': RbDeleteFixup,
 	'parallelism-models': ParallelismModels,
 	'polygon-clip': PolygonClip,
-	'maxflow-naive-vs-ek': MaxflowNaiveVsEk
+	'maxflow-naive-vs-ek': MaxflowNaiveVsEk,
+	'maxflow-irrational': MaxflowIrrational
 };
