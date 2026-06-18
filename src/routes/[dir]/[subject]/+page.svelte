@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { semestersOf, yearsOf, getCourse, authoredDays } from '$lib/types';
+	import { plural } from '$lib/plural';
 	let { data } = $props();
 	const direction = $derived(data.direction);
 	const subject = $derived(data.subject);
@@ -27,7 +28,7 @@
 				{#if c}
 					<div class="state">
 						{#if c.status === 'ready'}
-							<span class="ready">{c.days.length} дней · {authoredDays(c)} готово</span>
+							<span class="ready">{c.days.length} {plural(c.days.length, ['день', 'дня', 'дней'])} · {authoredDays(c)} готово</span>
 						{:else}
 							<span class="soontag">скоро</span>
 						{/if}

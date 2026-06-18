@@ -24,3 +24,6 @@ vite.config.ts.timestamp-*
 
 # Claude Code worktrees (служебные изолированные ветки)
 .claude/worktrees/
+
+# vendored clang toolchain (~100MB, download manually into static/)
+static/clang.webc

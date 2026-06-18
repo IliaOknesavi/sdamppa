@@ -4,6 +4,7 @@
 	import { authoredDays, yearsOf } from '$lib/types';
 	import { progress } from '$lib/stores/progress.svelte';
 	import { goto } from '$app/navigation';
+	import { plural } from '$lib/plural';
 
 	let { data } = $props();
 	const direction = $derived(data.direction);
@@ -31,7 +32,7 @@
 			<div class="dash__titles">
 				<h1 class="dash__name">{subject.name}</h1>
 				<div class="dash__sub">
-					{direction.short} · {data.semester}-й семестр · {course.days.length} дней · {authoredDays(course)} готово · пройдено {progress.doneCount()} ({pct}%)
+					{direction.short} · {data.semester}-й семестр · {course.days.length} {plural(course.days.length, ['день', 'дня', 'дней'])} · {authoredDays(course)} готово · пройдено {progress.doneCount()} ({pct}%)
 				</div>
 			</div>
 			<label class="yearpick">

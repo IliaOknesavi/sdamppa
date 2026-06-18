@@ -4,6 +4,7 @@
 	import { tips } from '$lib/engine/tooltips.svelte';
 	import { statistics } from '$lib/content/statistics';
 	import RichText from '$lib/engine/RichText.svelte';
+	import { plural } from '$lib/plural';
 
 	const mainDirs = $derived(directions.filter((d) => !d.extra));
 	const extraDirs = $derived(directions.filter((d) => d.extra));
@@ -23,7 +24,7 @@
 		<h3 class="dir__name">{d.name}</h3>
 		{#if d.blurb}<p class="dir__blurb">{d.blurb}</p>{/if}
 		<div class="dir__foot">
-			<span>{d.subjects.length} предмет(а/ов)</span>
+			<span>{d.subjects.length} {plural(d.subjects.length, ['предмет', 'предмета', 'предметов'])}</span>
 			<span class="dir__go">войти →</span>
 		</div>
 	</a>

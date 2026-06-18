@@ -20,7 +20,7 @@ export const cc = $state<{ status: 'idle' | 'loading' | 'ready' | 'error'; detai
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-let bootPromise: Promise<{ Wasmer: any; Directory: any; clang: any }> | null = null;
+let bootPromise: Promise<{ Directory: any; clang: any; runWasix: any }> | null = null;
 
 const REGISTRY_URL = 'https://registry.wasmer.io/graphql';
 // Optional: drop the clang package at static/clang.webc to serve it from our
@@ -75,7 +75,7 @@ function boot() {
 			const clang = await loadClang(sdk);
 			cc.status = 'ready';
 			cc.detail = '';
-			return { Wasmer: sdk.Wasmer, Directory: sdk.Directory, clang };
+			return { Directory: sdk.Directory, clang, runWasix: sdk.runWasix };
 		})().catch((e) => {
 			cc.status = 'error';
 			cc.detail = e instanceof Error ? e.message : String(e);
@@ -107,7 +107,7 @@ export async function compileAndRunC(
 	opts: { stdin?: string; args?: string[] } = {}
 ): Promise<CResult> {
 	try {
-		const { Wasmer, Directory, clang } = await boot();
+		const { Directory, clang, runWasix } = await boot();
 
 		const proj = new Directory();
 		for (const f of files) await proj.writeFile(f.path, f.content);
@@ -134,12 +134,15 @@ export async function compileAndRunC(
 			};
 		}
 
+		// Запускаем СОБРАННЫЙ wasm32-wasi бинарник напрямую через runWasix —
+		// у «голого» wasm нет манифеста/entrypoint (отсюда была ошибка
+		// "entry not found" при попытке Wasmer.fromFile(wasm).entrypoint).
 		const wasm = await proj.readFile('a.wasm');
-		const program = await Wasmer.fromFile(wasm);
-		const run = await program.entrypoint.run({
+		const run = await runWasix(wasm, {
 			stdin: opts.stdin ?? '',
 			args: opts.args ?? [],
-			mount: { '/project': proj }
+			mount: { '/project': proj },
+			cwd: '/project'
 		});
 		const rRes = await run.wait();
 		const out = (rRes.stdout + (rRes.stderr ? '\n' + rRes.stderr : '')).trim();
