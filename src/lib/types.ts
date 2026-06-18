@@ -65,6 +65,8 @@ export interface Section {
 	code?: CodeBlock;
 	/** Code example with syntax/concept tooltips on tokens. */
 	annotated?: AnnotatedCode;
+	/** Render as a collapsed <details> accordion: heading is the summary, body hidden until expanded. */
+	collapsible?: boolean;
 }
 
 export type Difficulty = 'base' | 'star';

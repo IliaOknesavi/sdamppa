@@ -91,21 +91,40 @@
 	{:else}
 		{#each day.sections as s, i}
 			{@const k = KIND[s.kind ?? 'plain']}
-			<section class="sec reveal" style="--i:{i + 1}; --kc:{k.color};">
-				{#if k.label}<div class="sec__kind">{k.label}</div>{/if}
-				{#if s.heading}<h2 class="sec__h">{s.heading}</h2>{/if}
-				<RichText source={s.body} />
-				{#if s.viz && vizRegistry[s.viz]}
-					{@const Viz = vizRegistry[s.viz]}
-					<Viz />
-				{/if}
-				{#if s.code}
-					<RunnableCode block={s.code} />
-				{/if}
-				{#if s.annotated}
-					<CodeAnnotated data={s.annotated} />
-				{/if}
-			</section>
+			{#if s.collapsible}
+				<details class="sec sec--fold reveal" style="--i:{i + 1}; --kc:{k.color};">
+					<summary class="sec__fold-sum">{s.heading}</summary>
+					<div class="sec__fold-body">
+						<RichText source={s.body} />
+						{#if s.viz && vizRegistry[s.viz]}
+							{@const Viz = vizRegistry[s.viz]}
+							<Viz />
+						{/if}
+						{#if s.code}
+							<RunnableCode block={s.code} />
+						{/if}
+						{#if s.annotated}
+							<CodeAnnotated data={s.annotated} />
+						{/if}
+					</div>
+				</details>
+			{:else}
+				<section class="sec reveal" style="--i:{i + 1}; --kc:{k.color};">
+					{#if k.label}<div class="sec__kind">{k.label}</div>{/if}
+					{#if s.heading}<h2 class="sec__h">{s.heading}</h2>{/if}
+					<RichText source={s.body} />
+					{#if s.viz && vizRegistry[s.viz]}
+						{@const Viz = vizRegistry[s.viz]}
+						<Viz />
+					{/if}
+					{#if s.code}
+						<RunnableCode block={s.code} />
+					{/if}
+					{#if s.annotated}
+						<CodeAnnotated data={s.annotated} />
+					{/if}
+				</section>
+			{/if}
 		{/each}
 
 		{#if day.code}
@@ -232,6 +251,45 @@
 		margin: 0 0 0.6rem;
 		padding-left: 0.7rem;
 		border-left: 3px solid var(--kc);
+	}
+	/* collapsible accordion section (exam tickets): answer hidden until expanded */
+	.sec--fold {
+		margin: 0.6rem 0;
+		border: 1.5px solid var(--color-ink-600);
+		border-radius: 10px;
+		background: var(--color-ink-850);
+		overflow: hidden;
+	}
+	.sec__fold-sum {
+		list-style: none;
+		cursor: pointer;
+		padding: 0.85rem 1rem 0.85rem 2.1rem;
+		position: relative;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 0.98rem;
+		line-height: 1.4;
+		color: var(--color-parch-100);
+	}
+	.sec__fold-sum::-webkit-details-marker {
+		display: none;
+	}
+	.sec__fold-sum::before {
+		content: '▸';
+		position: absolute;
+		left: 0.85rem;
+		color: var(--accent);
+		transition: transform 0.15s;
+	}
+	.sec--fold[open] > .sec__fold-sum::before {
+		transform: rotate(90deg);
+	}
+	.sec__fold-sum:hover {
+		background: color-mix(in srgb, var(--accent) 8%, transparent);
+	}
+	.sec__fold-body {
+		padding: 0.2rem 1rem 1rem 2.1rem;
+		border-top: 1px solid var(--color-ink-600);
 	}
 	.block-h {
 		font-size: 1.3rem;
