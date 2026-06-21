@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { CodeBlock } from '$lib/types';
 	import RichText from '$lib/engine/RichText.svelte';
+	import InlineText from '$lib/engine/InlineText.svelte';
 	import CodeView from './CodeView.svelte';
 	import { runPython, py } from '$lib/engine/pyodide.svelte';
 
@@ -10,6 +11,7 @@
 	let editing = $state(false); // python blocks: hover-разбор by default, ✎ to edit
 	let code = $state(block.code);
 	let output = $state('');
+	let images = $state<string[]>([]);
 	let error = $state(false);
 	let running = $state(false);
 	let ran = $state(false);
@@ -20,6 +22,7 @@
 		running = true;
 		const res = await runPython(code);
 		output = res.text;
+		images = res.images ?? [];
 		error = res.error;
 		ran = true;
 		running = false;
@@ -27,6 +30,7 @@
 	function reset() {
 		code = block.code;
 		output = '';
+		images = [];
 		ran = false;
 		error = false;
 	}
@@ -62,7 +66,7 @@
 <div class="rc">
 	<div class="rc__bar">
 		<span class="rc__dot"></span>
-		<span class="rc__title">{block.title}</span>
+		<span class="rc__title"><InlineText source={block.title} /></span>
 		<span class="rc__lang">{block.language}{runnable ? (editing ? ' · правка' : ' · подсказки') : ' · только чтение'}</span>
 		<button class="rc__btn ghost" onclick={copy}>{copied ? '✓' : 'копировать'}</button>
 		{#if block.colab}
@@ -94,10 +98,19 @@
 		<CodeView {code} />
 	{/if}
 
-	{#if runnable && (ran || running)}
+	{#if runnable && ((running && !ran) || output)}
 		<div class="rc__out" class:err={error}>
 			<div class="label">{error ? 'ошибка' : 'вывод'}</div>
 			<pre>{running && !ran ? '…' : output}</pre>
+		</div>
+	{/if}
+
+	{#if runnable && images.length}
+		<div class="rc__figs">
+			<div class="label">график</div>
+			{#each images as img, i}
+				<img class="rc__fig" src="data:image/png;base64,{img}" alt="график результата {i + 1}" />
+			{/each}
 		</div>
 	{/if}
 
@@ -254,6 +267,27 @@
 	}
 	.rc__out.err pre {
 		color: var(--color-rose);
+	}
+	.rc__figs {
+		border-top: 1px solid var(--color-ink-700);
+		padding: 0.7rem 1rem 0.9rem;
+		background: var(--color-ink-850);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.6rem;
+	}
+	.rc__figs .label {
+		color: var(--color-verdant);
+	}
+	.rc__fig {
+		max-width: 100%;
+		height: auto;
+		border-radius: 10px;
+		background: #fff;
+		padding: 0.5rem;
+		border: 1px solid var(--color-ink-600);
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 	}
 	.rc__exp {
 		padding: 0.85rem 1rem;

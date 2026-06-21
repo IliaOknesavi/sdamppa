@@ -1,14 +1,10 @@
 <script lang="ts">
 	import type { Course } from '$lib/types';
 	import { progress } from '$lib/stores/progress.svelte';
+	import Icon from './Icon.svelte';
 
 	let { course, basePath, yearQ = '' }: { course: Course; basePath: string; yearQ?: string } =
 		$props();
-
-	function isCheckpoint(title: string) {
-		const t = title.toLowerCase();
-		return t.includes('чекпоинт') || t.includes('мок') || t.includes('мини-тест');
-	}
 </script>
 
 <div class="cal">
@@ -22,7 +18,7 @@
 			<div class="phase__grid">
 				{#each days as d}
 					{@const done = progress.isDayDone(d.n)}
-					{@const cp = isCheckpoint(d.title)}
+					{@const cp = !!d.checkpoint}
 					<a
 						class="cell"
 						class:done
@@ -33,7 +29,7 @@
 					>
 						<div class="cell__top">
 							<span class="cell__n">{d.n}</span>
-							{#if cp}<span class="cell__star" title="контрольная точка">⚑</span>{/if}
+							{#if cp}<span class="cell__star" title="контрольная точка"><Icon name="flag" size={13} /></span>{/if}
 							{#if done}<span class="cell__done">✓</span>{/if}
 						</div>
 						<div class="cell__title">{d.title}</div>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { LabFile } from '$lib/types';
 	import { cc, compileAndRunC } from '$lib/engine/cc.svelte';
+	import Icon from './Icon.svelte';
 
 	let { files, entry }: { files: LabFile[]; entry?: string } = $props();
 
@@ -62,20 +63,20 @@
 		if (active === path) active = tabs[tabs.length - 1] ?? '';
 	}
 	const activeFile = $derived(active ? byPath.get(active) : undefined);
+	// тип файла — короткой моно-меткой расширения, без эмодзи
 	function icon(name: string) {
-		if (name.endsWith('.c')) return '🅒';
-		if (name.endsWith('.h')) return '🅗';
-		if (name.endsWith('.py')) return '🐍';
-		if (name.endsWith('.csv')) return '▦';
-		if (name.endsWith('.md')) return '📄';
-		if (name === 'Makefile') return '🛠';
+		if (name.endsWith('.c')) return 'c';
+		if (name.endsWith('.h')) return 'h';
+		if (name.endsWith('.py')) return 'py';
+		if (name.endsWith('.csv')) return 'csv';
+		if (name.endsWith('.md')) return 'md';
+		if (name === 'Makefile') return 'mk';
 		return '·';
 	}
 </script>
 
 <div class="ide">
 	<div class="ide__bar">
-		<span class="ide__dot r"></span><span class="ide__dot y"></span><span class="ide__dot g"></span>
 		<span class="ide__name">{active || 'лаба'}</span>
 		<span class="ide__hint">реальные файлы лабы · редактируемые — без серого замка</span>
 	</div>
@@ -98,7 +99,7 @@
 						style="padding-left:{depth * 0.8 + 0.7}rem"
 						onclick={() => open(n.path!)}
 					>
-						<span class="fi">{icon(n.name)}</span>{n.name}{#if f?.readonly}<span class="lock">🔒</span>{/if}
+						<span class="fi">{icon(n.name)}</span>{n.name}{#if f?.readonly}<span class="lock"><Icon name="lock" size={11} /></span>{/if}
 					</button>
 				{/if}
 			{/snippet}
@@ -109,7 +110,7 @@
 				{#each tabs as t}
 					<button class="tab" class:active={active === t} onclick={() => (active = t)}>
 						{t.split('/').pop()}
-						<span class="tab__x" onclick={(e) => close(t, e)}>✕</span>
+						<span class="tab__x" onclick={(e) => close(t, e)}><Icon name="close" size={11} /></span>
 					</button>
 				{/each}
 			</div>
@@ -159,14 +160,6 @@
 		background: #15171d;
 		border-bottom: 1px solid #23262e;
 	}
-	.ide__dot {
-		width: 0.6rem;
-		height: 0.6rem;
-		border-radius: 50%;
-	}
-	.ide__dot.r { background: #ff5f57; }
-	.ide__dot.y { background: #febc2e; }
-	.ide__dot.g { background: #28c840; }
 	.ide__name {
 		margin-left: 0.6rem;
 		color: #d8dee9;
@@ -209,7 +202,14 @@
 	.row.file.active { background: color-mix(in srgb, var(--blue) 30%, #1a1d25); color: #fff; }
 	.row.ro { color: #7e8794; }
 	.caret { width: 0.8rem; color: #6b7280; }
-	.fi { width: 1rem; }
+	.fi {
+		min-width: 1.6rem;
+		font-family: var(--font-mono);
+		font-size: 0.58rem;
+		text-transform: lowercase;
+		color: var(--color-parch-muted);
+		opacity: 0.85;
+	}
 	.lock { margin-left: auto; font-size: 0.6rem; opacity: 0.6; }
 	.ide__editor { flex: 1; display: flex; flex-direction: column; min-width: 0; }
 	.ide__tabs {

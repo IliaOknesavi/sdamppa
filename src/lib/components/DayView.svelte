@@ -2,10 +2,12 @@
 	import type { Course, Day, SectionKind } from '$lib/types';
 	import { progress } from '$lib/stores/progress.svelte';
 	import RichText from '$lib/engine/RichText.svelte';
+	import InlineText from '$lib/engine/InlineText.svelte';
 	import TaskCard from './TaskCard.svelte';
 	import RunnableCode from './RunnableCode.svelte';
 	import LabStage from './LabStage.svelte';
 	import CodeAnnotated from './CodeAnnotated.svelte';
+	import Icon from './Icon.svelte';
 	import { vizRegistry } from '$lib/viz/registry';
 	import { ctx } from '$lib/copilot/context.svelte';
 
@@ -73,7 +75,7 @@
 		<div class="day__meta">
 			{#if phase}<span class="day__phase">{phase.title}</span>{/if}
 			{#if day.chapterRef && day.chapterRef !== '—'}<span class="day__ch">{day.chapterRef}</span>{/if}
-			{#if day.est}<span class="day__est">⏱ {day.est}</span>{/if}
+			{#if day.est}<span class="day__est"><Icon name="timer" size={12} /> {day.est}</span>{/if}
 		</div>
 		<h1 class="day__title"><span class="day__n">{day.unitLabel ?? 'День ' + day.n}.</span> {day.title}</h1>
 		<div class="day__goal"><RichText source={day.goal} /></div>
@@ -81,7 +83,7 @@
 
 	{#if day.draft}
 		<div class="day__draft reveal" style="--i:1">
-			<div class="day__draft-glyph">✦</div>
+			<div class="day__draft-glyph"><Icon name="spark" size={32} /></div>
 			<h3>День в разработке</h3>
 			<p>
 				Теория, разбор и задачи этого дня ещё наполняются (массовое авторство контента идёт
@@ -93,12 +95,14 @@
 			{@const k = KIND[s.kind ?? 'plain']}
 			{#if s.collapsible}
 				<details class="sec sec--fold reveal" style="--i:{i + 1}; --kc:{k.color};">
-					<summary class="sec__fold-sum">{s.heading}</summary>
+					<summary class="sec__fold-sum"><InlineText source={s.heading} /></summary>
 					<div class="sec__fold-body">
 						<RichText source={s.body} />
 						{#if s.viz && vizRegistry[s.viz]}
-							{@const Viz = vizRegistry[s.viz]}
-							<Viz />
+							{#await vizRegistry[s.viz]() then mod}
+								{@const Viz = mod.default}
+								<Viz />
+							{/await}
 						{/if}
 						{#if s.code}
 							<RunnableCode block={s.code} />
@@ -111,11 +115,13 @@
 			{:else}
 				<section class="sec reveal" style="--i:{i + 1}; --kc:{k.color};">
 					{#if k.label}<div class="sec__kind">{k.label}</div>{/if}
-					{#if s.heading}<h2 class="sec__h">{s.heading}</h2>{/if}
+					{#if s.heading}<h2 class="sec__h"><InlineText source={s.heading} /></h2>{/if}
 					<RichText source={s.body} />
 					{#if s.viz && vizRegistry[s.viz]}
-						{@const Viz = vizRegistry[s.viz]}
-						<Viz />
+						{#await vizRegistry[s.viz]() then mod}
+							{@const Viz = mod.default}
+							<Viz />
+						{/await}
 					{/if}
 					{#if s.code}
 						<RunnableCode block={s.code} />
@@ -142,7 +148,7 @@
 		{#if day.checkpoint}
 			<section class="checkpoint reveal" style="--i:{day.sections.length + 1}">
 				<div class="checkpoint__head">
-					<span class="checkpoint__flag">⚑</span>
+					<span class="checkpoint__flag"><Icon name="flag" size={18} /></span>
 					<h2>{day.checkpoint.title}</h2>
 				</div>
 				<div class="checkpoint__intro"><RichText source={day.checkpoint.intro} /></div>
@@ -170,7 +176,7 @@
 			<section class="mastery reveal" style="--i:{day.sections.length + 3}">
 				<h2 class="block-h">Критерий усвоения</h2>
 				<ul>
-					{#each day.mastery as m}<li>{m}</li>{/each}
+					{#each day.mastery as m}<li><InlineText source={m} /></li>{/each}
 				</ul>
 			</section>
 		{/if}

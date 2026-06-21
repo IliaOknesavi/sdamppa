@@ -11,34 +11,44 @@
 	const labelNodes = $derived(parseInline(label));
 	let el: HTMLSpanElement | undefined = $state();
 	let showT: ReturnType<typeof setTimeout> | undefined;
+	let holdT: ReturnType<typeof setTimeout> | undefined;
 	let holding = $state(false);
 
 	const SHOW_DELAY = 140;
+	const HOLD_DELAY = 1240; // совпадает с длительностью кольца ringfill
 
 	function enter() {
 		if (!exists || !el) return;
 		showT = setTimeout(() => {
 			if (!el) return;
-			tips.showHover(id, el.getBoundingClientRect());
-			holding = true; // begins the hold-to-pin ring
+			tips.showHover(id, el.getBoundingClientRect(), parent);
+			// hold-to-pin держим на JS-таймере, а НЕ на animationend кольца:
+			// при prefers-reduced-motion анимации обнуляются (app.css) и пин
+			// срабатывал бы мгновенно при любом наведении. Кольцо — только визуал.
+			const reduce =
+				typeof window !== 'undefined' &&
+				window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (!reduce) {
+				holding = true;
+				holdT = setTimeout(pinNow, HOLD_DELAY);
+			}
 		}, SHOW_DELAY);
 	}
 	function leave() {
 		clearTimeout(showT);
+		clearTimeout(holdT);
 		holding = false;
 		tips.scheduleHide();
 	}
 	function pinNow() {
 		if (!exists || !el) return;
 		clearTimeout(showT);
+		clearTimeout(holdT);
 		holding = false;
-		tips.pinFromRect(id, el.getBoundingClientRect(), parent);
-		progress.touchTerm(id);
-	}
-	function ringEnd() {
-		if (!el) return;
-		holding = false;
-		tips.pinFromRect(id, el.getBoundingClientRect(), parent);
+		// если это термин текущего hover — закрепляем РОВНО там, где висел peek;
+		// иначе (быстрый клик до показа peek) — от своего rect
+		if (tips.hover && tips.hover.id === id) tips.pinHovered();
+		else tips.pinFromRect(id, el.getBoundingClientRect(), parent);
 		progress.touchTerm(id);
 	}
 	const studied = $derived(!!progress.data.terms[id]);
@@ -72,7 +82,7 @@
 				pinNow();
 			}
 		}}
-		>{@render lbl(labelNodes)}{#if holding}<span class="ring" onanimationend={ringEnd}></span>{/if}</span
+		>{@render lbl(labelNodes)}{#if holding}<span class="ring"></span>{/if}</span
 	>
 {:else}
 	<span class="cx-term cx-term--dead">{@render lbl(labelNodes)}</span>
@@ -82,7 +92,7 @@
 	.cx-term {
 		position: relative;
 		cursor: help;
-		color: var(--color-gold-300);
+		color: var(--term);
 		border-bottom: 1px dotted color-mix(in srgb, var(--accent) 60%, transparent);
 		transition:
 			color 0.15s,

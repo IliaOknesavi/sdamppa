@@ -9,17 +9,27 @@
 		const t = e.target as HTMLElement | null;
 		if (
 			t &&
-			(t.closest('.cx-card') ||
+			(t.closest('.tcard') || // и peek (.tcard--ghost), и закреплённая (.tcard--pinned)
 				t.closest('.cx-term') ||
-				t.closest('.cx-pop') ||
 				t.closest('.cx-closeall'))
 		)
 			return;
 		tips.closeAll();
 	}
+
+	// Esc → закрыть верхнюю карточку (или hover-попап, если карточек нет).
+	function onWindowKey(e: KeyboardEvent) {
+		if (e.key !== 'Escape') return;
+		if (tips.pins.length) {
+			const top = tips.pins.reduce((a, b) => (b.z > a.z ? b : a));
+			tips.closePin(top.key);
+		} else if (tips.hover) {
+			tips.hover = null;
+		}
+	}
 </script>
 
-<svelte:window onpointerdown={onWindowDown} />
+<svelte:window onpointerdown={onWindowDown} onkeydown={onWindowKey} />
 
 <div class="cx-layer">
 	<HoverPopover />
@@ -36,16 +46,16 @@
 
 <style>
 	.cx-layer {
-		position: fixed;
-		inset: 0;
-		pointer-events: none;
-		z-index: 60;
+		/* display:contents — обёртка НЕ создаёт свой stacking-контекст. Иначе
+		   fixed-слой с z-index запирал бы пины/попап под Copilot (z:95).
+		   Каждый попап/карточка — fixed и позиционируется сам. */
+		display: contents;
 	}
 	.cx-closeall {
 		position: fixed;
 		bottom: 1rem;
 		right: 1rem;
-		z-index: 80;
+		z-index: 100000;
 		font-family: var(--font-mono);
 		font-size: 0.7rem;
 		letter-spacing: 0.05em;

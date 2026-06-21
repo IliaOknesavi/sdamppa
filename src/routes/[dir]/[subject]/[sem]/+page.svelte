@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Calendar from '$lib/components/Calendar.svelte';
 	import XPBar from '$lib/components/XPBar.svelte';
+	import ProgressMenu from '$lib/components/ProgressMenu.svelte';
 	import { authoredDays, yearsOf } from '$lib/types';
 	import { progress } from '$lib/stores/progress.svelte';
 	import { goto } from '$app/navigation';
@@ -25,7 +26,10 @@
 	<header class="dash__head">
 		<div class="dash__top">
 			<a class="dash__home" href="/{direction.id}/{subject.id}">← {subject.short}</a>
-			<XPBar />
+			<div class="dash__right">
+				<XPBar />
+				<ProgressMenu />
+			</div>
 		</div>
 		<div class="dash__hero reveal" style="--i:1">
 			<div class="dash__seal">{subject.glyph}</div>
@@ -73,6 +77,11 @@
 	.dash__home:hover {
 		color: var(--accent);
 	}
+	.dash__right {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.6rem;
+	}
 	.dash__hero {
 		display: flex;
 		align-items: center;
@@ -89,7 +98,7 @@
 		font-family: var(--font-display);
 		font-size: 2rem;
 		color: #fff;
-		background: radial-gradient(circle at 35% 30%, var(--color-gold-300), var(--accent) 65%, var(--color-gold-600));
+		background: var(--accent);
 	}
 	.dash__titles {
 		flex: 1;

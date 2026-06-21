@@ -138,7 +138,7 @@
 	const cur = $derived(steps[Math.min(idx, steps.length - 1)]);
 
 	// цвет компоненты: уникальный корень → индекс палитры
-	const palette = ['var(--blue)', '#d99a2b', '#3fa66a', '#c0556b', '#8a6fd0', '#3f97a6', '#c77d3a'];
+	const palette = ['var(--blue)', 'var(--color-gold-500)', 'var(--color-verdant)', 'var(--color-rose)', 'var(--violet-soft)', 'var(--c-teal)', 'var(--color-gold-500)'];
 	const compColor = $derived.by(() => {
 		const roots = [...new Set(cur.parent)].sort((a, b) => a - b);
 		const map = new Map<number, string>();
@@ -327,11 +327,11 @@
 		stroke: var(--color-ink-500);
 	}
 	.edge.take {
-		stroke: #3fa66a;
+		stroke: var(--color-verdant);
 		stroke-width: 4;
 	}
 	.edge.skip {
-		stroke: #c0556b;
+		stroke: var(--color-rose);
 		stroke-width: 2.5;
 		stroke-dasharray: 4 4;
 	}
@@ -339,7 +339,7 @@
 		stroke-width: 5;
 	}
 	.edge.skip.cur {
-		stroke: #c0556b;
+		stroke: var(--color-rose);
 	}
 	.wlabel rect {
 		fill: var(--color-ink-800);
@@ -354,8 +354,8 @@
 		fill: var(--color-parch-100);
 		font-weight: 700;
 	}
-	.wlabel.take rect { stroke: #3fa66a; }
-	.wlabel.skip rect { stroke: #c0556b; }
+	.wlabel.take rect { stroke: var(--color-verdant); }
+	.wlabel.skip rect { stroke: var(--color-rose); }
 	.wlabel.cur rect { stroke: var(--blue); stroke-width: 1.8; }
 	.node circle {
 		stroke-width: 2.5;
@@ -458,14 +458,14 @@
 		color: var(--blue);
 	}
 	.erow.take {
-		border-color: #3fa66a;
+		border-color: var(--color-verdant);
 	}
-	.erow.take .emark { color: #3fa66a; }
+	.erow.take .emark { color: var(--color-verdant); }
 	.erow.skip {
-		border-color: #c0556b;
+		border-color: var(--color-rose);
 		opacity: 0.7;
 	}
-	.erow.skip .emark { color: #c0556b; }
+	.erow.skip .emark { color: var(--color-rose); }
 	.note {
 		margin-top: auto;
 		font-size: 0.82rem;

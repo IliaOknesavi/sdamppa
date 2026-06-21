@@ -1,5 +1,5 @@
 <script lang="ts">
-	const year = 2026;
+	const year = new Date().getFullYear();
 </script>
 
 <footer class="foot">
@@ -10,7 +10,8 @@
 		</div>
 		<div class="foot__meta">
 			<span>Платформа подготовки · {year}</span>
-			<a href="/">Направления</a>
+			<a href="/#dirs">Направления</a>
+			<a href="/glossary">Глоссарий</a>
 		</div>
 	</div>
 </footer>

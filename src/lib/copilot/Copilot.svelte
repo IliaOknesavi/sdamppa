@@ -4,6 +4,7 @@
 	import { ctx } from './context.svelte';
 	import { chatStream, listModels, systemPrompt, type ChatMsg } from './client';
 	import RichText from '$lib/engine/RichText.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 
 	let open = $state(false);
 	let showSettings = $state(false);
@@ -16,6 +17,8 @@
 	let testMsg = $state('');
 	let abort: AbortController | null = null;
 	let threadEl: HTMLDivElement | undefined = $state();
+	let fabEl: HTMLButtonElement | undefined = $state();
+	let copEl: HTMLDivElement | undefined = $state();
 
 	onMount(() => {
 		settings.load();
@@ -91,22 +94,80 @@
 			send(input);
 		}
 	}
+
+	function toggle() {
+		open = !open;
+		if (open) {
+			// фокус сразу в поле ввода (или первый интерактивный элемент панели)
+			queueMicrotask(() =>
+				(copEl?.querySelector<HTMLElement>('textarea') ??
+					copEl?.querySelector<HTMLElement>('button, input, select') ??
+					copEl)?.focus()
+			);
+		} else {
+			fabEl?.focus();
+		}
+	}
+	function close() {
+		if (!open) return;
+		open = false;
+		fabEl?.focus(); // возвращаем фокус на кнопку-триггер
+	}
+	// диалог: Esc закрывает, Tab зациклен внутри панели (focus-trap)
+	function onDialogKey(e: KeyboardEvent) {
+		if (e.key === 'Escape') {
+			e.stopPropagation();
+			close();
+			return;
+		}
+		if (e.key !== 'Tab' || !copEl) return;
+		const f = [
+			...copEl.querySelectorAll<HTMLElement>(
+				'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+			)
+		].filter((el) => el.offsetParent !== null);
+		if (!f.length) return;
+		const first = f[0];
+		const last = f[f.length - 1];
+		if (e.shiftKey && document.activeElement === first) {
+			e.preventDefault();
+			last.focus();
+		} else if (!e.shiftKey && document.activeElement === last) {
+			e.preventDefault();
+			first.focus();
+		}
+	}
 </script>
 
-<button class="fab" class:on={open} onclick={() => (open = !open)} aria-label="ИИ-ассистент">
-	{open ? '✕' : '✦'}
+<button
+	class="fab"
+	class:on={open}
+	bind:this={fabEl}
+	onclick={toggle}
+	aria-label="ИИ-ассистент"
+	aria-expanded={open}
+>
+	{#if open}<Icon name="close" size={22} />{:else}<Icon name="spark" size={22} />{/if}
 </button>
 
 {#if open}
-	<div class="cop">
+	<div
+		class="cop"
+		bind:this={copEl}
+		role="dialog"
+		aria-modal="true"
+		aria-label="ИИ-ассистент"
+		tabindex="-1"
+		onkeydown={onDialogKey}
+	>
 		<header class="cop__head">
 			<div>
 				<div class="cop__title">Ассистент</div>
 				<div class="cop__ctx">{ctx.has ? ctx.label || ctx.title : 'контекст страницы не задан'}</div>
 			</div>
 			<div class="cop__head-btns">
-				<button class="ic" title="Очистить" onclick={clearChat}>⌫</button>
-				<button class="ic" class:active={showSettings} title="Настройки" onclick={() => (showSettings = !showSettings)}>⚙</button>
+				<button class="ic" title="Очистить" aria-label="Очистить переписку" onclick={clearChat}><Icon name="trash" size={16} /></button>
+				<button class="ic" class:active={showSettings} title="Настройки" aria-label="Настройки" onclick={() => (showSettings = !showSettings)}><Icon name="settings" size={16} /></button>
 			</div>
 		</header>
 
@@ -146,7 +207,7 @@
 			</div>
 		{/if}
 
-		<div class="cop__thread" bind:this={threadEl}>
+		<div class="cop__thread" bind:this={threadEl} role="log" aria-live="polite" aria-relevant="additions text">
 			{#if !messages.length}
 				<div class="cop__empty">
 					<p>Спроси что угодно по этой теме — я вижу её материал.</p>
@@ -178,12 +239,22 @@
 				bind:value={input}
 				onkeydown={onKey}
 				rows="1"
-				placeholder={settings.configured ? 'Сообщение…  (Enter — отправить)' : 'Подключи Ollama в ⚙'}
+				aria-label="Сообщение ассистенту"
+				placeholder={settings.configured
+					? 'Сообщение…  (Enter — отправить)'
+					: 'Подключи Ollama в настройках'}
 			></textarea>
 			{#if streaming}
-				<button class="send stop" onclick={stop} title="Стоп">■</button>
+				<button class="send stop" onclick={stop} title="Стоп" aria-label="Остановить"
+					><Icon name="stop" size={14} /></button
+				>
 			{:else}
-				<button class="send" onclick={() => send(input)} disabled={!input.trim()}>↑</button>
+				<button
+					class="send"
+					onclick={() => send(input)}
+					disabled={!input.trim()}
+					aria-label="Отправить"><Icon name="send" size={16} /></button
+				>
 			{/if}
 		</div>
 	</div>

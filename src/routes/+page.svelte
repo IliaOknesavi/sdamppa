@@ -1,20 +1,23 @@
 <script lang="ts">
-	import { directions } from '$lib/content';
-	import type { Direction } from '$lib/types';
+	import { directionsMeta, type DirectionMeta } from '$lib/content/meta';
 	import { tips } from '$lib/engine/tooltips.svelte';
-	import { statistics } from '$lib/content/statistics';
 	import RichText from '$lib/engine/RichText.svelte';
 	import { plural } from '$lib/plural';
 
-	const mainDirs = $derived(directions.filter((d) => !d.extra));
-	const extraDirs = $derived(directions.filter((d) => d.extra));
+	// лёгкий каталог: главная больше не тянет ВСЕ предметы (~2.8 МБ)
+	const mainDirs = directionsMeta.filter((d) => !d.extra);
+	const extraDirs = directionsMeta.filter((d) => d.extra);
 
+	// глоссарий для живого демо подгружаем лениво — после первого рендера, чтобы
+	// тело statistics не попадало в начальный бандл главной
 	$effect(() => {
-		tips.setGlossary(statistics.courses[0].glossary);
+		import('$lib/content/statistics').then((m) =>
+			tips.setGlossary(m.statistics.courses[0].glossary)
+		);
 	});
 </script>
 
-{#snippet dirCard(d: Direction, i: number)}
+{#snippet dirCard(d: DirectionMeta, i: number)}
 	<a
 		class="dir reveal"
 		style="--i:{3 + i}; {d.accent ? `--violet:${d.accent}` : ''}"
@@ -45,7 +48,6 @@
 			Интерактивная платформа подготовки. Граф знаний, который раскрывается под курсором.
 		</p>
 		<a class="pill pill--solid hero__cta" href="#dirs">К направлениям →</a>
-		<div class="hero__blob"></div>
 	</section>
 
 	<!-- live tooltip demo -->
@@ -161,17 +163,6 @@
 	.hero__cta {
 		font-size: 0.95rem;
 		padding: 0.8rem 1.7rem;
-	}
-	.hero__blob {
-		position: absolute;
-		right: -7rem;
-		top: -7rem;
-		width: 20rem;
-		height: 20rem;
-		border-radius: 50%;
-		background: radial-gradient(circle, var(--violet-soft), transparent 70%);
-		opacity: 0.5;
-		pointer-events: none;
 	}
 
 	.demo {

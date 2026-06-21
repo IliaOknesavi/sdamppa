@@ -2,6 +2,7 @@
 	import type { Task } from '$lib/types';
 	import { progress } from '$lib/stores/progress.svelte';
 	import RichText from '$lib/engine/RichText.svelte';
+	import Icon from './Icon.svelte';
 
 	let { task, index }: { task: Task; index: number } = $props();
 	let showHint = $state(false);
@@ -30,7 +31,7 @@
 	<div class="task__actions">
 		{#if task.hint}
 			<button class="task__btn" onclick={() => (showHint = !showHint)}>
-				{showHint ? 'скрыть подсказку' : '💡 подсказка'}
+				{#if showHint}скрыть подсказку{:else}<Icon name="bulb" size={13} /> подсказка{/if}
 			</button>
 		{/if}
 		<button class="task__btn" onclick={() => (showSol = !showSol)}>

@@ -52,10 +52,15 @@
 		</button>
 	</div>
 
-	<textarea class="lab__ed" bind:value={code} spellcheck="false" rows={Math.max(8, code.split('\n').length)}></textarea>
+	<!-- скринридер слышит смену состояния запуска и появление результата -->
+	<div class="sr-only" role="status" aria-live="polite">
+		{running ? 'Код выполняется' : output ? 'Готово, есть вывод' : ''}
+	</div>
+
+	<textarea class="lab__ed" bind:value={code} spellcheck="false" aria-label="Редактор кода лабы" rows={Math.max(8, code.split('\n').length)}></textarea>
 
 	{#if output}
-		<div class="lab__out"><div class="label">вывод</div><pre>{output}</pre></div>
+		<div class="lab__out" role="status" aria-live="polite"><div class="label">вывод</div><pre>{output}</pre></div>
 	{/if}
 
 	{#if showSolution && lab.solution}
@@ -155,6 +160,10 @@
 		tab-size: 4;
 		white-space: pre;
 		overflow-x: auto;
+	}
+	.lab__ed:focus-visible {
+		outline: 2px solid var(--blue);
+		outline-offset: -2px;
 	}
 	.lab__out,
 	.lab__sol {

@@ -33,7 +33,37 @@ function getPyodide(): Promise<any> {
 export interface RunResult {
 	text: string;
 	error: boolean;
+	/** base64-кодированные PNG фигур matplotlib (если код их рисовал). */
+	images?: string[];
 }
+
+// Код, который рисует графики? Тогда переключаем matplotlib на безоконный
+// backend AGG и снимаем фигуры в PNG после прогона (как вывод ячейки Jupyter).
+const PLOTS_RE = /matplotlib|pyplot|\bplt\b/;
+
+// Прелюдия: до пользовательского кода ставим AGG и чистим прошлые фигуры,
+// чтобы plt.show() не падал без DOM-цели и каждый запуск стартовал с нуля.
+const MPL_PRELUDE = `
+import matplotlib
+matplotlib.use('AGG', force=True)
+import matplotlib.pyplot as _plt
+_plt.switch_backend('AGG')
+_plt.close('all')
+`;
+
+// После прогона: каждую открытую фигуру → PNG → base64, вернуть список.
+const MPL_CAPTURE = `
+import io as _io, base64 as _b64
+import matplotlib.pyplot as _plt
+_imgs = []
+for _n in _plt.get_fignums():
+    _buf = _io.BytesIO()
+    _fig = _plt.figure(_n)
+    _fig.savefig(_buf, format='png', dpi=120, bbox_inches='tight', facecolor='white')
+    _imgs.append(_b64.b64encode(_buf.getvalue()).decode())
+_plt.close('all')
+_imgs
+`;
 
 export async function runPython(code: string): Promise<RunResult> {
 	try {
@@ -44,11 +74,32 @@ export async function runPython(code: string): Promise<RunResult> {
 		pyodide.setStderr(sink);
 		// auto-install any imported packages available in Pyodide (numpy, scipy, ...)
 		await pyodide.loadPackagesFromImports(code);
+
+		const wantsPlot = PLOTS_RE.test(code);
+		if (wantsPlot) {
+			// matplotlib может не подхватиться из import'ов (динамический import) —
+			// дотягиваем явно, затем настраиваем backend на чистую сцену.
+			await pyodide.loadPackage('matplotlib').catch(() => {});
+			await pyodide.runPythonAsync(MPL_PRELUDE);
+		}
+
 		const result = await pyodide.runPythonAsync(code);
+
+		let images: string[] | undefined;
+		if (wantsPlot) {
+			const proxy = await pyodide.runPythonAsync(MPL_CAPTURE);
+			if (proxy) {
+				images = proxy.toJs ? (proxy.toJs() as string[]) : Array.from(proxy as Iterable<string>);
+				proxy.destroy?.();
+			}
+			if (images && !images.length) images = undefined;
+		}
+
 		if (out === '' && result !== undefined && result !== null) {
 			out = String(result);
 		}
-		return { text: out.trimEnd() || '(нет вывода)', error: false };
+		const text = out.trimEnd() || (images ? '' : '(нет вывода)');
+		return { text, error: false, images };
 	} catch (e) {
 		const msg = e instanceof Error ? e.message : String(e);
 		return { text: msg, error: true };

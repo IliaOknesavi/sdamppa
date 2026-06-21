@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { subjectReady, semestersOf, authoredDays } from '$lib/types';
 	import Sparkle from '$lib/components/Sparkle.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 	let { data } = $props();
 	const direction = $derived(data.direction);
 	const tiles = ['blue', '', 'soft', '', 'star', 'blue', 'pale', '', 'blue'];
@@ -9,7 +9,7 @@
 <div class="page">
 	<header class="head">
 		<div class="head__text">
-			<a class="home" href="/">✦ СдамППА</a>
+			<a class="home" href="/"><Icon name="spark" size={11} /> СдамППА</a>
 			<h1>{direction.name}</h1>
 			<div class="label sub">{direction.short} · направление</div>
 		</div>
@@ -26,20 +26,19 @@
 
 	<div class="grid">
 		{#each direction.subjects as s, i}
-			{@const ready = subjectReady(s)}
 			<a
 				class="card reveal"
-				class:soon={!ready}
+				class:soon={!s.ready}
 				style="--i:{i}"
-				href={s.courses.length ? `/${direction.id}/${s.id}` : undefined}
+				href={s.semesters.length ? `/${direction.id}/${s.id}` : undefined}
 			>
 				<div class="seal">{s.glyph}</div>
 				<div class="body">
 					<h2>{s.name}</h2>
 					<p>{s.blurb}</p>
 					<div class="meta">
-						<span>семестры: {semestersOf(s).join(', ')}</span>
-						{#if ready}
+						<span>семестры: {s.semesters.join(', ')}</span>
+						{#if s.ready}
 							<span class="go">открыть →</span>
 						{:else}
 							<span class="soontag">скоро</span>
@@ -158,7 +157,7 @@
 		font-family: var(--font-display);
 		font-size: 1.7rem;
 		color: #fff;
-		background: radial-gradient(circle at 35% 30%, var(--color-gold-300), var(--accent) 65%, var(--color-gold-600));
+		background: var(--accent);
 	}
 	.body h2 {
 		font-size: 1.2rem;

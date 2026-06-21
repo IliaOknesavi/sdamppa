@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { theme } from '$lib/theme.svelte';
+	import Icon from './Icon.svelte';
 	import { onMount } from 'svelte';
 	onMount(() => theme.init());
 </script>
@@ -13,7 +14,10 @@
 			aria-label="Сменить тему"
 			title={theme.current === 'dark' ? 'Светлая тема' : 'Тёмная тема'}
 		>
-			{theme.current === 'dark' ? '☀ светлая' : '☾ тёмная'}
+			{#if theme.current === 'dark'}<Icon name="sun" size={13} /> светлая{:else}<Icon
+					name="moon"
+					size={13}
+				/> тёмная{/if}
 		</button>
 	</div>
 	<div class="site__main">
@@ -22,7 +26,8 @@
 			<span class="site__dot"></span>
 		</a>
 		<nav class="site__nav">
-			<a href="/">Направления</a>
+			<a href="/#dirs">Направления</a>
+			<a href="/glossary">Глоссарий</a>
 		</nav>
 	</div>
 </header>

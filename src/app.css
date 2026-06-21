@@ -26,7 +26,8 @@
 	--color-parch-100: #202020;
 	--color-parch-200: #2c2c2c;
 	--color-parch-300: #565656;
-	--color-parch-muted: #8a8a90;
+	/* затемнён до прохождения WCAG AA (4.5:1) на белом для мелких подписей */
+	--color-parch-muted: #6e6e74;
 
 	/* brand (global = general ITMO): violet + lime. Directions override via [data-direction]. */
 	--color-gold-300: #a997ff;
@@ -59,6 +60,9 @@
 	--accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
 	--accent-line: color-mix(in srgb, var(--accent) 38%, transparent);
 	--surface-dark: #202020;
+	/* цвет терминов/заголовков карточек. В светлой теме — тёмный оттенок
+	   (gold-500 ≈ 8.6:1 на белом, WCAG AA), в тёмной — светлый (ниже). */
+	--term: var(--color-gold-500);
 	color-scheme: light;
 }
 
@@ -74,7 +78,8 @@
 	--color-parch-100: #f5f5f5;
 	--color-parch-200: #e2e2e2;
 	--color-parch-300: #b2b2b2;
-	--color-parch-muted: #8a8a8e;
+	/* осветлён до прохождения AA на тёмных поверхностях */
+	--color-parch-muted: #9b9ba1;
 
 	--color-gold-300: #b6a6ff;
 	--color-gold-400: #8a6bff;
@@ -93,6 +98,8 @@
 	--violet: #8a6bff;
 	--violet-soft: #b6a6ff;
 
+	/* в тёмной теме термины снова светлые (gold-300 на тёмном фоне) */
+	--term: var(--color-gold-300);
 	color-scheme: dark;
 }
 
@@ -317,4 +324,164 @@ pre {
 	.reveal {
 		opacity: 1;
 	}
+}
+
+/* визуально скрытый текст для скринридеров (live-region'ы, метки) */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* видимый фокус для интерактивных SVG-узлов в визуализациях
+   (outline на SVG поддержан в Chromium/Firefox; drop-shadow — подстраховка) */
+svg [role='button']:focus-visible,
+svg [tabindex]:focus-visible {
+	outline: 2px solid var(--blue);
+	outline-offset: 2px;
+	filter: drop-shadow(0 0 2px var(--blue));
+}
+
+/* ============================================================
+   Карточка термина — ЕДИНЫЙ вид для hover-превью и закреплённой
+   карточки. Один источник правды: peek и пин выглядят ОДИНАКОВО,
+   поэтому закрепление ничего не «меняет» визуально — лишь делает
+   карточку интерактивной. Различия — только в поведении.
+   ============================================================ */
+.tcard {
+	position: fixed;
+	width: 358px;
+	max-width: calc(100vw - 24px);
+	max-height: 70vh;
+	overflow-y: auto;
+	background: radial-gradient(
+		120% 80% at 0% 0%,
+		color-mix(in srgb, var(--accent) 9%, var(--color-ink-800)),
+		var(--color-ink-850)
+	);
+	border: 1px solid var(--accent-line);
+	border-radius: 12px;
+	box-shadow:
+		0 26px 60px -14px rgba(0, 0, 0, 0.85),
+		0 0 0 1px rgba(0, 0, 0, 0.5),
+		inset 0 1px 0 color-mix(in srgb, var(--accent) 20%, transparent);
+	font-size: 0.9rem;
+	color: var(--color-parch-200);
+	z-index: 100;
+}
+.tcard__bar {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.55rem 0.7rem;
+	border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+	position: sticky;
+	top: 0;
+	background: color-mix(in srgb, var(--color-ink-900) 75%, transparent);
+	backdrop-filter: blur(4px);
+	border-radius: 12px 12px 0 0;
+	user-select: none;
+}
+.tcard__title {
+	font-family: var(--font-display);
+	font-size: 1.04rem;
+	color: var(--term);
+	flex: 1;
+	line-height: 1.15;
+}
+.tcard__x {
+	background: none;
+	border: none;
+	color: var(--color-parch-muted);
+	cursor: pointer;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.3rem;
+	border-radius: 4px;
+	transition:
+		color 0.15s,
+		background 0.15s;
+}
+.tcard__x:hover {
+	color: var(--color-rose);
+	background: color-mix(in srgb, var(--color-rose) 16%, transparent);
+}
+.tcard__from {
+	padding: 0.35rem 0.8rem 0;
+	font-size: 0.58rem;
+	opacity: 0.6;
+}
+.tcard__short {
+	padding: 0.4rem 0.8rem 0;
+	color: var(--color-parch-muted);
+	font-style: italic;
+	font-size: 0.84rem;
+}
+.tcard__formula {
+	padding: 0.3rem 0.8rem 0;
+}
+.tcard__body {
+	padding: 0.55rem 0.8rem 0.7rem;
+}
+.tcard__rel {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem;
+	padding: 0 0.8rem 0.8rem;
+}
+.tcard-chip {
+	font-family: var(--font-mono);
+	font-size: 0.66rem;
+	background: color-mix(in srgb, var(--accent) 12%, var(--color-ink-700));
+	color: var(--term);
+	border: 1px solid var(--accent-line);
+	border-radius: 99px;
+	padding: 0.2rem 0.6rem;
+	cursor: pointer;
+	transition:
+		background 0.15s,
+		transform 0.1s;
+}
+.tcard-chip:hover {
+	background: color-mix(in srgb, var(--accent) 24%, var(--color-ink-700));
+	transform: translateY(-1px);
+}
+
+/* ghost = hover-превью: поверх всего, «призрачное» (мышь проходит сквозь),
+   невидимо до позиционирования (убирает мигание/прыжок) */
+.tcard--ghost {
+	pointer-events: none;
+	z-index: 99999;
+	opacity: 0;
+	/* без scale-анимации: трансформ искажал бы размер/позицию и давал «мигание».
+	   Появление — чистый fade по opacity, размер совпадает с будущим пином. */
+	transition: opacity 0.12s ease;
+}
+.tcard--ghost.placed {
+	opacity: 1;
+}
+
+/* pinned = закреплённая: интерактивна и перетаскиваема */
+.tcard--pinned {
+	pointer-events: auto;
+	animation: cardIn 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.15);
+}
+/* бесшовное превращение из peek в том же месте — без повторной анимации/мигания */
+.tcard--pinned.seamless {
+	animation: none;
+}
+.tcard--pinned .tcard__bar {
+	cursor: grab;
+}
+.tcard--pinned .tcard__bar:active {
+	cursor: grabbing;
+}
+.tcard--pinned:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
 }

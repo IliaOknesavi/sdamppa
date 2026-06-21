@@ -25,7 +25,9 @@
 		{#if b.k === 'p'}
 			<p>{@render inlines(b.c)}</p>
 		{:else if b.k === 'h'}
-			<h4 class="cx-rich-h">{@render inlines(b.c)}</h4>
+			<!-- подзаголовок внутри тела термина: НЕ <h4>, чтобы не ломать иерархию
+			     заголовков (h4 без h1–h3 в карточках/секциях); визуально — как заголовок -->
+			<p class="cx-rich-h">{@render inlines(b.c)}</p>
 		{:else if b.k === 'math'}
 			<Katex math={b.v} display />
 		{:else if b.k === 'ul'}
@@ -87,6 +89,8 @@
 		vertical-align: middle;
 	}
 	.cx-rich-h {
+		font-family: var(--font-display);
+		font-weight: 700;
 		font-size: 1rem;
 		margin: 0.2em 0 0.5em;
 		color: var(--color-parch-100);

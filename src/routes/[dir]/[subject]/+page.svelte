@@ -22,7 +22,12 @@
 	<div class="grid">
 		{#each sems as sem, i}
 			{@const c = getCourse(subject, sem)}
-			<a class="sem reveal" style="--i:{i}" href="/{direction.id}/{subject.id}/{sem}">
+			<a
+				class="sem reveal"
+				class:soon={c && c.status !== 'ready'}
+				style="--i:{i}"
+				href={c && c.status === 'ready' ? `/${direction.id}/${subject.id}/${sem}` : undefined}
+			>
 				<div class="num">{sem}</div>
 				<div class="semlabel">семестр</div>
 				{#if c}
@@ -71,7 +76,7 @@
 		font-family: var(--font-display);
 		font-size: 1.9rem;
 		color: #fff;
-		background: radial-gradient(circle at 35% 30%, var(--color-gold-300), var(--accent) 65%, var(--color-gold-600));
+		background: var(--accent);
 	}
 	.head h1 {
 		font-size: clamp(1.6rem, 4.5vw, 2.4rem);
@@ -101,6 +106,11 @@
 		transform: translateY(-3px);
 		border-color: var(--accent);
 		box-shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.4);
+	}
+	.sem.soon {
+		opacity: 0.6;
+		pointer-events: none;
+		cursor: not-allowed;
 	}
 	.num {
 		font-family: var(--font-display);
