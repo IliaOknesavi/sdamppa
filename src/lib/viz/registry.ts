@@ -40,6 +40,7 @@ export const vizRegistry: Record<string, VizLoader> = {
 	'bst-delete-cases': () => import('./BstDeleteCases.svelte'),
 	'tree-rotation': () => import('./TreeRotation.svelte'),
 	'btree-split-insert': () => import('./BtreeSplitInsert.svelte'),
+	'avl-rotation': () => import('./AvlRotation.svelte'),
 	'order-statistics-tree': () => import('./OrderStatisticsTree.svelte'),
 	'cosine-vs-euclid': () => import('./CosineVsEuclid.svelte'),
 	'maxflow-mincut': () => import('./MaxflowMincut.svelte'),
