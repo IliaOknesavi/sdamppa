@@ -9,6 +9,7 @@ import { algorithms } from './algorithms';
 import { chma } from './chma';
 import { matan } from './matan';
 import { pytorch } from './pytorch';
+import { oop } from './oop';
 
 export const directions: Direction[] = [
 	{
@@ -23,10 +24,10 @@ export const directions: Direction[] = [
 		id: 'dl',
 		name: 'DL-фреймворки',
 		short: 'DL',
-		blurb: 'Открытый стек глубокого обучения по той же системе. Первый предмет — PyTorch.',
+		blurb: 'Открытый стек глубокого обучения по той же системе. Python-ООП как фундамент и PyTorch.',
 		accent: '#ee4c2c',
 		extra: true,
-		subjects: [pytorch]
+		subjects: [oop, pytorch]
 	}
 ];
 

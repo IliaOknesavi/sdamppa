@@ -80,6 +80,16 @@ const pytorch: SubjectMeta = {
 	semesters: [1],
 	ready: true
 };
+const oop: SubjectMeta = {
+	id: 'oop',
+	name: 'Объектно-ориентированное программирование на Python',
+	short: 'ООП',
+	blurb: 'Исчерпывающий курс ООП на Python: классы, инкапсуляция, наследование и MRO, dunder-методы, дескрипторы, метаклассы, SOLID и паттерны — весь код запускается прямо в браузере.',
+	accent: '#4B8BBE',
+	glyph: '◆',
+	semesters: [1],
+	ready: true
+};
 
 export const directionsMeta: DirectionMeta[] = [
 	{
@@ -94,10 +104,10 @@ export const directionsMeta: DirectionMeta[] = [
 		id: 'dl',
 		name: 'DL-фреймворки',
 		short: 'DL',
-		blurb: 'Открытый стек глубокого обучения по той же системе. Первый предмет — PyTorch.',
+		blurb: 'Открытый стек глубокого обучения по той же системе. Python-ООП как фундамент и PyTorch.',
 		accent: '#ee4c2c',
 		extra: true,
-		subjects: [pytorch]
+		subjects: [oop, pytorch]
 	}
 ];
 

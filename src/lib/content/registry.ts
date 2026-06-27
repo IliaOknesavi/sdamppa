@@ -10,7 +10,8 @@ export const subjectLoaders: Record<string, () => Promise<Subject>> = {
 	algorithms: () => import('./algorithms').then((m) => m.algorithms),
 	chma: () => import('./chma').then((m) => m.chma),
 	matan: () => import('./matan').then((m) => m.matan),
-	pytorch: () => import('./pytorch').then((m) => m.pytorch)
+	pytorch: () => import('./pytorch').then((m) => m.pytorch),
+	oop: () => import('./oop').then((m) => m.oop)
 };
 
 /** Загрузить тело предмета по id (или undefined, если такого нет). */
