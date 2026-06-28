@@ -97,8 +97,8 @@
 	.cv {
 		margin: 0;
 		padding: 0.9rem 1rem;
-		background: var(--color-ink-900);
-		color: #d8dee9;
+		background: var(--code-bg);
+		color: var(--code-fg);
 		font-family: var(--font-mono);
 		font-size: 0.8rem;
 		line-height: 1.55;
@@ -110,34 +110,34 @@
 		font-family: inherit;
 	}
 	.c-com {
-		color: #6b7280;
+		color: var(--code-com);
 		font-style: italic;
 	}
 	.c-str {
-		color: #9ece6a;
+		color: var(--code-str);
 	}
 	.c-num {
-		color: #e0af68;
+		color: var(--code-num);
 	}
 	.c-kw {
-		color: #bb9af7;
+		color: var(--code-kw);
 	}
 	.c-bi {
-		color: #7aa2f7;
+		color: var(--code-bi);
 	}
 	.c-op {
-		color: #89ddff;
+		color: var(--code-op);
 	}
 	.cv-api {
 		position: relative;
-		color: #ff9e64;
-		border-bottom: 1px dashed color-mix(in srgb, #ff9e64 70%, transparent);
+		color: var(--code-api);
+		border-bottom: 1px dashed color-mix(in srgb, var(--code-api) 70%, transparent);
 		border-radius: 2px;
 		cursor: help;
 		transition: background 0.12s;
 	}
 	.cv-api:hover {
-		background: color-mix(in srgb, #ff9e64 22%, transparent);
+		background: color-mix(in srgb, var(--code-api) 22%, transparent);
 	}
 	.ring {
 		position: absolute;
@@ -146,9 +146,9 @@
 		width: 0.85em;
 		height: 0.85em;
 		border-radius: 50%;
-		background: conic-gradient(#ff9e64 var(--ring, 0%), transparent 0);
+		background: conic-gradient(var(--code-api) var(--ring, 0%), transparent 0);
 		animation: ringfill 1240ms linear forwards;
 		pointer-events: none;
-		filter: drop-shadow(0 0 3px color-mix(in srgb, #ff9e64 60%, transparent));
+		filter: drop-shadow(0 0 3px color-mix(in srgb, var(--code-api) 60%, transparent));
 	}
 </style>

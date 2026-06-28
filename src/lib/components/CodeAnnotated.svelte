@@ -91,7 +91,7 @@
 		border: 1.5px solid var(--color-ink-600);
 		border-radius: 12px;
 		overflow: hidden;
-		background: #0c0d11;
+		background: var(--code-bg);
 	}
 	.ca__cap {
 		display: flex;
@@ -113,7 +113,7 @@
 		margin-left: auto;
 		display: flex;
 		align-items: center;
-		color: #6b7280;
+		color: var(--code-com);
 	}
 	.dot {
 		display: inline-block;
@@ -132,7 +132,7 @@
 		font-family: var(--font-mono);
 		font-size: 0.82rem;
 		line-height: 1.6;
-		color: #d8dee9;
+		color: var(--code-fg);
 		tab-size: 4;
 		white-space: pre;
 	}

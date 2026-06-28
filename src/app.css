@@ -29,6 +29,17 @@
 	/* затемнён до прохождения WCAG AA (4.5:1) на белом для мелких подписей */
 	--color-parch-muted: #6e6e74;
 
+	/* подсветка кода (светлая тема): тёмные токены на светлом фоне, все ≥ 4.5:1 */
+	--code-bg: #f5f6f9;
+	--code-fg: #1f2328;
+	--code-com: #5f6671;
+	--code-str: #116329;
+	--code-num: #953800;
+	--code-kw: #8250df;
+	--code-bi: #0550ae;
+	--code-op: #0e7490;
+	--code-api: #bc4c00;
+
 	/* brand (global = general ITMO): violet + lime. Directions override via [data-direction]. */
 	--color-gold-300: #a997ff;
 	--color-gold-400: #7451f4;
@@ -80,6 +91,17 @@
 	--color-parch-300: #b2b2b2;
 	/* осветлён до прохождения AA на тёмных поверхностях */
 	--color-parch-muted: #9b9ba1;
+
+	/* подсветка кода (тёмная тема): прежняя палитра */
+	--code-bg: #0e0e10;
+	--code-fg: #d8dee9;
+	--code-com: #7b818c;
+	--code-str: #9ece6a;
+	--code-num: #e0af68;
+	--code-kw: #bb9af7;
+	--code-bi: #7aa2f7;
+	--code-op: #89ddff;
+	--code-api: #ff9e64;
 
 	--color-gold-300: #b6a6ff;
 	--color-gold-400: #8a6bff;

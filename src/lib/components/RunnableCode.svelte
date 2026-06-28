@@ -224,8 +224,8 @@
 		padding: 0.9rem 1rem;
 		border: none;
 		outline: none;
-		background: var(--color-ink-900);
-		color: #d8dee9;
+		background: var(--code-bg);
+		color: var(--code-fg);
 		font-family: var(--font-mono);
 		font-size: 0.8rem;
 		line-height: 1.55;
@@ -235,7 +235,7 @@
 		overflow-x: auto;
 	}
 	.rc__ta:focus {
-		background: #0c0d11;
+		background: var(--code-bg);
 	}
 	.rc__ta[readonly] {
 		resize: none;

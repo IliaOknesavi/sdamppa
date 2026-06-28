@@ -56,13 +56,13 @@
 		margin: 0.6em 0;
 		padding: 0.7rem 0.9rem;
 		border-radius: 8px;
-		background: var(--color-ink-900, #0c0d11);
+		background: var(--code-bg);
 		border: 1px solid var(--color-ink-600);
 		overflow-x: auto;
 		font-family: var(--font-mono);
 		font-size: 0.8rem;
 		line-height: 1.5;
-		color: #d8dee9;
+		color: var(--code-fg);
 	}
 	.cx-rich :global(.cx-rich-code code) {
 		background: none;
