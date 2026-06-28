@@ -9,10 +9,13 @@ import { day07 } from './days/day07';
 import { day08 } from './days/day08';
 import { day09 } from './days/day09';
 import { day10 } from './days/day10';
+import { codeGlossary } from './codeGlossary';
 
 const days = [day01, day02, day03, day04, day05, day06, day07, day08, day09, day10].sort((a, b) => a.n - b.n);
 
+// концептуальные термины + py:-подсказки на токенах кода (наведение в CodeView)
 const glossary: Glossary = {
+	...codeGlossary,
 	"instance-attribute": {
 		id: "instance-attribute",
 		term: "Атрибут экземпляра",
