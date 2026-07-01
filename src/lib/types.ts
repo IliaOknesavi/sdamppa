@@ -170,6 +170,8 @@ export interface Subject {
 	accent: string; // hex → drives --accent
 	glyph: string; // single glyph for the wax-seal motif
 	courses: Course[]; // offerings across semesters / years
+	/** Optional attribution: external source (e.g. translated/derived material). */
+	source?: { label: string; url: string };
 }
 
 export interface Direction {

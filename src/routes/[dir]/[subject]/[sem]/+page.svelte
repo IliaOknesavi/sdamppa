@@ -46,7 +46,15 @@
 				</select>
 			</label>
 		</div>
-		<div class="dash__bar reveal" style="--i:2">
+		{#if subject.blurb || subject.source}
+			<div class="dash__about reveal" style="--i:2">
+				{#if subject.blurb}<p class="dash__blurb">{subject.blurb}</p>{/if}
+				{#if subject.source}
+					<a class="dash__source" href={subject.source.url} target="_blank" rel="noopener noreferrer">↗ {subject.source.label}</a>
+				{/if}
+			</div>
+		{/if}
+		<div class="dash__bar reveal" style="--i:3">
 			<div class="dash__bar-fill" style="width:{pct}%"></div>
 		</div>
 	</header>
@@ -113,6 +121,33 @@
 		font-size: 0.72rem;
 		color: var(--color-parch-muted);
 		margin-top: 0.3rem;
+	}
+	.dash__about {
+		margin: 0 0 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.dash__blurb {
+		margin: 0;
+		max-width: 70ch;
+		font-size: 0.92rem;
+		line-height: 1.55;
+		color: var(--color-parch-200);
+	}
+	.dash__source {
+		align-self: flex-start;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		color: var(--accent);
+		text-decoration: none;
+		border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+		border-radius: 7px;
+		padding: 0.28rem 0.6rem;
+		transition: background 0.15s;
+	}
+	.dash__source:hover {
+		background: color-mix(in srgb, var(--accent) 14%, transparent);
 	}
 	.yearpick {
 		display: flex;
