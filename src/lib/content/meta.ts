@@ -90,6 +90,16 @@ const oop: SubjectMeta = {
 	semesters: [1],
 	ready: true
 };
+const harness: SubjectMeta = {
+	id: 'harness',
+	name: 'Инженерия агентных харнессов',
+	short: 'Харнессы',
+	blurb: 'Перевод MIT-гайда Nexu: как из языковой модели собрать агента — агентный цикл, инструменты, суб-агенты и оркестрация, контекст, песочницы и эвалы. С реальным кодом.',
+	accent: '#22a39f',
+	glyph: '⚙',
+	semesters: [1],
+	ready: true
+};
 
 export const directionsMeta: DirectionMeta[] = [
 	{
@@ -108,6 +118,15 @@ export const directionsMeta: DirectionMeta[] = [
 		accent: '#ee4c2c',
 		extra: true,
 		subjects: [oop, pytorch]
+	},
+	{
+		id: 'agents',
+		name: 'Инженерия агентов',
+		short: 'Агенты',
+		blurb: 'Дополнительные материалы по агентной инженерии. Первый — перевод открытого гайда по харнессам.',
+		accent: '#22a39f',
+		extra: true,
+		subjects: [harness]
 	}
 ];
 

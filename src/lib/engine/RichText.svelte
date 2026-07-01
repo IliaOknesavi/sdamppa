@@ -38,6 +38,15 @@
 			<ol>
 				{#each b.items as it}<li>{@render inlines(it)}</li>{/each}
 			</ol>
+		{:else if b.k === 'table'}
+			<div class="cx-table-wrap">
+				<table class="cx-table">
+					<thead><tr>{#each b.head as cell}<th>{@render inlines(cell)}</th>{/each}</tr></thead>
+					<tbody>
+						{#each b.rows as row}<tr>{#each row as cell}<td>{@render inlines(cell)}</td>{/each}</tr>{/each}
+					</tbody>
+				</table>
+			</div>
 		{:else if b.k === 'codeblock'}
 			<pre class="cx-rich-code"><code>{b.v}</code></pre>
 		{/if}
@@ -115,5 +124,31 @@
 	}
 	.cx-rich :global(.cx-link:hover) {
 		opacity: 0.8;
+	}
+	.cx-rich :global(.cx-table-wrap) {
+		overflow-x: auto;
+		margin: 0.8em 0;
+	}
+	.cx-rich :global(.cx-table) {
+		border-collapse: collapse;
+		width: 100%;
+		font-size: 0.85em;
+		line-height: 1.5;
+	}
+	.cx-rich :global(.cx-table th),
+	.cx-rich :global(.cx-table td) {
+		border: 1px solid var(--color-ink-600);
+		padding: 0.4rem 0.6rem;
+		text-align: left;
+		vertical-align: top;
+	}
+	.cx-rich :global(.cx-table th) {
+		background: var(--color-ink-800);
+		color: var(--color-parch-100);
+		font-family: var(--font-display);
+		font-weight: 700;
+	}
+	.cx-rich :global(.cx-table tr:nth-child(even) td) {
+		background: color-mix(in srgb, var(--color-ink-800) 45%, transparent);
 	}
 </style>

@@ -10,6 +10,7 @@ import { chma } from './chma';
 import { matan } from './matan';
 import { pytorch } from './pytorch';
 import { oop } from './oop';
+import { harness } from './harness';
 
 export const directions: Direction[] = [
 	{
@@ -28,6 +29,15 @@ export const directions: Direction[] = [
 		accent: '#ee4c2c',
 		extra: true,
 		subjects: [oop, pytorch]
+	},
+	{
+		id: 'agents',
+		name: 'Инженерия агентов',
+		short: 'Агенты',
+		blurb: 'Дополнительные материалы по агентной инженерии. Первый — перевод открытого гайда по харнессам.',
+		accent: '#22a39f',
+		extra: true,
+		subjects: [harness]
 	}
 ];
 

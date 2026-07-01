@@ -23,6 +23,7 @@ export type Block =
 	| { k: 'math'; v: string }
 	| { k: 'ul'; items: Inline[][] }
 	| { k: 'ol'; items: Inline[][] }
+	| { k: 'table'; head: Inline[][]; rows: Inline[][][] }
 	| { k: 'codeblock'; lang: string; v: string };
 
 interface Pattern {
@@ -139,6 +140,19 @@ function parseTextBlocks(norm: string, blocks: Block[]): void {
 				k: 'ol',
 				items: lines.map((l) => parseInline(l.replace(/^\s*\d+[.)]\s+/, '')))
 			});
+			continue;
+		}
+
+		// markdown table: header row + separator (|---|---|) + body rows
+		const isSep = (l: string) => /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$/.test(l);
+		if (lines.length >= 2 && lines[0].includes('|') && isSep(lines[1])) {
+			const cells = (l: string): Inline[][] => {
+				let s = l.trim();
+				if (s.startsWith('|')) s = s.slice(1);
+				if (s.endsWith('|')) s = s.slice(0, -1);
+				return s.split('|').map((c) => parseInline(c.trim()));
+			};
+			blocks.push({ k: 'table', head: cells(lines[0]), rows: lines.slice(2).map(cells) });
 			continue;
 		}
 

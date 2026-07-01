@@ -11,7 +11,8 @@ export const subjectLoaders: Record<string, () => Promise<Subject>> = {
 	chma: () => import('./chma').then((m) => m.chma),
 	matan: () => import('./matan').then((m) => m.matan),
 	pytorch: () => import('./pytorch').then((m) => m.pytorch),
-	oop: () => import('./oop').then((m) => m.oop)
+	oop: () => import('./oop').then((m) => m.oop),
+	harness: () => import('./harness').then((m) => m.harness)
 };
 
 /** Загрузить тело предмета по id (или undefined, если такого нет). */
