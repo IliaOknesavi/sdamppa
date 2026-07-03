@@ -382,6 +382,7 @@ svg [tabindex]:focus-visible {
 	max-width: calc(100vw - 24px);
 	max-height: 70vh;
 	overflow-y: auto;
+	overscroll-behavior: contain; /* прокрутка тела карточки не тянет страницу под ней */
 	background: radial-gradient(
 		120% 80% at 0% 0%,
 		color-mix(in srgb, var(--accent) 9%, var(--color-ink-800)),
@@ -409,6 +410,8 @@ svg [tabindex]:focus-visible {
 	backdrop-filter: blur(4px);
 	border-radius: 12px 12px 0 0;
 	user-select: none;
+	touch-action: none; /* тянем шапку пальцем, страница при этом не скроллится */
+	cursor: grab;
 }
 .tcard__title {
 	font-family: var(--font-display);

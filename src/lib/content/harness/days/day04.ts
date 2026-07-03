@@ -42,7 +42,7 @@ export const day04: Day = {
 		},
 		{
 			heading: "Что почитать дальше",
-			body: "- [Документация LangChain](https://python.langchain.com/) — самый популярный фреймворк\n- [Документация CrewAI](https://docs.crewai.com/) — оркестрация из нескольких агентов\n- [AutoGen](https://microsoft.github.io/autogen/) — фреймворк для нескольких агентов от Microsoft\n- [Ваш первый харнесс](/guide/your-first-harness) — соберите голую версию сами"
+			body: "- [Документация LangChain](https://python.langchain.com/) — самый популярный фреймворк\n- [Документация CrewAI](https://docs.crewai.com/) — оркестрация из нескольких агентов\n- [AutoGen](https://microsoft.github.io/autogen/) — фреймворк для нескольких агентов от Microsoft\n- [Ваш первый харнесс](/agents/harness/1/day/3) — соберите голую версию сами"
 		}
 	],
 	tasks: [],

@@ -58,7 +58,7 @@ export const day22: Day = {
 		},
 		{
 			heading: "Что почитать дальше",
-			body: "- [scheduling-and-automation.md](./scheduling-and-automation.md) — как будить кодинг-агента по расписанию без человеческой няньки\n- [long-running-harness.md](./long-running-harness.md) — более широкое семейство паттернов, в которое это вписывается\n- [memory-and-context.md](./memory-and-context.md) — более глубокое погружение во внеконтекстную память, раскладки файлов и ритуалы бутстрапа\n- [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) — Anthropic Engineering, исходный материал\n- [autonomous-coding quickstart](https://github.com/anthropics/claude-quickstarts/tree/main/autonomous-coding) — рабочая референсная реализация двухфазного паттерна"
+			body: "- [scheduling-and-automation.md](/agents/harness/1/day/15) — как будить кодинг-агента по расписанию без человеческой няньки\n- [long-running-harness.md](/agents/harness/1/day/16) — более широкое семейство паттернов, в которое это вписывается\n- [memory-and-context.md](/agents/harness/1/day/7) — более глубокое погружение во внеконтекстную память, раскладки файлов и ритуалы бутстрапа\n- [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) — Anthropic Engineering, исходный материал\n- [autonomous-coding quickstart](https://github.com/anthropics/claude-quickstarts/tree/main/autonomous-coding) — рабочая референсная реализация двухфазного паттерна"
 		}
 	],
 	tasks: [],

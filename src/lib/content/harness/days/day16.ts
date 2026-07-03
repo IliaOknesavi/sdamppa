@@ -47,7 +47,7 @@ export const day16: Day = {
 		},
 		{
 			heading: "Дальнейшее чтение",
-			body: "- [Context Engineering](context-engineering.md) — глубокое погружение в сборку, сжатие и бюджетирование контекста\n- [Multi-Agent Orchestration](multi-agent-orchestration.md) — паттерны оркестрации за пределами трёхагентной архитектуры\n- [Error Handling](error-handling.md) — обработка отказов, повторов и плавной деградации в циклах агента\n- [Anthropic: Building effective agents](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/building-effective-agents) — руководство Anthropic по паттернам проектирования агентов"
+			body: "- [Context Engineering](/agents/harness/1/day/9) — глубокое погружение в сборку, сжатие и бюджетирование контекста\n- [Multi-Agent Orchestration](/agents/harness/1/day/14) — паттерны оркестрации за пределами трёхагентной архитектуры\n- [Error Handling](/agents/harness/1/day/13) — обработка отказов, повторов и плавной деградации в циклах агента\n- [Anthropic: Building effective agents](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/building-effective-agents) — руководство Anthropic по паттернам проектирования агентов"
 		}
 	],
 	tasks: [],

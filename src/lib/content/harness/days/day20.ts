@@ -51,7 +51,7 @@ export const day20: Day = {
 		},
 		{
 			heading: "Дальнейшее чтение",
-			body: "- [Песочницы для сред агентов](./sandbox.md) — ограничение возможностей, MIME-allowlist'ы, изоляция файловой системы.\n- [Ограничители для веб-агентов](./guardrails.md) — allowlist'ы, rate limits, гейтинг по учётным данным.\n- [Инфраструктура эвалов](./eval-infrastructure.md) — приватные holdout'ы, генерация задач на каждый запуск, ротация.\n- Anthropic Engineering, [\"Eval awareness in Claude Opus 4.6's BrowseComp performance\"](https://www.anthropic.com/engineering/eval-awareness-browsecomp) — исходный отчёт об инциденте, который кратко излагает эта статья."
+			body: "- [Песочницы для сред агентов](/agents/harness/1/day/10) — ограничение возможностей, MIME-allowlist'ы, изоляция файловой системы.\n- [Ограничители для веб-агентов](/agents/harness/1/day/8) — allowlist'ы, rate limits, гейтинг по учётным данным.\n- [Инфраструктура эвалов](/agents/harness/1/day/18) — приватные holdout'ы, генерация задач на каждый запуск, ротация.\n- Anthropic Engineering, [\"Eval awareness in Claude Opus 4.6's BrowseComp performance\"](https://www.anthropic.com/engineering/eval-awareness-browsecomp) — исходный отчёт об инциденте, который кратко излагает эта статья."
 		}
 	],
 	tasks: [],

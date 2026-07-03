@@ -59,7 +59,7 @@ export const day19: Day = {
 		},
 		{
 			heading: "Что почитать дальше",
-			body: "- [Guardrails](./guardrails.md) — Общая модель слоя разрешений, поверх которой это надстраивается\n- [Sandbox](./sandbox.md) — Изоляция на уровне ОС, которая всё равно должна работать под вашим классификатором\n- [Anthropic: Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode) — Оригинальный разбор с полными данными эвала и структурой продакшен-промпта"
+			body: "- [Guardrails](/agents/harness/1/day/8) — Общая модель слоя разрешений, поверх которой это надстраивается\n- [Sandbox](/agents/harness/1/day/10) — Изоляция на уровне ОС, которая всё равно должна работать под вашим классификатором\n- [Anthropic: Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode) — Оригинальный разбор с полными данными эвала и структурой продакшен-промпта"
 		}
 	],
 	tasks: [],

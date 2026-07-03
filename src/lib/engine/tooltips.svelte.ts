@@ -90,8 +90,9 @@ class TooltipManager {
 	pinFromRect(id: string, rect: DOMRect, parent?: string) {
 		const W = typeof window !== 'undefined' ? window.innerWidth : 1200;
 		const H = typeof window !== 'undefined' ? window.innerHeight : 800;
-		const x = Math.max(12, Math.min(rect.left, W - 372));
-		// держим хотя бы шапку карточки во вьюпорте — не открываем за нижним краем
+		const cw = Math.min(358, W - 24); // фактическая ширина карточки (адаптивная)
+		const x = Math.max(12, Math.min(rect.left, W - cw - 12));
+		// начальная позиция; точный клэмп по реальной высоте — в PinCard после верстки
 		const y = Math.max(12, Math.min(rect.bottom + 10, H - 160));
 		this.pinAt(id, x, y, parent);
 	}

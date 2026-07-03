@@ -54,7 +54,7 @@ export const day21: Day = {
 		},
 		{
 			heading: "Что почитать дальше",
-			body: "Внутри этого руководства:\n\n- [multi-agent-orchestration.md](./multi-agent-orchestration.md) —\n  паттерны координации флотов агентов за пределами Ralph-loop.\n- [sandbox.md](./sandbox.md) — изоляция каждого агента через Docker и\n  голые git-репозитории.\n- [sub-agent.md](./sub-agent.md) — когда стоит породить суб-агента, а не\n  добавлять ещё одного равноправного участника во флот.\n\nСнаружи:\n\n- Nicholas Carlini / Anthropic Engineering — [Building a C compiler\n  with a team of parallel Claudes](https://www.anthropic.com/engineering/building-c-compiler)\n- [anthropics/claudes-c-compiler](https://github.com/anthropics/claudes-c-compiler)\n  — собственно репозиторий, харнесс и всё прочее. Читайте промпты. Они и есть\n  продукт."
+			body: "Внутри этого руководства:\n\n- [multi-agent-orchestration.md](/agents/harness/1/day/14) —\n  паттерны координации флотов агентов за пределами Ralph-loop.\n- [sandbox.md](/agents/harness/1/day/10) — изоляция каждого агента через Docker и\n  голые git-репозитории.\n- [sub-agent.md](/agents/harness/1/day/12) — когда стоит породить суб-агента, а не\n  добавлять ещё одного равноправного участника во флот.\n\nСнаружи:\n\n- Nicholas Carlini / Anthropic Engineering — [Building a C compiler\n  with a team of parallel Claudes](https://www.anthropic.com/engineering/building-c-compiler)\n- [anthropics/claudes-c-compiler](https://github.com/anthropics/claudes-c-compiler)\n  — собственно репозиторий, харнесс и всё прочее. Читайте промпты. Они и есть\n  продукт."
 		}
 	],
 	tasks: [],

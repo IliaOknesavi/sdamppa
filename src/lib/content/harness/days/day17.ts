@@ -47,7 +47,7 @@ export const day17: Day = {
 		},
 		{
 			heading: "Дальнейшее чтение",
-			body: "- [Sub-Agent](sub-agent.md) — Порождение изолированных агентов с независимыми жизненными циклами\n- [Multi-Agent Orchestration](multi-agent-orchestration.md) — Паттерны координации нескольких мозгов\n- [Sandbox](sandbox.md) — Изоляция и безопасность сред выполнения\n- [Scheduling & Automation](scheduling-and-automation.md) — Адресация сессий для долгоиграющей периодической работы\n- [Anthropic: Scaling Managed Agents](https://www.anthropic.com/engineering/managed-agents) — Исходный пост об архитектуре\n- [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) — Фундаментальные паттерны проектирования агентов"
+			body: "- [Sub-Agent](/agents/harness/1/day/12) — Порождение изолированных агентов с независимыми жизненными циклами\n- [Multi-Agent Orchestration](/agents/harness/1/day/14) — Паттерны координации нескольких мозгов\n- [Sandbox](/agents/harness/1/day/10) — Изоляция и безопасность сред выполнения\n- [Scheduling & Automation](/agents/harness/1/day/15) — Адресация сессий для долгоиграющей периодической работы\n- [Anthropic: Scaling Managed Agents](https://www.anthropic.com/engineering/managed-agents) — Исходный пост об архитектуре\n- [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) — Фундаментальные паттерны проектирования агентов"
 		}
 	],
 	tasks: [],

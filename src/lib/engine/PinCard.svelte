@@ -7,17 +7,45 @@
 	let { pin }: { pin: Pin } = $props();
 	const t = $derived(tips.get(pin.id));
 
-	const CARD_W = 358; // совпадает с .tcard width
 	let drag: { dx: number; dy: number } | null = null;
 	let cardEl: HTMLDivElement | undefined = $state();
 
+	// держим карточку ЦЕЛИКОМ во вьюпорте по её РЕАЛЬНОМУ размеру — критично на
+	// телефоне, где карточка почти во всю ширину и её нельзя утаскивать за край.
+	function clampPos(x: number, y: number) {
+		if (typeof window === 'undefined') return { x, y };
+		// offsetWidth/Height, а НЕ getBoundingClientRect: у карточки анимация scale-in,
+		// и bounding rect возвращает уменьшенный (scaled) размер → недоклэмп на ~5%.
+		const cw = cardEl?.offsetWidth ?? 320;
+		const ch = cardEl?.offsetHeight ?? 200;
+		const m = 8;
+		return {
+			x: Math.max(m, Math.min(x, window.innerWidth - cw - m)),
+			y: Math.max(m, Math.min(y, window.innerHeight - ch - m))
+		};
+	}
+	function reclamp() {
+		const { x, y } = clampPos(pin.x, pin.y);
+		if (x !== pin.x || y !== pin.y) tips.move(pin.key, x, y);
+	}
+
 	$effect(() => {
-		// при закреплении переводим фокус в карточку — для клавиатуры/скринридера
-		cardEl?.focus();
+		if (!cardEl) return;
+		cardEl.focus(); // фокус для клавиатуры/скринридера
+		// Контент (KaTeX/картинки) рендерится АСИНХРОННО и меняет высоту карточки.
+		// Клэмпим несколько раз по мере «оседания» размера + на каждое его изменение,
+		// чтобы карточка гарантированно не вылезала за нижний/правый край экрана.
+		const timers = [0, 80, 200, 420].map((d) => setTimeout(reclamp, d));
+		const ro = new ResizeObserver(() => reclamp());
+		ro.observe(cardEl);
+		return () => {
+			timers.forEach(clearTimeout);
+			ro.disconnect();
+		};
 	});
 
 	function down(e: PointerEvent) {
-		if (e.button !== 0) return;
+		if (e.pointerType === 'mouse' && e.button !== 0) return;
 		// не захватываем указатель на кнопке закрытия, иначе её клик проглатывается
 		if ((e.target as HTMLElement).closest('.tcard__x')) return;
 		tips.front(pin.key);
@@ -26,11 +54,8 @@
 	}
 	function move(e: PointerEvent) {
 		if (!drag) return;
-		const W = typeof window !== 'undefined' ? window.innerWidth : 1200;
-		const H = typeof window !== 'undefined' ? window.innerHeight : 800;
-		// держим шапку (заголовок + ✕) во вьюпорте — нельзя утащить карточку за край
-		const x = Math.max(-(CARD_W - 160), Math.min(e.clientX - drag.dx, W - 60));
-		const y = Math.max(0, Math.min(e.clientY - drag.dy, H - 48));
+		e.preventDefault(); // не скроллить страницу пальцем во время перетаскивания
+		const { x, y } = clampPos(e.clientX - drag.dx, e.clientY - drag.dy);
 		tips.move(pin.key, x, y);
 	}
 	function up() {
@@ -41,6 +66,8 @@
 		tips.pinFromRect(rid, rect, pin.id);
 	}
 </script>
+
+<svelte:window onresize={reclamp} />
 
 {#if t}
 	<div

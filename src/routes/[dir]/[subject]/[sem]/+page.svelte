@@ -2,7 +2,7 @@
 	import Calendar from '$lib/components/Calendar.svelte';
 	import XPBar from '$lib/components/XPBar.svelte';
 	import ProgressMenu from '$lib/components/ProgressMenu.svelte';
-	import { authoredDays, yearsOf } from '$lib/types';
+	import { authoredDays, yearsOf, semestersOf } from '$lib/types';
 	import { progress } from '$lib/stores/progress.svelte';
 	import { goto } from '$app/navigation';
 	import { plural } from '$lib/plural';
@@ -12,6 +12,9 @@
 	const subject = $derived(data.subject);
 	const course = $derived(data.course);
 	const years = $derived(yearsOf(subject, data.semester));
+	// одно-семестровый предмет: страница /{dir}/{subject} редиректит сюда же,
+	// поэтому back ведём на направление (иначе петля). Много-сем → на выбор семестра.
+	const oneSem = $derived(semestersOf(subject).length === 1);
 	const pct = $derived(
 		course.days.length ? Math.round((progress.doneCount() / course.days.length) * 100) : 0
 	);
@@ -25,7 +28,7 @@
 <div class="dash">
 	<header class="dash__head">
 		<div class="dash__top">
-			<a class="dash__home" href="/{direction.id}/{subject.id}">← {subject.short}</a>
+			<a class="dash__home" href={oneSem ? `/${direction.id}` : `/${direction.id}/${subject.id}`}>← {oneSem ? direction.short : subject.short}</a>
 			<div class="dash__right">
 				<XPBar />
 				<ProgressMenu />
