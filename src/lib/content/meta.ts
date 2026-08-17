@@ -64,11 +64,11 @@ const matan: SubjectMeta = {
 	id: 'matan',
 	name: 'Математический анализ',
 	short: 'Матан',
-	blurb: 'Пределы, производные, интегралы и ряды — по той же системе, с разбивкой по семестрам.',
+	blurb: 'Курс, который начинается не с вещественной прямой, а с аксиоматики ZFC: топология и метрика раньше пределов.',
 	accent: '#7f00ff',
 	glyph: '∫',
-	semesters: [1, 2, 3],
-	ready: false
+	semesters: [1, 2],
+	ready: true
 };
 const pytorch: SubjectMeta = {
 	id: 'pytorch',
