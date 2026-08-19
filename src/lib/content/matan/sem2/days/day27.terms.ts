@@ -1,15 +1,16 @@
 import type { Glossary } from '$lib/types';
 
 // Термины дня 27 (радикальный признак Коши, преобразование Абеля, признак
-// Дирихле, липшицевость). Понятия сквозной нотации живут в каноническом
+// Дирихле, полная вариация). Понятия сквозной нотации живут в каноническом
 // глоссарии (sem2/glossary.ts) и здесь НЕ дублируются — на них идут только
-// перекрёстные ссылки [[...]]: priznak-i-svoystvo, metriki-rho,
-// skhodyashchayasya-v-sebe, asimptoticheskie-klassy, klassy-differenciruemosti.
+// перекрёстные ссылки [[...]]: priznak-i-svoystvo, skhodyashchayasya-v-sebe,
+// asimptoticheskie-klassy, chastichnaya-posledovatelnost, n-ot-epsilon.
 // Канонический глоссарий склеивается последним и перекрывает совпадения,
 // поэтому одноимённые карточки заводить нельзя.
-// Карточки chastichnaya-summa и garmonicheskiy-ryad намеренно продублированы
-// из дня 26, а priznak-dalambera и geometricheskiy-ryad — из более раннего
-// материала, чтобы день резолвился независимо.
+// Понятия, введённые раньше, подключаются ссылкой и не переобъявляются:
+// lipshitsevost (день 5), integrirovanie-po-chastyam (день 21),
+// mazhoranta-i-minoranta, neobhodimoe-uslovie-shodimosti,
+// teorema-rimana-o-perestanovke (день 26).
 export const day27Terms: Glossary = {
 	'radikalnyy-priznak-koshi': {
 		id: 'radikalnyy-priznak-koshi',
@@ -29,7 +30,7 @@ export const day27Terms: Glossary = {
 		formula: String.raw`\underline\lim\frac{a_{n+1}}{a_n}\le\underline\lim\sqrt[n]{a_n}\le\overline\lim\sqrt[n]{a_n}\le\overline\lim\frac{a_{n+1}}{a_n}`,
 		body: String.raw`Для $a_n>0$ ряд сходится при $\lim\frac{a_{n+1}}{a_n}<1$ и расходится при значении больше единицы. Эталон тот же — [[geometricheskiy-ryad|геометрическая прогрессия]], но измеряется один шаг, а не усреднённая история. Равносильная запись — через **обратное** отношение $x_n=\frac{a_n}{a_{n+1}}$: условие сходимости принимает вид $x_n\ge c>1$, и порог переезжает из $q<1$ в $c=\frac1q>1$.
 
-Цепочка неравенств выше показывает точное соотношение: где Д’Аламбер дал ответ, [[radikalnyy-priznak-koshi|радикальный признак]] даст тот же, но не наоборот. Пример разрыва — $a_n=2^{-n-(-1)^{n}}$: отношение скачет между $2$ и $\frac18$, а корень идёт к $\frac12$.`,
+Цепочка неравенств выше показывает точное соотношение: где Д’Аламбер дал ответ, [[radikalnyy-priznak-koshi|радикальный признак]] даст тот же, но не наоборот. Пример разрыва — $a_n=2^{-n-(-1)^{n}}$: отношение скачет между $2$ и $\frac18$, а корень идёт к $\frac12$. В дне 28 этот признак окажется нижним этажом куммеровской схемы — подстановкой $C_n\equiv1$.`,
 		related: ['radikalnyy-priznak-koshi', 'geometricheskiy-ryad', 'asimptoticheskie-klassy']
 	},
 
@@ -95,7 +96,7 @@ export const day27Terms: Glossary = {
 		formula: String.raw`|A_k|\le M,\ b_n\ge0\ \text{не возрастает}:\quad \Bigl|\sum_{k=p}^{q}a_kb_k\Bigr|\le 2Mb_p`,
 		body: String.raw`Рабочая лемма, ради которой и делается [[preobrazovanie-abelya|преобразование Абеля]]. Доказательство: неравенство треугольника плюс телескоп $\sum_{k=p}^{q-1}(b_k-b_{k+1})=b_p-b_q$, откуда $Mb_q+Mb_p+M(b_p-b_q)=2Mb_p$.
 
-Главное в оценке — то, чего в ней нет: правая часть не зависит ни от длины отрезка, ни от $q$. Поэтому из неё немедленно следует условие Коши, а с ним [[priznak-dirihle|признак Дирихле]]. На практике это ещё и оценка остатка знакопеременного ряда: сколько членов надо просуммировать для заданной точности — там, где абсолютная оценка $\sum|a_kb_k|$ расходится и не даёт ничего.`,
+Главное в оценке — то, чего в ней нет: правая часть не зависит ни от длины отрезка, ни от $q$. Поэтому из неё немедленно следует условие Коши, а с ним [[priznak-dirihle|признак Дирихле]]. Работает она за счёт ограниченности [[polnaya-variaciya|полной вариации]] $b_n$, которую поставляет монотонность.`,
 		related: ['preobrazovanie-abelya', 'priznak-dirihle', 'priznak-leybnica', 'kriteriy-koshi-ryad']
 	},
 
@@ -128,7 +129,7 @@ export const day27Terms: Glossary = {
 		formula: String.raw`\sum_{n=1}^{\infty}(-1)^{n-1}b_n,\qquad b_n\ge0`,
 		body: String.raw`Ряд, у которого множитель $(-1)^{n-1}$ вынесен явно. У самого этого множителя частичные суммы пробегают $1,0,1,0,\dots$ и ограничены единицей независимо от $b_n$, поэтому знакочередующийся ряд — простейшая среда для [[priznak-dirihle|признака Дирихле]] и повод для отдельного названия ([[priznak-leybnica|признак Лейбница]]).
 
-Знакочередующийся ряд — стандартный источник **условной** сходимости: $\sum\frac{(-1)^{n-1}}{n}=\ln2$ сходится, а модули дают [[garmonicheskiy-ryad|гармонический ряд]]. Отсюда практическое предупреждение: сумма условно сходящегося ряда зависит от порядка слагаемых (теорема Римана), так что перестановка или распараллеливание суммирования меняют ответ.`,
+Знакочередующийся ряд — стандартный источник **условной** сходимости: $\sum\frac{(-1)^{n-1}}{n}=\ln2$ сходится, а модули дают [[garmonicheskiy-ryad|гармонический ряд]]. Что за этим стоит — [[teorema-rimana-o-perestanovke|теорема Римана о перестановке]] (день 26).`,
 		related: ['priznak-leybnica', 'priznak-dirihle', 'garmonicheskiy-ryad']
 	},
 
@@ -137,31 +138,42 @@ export const day27Terms: Glossary = {
 		term: 'Критерий Коши для ряда',
 		short: String.raw`Ряд сходится тогда и только тогда, когда его хвостовые отрезки малы.`,
 		formula: String.raw`\sum a_n\ \text{сх.}\iff\forall\varepsilon>0\ \exists N\ \forall q\ge p>N:\ \Bigl|\sum_{k=p}^{q}a_k\Bigr|<\varepsilon`,
-		body: String.raw`Перенос понятия [[skhodyashchayasya-v-sebe|сходящейся в себе]] последовательности на частичные суммы: разность $A_q-A_{p-1}$ — это и есть отрезок ряда, а полнота $\mathbb R$ превращает фундаментальность в сходимость.
+		body: String.raw`Дискретная строка теоремы дня 26: отрезок ряда $\sum_{k=p}^{q}a_k$ — это разность [[chastichnaya-summa|частичных сумм]] $A_q-A_{p-1}$, а по полноте $\mathbb R$ фундаментальность равносильна сходимости.
 
-Главное достоинство — независимость от знака членов: там, где сравнение с эталоном неприменимо, работает критерий. На нём стоит доказательство [[priznak-dirihle|признака Дирихле]], где отрезок оценивается [[neravenstvo-abelya|неравенством Абеля]] и порог получается явной формулой $N(\varepsilon)=N_b\bigl(\frac{\varepsilon}{2M+1}\bigr)$.`,
+В сегодняшнем дне это рабочий инструмент: на нём стоит доказательство [[priznak-dirihle|признака Дирихле]], где отрезок оценивается [[neravenstvo-abelya|неравенством Абеля]] и порог получается явной формулой $N(\varepsilon)=N_b\bigl(\frac{\varepsilon}{2M+1}\bigr)$. Оценивается именно отрезок, а не отдельный член, — потому знак членов роли не играет.`,
 		related: ['priznak-dirihle', 'neravenstvo-abelya', 'chastichnaya-summa', 'skhodyashchayasya-v-sebe']
 	},
 
-	'lipshicevost': {
-		id: 'lipshicevost',
-		term: 'Липшицевость',
-		short: String.raw`Приращение значений линейно ограничено приращением аргумента.`,
-		formula: String.raw`\exists\,C>0:\ \forall x_1,x_2\in D\quad |f(x_1)-f(x_2)|\le C|x_1-x_2|`,
-		body: String.raw`Усиление непрерывности, формулируемое сразу в двух версиях — числовой и метрической: $\rho_Y\bigl(f(x_1),f(x_2)\bigr)\le C\,\rho_X(x_1,x_2)$, где метрики в области и в образе вообще говоря [[metriki-rho|разные]]. Обе части неравенства — расстояния между парами точек, только в разных пространствах.
+	'polnaya-variaciya': {
+		id: 'polnaya-variaciya',
+		term: 'Полная вариация последовательности',
+		short: String.raw`Сумма модулей всех приращений; у монотонной равна перепаду концов.`,
+		formula: String.raw`V_p^q=\sum_{k=p}^{q-1}|b_{k+1}-b_k|;\qquad b_n\ \text{не возрастает}:\ V_p^q=b_p-b_q`,
+		body: String.raw`Сколько последовательность суммарно набегает вверх и вниз. [[neravenstvo-abelya|Неравенству Абеля]] нужна ограниченность вариации, а не [[lipshitsevost|липшицевость]]: та ограничивает каждое приращение по отдельности, и сумма растёт как $C(q-p)$.
 
-Липшицевость влечёт равномерную непрерывность с явным $\delta(\varepsilon)=\varepsilon/C$; обратное неверно ($\sqrt x$ на $[0;1]$). Для дифференцируемой функции она равносильна ограниченности производной, и [[konstanta-lipshica|наименьшая константа]] равна $\sup|f'|$. В теме рядов по соседству стоит другое условие — ограниченность полной вариации $\sum_k|b_{k+1}-b_k|$; на нём и стоит [[neravenstvo-abelya|неравенство Абеля]]. Липшицевость его не обеспечивает: у последовательности она ограничивает каждое приращение по отдельности, $|b_{k+1}-b_k|\le C$, а не их сумму, которая тогда растёт как $C(q-p)$.`,
-		related: ['konstanta-lipshica', 'metriki-rho', 'end-r', 'neravenstvo-abelya']
+У монотонной $b_n$ вариация сворачивается в $b_p-b_q\le b_p$ — одно число при любой длине, и ровно за этим монотонность стоит в [[priznak-dirihle|признаке Дирихле]]. У $b_n=\frac{(-1)^n}{n}$ вариация бесконечна, и признак ломается.`,
+		related: ['neravenstvo-abelya', 'priznak-dirihle', 'lipshitsevost', 'preobrazovanie-abelya']
 	},
 
-	'konstanta-lipshica': {
-		id: 'konstanta-lipshica',
-		term: 'Константа Липшица',
-		short: String.raw`Наименьшее $C$ в определении; для гладкой функции равно $\sup|f'|$.`,
-		formula: String.raw`C=\sup_{x_1\ne x_2}\frac{|f(x_1)-f(x_2)|}{|x_1-x_2|}=\sup_{x\in D}|f'(x)|\quad(f\in\mathcal D^1)`,
-		body: String.raw`Точная мера того, насколько сильно функция растягивает расстояния. Для дифференцируемой на промежутке $f$ теорема Лагранжа даёт $|f(x_1)-f(x_2)|=|f'(\xi)||x_1-x_2|$, откуда обе оценки — сверху через $\sup|f'|$ и снизу предельным переходом $x_2\to x_1$ — совпадают.
+	'verhniy-i-nizhniy-predely': {
+		id: 'verhniy-i-nizhniy-predely',
+		term: 'Верхний и нижний пределы',
+		short: String.raw`Пределы супремумов и инфимумов хвостов; существуют всегда.`,
+		formula: String.raw`\overline\lim_{n} x_n=\lim_{n\to\infty}\sup_{k\ge n}x_k,\qquad \underline\lim_{n} x_n=\lim_{n\to\infty}\inf_{k\ge n}x_k`,
+		body: String.raw`Берут точную грань [[chastichnaya-posledovatelnost|хвоста]] $\{x_k\}_{k\ge n}$ и смотрят, куда она едет с ростом $n$. Супремум хвоста не возрастает, инфимум не убывает, поэтому оба предела существуют всегда — в $\overline{\mathbb R}$, даже когда обычного предела нет. Обычный предел существует ровно при $\underline\lim=\overline\lim$.
 
-Значение константы решает всё в приложениях: при $C<1$ отображение сжимающее, и работает принцип неподвижной точки (итерации сходятся геометрически со знаменателем $C$); при $C>1$ ошибки на каждом шаге растут. В этом смысле [[lipshicevost|липшицевость]] с малой константой — то же самое условие, что $L<1$ в [[radikalnyy-priznak-koshi|радикальном признаке]]: и там, и там геометрическое сжатие.`,
-		related: ['lipshicevost', 'radikalnyy-priznak-koshi', 'metriki-rho']
+Через них формулируют признаки, чтобы не требовать существования предела: $\overline\lim\sqrt[n]{a_n}<1$ означает «с некоторого номера — с запасом», а доказательству нужно ровно это, вместе с явным [[n-ot-epsilon|порогом $N(\varepsilon)$]].`,
+		related: ['chastichnaya-posledovatelnost', 'skhodyashchayasya-v-sebe', 'asimptoticheskie-klassy', 'n-ot-epsilon']
+	},
+
+	'formula-koshi-adamara': {
+		id: 'formula-koshi-adamara',
+		term: 'Формула Коши–Адамара',
+		short: String.raw`Радиус сходимости степенного ряда через $\overline\lim\sqrt[n]{|c_n|}$.`,
+		formula: String.raw`R=\Bigl(\overline\lim_{n\to\infty}\sqrt[n]{|c_n|}\Bigr)^{-1}`,
+		body: String.raw`[[radikalnyy-priznak-koshi|Радикальный признак]], применённый к ряду $\sum c_nx^{n}$: корень из модуля члена равен $|x|\sqrt[n]{|c_n|}$, и условие $L<1$ превращается в $|x|<R$. Внутри круга ряд сходится абсолютно, вне — расходится, на границе возможно и то и другое.
+
+[[verhniy-i-nizhniy-predely|Верхний предел]] здесь обязателен: у $\sqrt[n]{|c_n|}$ предела может не быть — как у отношения в примере $a_n=2^{-n-(-1)^n}$, на котором молчит [[priznak-dalambera|Д’Аламбер]]. Это и есть причина формулировать признак через $\overline\lim$.`,
+		related: ['radikalnyy-priznak-koshi', 'priznak-dalambera', 'geometricheskiy-ryad', 'verhniy-i-nizhniy-predely']
 	}
 };

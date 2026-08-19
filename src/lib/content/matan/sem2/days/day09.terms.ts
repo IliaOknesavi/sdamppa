@@ -1,7 +1,8 @@
 import type { Glossary } from '$lib/types';
 
 // Термины дня 9: производная Гато, производная по направлению, частная
-// производная, градиент, полунорма. День должен резолвиться независимо,
+// производная, градиент, цепное правило для поля вдоль кривой.
+// День должен резолвиться независимо,
 // поэтому опорные понятия соседних дней — производная Фреше, параметризация
 // отрезка, теорема Лагранжа в скалярных полях — продублированы здесь.
 // НЕ дублируются термины канонического глоссария (sem2/glossary.ts и
@@ -65,6 +66,28 @@ export const day09Terms: Glossary = {
 		related: ['proizvodnaya-gato', 'ierarhiya-differenciruemosti', 'dostatochnoe-uslovie-differenciruemosti', 'gradient']
 	},
 
+	additivnost: {
+		id: 'additivnost',
+		term: 'Аддитивность',
+		short: String.raw`$F(\vec h_1+\vec h_2)=F(\vec h_1)+F(\vec h_2)$ — вторая половина линейности.`,
+		formula: String.raw`A(\vec h_1+\vec h_2)=A\vec h_1+A\vec h_2`,
+		body: String.raw`Свойство сохранять сумму. Вместе с однородностью оно и составляет линейность; по отдельности ни одно из них линейности не даёт, и это сюжет всего дня.
+
+У [[proizvodnaya-gato|производной Гато]] однородность по второму аргументу выполняется всегда (заменой $\tau=\lambda t$), а аддитивность — нет: у $\frac{x^3}{x^2+y^2}$ в нуле $dF(\vec 0,\vec e_1)+dF(\vec 0,\vec e_2)=1$, тогда как $dF(\vec 0,\vec e_1+\vec e_2)=\frac12$. Линейного функционала нет — значит нет и [[proizvodnaya-freshe|производной Фреше]], и вся [[ierarhiya-differenciruemosti|иерархия]] держится на этом различии.`,
+		related: ['proizvodnaya-gato', 'proizvodnaya-freshe', 'ierarhiya-differenciruemosti']
+	},
+
+	'cepnoe-pravilo-pole': {
+		id: 'cepnoe-pravilo-pole',
+		term: 'Цепное правило для поля вдоль кривой',
+		short: String.raw`Производная сужения поля на кривую: $\langle\nabla f\mid\vec\gamma\,'\rangle$.`,
+		formula: String.raw`\bigl(f\circ\vec\gamma\bigr)'(t_0)=\bigl\langle\nabla f(\vec\gamma(t_0))\ \big|\ \vec\gamma\,'(t_0)\bigr\rangle`,
+		body: String.raw`Обобщение теоремы о [[proizvodnaya-po-napravleniyu|производной по направлению]] с прямой на произвольную дифференцируемую кривую: приращение $\vec\gamma(t_0+\Delta t)-\vec\gamma(t_0)$ зависит от $\Delta t$ нелинейно, но с точностью до $\bar o(\Delta t)$ равно $\vec\gamma\,'(t_0)\Delta t$, и определение [[proizvodnaya-freshe|Фреше]] переносит это внутрь скобки.
+
+Именно им дифференцируют тождество $f(\vec\gamma(t))=c$ вдоль множества уровня (день 7) и сужение поля на отрезок в выводе [[teorema-lagranzha-polya|многомерного Лагранжа]] и формулы Тейлора (день 12).`,
+		related: ['proizvodnaya-po-napravleniyu', 'proizvodnaya-freshe', 'teorema-lagranzha-polya', 'gradient']
+	},
+
 	'napravlenie-naibystreyshego-rosta': {
 		id: 'napravlenie-naibystreyshego-rosta',
 		term: 'Направление наибыстрейшего роста',
@@ -126,14 +149,5 @@ export const day09Terms: Glossary = {
 		formula: String.raw`f(\vec b)-f(\vec a)=\bigl\langle\nabla f(\vec c)\mid\vec b-\vec a\bigr\rangle,\qquad \vec c=\vec a+\theta(\vec b-\vec a),\ \theta\in(0,1)`,
 		body: String.raw`Многомерный двойник одномерного Лагранжа (день 5). Доказывается [[parametrizatsiya-otrezka|параметризацией отрезка]]: $\varphi(t)=f(S(t))$ скалярна, к ней применим одномерный случай. Промежуточная точка $\vec c$ существенна: явной формулы для неё нет, она зависит от обоих концов, и теорема утверждает лишь её существование. Отсюда же Ролль для полей: при $f(\vec a)=f(\vec b)$ получается лишь $\nabla f(\vec c)\perp(\vec b-\vec a)$, а не $\nabla f(\vec c)=\vec 0$.`,
 		related: ['parametrizatsiya-otrezka', 'gradient', 'nepreryvno-differenciruemaya', 'braket']
-	},
-
-	polunorma: {
-		id: 'polunorma',
-		term: 'Полунорма',
-		short: String.raw`Норма без невырожденности: «может быть 0 не на 0».`,
-		formula: String.raw`p(\lambda x)=|\lambda|p(x),\qquad p(x+y)\le p(x)+p(y),\qquad p(x)=0\ \text{при}\ x\ne0\ \text{допустимо}`,
-		body: String.raw`От нормы остаются однородность и неравенство треугольника, а невырожденность отбрасывается: полунорма может обращаться в нуль на ненулевом векторе. Счётное семейство полунорм $p_1,p_2,\dots$ с условием $\vec x\ne\vec 0\Rightarrow\sum_i p_i(\vec x)>0$ задаёт топологию [[lvtnp|ЛВТНП]] — среды, в которой корректна [[proizvodnaya-gato|производная Гато]]. Конечного разделяющего семейства для этого мало: его максимум $q=\max_i p_i$ — уже норма с той же топологией, то есть ничего нового. Для [[proizvodnaya-freshe|Фреше]] этого мало: там в знаменателе стоит норма приращения.`,
-		related: ['lvtnp', 'proizvodnaya-gato', 'proizvodnaya-freshe']
 	}
 };

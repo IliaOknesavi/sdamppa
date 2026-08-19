@@ -7,6 +7,9 @@ import type { Glossary } from '$lib/types';
 // ссылками [[...]]:
 //   lsk, rang-razbieniya, asimptoticheskie-klassy, priznak-i-svoystvo,
 //   skhodyashchayasya-v-sebe.
+// Точно так же подключаются карточки более ранних дней: summy-darbu (день 17)
+// и yakobian (день 24) — глоссарий склеивается по всему курсу, поэтому
+// повторять их здесь не нужно.
 // Канонический глоссарий склеивается последним и перекрывает совпадения,
 // поэтому одноимённые карточки заводить нельзя.
 export const day25Terms: Glossary = {
@@ -94,7 +97,9 @@ export const day25Terms: Glossary = {
 		formula: String.raw`\int_0^a x^{\mu}dx\ \text{— сх.}\iff\mu>-1,\qquad \int_b^{+\infty}x^{\mu}dx\ \text{— сх.}\iff\mu<-1`,
 		body: String.raw`Оба эталона получаются из одной выкладки: [[svedenie-ii-k-i|инверсия]] переводит $\int_0^a x^{\mu}dx$ в $\int_{1/a}^{+\infty}t^{-\mu-2}dt$, а для первого рода прямое интегрирование даёт критерий «показатель меньше $-1$».
 
-Отображение показателей $\mu\mapsto-\mu-2$ — инволюция с единственной неподвижной точкой $\mu=-1$. Поэтому $1/x$ [[rashodimost-integrala|расходится]] и в нуле, и на бесконечности, а ни одна степень не сходится сразу на всей полуоси. Это рабочая мажоранта для признаков сравнения.`,
+Отображение показателей $\mu\mapsto-\mu-2$ — инволюция с единственной неподвижной точкой $\mu=-1$. Поэтому $1/x$ [[rashodimost-integrala|расходится]] и в нуле, и на бесконечности, а ни одна степень не сходится сразу на всей полуоси.
+
+Вторая, «положительная» запись того же: при $p=-\mu$ условие $\mu<-1$ читается как $p>1$, и эталон принимает привычный вид $\int_1^{\infty}\frac{dx}{x^{p}}$ — сх. $\iff p>1$, причём значение равно $\frac{1}{p-1}$. В этой форме он и работает мажорантой в признаках сравнения (день 26).`,
 		related: ['svedenie-ii-k-i', 'shodimost-integrala', 'rashodimost-integrala', 'nesobstvennyy-integral-i-roda']
 	},
 
@@ -105,7 +110,7 @@ export const day25Terms: Glossary = {
 		formula: String.raw`\int|f(x)|\,dx\ \text{— сх.}\qquad\qquad\sum|f_n|\ \text{— сх.}`,
 		body: String.raw`Определение дословно одно и то же для интеграла и для ряда: оба объекта различают одинаково — по сходимости $\int|f|$ и $\sum|f_n|$.
 
-Абсолютная сходимость сильнее обычной: из $0\le f+|f|\le2|f|$ признаком сравнения выводится [[shodimost-integrala|сходимость]] самого $\int f$. Точная формулировка результата — «абсолютная сходимость влечёт сходимость»: с [[uslovnaya-shodimost|условной]] она не связана импликацией, а несовместима, поскольку условная требует расходимости $\int|f|$.`,
+Абсолютная сходимость сильнее обычной: теорема «абсолютная сходимость влечёт [[shodimost-integrala|сходимость]]» доказывается в дне 26, там же строится контрпример к обратному. С [[uslovnaya-shodimost|условной]] она не связана импликацией, а несовместима, поскольку условная требует расходимости $\int|f|$.`,
 		related: ['uslovnaya-shodimost', 'shodimost-integrala', 'nesobstvennyy-integral-i-roda', 'etalonnyy-integral']
 	},
 
@@ -129,6 +134,17 @@ export const day25Terms: Glossary = {
 
 Для внутренней [[osobaya-tochka|особой точки]] $c$ берут $\int_a^{c-\varepsilon}+\int_{c+\varepsilon}^{b}$. Образец: $\int_{-1}^{1}\frac{dx}{x}$ [[rashodimost-integrala|расходится]] (несимметричный срез даёт $-\ln\lambda$), а $\mathrm{V.p.}=0$. Значок обязателен: запись без него утверждает сходимость и означает другую величину.`,
 		related: ['shodimost-integrala', 'rashodimost-integrala', 'osobaya-tochka', 'granica-1-na-epsilon']
+	},
+
+	'kvadraturnaya-formula': {
+		id: 'kvadraturnaya-formula',
+		term: 'Квадратурная формула',
+		short: String.raw`Приближение интеграла конечной суммой значений функции.`,
+		formula: String.raw`\int_a^b f(x)\,dx\approx\sum_{k} w_k\,f(x_k)`,
+		body: String.raw`Численный двойник интегральной суммы: узлы $x_k$ и веса $w_k$ подбирают так, чтобы формула была точна на многочленах невысокой степени (средние прямоугольники, трапеции, Симпсон).
+
+На [[neogranichennaya-oblast|неограниченной области]] квадратура неприменима буквально — конечного набора узлов не хватит, — и библиотеки сводят её к отрезку ровно [[svedenie-ii-k-i|инверсией $x=1/t$]]. Точность после этого решает не число узлов, а скорость убывания подынтегральной функции: около [[osobaya-tochka|особой точки]] равномерная сетка проигрывает сетке с удвоениями.`,
+		related: ['svedenie-ii-k-i', 'osobaya-tochka', 'shodimost-integrala', 'neogranichennaya-oblast']
 	},
 
 	'neogranichennaya-oblast': {

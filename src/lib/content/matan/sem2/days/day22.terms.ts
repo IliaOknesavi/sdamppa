@@ -9,6 +9,69 @@ import type { Glossary } from '$lib/types';
 // =====================================================================
 
 export const day22Terms: Glossary = {
+	'neprivodimyy-mnogochlen': {
+		id: 'neprivodimyy-mnogochlen',
+		term: 'Неприводимый над ℝ многочлен',
+		short: String.raw`Не разлагается дальше: линейный или трёхчлен с $D<0$.`,
+		formula: String.raw`x-a\quad\text{или}\quad x^2+px+q,\ D=p^2-4q<0`,
+		body: String.raw`Над $\mathbb R$ неприводимы ровно многочлены первой степени и квадратные трёхчлены с отрицательным дискриминантом: невещественные корни идут [[sopryazhennye-korni|сопряжёнными парами]], и пара $(x-z)(x-\bar z)$ склеивается в вещественный трёхчлен. Отсюда и берётся ровно четыре типа [[prosteyshaya-drob|простейших дробей]] — два «линейных» и два «квадратичных», а кратность даёт вторую координату. Проверка $D<0$ не формальность: при $D\ge0$ дробь не простейшая, и единственности разложения для неё нет.`,
+		related: ['prosteyshaya-drob', 'sopryazhennye-korni', 'pravilnaya-drob']
+	},
+
+	'sopryazhennye-korni': {
+		id: 'sopryazhennye-korni',
+		term: 'Комплексно-сопряжённые корни',
+		short: String.raw`У вещественного многочлена невещественные корни идут парами $z$ и $\bar z$.`,
+		formula: String.raw`P(z)=0\Rightarrow P(\bar z)=0,\qquad (x-z)(x-\bar z)=x^2+px+q`,
+		body: String.raw`Если у многочлена с вещественными коэффициентами есть невещественный корень $z$, то $\bar z$ — тоже корень той же кратности, а произведение соответствующих множителей вещественно. Отсюда [[neprivodimyy-mnogochlen|неприводимый трёхчлен]] с $D<0$. На том же факте держится [[metod-podstanovki-korney|подстановка комплексного корня]]: равенство $Mz+N=0$ при $z\notin\mathbb R$ распадается на два вещественных, поэтому одна подстановка выдаёт сразу оба коэффициента [[prosteyshaya-drob|простейшей дроби]].`,
+		related: ['neprivodimyy-mnogochlen', 'metod-podstanovki-korney', 'prosteyshaya-drob']
+	},
+
+	'prostranstvo-mnogochlenov': {
+		id: 'prostranstvo-mnogochlenov',
+		term: 'Пространство многочленов ℝ_<n[x]',
+		short: String.raw`Многочлены степени меньше $n$; его размерность равна $n$.`,
+		formula: String.raw`\mathbb R_{<n}[x]=\{c_0+c_1x+\dots+c_{n-1}x^{n-1}\},\qquad \dim\mathbb R_{<n}[x]=n`,
+		body: String.raw`Многочлены степени строго меньше $n$ образуют линейное пространство размерности $n$ с базисом $1,x,\dots,x^{n-1}$. Именно туда попадает числитель [[pravilnaya-drob|правильной дроби]] и туда же бьёт отображение «набор коэффициентов $\to$ числитель после приведения к общему знаменателю». Совпадение размерностей превращает подсчёт в доказательство: хватает [[inektivnost-syuryektivnost|инъективности]], а существование [[prosteyshaya-drob|разложения]] следует само.`,
+		related: ['pravilnaya-drob', 'prosteyshaya-drob', 'inektivnost-syuryektivnost']
+	},
+
+	'racionalnaya-parametrizaciya': {
+		id: 'racionalnaya-parametrizaciya',
+		term: 'Рациональная параметризация кривой',
+		short: String.raw`Точки кривой выражаются рациональными функциями одного параметра.`,
+		formula: String.raw`y^2=ax^2+bx+c:\qquad x=x(t),\ y=y(t)\ \text{— рациональные}`,
+		body: String.raw`Кривая допускает рациональную параметризацию, если её точки пробегаются дробями от одного параметра. Приём один: провести прямую через фиксированную точку кривой и взять вторую точку пересечения. Три [[podstanovka-eylera|подстановки Эйлера]] — три способа выбрать эту точку у коники $y^2=ax^2+bx+c$, а [[universalnaya-podstanovka|$t=\operatorname{tg}\frac x2$]] — параметризация окружности. Рационализация возможна ровно для [[rod-krivoy|кривых рода нуль]].`,
+		related: ['podstanovka-eylera', 'universalnaya-podstanovka', 'rod-krivoy', 'ellipticheskiy-integral']
+	},
+
+	'rod-krivoy': {
+		id: 'rod-krivoy',
+		term: 'Род кривой',
+		short: String.raw`Род нуль — параметризуется рационально, род один — уже нет.`,
+		formula: String.raw`y^2=P(x):\quad \deg P\le2\Rightarrow\text{род }0;\qquad \deg P\in\{3,4\}\Rightarrow\text{род }1`,
+		body: String.raw`Род — инвариант алгебраической кривой, отвечающий за то, можно ли пробежать её точки рациональными формулами. У коники род нуль, поэтому [[racionalnaya-parametrizaciya|рациональная параметризация]] есть. У $y^2=P(x)$ с кубическим $P$ и различными корнями род равен единице: параметризации нет ни в каком виде, никакая замена не сводит интеграл к рациональному, и получается [[ellipticheskiy-integral|эллиптический интеграл]], не выражающийся в [[elementarnaya-funkciya|элементарных функциях]].`,
+		related: ['racionalnaya-parametrizaciya', 'ellipticheskiy-integral', 'elementarnaya-funkciya']
+	},
+
+	'teorema-liuvillya': {
+		id: 'teorema-liuvillya',
+		term: 'Теорема Лиувилля об элементарных первообразных',
+		short: String.raw`Точный критерий того, когда первообразная элементарна.`,
+		formula: String.raw`\int e^{-x^2}dx,\quad \int\frac{dx}{\ln x},\quad \int\frac{dx}{\sqrt{P_3(x)}}\ \notin\ \text{элементарные}`,
+		body: String.raw`Теорема описывает, какой вид обязана иметь [[pervoobraznaya|первообразная]], если она элементарна: элементарная функция плюс линейная комбинация логарифмов от элементарных. Проверка этого условия и доказывает неэлементарность $\int e^{-x^2}dx$ и [[ellipticheskiy-integral|эллиптических интегралов]] — то есть отвечает не «как взять интеграл», а «берётся ли он в [[elementarnaya-funkciya|элементарных функциях]] вообще». Машинная форма ответа — алгоритм Риша.`,
+		related: ['elementarnaya-funkciya', 'ellipticheskiy-integral', 'pervoobraznaya']
+	},
+
+	polyus: {
+		id: 'polyus',
+		term: 'Полюс рациональной дроби',
+		short: String.raw`Корень знаменателя, не сократившийся с числителем.`,
+		formula: String.raw`Q(a)=0,\ P(a)\ne0\ \Rightarrow\ a\ \text{— полюс кратности }k`,
+		body: String.raw`Полюс — точка, где дробь уходит в бесконечность: корень знаменателя, уцелевший после сокращения. Полюсу кратности $k$ отвечает группа слагаемых $\frac{A_1}{x-a},\dots,\frac{A_k}{(x-a)^k}$ в разложении на [[prosteyshaya-drob|простейшие дроби]]. Если корень сократился, полюса нет, и единственность разложения выражает это нулевым коэффициентом. По полюсам читается асимптотика [[pravilnaya-drob|дроби]] на бесконечности, а [[metod-podstanovki-korney|подстановка корня]] даёт старший коэффициент одной строкой.`,
+		related: ['prosteyshaya-drob', 'pravilnaya-drob', 'metod-podstanovki-korney']
+	},
+
 	'pravilnaya-drob': {
 		id: 'pravilnaya-drob',
 		term: 'Правильная дробь',

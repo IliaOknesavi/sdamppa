@@ -2,7 +2,7 @@ import type { Glossary } from '$lib/types';
 
 // Термины дня 6 (правило Лопиталя и теорема Штольца).
 // День должен резолвиться независимо, поэтому опорные понятия соседних дней
-// (производная, теоремы Ролля и Коши, предельный переход по Гейне) продублированы
+// (производная, теоремы Ролля и Коши, подпоследовательность) продублированы
 // здесь, а не взяты из них. НЕ дублируются термины канонического глоссария
 // (sem2/glossary.ts и sem1/glossary.ts), на которые ссылки идут напрямую:
 // end-r, vykolotaya-okrestnost, asimptoticheskie-klassy, klassy-differenciruemosti,
@@ -13,8 +13,8 @@ export const day06Terms: Glossary = {
 		term: 'Правило Лопиталя',
 		short: String.raw`Предел отношения равен пределу отношения производных — при четырёх условиях.`,
 		formula: String.raw`\lim_{x\to x_0}\frac{f(x)}{g(x)}=\lim_{x\to x_0}\frac{f'(x)}{g'(x)}=\theta`,
-		body: String.raw`**Правило Лопиталя** раскрывает [[neopredelennost-nol-na-nol|неопределённость $\frac00$]] и $\frac\infty\infty$ через производные. Полная формулировка требует четырёх условий на [[vykolotaya-okrestnost|выколотой окрестности]] $\mathring U_{x_0}$: дифференцируемость $f,g$ на всей $\mathring U_{x_0}$, $g'\ne0$ на ней, нулевые пределы обеих функций (или $|g|\to\infty$) и **существование** $\lim\frac{f'}{g'}$. Производных в самой точке $x_0$ для этого мало: доказательство идёт через [[teorema-koshi|теорему Коши]] на отрезке $[x_0;x]$, где дифференцируемость нужна во всех внутренних точках.`,
-		related: ['teorema-shtolca', 'teorema-koshi', 'neopredelennost-nol-na-nol', 'zaciklivanie-lopitalya']
+		body: String.raw`**Правило Лопиталя** раскрывает [[neopredelennost-nol-na-nol|неопределённость $\frac00$]] и $\frac\infty\infty$ через производные. Полная формулировка требует четырёх условий на [[vykolotaya-okrestnost|выколотой окрестности]] $\mathring U_{x_0}$: дифференцируемость $f,g$ на всей $\mathring U_{x_0}$, $g'\ne0$ на ней, нулевые пределы обеих функций (или $|g|\to\infty$) и **существование** $\lim\frac{f'}{g'}$. Производных в самой точке $x_0$ для этого мало: доказательство идёт через [[teorema-koshi-o-srednem|теорему Коши]] на отрезке $[x_0;x]$, где дифференцируемость нужна во всех внутренних точках.`,
+		related: ['teorema-shtolca', 'teorema-koshi-o-srednem', 'neopredelennost-nol-na-nol', 'zaciklivanie-lopitalya']
 	},
 
 	'teorema-shtolca': {
@@ -58,16 +58,16 @@ export const day06Terms: Glossary = {
 		term: 'Предельный переход по Гейне',
 		short: String.raw`Предел функции — через произвольную $x_n\to x_0$ с $x_n\ne x_0$.`,
 		formula: String.raw`\forall\{x_n\}:\ x_n\to x_0,\ x_n\ne x_0\ \Rightarrow\ f(x_n)\to\theta`,
-		body: String.raw`**Переход по Гейне** сводит утверждение о пределе функции к утверждению о пределе последовательности: берём произвольную $x_n\to x_0$ из [[vykolotaya-okrestnost|выколотой окрестности]] и работаем с числами. Так доказывается [[pravilo-lopitalya|правило Лопиталя]]: точка $c=c(x_n)$ из [[teorema-koshi|теоремы Коши]] зажата между $x_0$ и $x_n$, поэтому $c_n\to x_0$ и $c_n\ne x_0$, а значит $\frac{f'(c_n)}{g'(c_n)}\to\theta$. Произвольность $\{x_n\}$ и переводит эту ε-N-оценку обратно в предел функции.`,
-		related: ['pravilo-lopitalya', 'teorema-koshi', 'vykolotaya-okrestnost']
+		body: String.raw`**Переход по Гейне** сводит утверждение о пределе функции к утверждению о пределе последовательности: берём произвольную $x_n\to x_0$ из [[vykolotaya-okrestnost|выколотой окрестности]] и работаем с числами. Так доказывается [[pravilo-lopitalya|правило Лопиталя]]: точка $c=c(x_n)$ из [[teorema-koshi-o-srednem|теоремы Коши]] зажата между $x_0$ и $x_n$, поэтому $c_n\to x_0$ и $c_n\ne x_0$, а значит $\frac{f'(c_n)}{g'(c_n)}\to\theta$. Произвольность $\{x_n\}$ и переводит эту ε-N-оценку обратно в предел функции.`,
+		related: ['pravilo-lopitalya', 'teorema-koshi-o-srednem', 'vykolotaya-okrestnost']
 	},
 
-	'teorema-koshi': {
-		id: 'teorema-koshi',
+	'teorema-koshi-o-srednem': {
+		id: 'teorema-koshi-o-srednem',
 		term: 'Теорема Коши о конечных приращениях',
 		short: String.raw`Отношение приращений двух функций равно отношению производных в точке $c$.`,
 		formula: String.raw`\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)},\qquad c\in(a;b)`,
-		body: String.raw`**Теорема Коши** доказывается через вспомогательную функцию $h$ и служит механизмом [[pravilo-lopitalya|правила Лопиталя]]: отношение приращений мгновенно превращается в отношение производных в промежуточной точке. Нужно $g'\ne0$ на $(a;b)$ — иначе знаменатель слева может обнулиться (это следствие [[teorema-rollya|теоремы Ролля]]). Если брать теорему в форме для класса $C^1([a;b])$ ([[klassy-differenciruemosti|классы гладкости]]), от $f$ и $g$ дополнительно требуется непрерывность производных: посылка сильнее пары «непрерывность на $[a;b]$ плюс дифференцируемость на $(a;b)$», а заключение то же.`,
+		body: String.raw`**Теорема Коши** доказывается через вспомогательную функцию $h$ и служит механизмом [[pravilo-lopitalya|правила Лопиталя]]: отношение приращений мгновенно превращается в отношение производных в промежуточной точке. Нужно $g'\ne0$ на $(a;b)$ — иначе знаменатель слева может обнулиться (это следствие [[teorema-rollya|теоремы Ролля]]). Разбор посылок и доказательство — день 5.`,
 		related: ['teorema-rollya', 'pravilo-lopitalya', 'klassy-differenciruemosti', 'predelnyy-perekhod-po-geyne']
 	},
 
@@ -76,8 +76,8 @@ export const day06Terms: Glossary = {
 		term: 'Теорема Ролля',
 		short: String.raw`Между двумя равными значениями есть точка с нулевой производной.`,
 		formula: String.raw`f\in C^1([a;b]),\ f(a)=f(b)\ \Rightarrow\ \exists c\in(a;b):\ f'(c)=0`,
-		body: String.raw`**Теорема Ролля**: если $f\in C^1([a;b])$ ([[klassy-differenciruemosti|классы гладкости]]) и $f(a)=f(b)$, то внутри отрезка найдётся точка с $f'(c)=0$. В доказательстве [[pravilo-lopitalya|правила Лопиталя]] она работает контрапозицией: из $g'\ne0$ на всей выколотой окрестности следует $g(x)\ne g(x_0)$, то есть знаменатель $g(x)-g(x_0)$ в [[teorema-koshi|теореме Коши]] не обращается в ноль. Без условия $g'\ne0$ этот шаг рушится.`,
-		related: ['teorema-koshi', 'pravilo-lopitalya', 'klassy-differenciruemosti']
+		body: String.raw`**Теорема Ролля**: если $f\in C^1([a;b])$ ([[klassy-differenciruemosti|классы гладкости]]) и $f(a)=f(b)$, то внутри отрезка найдётся точка с $f'(c)=0$. В доказательстве [[pravilo-lopitalya|правила Лопиталя]] она работает контрапозицией: из $g'\ne0$ на всей выколотой окрестности следует $g(x)\ne g(x_0)$, то есть знаменатель $g(x)-g(x_0)$ в [[teorema-koshi-o-srednem|теореме Коши]] не обращается в ноль. Без условия $g'\ne0$ этот шаг рушится.`,
+		related: ['teorema-koshi-o-srednem', 'pravilo-lopitalya', 'klassy-differenciruemosti']
 	},
 
 	'srednie-chezaro': {
@@ -105,6 +105,17 @@ export const day06Terms: Glossary = {
 		formula: String.raw`f'(x_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}`,
 		body: String.raw`**Производная** функции из [[end-r|$\operatorname{End}(\mathbb R)$]] — предел разностного отношения. У неё есть алгебраический прообраз: формальная производная полинома $d_xP$, задаваемая линейностью и правилом Лейбница без всяких пределов; на полиномах оба определения совпадают. Отсюда два следствия для [[pravilo-lopitalya|правила Лопиталя]]: отношение $\frac{f'}{g'}$ определено лишь там, где $g'\ne0$, а сама производная — мгновенная скорость, отношением которых правило и заменяет отношение приращений.`,
 		related: ['pravilo-lopitalya', 'klassy-differenciruemosti', 'end-r']
+	},
+
+	podposledovatelnost: {
+		id: 'podposledovatelnost',
+		term: 'Подпоследовательность',
+		short: String.raw`Выборка членов по строго возрастающим номерам $n_1<n_2<\dots$`,
+		formula: String.raw`n_1<n_2<\dots,\qquad k\mapsto x_{n_k},\qquad n_k\ge k`,
+		body: String.raw`**Подпоследовательность** $x_{n_k}$ — композиция последовательности со строго возрастающим отображением $k\mapsto n_k$; из строгого возрастания следует $n_k\ge k$, то есть номера уходят в бесконечность. Предел наследуется: если $x_n\to x$, то и $x_{n_k}\to x$.
+
+Контрапозиция даёт признак расходимости — две подпоследовательности с разными пределами убивают предел; так доказывается, что у $1+\cos x$ предела нет ([[predelnyy-perekhod-po-geyne|переход по Гейне]]). Не путать с [[chastichnaya-posledovatelnost|частичной последовательностью]] — хвостом $x_k,x_{k+1},\dots$: у [[beskonechno-bolshaya-posledovatelnost|бесконечно большой]] $(-1)^n n$ хвосты не сходятся, а подпоследовательности уходят в разные бесконечности.`,
+		related: ['chastichnaya-posledovatelnost', 'beskonechno-bolshaya-posledovatelnost', 'predelnyy-perekhod-po-geyne']
 	},
 
 	'beskonechno-bolshaya-posledovatelnost': {

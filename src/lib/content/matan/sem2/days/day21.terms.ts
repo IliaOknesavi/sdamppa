@@ -10,6 +10,24 @@ import type { Glossary } from '$lib/types';
 // =====================================================================
 
 export const day21Terms: Glossary = {
+	'differencialnaya-forma': {
+		id: 'differencialnaya-forma',
+		term: 'Дифференциальная форма под интегралом',
+		short: String.raw`Выражение $f(x)\,dx$ — единый объект, а не «функция плюс хвостик».`,
+		formula: String.raw`\omega=f(x)\,dx=dF,\qquad F'=f`,
+		body: String.raw`Под знаком интеграла стоит не функция, а выражение $f\,dx$, которое переписывается по правилам дифференцирования: $\varphi'(x)\,dx=d\varphi(x)$. Это и легализует [[vnesenie-pod-differencial|внесение под дифференциал]] и перенос $d$ с одного множителя на другой в [[integrirovanie-po-chastyam|интегрировании по частям]]. Запись $\int_a^b f\,dx=\int_{F(a)}^{F(b)}dF$ из [[teorema-barrou|теоремы Барроу]] — первый пример такой переписи; в $\mathbb R^n$ отсюда вырастает [[formula-stoksa|формула Стокса]].`,
+		related: ['differencial', 'vnesenie-pod-differencial', 'integrirovanie-po-chastyam', 'teorema-barrou']
+	},
+
+	biekciya: {
+		id: 'biekciya',
+		term: 'Биекция',
+		short: String.raw`Взаимно однозначное соответствие: у каждой точки образа один прообраз.`,
+		formula: String.raw`\psi:\ I\to J\ \text{биекция}\iff\exists\psi^{-1}:\ J\to I`,
+		body: String.raw`Отображение биективно, если оно инъективно (разные точки — разные образы) и сюръективно (образ заполняет всё $J$); тогда у него есть обратное. В обратной подстановке $x=\psi(t)$ ([[zamena-peremennoy|замена переменной]]) биективность обязательна: без неё в [[neopredelennyy-integral|неопределённом интеграле]] не вернуться к $x$, а в определённом неоднозначны новые пределы. Прямому [[vnesenie-pod-differencial|внесению под дифференциал]] она не нужна вовсе — там $\varphi$ вольна ходить туда-обратно.`,
+		related: ['zamena-peremennoy', 'vnesenie-pod-differencial', 'pereschet-predelov']
+	},
+
 	'vnesenie-pod-differencial': {
 		id: 'vnesenie-pod-differencial',
 		term: 'Внесение под дифференциал',

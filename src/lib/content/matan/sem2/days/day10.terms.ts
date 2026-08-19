@@ -2,10 +2,11 @@ import type { Glossary } from '$lib/types';
 
 // Термины дня 10: дифференциал в End(ℝ) и для скалярных полей — первого и
 // высших порядков.
+// День не пользуется таблицей вторых производных как объектом и не опирается
+// на равенство смешанных: и то и другое вводится в дне 11, куда ведут отсылки.
 // Часть карточек намеренно ДУБЛИРУЕТ термины соседних дней (gradient,
-// chastnaya-proizvodnaya, matrica-gesse, smeshannaya-proizvodnaya,
-// teorema-klero, kvadratichnaya-forma), чтобы день резолвился независимо;
-// при склейке глоссария их перекроют канонические версии дней 11–12.
+// chastnaya-proizvodnaya, smeshannaya-proizvodnaya), чтобы день резолвился
+// независимо.
 // Сквозная нотация (end-r, skalyarnoe-pole, braket, blacksquare и др.)
 // живёт в каноническом глоссарии и здесь не переобъявляется.
 export const day10Terms: Glossary = {
@@ -34,14 +35,14 @@ export const day10Terms: Glossary = {
 	'vtoroy-differencial': {
 		id: 'vtoroy-differencial',
 		term: 'Второй дифференциал',
-		short: String.raw`$d^2f=d(df)$ при замороженном $\vec{dx}$ — квадратичная форма гессиана.`,
-		formula: String.raw`d^2f=\sum_i\sum_j\frac{\partial^2f}{\partial x_i\,\partial x_j}\,dx_i\,dx_j=(\vec{dx})^{T}H\,\vec{dx}`,
+		short: String.raw`$d^2f=d(df)$ при замороженном $\vec{dx}$ — однородная форма степени 2.`,
+		formula: String.raw`d^2f=\sum_{i=1}^{n}\sum_{j=1}^{n}\frac{\partial^2f}{\partial x_i\,\partial x_j}\,dx_i\,dx_j`,
 		body: String.raw`**Второй дифференциал** — результат повторного применения оператора $d$ при замороженных приращениях: $d^2f=d(df)$. Для поля двух переменных
 
-$$d^2f=f''_{xx}dx^2+\bigl(f''_{xy}+f''_{yx}\bigr)dx\,dy+f''_{yy}dy^2=f''_{xx}dx^2+2f''_{xy}dx\,dy+f''_{yy}dy^2,$$
+$$d^2f=f''_{xx}dx^2+\bigl(f''_{xy}+f''_{yx}\bigr)dx\,dy+f''_{yy}dy^2,$$
 
-где склейка в двойку законна по [[teorema-klero|теореме Клеро–Шварца]]. В матричном виде это [[kvadratichnaya-forma|квадратичная форма]] [[matrica-gesse|матрицы Гессе]]. В отличие от первого, форма второго дифференциала **не** [[invariantnost-formy|инвариантна]] при замене переменных.`,
-		related: ['pervyy-differencial', 'matrica-gesse', 'kvadratichnaya-forma', 'smeshannaya-proizvodnaya']
+и оба [[smeshannaya-proizvodnaya|смешанных]] слагаемых входят порознь: свернуть их в один коэффициент $2f''_{xy}$ разрешает отдельная теорема дня 11. В матричном виде $d^2f$ читается как квадратичная форма таблицы вторых производных — это тоже день 11. В отличие от первого, форма второго дифференциала **не** [[invariantnost-formy|инвариантна]] при замене переменных.`,
+		related: ['pervyy-differencial', 'differencialy-vysshih-poryadkov', 'vektor-differencialov', 'smeshannaya-proizvodnaya']
 	},
 
 	'vektor-differencialov': {
@@ -62,7 +63,7 @@ $$d^2f=f''_{xx}dx^2+\bigl(f''_{xy}+f''_{yx}\bigr)dx\,dy+f''_{yy}dy^2=f''_{xx}dx^
 		formula: String.raw`df=f'_x\,dx+f'_y\,dy,\qquad d^2f\ni 2f''_{xy}\,dx\,dy`,
 		body: String.raw`В [[pervyy-differencial|первом дифференциале]] смешанного члена нет: в записи $df(x,y)=\ldots dx+\ldots dy+\ldots dx\,dy$ третье слагаемое лишнее.
 
-Причина — однородность: $df$ линеен по [[vektor-differencialov|вектору дифференциалов]], а $dx\,dy$ квадратичен. Произведение приращений возникает только во [[vtoroy-differencial|втором дифференциале]], где приходит с коэффициентом $2$: два пути, $x\to y$ и $y\to x$, дают равные вклады по [[teorema-klero|Клеро–Шварцу]].`,
+Причина — [[odnorodnost|однородность]]: $df$ линеен по [[vektor-differencialov|вектору дифференциалов]], а $dx\,dy$ квадратичен. Произведение приращений возникает только во [[vtoroy-differencial|втором дифференциале]], и приходит оно суммой двух вкладов — от пути $x\to y$ и от пути $y\to x$. Равны ли эти вклады, решается в дне 11.`,
 		related: ['pervyy-differencial', 'vtoroy-differencial', 'smeshannaya-proizvodnaya']
 	},
 
@@ -81,11 +82,11 @@ $$d^2f=f''_{xx}dx^2+\bigl(f''_{xy}+f''_{yx}\bigr)dx\,dy+f''_{yy}dy^2=f''_{xx}dx^
 		id: 'differencialy-vysshih-poryadkov',
 		term: 'Дифференциалы высших порядков',
 		short: String.raw`$d^kf$ — однородная форма степени $k$ от вектора $\vec{dx}$.`,
-		formula: String.raw`d^{k}f=\sum_{|\alpha|=k}\frac{k!}{\alpha!}\,D^{\alpha}f\,\vec{dx}^{\,\alpha}`,
-		body: String.raw`Дифференциал порядка $k$ определяется рекурсивно, $d^kf=d\bigl(d^{k-1}f\bigr)$ при замороженном [[vektor-differencialov|векторе дифференциалов]], и является однородной формой степени $k$: при замене $\vec{dx}\mapsto t\,\vec{dx}$ умножается на $t^k$.
+		formula: String.raw`d^{k}f=\sum_{i_1=1}^{n}\dots\sum_{i_k=1}^{n}\frac{\partial^{k}f}{\partial x_{i_1}\dots\partial x_{i_k}}\,dx_{i_1}\cdots dx_{i_k}`,
+		body: String.raw`Дифференциал порядка $k$ определяется рекурсивно, $d^kf=d\bigl(d^{k-1}f\bigr)$ при замороженном [[vektor-differencialov|векторе дифференциалов]], и является [[odnorodnost|однородной формой степени $k$]]: при замене $\vec{dx}\mapsto t\,\vec{dx}$ умножается на $t^k$.
 
-Для $k=1$ это [[pervyy-differencial|линейная форма]] с [[gradient|градиентом]], для $k=2$ — [[kvadratichnaya-forma|квадратичная форма]] с [[matrica-gesse|матрицей Гессе]]. С $k=3$ матрицы уже не хватает, и дальше работают мультииндексы (день 12): $d^kf$ и есть очередной член формулы Тейлора.`,
-		related: ['vtoroy-differencial', 'differencial', 'kvadratichnaya-forma']
+Для $k=1$ это [[pervyy-differencial|линейная форма]] с [[gradient|градиентом]], для $k=2$ — [[vtoroy-differencial|квадратичная]]. Начиная с $k=3$ таблицы коэффициентов уже не хватает — нужен объект с $k$ индексами, — и дальше работают мультииндексы (день 12): $d^kf$ и есть очередной член формулы Тейлора.`,
+		related: ['vtoroy-differencial', 'differencial', 'odnorodnost', 'vektor-differencialov']
 	},
 
 	'logarifmicheskoe-differencirovanie': {
@@ -106,7 +107,7 @@ $$d^2f=f''_{xx}dx^2+\bigl(f''_{xy}+f''_{yx}\bigr)dx\,dy+f''_{yy}dy^2=f''_{xx}dx^
 		formula: String.raw`\frac{\partial f}{\partial x_i}=\lim_{\Delta x_i\to0}\frac{f(\dots,x_i+\Delta x_i,\dots)-f(\vec x)}{\Delta x_i}`,
 		body: String.raw`**Частная производная** [[skalyarnoe-pole|скалярного поля]] по $x_i$ — обычная производная по этой переменной при остальных замороженных. Обозначение отделяет её от одномерного случая: $\frac{df}{dx}$ для функции одной переменной (ФОП) и $\frac{\partial f}{\partial x}$ для функции нескольких переменных (ФНП).
 
-Частные производные — коэффициенты [[pervyy-differencial|первого дифференциала]] и компоненты [[gradient|градиента]]. Повторное дифференцирование даёт [[smeshannaya-proizvodnaya|смешанные производные]], из которых собирается [[matrica-gesse|матрица Гессе]].`,
+Частные производные — коэффициенты [[pervyy-differencial|первого дифференциала]] и компоненты [[gradient|градиента]]. Повторное дифференцирование даёт [[smeshannaya-proizvodnaya|смешанные производные]] и коэффициенты [[vtoroy-differencial|второго дифференциала]].`,
 		related: ['gradient', 'pervyy-differencial', 'smeshannaya-proizvodnaya']
 	},
 
@@ -117,19 +118,8 @@ $$d^2f=f''_{xx}dx^2+\bigl(f''_{xy}+f''_{yx}\bigr)dx\,dy+f''_{yy}dy^2=f''_{xx}dx^
 		formula: String.raw`\nabla f=\Bigl(\frac{\partial f}{\partial x_1},\ \dots,\ \frac{\partial f}{\partial x_n}\Bigr)`,
 		body: String.raw`**Градиент** — вектор, составленный из всех [[chastnaya-proizvodnaya|частных производных]] поля. Через него записываются и производная по направлению $f'_{\vec l}=\langle\nabla f\mid\vec l\rangle$, и [[pervyy-differencial|первый дифференциал]] $df=\langle\nabla f\mid\vec{dx}\rangle$ — это один и тот же объект при разном втором аргументе [[braket|скобки]].
 
-В формуле Тейлора для поля градиент отвечает за линейный член, а [[matrica-gesse|матрица Гессе]] — за квадратичный.`,
+В формуле Тейлора для поля градиент отвечает за линейный член, а вторые производные — за квадратичный (день 12).`,
 		related: ['chastnaya-proizvodnaya', 'pervyy-differencial', 'braket']
-	},
-
-	'matrica-gesse': {
-		id: 'matrica-gesse',
-		term: 'Матрица Гессе',
-		short: String.raw`Матрица всех вторых частных производных; её форма и есть $d^2f$.`,
-		formula: String.raw`H_{ij}=\frac{\partial^2 f}{\partial x_i\,\partial x_j},\qquad d^2f=(\vec{dx})^{T}H\,\vec{dx}`,
-		body: String.raw`**Матрица Гессе** собирает все вторые частные производные поля. Её симметричность — содержание [[teorema-klero|теоремы Клеро–Шварца]]; именно она позволяет склеить два одинаковых [[smeshannyy-chlen|смешанных члена]] в коэффициент $2$.
-
-Умноженная слева и справа на [[vektor-differencialov|вектор дифференциалов]], $H$ даёт [[vtoroy-differencial|второй дифференциал]] как [[kvadratichnaya-forma|квадратичную форму]]. Определитель $H$ называется гессианом; знакоопределённость $H$ по угловым минорам — критерий Сильвестра (дни 11 и 13).`,
-		related: ['vtoroy-differencial', 'kvadratichnaya-forma', 'smeshannaya-proizvodnaya']
 	},
 
 	'smeshannaya-proizvodnaya': {
@@ -139,31 +129,7 @@ $$d^2f=f''_{xx}dx^2+\bigl(f''_{xy}+f''_{yx}\bigr)dx\,dy+f''_{yy}dy^2=f''_{xx}dx^
 		formula: String.raw`f''_{xy}=(f'_x)'_y=\frac{\partial}{\partial y}\Bigl(\frac{\partial f}{\partial x}\Bigr)`,
 		body: String.raw`**Смешанные производные** получаются дифференцированием по разным переменным. Индексы в записи $f''_{xy}$ читаются слева направо, в порядке дифференцирования, а в лейбницевой форме порядок операторов переворачивается — это первый источник ошибок в теме.
 
-Равенство $f''_{xy}=f''_{yx}$ не даётся даром: оно и есть [[teorema-klero|теорема Клеро–Шварца]] (день 11). Пока оно не доказано, во [[vtoroy-differencial|втором дифференциале]] коэффициент при $dx\,dy$ приходится писать как сумму $f''_{xy}+f''_{yx}$.`,
-		related: ['teorema-klero', 'matrica-gesse', 'vtoroy-differencial']
-	},
-
-	'teorema-klero': {
-		id: 'teorema-klero',
-		term: 'Теорема Клеро (Шварца)',
-		short: String.raw`При непрерывности вторых производных $f''_{xy}=f''_{yx}$.`,
-		formula: String.raw`\frac{\partial}{\partial x}\frac{\partial}{\partial y}=\frac{\partial}{\partial y}\frac{\partial}{\partial x}\qquad \forall f\in C^2`,
-		body: String.raw`**Теорема Клеро–Шварца** утверждает равенство [[smeshannaya-proizvodnaya|смешанных производных]]: если $D\subset\mathbb R^2$ — компакт и все четыре вторые производные поля непрерывны на $D$, то $f''_{xy}=f''_{yx}$ в каждой точке $D$. Условие локальное по существу: хватает непрерывности вторых производных в одной окрестности точки, и тогда равенство верно в этой точке.
-
-Непрерывность существенна. Для $f(x,y)=xy\dfrac{x^2-y^2}{x^2+y^2}$ при $(x,y)\ne(0,0)$ и $f(0,0)=0$ обе смешанные производные в нуле существуют, но не равны: $f'_x(0,y)=-y$ даёт $f''_{xy}(0,0)=-1$, а $f'_y(x,0)=x$ даёт $f''_{yx}(0,0)=1$. Вторые производные этого поля разрывны в начале координат.
-
-Для темы дня теорема склеивает два слагаемых $f''_{xy}+f''_{yx}$ во [[vtoroy-differencial|втором дифференциале]] в $2f''_{xy}$ и делает [[matrica-gesse|матрицу Гессе]] симметричной. Доказательство — день 11.`,
-		related: ['smeshannaya-proizvodnaya', 'matrica-gesse', 'vtoroy-differencial']
-	},
-
-	'kvadratichnaya-forma': {
-		id: 'kvadratichnaya-forma',
-		term: 'Квадратичная форма',
-		short: String.raw`Однородный многочлен степени 2; задаётся симметричной матрицей.`,
-		formula: String.raw`Q(\vec h)=\vec h^{\,T}A\,\vec h=\sum_i\sum_j a_{ij}h_ih_j`,
-		body: String.raw`**Квадратичная форма** — однородный многочлен второй степени, $Ax^2+2Bxy+Cy^2$, взаимно однозначно отвечающий симметричной матрице. Однородность означает: при замене $\vec h\mapsto t\vec h$ значение умножается на $t^2$.
-
-[[vtoroy-differencial|Второй дифференциал]] — это ровно квадратичная форма [[matrica-gesse|матрицы Гессе]] от [[vektor-differencialov|вектора дифференциалов]], записанная в [[braket|bra-ket]]-виде $\langle\vec{dx}\mid H\vec{dx}\rangle$. Её знакоопределённость (критерий Сильвестра, день 13) и решает вопрос об экстремуме.`,
-		related: ['matrica-gesse', 'vtoroy-differencial', 'braket']
+Равенство $f''_{xy}=f''_{yx}$ не даётся даром: это отдельная теорема со своими гипотезами, и доказывается она в дне 11 вместе с контрпримером, где равенство ломается. Пока оно не доказано, во [[vtoroy-differencial|втором дифференциале]] коэффициент при $dx\,dy$ приходится писать суммой $f''_{xy}+f''_{yx}$.`,
+		related: ['chastnaya-proizvodnaya', 'smeshannyy-chlen', 'vtoroy-differencial']
 	}
 };

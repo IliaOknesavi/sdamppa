@@ -4,7 +4,7 @@ import type { Glossary } from '$lib/types';
 // производные высших порядков и дифференциалы.
 // Карточки, заведённые в более ранних днях фазы (proizvodnaya, cepnoe-pravilo,
 // notaciya-leybnica, operator-differencirovaniya,
-// geometricheskiy-smysl-proizvodnoy), продублированы здесь намеренно:
+// kasatelnaya), продублированы здесь намеренно:
 // день должен резолвиться независимо, без чтения соседних файлов.
 // Термины общего глоссария (end-r, skalyarnoe-pole, braket,
 // klassy-differenciruemosti, vykolotaya-okrestnost, blacksquare, ...)
@@ -39,8 +39,8 @@ export const day03Terms: Glossary = {
 		formula: String.raw`(f^-)'(y_0)=\frac{1}{f'(x_0)},\qquad y_0=f(x_0)`,
 		body: String.raw`**Теорема.** Если $\hat D$ — промежуток, $f$ строго монотонна и непрерывна на $\hat D$, дифференцируема в $x_0$ и $f'(x_0)\ne0$, то [[obratnaya-funkciya|$f^-$]] дифференцируема в $y_0=f(x_0)$ и $(f^-)'(y_0)=1/f'(x_0)$.
 
-Два вывода. Первый — через перевёрнутое разностное отношение $\frac{\Delta x}{\Delta y}$; он даёт и само существование $(f^-)'(y_0)$, поэтому служит доказательством. Второй — дифференцирование тождества $f^-(f(x))=x$ по [[cepnoe-pravilo|цепному правилу]], что даёт $\frac{dg}{df}\cdot\frac{df}{dx}=1$; он короче, но дифференцируемость $f^-$ в нём предполагается заранее. Геометрия: отражение относительно биссектрисы меняет катеты местами, поэтому [[geometricheskiy-smysl-proizvodnoy|тангенс наклона]] переходит в обратную величину. Вторая производная: $(f^-)''=-f''/(f')^3$.`,
-		related: ['obratnaya-funkciya', 'cepnoe-pravilo', 'geometricheskiy-smysl-proizvodnoy', 'obratimost-na-podmnozhestve']
+Два вывода. Первый — через перевёрнутое разностное отношение $\frac{\Delta x}{\Delta y}$; он даёт и само существование $(f^-)'(y_0)$, поэтому служит доказательством. Второй — дифференцирование тождества $f^-(f(x))=x$ по [[cepnoe-pravilo|цепному правилу]], что даёт $\frac{dg}{df}\cdot\frac{df}{dx}=1$; он короче, но дифференцируемость $f^-$ в нём предполагается заранее. Геометрия: отражение относительно биссектрисы меняет катеты местами, поэтому [[kasatelnaya|тангенс наклона]] переходит в обратную величину. Вторая производная: $(f^-)''=-f''/(f')^3$.`,
+		related: ['obratnaya-funkciya', 'cepnoe-pravilo', 'kasatelnaya', 'obratimost-na-podmnozhestve']
 	},
 
 	'strogaya-monotonnost': {
@@ -72,29 +72,40 @@ export const day03Terms: Glossary = {
 		formula: String.raw`f'(x)=\lim_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}`,
 		body: String.raw`**Производная** функции $f\in\operatorname{End}(\mathbb R)$ в точке — предел разностного отношения $\frac{\Delta f}{\Delta x}$ при $\Delta x\to0$.
 
-Для полинома $P=\sum_k a_kx^k$ ту же операцию задаёт чисто алгебраическое правило $d_xP=\sum_k k\,a_kx^{k-1}$, в котором предел не участвует вовсе; на полиномах оба определения дают один и тот же результат. К понятию ведут три равноправных входа: предел $\frac{\Delta f}{\Delta x}$, [[geometricheskiy-smysl-proizvodnoy|геометрия касательной]] и правило Лейбница как алгебраическая аксиома. Повторное применение даёт [[proizvodnaya-vysshego-poryadka|производные высших порядков]].`,
-		related: ['geometricheskiy-smysl-proizvodnoy', 'proizvodnaya-vysshego-poryadka', 'notaciya-leybnica', 'end-r']
+Для полинома $P=\sum_k a_kx^k$ ту же операцию задаёт чисто алгебраическое правило $d_xP=\sum_k k\,a_kx^{k-1}$, в котором предел не участвует вовсе; на полиномах оба определения дают один и тот же результат. К понятию ведут три равноправных входа: предел $\frac{\Delta f}{\Delta x}$, [[kasatelnaya|геометрия касательной]] и правило Лейбница как алгебраическая аксиома. Повторное применение даёт [[proizvodnaya-vysshego-poryadka|производные высших порядков]].`,
+		related: ['kasatelnaya', 'proizvodnaya-vysshego-poryadka', 'notaciya-leybnica', 'end-r']
 	},
 
-	'geometricheskiy-smysl-proizvodnoy': {
-		id: 'geometricheskiy-smysl-proizvodnoy',
-		term: 'Геометрический смысл производной',
-		short: String.raw`$f'(x_0)=\operatorname{tg}\alpha$ — тангенс угла наклона касательной.`,
+	'kasatelnaya': {
+		id: 'kasatelnaya',
+		term: 'Касательная и геометрический смысл производной',
+		short: String.raw`Предельное положение секущей; f′(x₀) = tg α.`,
 		formula: String.raw`f'(x_0)=\operatorname{tg}\alpha=\frac{dy}{dx}`,
-		body: String.raw`**Геометрический смысл**: $f'(x_0)$ равно тангенсу угла $\alpha$ между касательной к графику в точке $x_0$ и осью абсцисс. В характеристическом треугольнике это отношение вертикального катета $dy$ к горизонтальному $dx$.
+		body: String.raw`**Касательная** в точке $x_0$ — предельное положение секущей при $\Delta x\to0$, и её угловой коэффициент равен [[proizvodnaya|производной]]: $f'(x_0)=\operatorname{tg}\alpha$. В характеристическом треугольнике это отношение вертикального катета $dy$ к горизонтальному $dx$.
 
-Отсюда мгновенно читается [[proizvodnaya-obratnoy-funkcii|производная обратной]]: отражение относительно биссектрисы $y=x$ меняет катеты местами, поэтому $\operatorname{tg}\alpha$ переходит в $\operatorname{ctg}\alpha=1/\operatorname{tg}\alpha$, а горизонтальная касательная ($f'=0$) становится вертикальной — производной нет. Характерный пример: у $e^x$ тангенс наклона равен самому значению функции.`,
+Отсюда мгновенно читается [[proizvodnaya-obratnoy-funkcii|производная обратной]]: отражение относительно биссектрисы $y=x$ меняет катеты местами, поэтому $\operatorname{tg}\alpha$ переходит в $\operatorname{ctg}\alpha=1/\operatorname{tg}\alpha$, а горизонтальная касательная ($f'=0$) становится вертикальной — производной нет.`,
 		related: ['proizvodnaya', 'proizvodnaya-obratnoy-funkcii', 'differencial']
+	},
+
+	'inektivnost-syuryektivnost': {
+		id: 'inektivnost-syuryektivnost',
+		term: 'Инъективность, сюръективность, биективность',
+		short: String.raw`Не склеивает точки; накрывает весь кодомен; и то и другое сразу.`,
+		formula: String.raw`f(x_1)=f(x_2)\Rightarrow x_1=x_2;\qquad f(D)=E`,
+		body: String.raw`Отображение $f:D\to E$ **инъективно**, если разным аргументам отвечают разные значения; **сюръективно**, если образ $f(D)$ совпадает с кодоменом $E$; **биективно**, если верно и то и другое. Обратное отображение существует ровно у биекций.
+
+В [[obratimost-na-podmnozhestve|обратимости на подмножестве]] обе половины добываются по отдельности: инъективность даёт [[strogaya-monotonnost|строгая монотонность]], а сюръективность обеспечена самим выбором $\hat E=f(\hat D)$ — кодомен сужают до образа. Поэтому у $x^2$ [[obratnaya-funkciya|обратной]] на $\mathbb R$ нет, а на $[0;+\infty)$ есть.`,
+		related: ['obratimost-na-podmnozhestve', 'strogaya-monotonnost', 'obratnaya-funkciya']
 	},
 
 	'notaciya-leybnica': {
 		id: 'notaciya-leybnica',
-		term: 'Нотации Ньютона, Лейбница, Лагранжа',
-		short: String.raw`$\dot y$, $\frac{dy}{dx}$ и $y'$ — три записи одной производной.`,
-		formula: String.raw`\dot y\;=\;\frac{dy}{dx}\;=\;y'`,
-		body: String.raw`Одна и та же [[proizvodnaya|производная]] записывается тремя способами: $\dot y$ (Ньютон), $\frac{dy}{dx}$ (Лейбниц), $y'$ (Лагранж); переводить между ними нужно свободно. Используются также $f'_x$ и $g'_f$ — «производная по указанной переменной».
+		term: 'Нотация Лейбница',
+		short: String.raw`Дробь dy/dx; отсюда дифференциал и оператор d/dx.`,
+		formula: String.raw`f'\equiv\frac{df}{dx},\qquad \frac{dg}{df}\cdot\frac{df}{dx}=\frac{dg}{dx}`,
+		body: String.raw`**Нотация Лейбница** записывает производную дробью $\frac{dy}{dx}$, вторую — как $\frac{d^2y}{dx^2}$. Это единственная из трёх нотаций, где явно видно, по какой переменной дифференцируем; рядом с ней используются $f'_x$ и $g'_f$ — «производная по указанной переменной».
 
-Нотация Лейбница не дробь, а определение [[differencial|дифференциала]] $df=f'(x)\,dx$. Зато выкладки в ней выглядят как сокращение дробей: $\frac{dg}{df}\cdot\frac{df}{dx}=\frac{dg}{dx}$ — это [[cepnoe-pravilo|цепное правило]], а при $g\circ f=\mathrm{id}$ то же сокращение даёт формулу производной обратной.`,
+Сама дробь — не деление, а определение [[differencial|дифференциала]] $df=f'(x)\,dx$. Зато выкладки в ней выглядят как сокращение дробей: $\frac{dg}{df}\cdot\frac{df}{dx}=\frac{dg}{dx}$ — это [[cepnoe-pravilo|цепное правило]], а при $g\circ f=\mathrm{id}$ то же сокращение даёт формулу производной обратной.`,
 		related: ['proizvodnaya', 'differencial', 'cepnoe-pravilo', 'operator-differencirovaniya']
 	},
 

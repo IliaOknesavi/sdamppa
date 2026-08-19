@@ -84,6 +84,28 @@ export const day11Terms: Glossary = {
 		related: ['matrica-gesse', 'kriteriy-silvestra', 'simmetrichnaya-matrica']
 	},
 
+	'kommutirovanie-operatorov': {
+		id: 'kommutirovanie-operatorov',
+		term: 'Коммутирование операторов',
+		short: String.raw`$AB=BA$; для композиции отображений это исключение, а не правило.`,
+		formula: String.raw`\frac{\partial}{\partial x}\frac{\partial}{\partial y}=\frac{\partial}{\partial y}\frac{\partial}{\partial x}\quad\text{на }C^2`,
+		body: String.raw`Два оператора **коммутируют**, если их композиция не зависит от порядка: $AB=BA$. Для отображений это редкость — поворот и отражение плоскости, например, не коммутируют, и общего правила нет.
+
+[[teorema-klero|Теорема Клеро–Шварца]] утверждает ровно коммутирование частных дифференцирований, но не на всех функциях, а на классе $C^2$ (см. [[klassy-differenciruemosti|классы гладкости]]). [[kontrprimer-smeshannyh|Контрпример]] показывает, что вне этого класса операторы $\partial_x$ и $\partial_y$ порядок помнят: $-1$ против $+1$.`,
+		related: ['teorema-klero', 'smeshannaya-proizvodnaya', 'kontrprimer-smeshannyh']
+	},
+
+	'sobstvennye-chisla': {
+		id: 'sobstvennye-chisla',
+		term: 'Собственные числа',
+		short: String.raw`$\lambda$ с $A\vec v=\lambda\vec v$; у симметричной матрицы все вещественны.`,
+		formula: String.raw`A\vec v=\lambda\vec v,\qquad \vec v\ne\bar 0`,
+		body: String.raw`Число $\lambda$ называется **собственным** для оператора $A$, если он лишь растягивает некоторый ненулевой вектор: $A\vec v=\lambda\vec v$.
+
+У [[simmetrichnaya-matrica|симметричной матрицы]] все собственные числа вещественны, а собственные векторы образуют ортогональный базис. Для [[matrica-gesse|матрицы Гессе]] отсюда прямой смысл: в этом базисе [[kvadratichnaya-forma|квадратичная форма]] $d^2f$ распадается в сумму $\sum_i\lambda_ih_i^2$, и знаки $\lambda_i$ решают вопрос об экстремуме — то же, что читает [[kriteriy-silvestra|критерий Сильвестра]] по минорам.`,
+		related: ['simmetrichnaya-matrica', 'matrica-gesse', 'kvadratichnaya-forma', 'gessian']
+	},
+
 	'simmetrichnaya-matrica': {
 		id: 'simmetrichnaya-matrica',
 		term: 'Симметричная матрица',
@@ -91,7 +113,7 @@ export const day11Terms: Glossary = {
 		formula: String.raw`A^{T}=A\iff a_{ij}=a_{ji}`,
 		body: String.raw`Матрица **симметрична**, если совпадает со своей транспонированной. Для [[matrica-gesse|матрицы Гессе]] это и есть [[teorema-klero|теорема Клеро]]: вне диагонали стоят смешанные производные, их равенство означает $H^{T}=H$.
 
-Что это даёт: тождество переноса матрицы через [[braket|bra-ket]]-скобку $\langle a\mid Hb\rangle=\langle H^{T}a\mid b\rangle$ превращается в $\langle a\mid Hb\rangle=\langle Ha\mid b\rangle$; собственные числа вещественны, а квадратичная форма восстанавливает свою матрицу однозначно.`,
+Что это даёт: тождество переноса матрицы через [[braket|bra-ket]]-скобку $\langle a\mid Hb\rangle=\langle H^{T}a\mid b\rangle$ превращается в $\langle a\mid Hb\rangle=\langle Ha\mid b\rangle$; [[sobstvennye-chisla|собственные числа]] вещественны, а квадратичная форма восстанавливает свою матрицу однозначно.`,
 		related: ['matrica-gesse', 'braket', 'kvadratichnaya-forma', 'kriteriy-silvestra']
 	},
 

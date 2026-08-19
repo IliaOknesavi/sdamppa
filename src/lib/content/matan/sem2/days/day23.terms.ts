@@ -3,7 +3,11 @@ import type { Glossary } from '$lib/types';
 // Термины дня 23 (кратный интеграл, теорема Фубини, продолжение нулём).
 // Понятия из канонического глоссария нотации (glossary.ts) здесь НЕ
 // дублируются и подключаются перекрёстными ссылками [[...]]:
-//   rang-razbieniya, lsk, nepravilnaya-mera-nol, metriki-rho.
+//   rang-razbieniya, lsk, nepravilnaya-mera-nol, metriki-rho, kompakt,
+//   zamykanie, dopolnenie.
+// Точно так же не переобъявляются карточки соседних дней, которые день 23
+// только использует: additivnost-integrala (день 20),
+// teorema-veyershtrassa (день 5), uslovnaya-shodimost (день 25).
 //   Канонический глоссарий склеивается последним и перекрывает совпадения,
 //   поэтому одноимённые карточки заводить нельзя.
 // Карточки opredelennyy-integral и yakobian намеренно продублированы из
@@ -40,6 +44,50 @@ export const day23Terms: Glossary = {
 
 Мера и диаметр ячейки — разные величины. В $\mathbb R^1$ они совпадают, в $\mathbb R^2$ нет: полосы площади $1/n$ имеют диаметр больше $1$, и суммы для $f(x,y)=x$ по ним не сходятся ни к чему. Поэтому мелкость измеряется диаметром, $d_R=\max_i\operatorname{diam}d_i$: иначе рушится оценка «на ячейке функция почти постоянна» из доказательства [[teorema-fubini|Фубини]].`,
 		related: ['rang-razbieniya', 'dvoynoy-integral', 'teorema-fubini', 'ravnomernaya-nepreryvnost']
+	},
+
+	'diametr-mnozhestva': {
+		id: 'diametr-mnozhestva',
+		term: 'Диаметр множества',
+		short: String.raw`Наибольшее расстояние между точками множества.`,
+		formula: String.raw`\operatorname{diam}A=\sup_{\vec x,\vec y\in A}\rho(\vec x,\vec y)`,
+		body: String.raw`Верхняя грань расстояний между точками множества, считаемых в [[metriki-rho|метрике]] пространства. У отрезка диаметр равен длине, у прямоугольника — диагонали, у круга — двум радиусам.
+
+Мелкость разбиения меряется именно диаметром: [[rang-razbieniya|ранг]] $d_R=\max_i\operatorname{diam}d_i$. Мера [[yacheyka-razbieniya|ячейки]] тут не годится — у полосы $[0;1]\times[0;1/n]$ площадь равна $1/n$, а диаметр больше единицы, и оценка «на ячейке функция почти постоянна» на ней неверна.`,
+		related: ['yacheyka-razbieniya', 'rang-razbieniya', 'metriki-rho', 'dvoynoy-integral']
+	},
+
+	'vnutrennost-mnozhestva': {
+		id: 'vnutrennost-mnozhestva',
+		term: 'Внутренность множества',
+		short: String.raw`Точки, входящие в множество вместе с целым шаром.`,
+		formula: String.raw`\operatorname{int}A=\{\vec x:\ \exists\varepsilon>0,\ B_\varepsilon(\vec x)\subset A\}`,
+		body: String.raw`Совокупность точек, каждая из которых лежит в $A$ вместе с некоторым шаром. Двойственна [[zamykanie|замыканию]] через [[dopolnenie|дополнение]]; разность $\operatorname{cl}A\setminus\operatorname{int}A$ и есть граница $\partial A$.
+
+Поэтому в определении разбиения написано «[[yacheyka-razbieniya|ячейки]] не налегают внутренностями», а не «не пересекаются»: общие граничные точки у соседних ячеек неизбежны и вклада не дают, а общий кусок положительной площади посчитался бы дважды.`,
+		related: ['yacheyka-razbieniya', 'zamykanie', 'dopolnenie', 'mera-nol-v-rn']
+	},
+
+	'mera-nol-v-rn': {
+		id: 'mera-nol-v-rn',
+		term: 'Множество меры нуль в ℝ²',
+		short: String.raw`Покрывается прямоугольниками суммарной площади меньше любого ε.`,
+		formula: String.raw`\forall\varepsilon>0\ \exists\{P_k\}:\ S\subset\bigcup_k P_k,\ \sum_k\|P_k\|<\varepsilon`,
+		body: String.raw`Плоский двойник одномерного [[nepravilnaya-mera-nol|множества меры нуль]]: интервалы заменяются прямоугольниками, длина — площадью. Определение дословно то же, меняется только чем накрывают, и понятия не совпадают — отрезок $[0;1]\times\{0\}$ на плоскости меру нуль имеет, на прямой нет.
+
+Гладкая кривая плоскую меру нуль имеет: дуга длины $L$ режется на $n$ кусков, каждый накрывается квадратом со стороной порядка $L/n$, суммарная площадь порядка $L^2/n\to0$. Отсюда условие $\mu(\partial D)=0$, при котором у $D$ есть [[ploshchad-mnozhestva|площадь]], а [[prodolzhenie-nulem|продолжение нулём]] не портит интеграл.`,
+		related: ['nepravilnaya-mera-nol', 'ploshchad-mnozhestva', 'prodolzhenie-nulem', 'indikator-oblasti']
+	},
+
+	'ploshchad-mnozhestva': {
+		id: 'ploshchad-mnozhestva',
+		term: 'Площадь плоского множества',
+		short: String.raw`Общий предел сумм по клеткам изнутри и снаружи; есть при $\mu(\partial D)=0$.`,
+		formula: String.raw`\underline S_h(D)=\!\!\sum_{d\subset D}\!\|d\|\ \le\ \overline S_h(D)=\!\!\sum_{d\cap D\ne\varnothing}\!\|d\|`,
+		body: String.raw`Мера произвольного ограниченного $D\subset\mathbb R^2$ определяется зажимом: плоскость накрывается сеткой, складываются меры [[yacheyka-razbieniya|клеток]] изнутри (нижняя площадь) и клеток, задевающих $D$ (верхняя). Совпали пределы при измельчении — множество называется квадрируемым, а общее значение и есть $\mu(D)$.
+
+Разность верхней и нижней сумм — вклад приграничных клеток, поэтому квадрируемость равносильна условию $\mu(\partial D)=0$, то есть [[mera-nol-v-rn|мере нуль]] границы. Для квадрируемого $D$ верно $\mu(D)=\iint_D1$: «есть площадь» и «интегрируется хотя бы константа» — одно и то же.`,
+		related: ['mera-nol-v-rn', 'yacheyka-razbieniya', 'dvoynoy-integral', 'prodolzhenie-nulem']
 	},
 
 	'povtornyy-integral': {
@@ -117,6 +165,28 @@ export const day23Terms: Glossary = {
 
 Интегральный свидетель — $f=\dfrac{x^2-y^2}{(x^2+y^2)^2}$ на $(0;1]^2$: повторные интегралы равны $\pi/4$ и $-\pi/4$. Спасает [[absolyutnaya-integriruemost|абсолютная интегрируемость]]; у конечных сумм проблемы нет вовсе — свободы порядка лишает предельный переход, а не размерность.`,
 		related: ['teorema-fubini', 'absolyutnaya-integriruemost', 'povtornyy-integral', 'dvoynoy-integral']
+	},
+
+	'princip-kavaleri': {
+		id: 'princip-kavaleri',
+		term: 'Принцип Кавальери',
+		short: String.raw`Равные площади сечений на всех уровнях — значит равные объёмы.`,
+		formula: String.raw`\forall x\ \ S_1(x)=S_2(x)\ \Longrightarrow\ V_1=V_2`,
+		body: String.raw`Доримановское правило измерения объёма: если два тела рассечь пучком параллельных плоскостей и на каждом уровне площади сечений совпали, то и объёмы равны. Отсюда, например, равенство объёмов наклонного и прямого цилиндров одной высоты.
+
+Современная форма принципа — [[teorema-fubini|теорема Фубини]]: объём набирается интегралом площадей [[sechenie-oblasti|сечений]], $V=\int S(x)\,dx$, и ответ не зависит ни от направления нарезки, ни от того, считать ли [[povtornyy-integral|повторным]] интегралом или двойным.`,
+		related: ['teorema-fubini', 'povtornyy-integral', 'sechenie-oblasti', 'dvoynoy-integral']
+	},
+
+	'teorema-tonelli': {
+		id: 'teorema-tonelli',
+		term: 'Теорема Тонелли',
+		short: String.raw`Для $f\ge0$ повторные интегралы равны всегда, хоть бы и оба были $\infty$.`,
+		formula: String.raw`f\ge0\ \Longrightarrow\ \int\!\Bigl(\int f\,dy\Bigr)dx=\int\!\Bigl(\int f\,dx\Bigr)dy`,
+		body: String.raw`Половина условия [[absolyutnaya-integriruemost|абсолютной интегрируемости]], которой хватает самой по себе: у неотрицательной функции повторные интегралы равны при любом порядке, причём равенство остаётся верным и в форме $+\infty=+\infty$. Знака нет — значит нечему сокращаться по-разному.
+
+Рабочая связка: Тонелли применяют к $|f|$, чтобы узнать, конечен ли $\iint|f|$, и только при конечности пускают [[teorema-fubini|Фубини]] на саму $f$. У контрпримера с $\pi/4$ ломается уже первый шаг, см. [[perestanovka-predelov|перестановку пределов]].`,
+		related: ['absolyutnaya-integriruemost', 'teorema-fubini', 'perestanovka-predelov', 'povtornyy-integral']
 	},
 
 	'absolyutnaya-integriruemost': {

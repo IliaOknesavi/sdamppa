@@ -1,7 +1,8 @@
 import type { Glossary } from '$lib/types';
 
 // Термины дня 8: производная Фреше, полунорма, локально выпуклое линейное
-// топологическое пространство.
+// топологическое пространство. Здесь же вводится сквозная карточка kompakt —
+// на неё ссылаются и другие дни курса.
 // День должен резолвиться независимо, поэтому опорные понятия соседних
 // дней — производная Гато, производная по направлению, градиент,
 // нормированное пространство — продублированы здесь.
@@ -72,8 +73,8 @@ export const day08Terms: Glossary = {
 		term: 'Полунорма',
 		short: String.raw`Норма без невырожденности: может обращаться в нуль не только на нуле.`,
 		formula: String.raw`p(\lambda x)=|\lambda|p(x),\qquad p(x+y)\le p(x)+p(y)`,
-		body: String.raw`Однородная и подчинённая неравенству треугольника функция $p:L\to\mathbb R$, от которой **не** требуют $p(x)=0\Rightarrow x=0$: полунорма имеет право обращаться в нуль не только на нуле. Неотрицательность не постулируют, а выводят: $0=p(x+(-x))\le p(x)+p(-x)=2p(x)$. Ядро $\ker p$ — линейное подпространство (для [[normirovannoe-prostranstvo|нормы]] тривиальное). Пример: $p(x)=|x_1|$ в $\mathbb R^2$ зануляется на оси $Ox_2$; на $C(\mathbb R)$ полунорма $p_K(f)=\sup_K|f|$ — на функциях, нулевых на компакте $K$.`,
-		related: ['semeystvo-polunorm', 'normirovannoe-prostranstvo', 'lvtnp', 'vypukloe-mnozhestvo']
+		body: String.raw`Однородная и подчинённая неравенству треугольника функция $p:L\to\mathbb R$, от которой **не** требуют $p(x)=0\Rightarrow x=0$: полунорма имеет право обращаться в нуль не только на нуле. Неотрицательность не постулируют, а выводят: $0=p(x+(-x))\le p(x)+p(-x)=2p(x)$. [[yadro|Ядро]] $\ker p$ — линейное подпространство (для [[normirovannoe-prostranstvo|нормы]] тривиальное). Пример: $p(x)=|x_1|$ в $\mathbb R^2$ зануляется на оси $Ox_2$; на $C(\mathbb R)$ полунорма $p_K(f)=\sup_K|f|$ — на функциях, нулевых на [[kompakt|компакте]] $K$.`,
+		related: ['semeystvo-polunorm', 'normirovannoe-prostranstvo', 'lvtnp', 'yadro']
 	},
 
 	'semeystvo-polunorm': {
@@ -90,17 +91,74 @@ export const day08Terms: Glossary = {
 		term: 'Выпуклое множество',
 		short: String.raw`Содержит отрезок между любыми двумя своими точками.`,
 		formula: String.raw`\forall \vec x,\vec y\in M\ \forall t\in[0,1]:\ \ \vec x+t(\vec y-\vec x)\in M`,
-		body: String.raw`Множество, вместе с двумя точками содержащее соединяющий их отрезок [[parametrizaciya-otrezka|$l(t)=\vec x+t(\vec y-\vec x)$]] при $t\in[0,1]$. Отрезок здесь заменить прямой нельзя: множества, содержащие вместе с каждыми двумя точками всю проходящую через них прямую (все $t\in\mathbb R$), — это пустое множество и аффинные подпространства, а среди ограниченных таких лишь пустое и одноточечное. Шар [[polunorma|полунормы]] выпуклый — отсюда и слово «локально выпуклое» в [[lvtnp|ЛВТНП]].`,
-		related: ['polunorma', 'lvtnp', 'parametrizaciya-otrezka', 'semeystvo-polunorm']
+		body: String.raw`Множество, вместе с двумя точками содержащее соединяющий их отрезок [[parametrizatsiya-otrezka|$l(t)=\vec x+t(\vec y-\vec x)$]] при $t\in[0,1]$. Отрезок здесь заменить прямой нельзя: множества, содержащие вместе с каждыми двумя точками всю проходящую через них прямую (все $t\in\mathbb R$), — это пустое множество и [[affinnoe-prostranstvo|аффинные подпространства]], а среди ограниченных таких лишь пустое и одноточечное. Шар [[polunorma|полунормы]] выпуклый — отсюда и слово «локально выпуклое» в [[lvtnp|ЛВТНП]].`,
+		related: ['polunorma', 'lvtnp', 'parametrizatsiya-otrezka', 'semeystvo-polunorm']
 	},
 
-	'parametrizaciya-otrezka': {
-		id: 'parametrizaciya-otrezka',
-		term: 'Параметризация отрезка',
-		short: String.raw`S(t) = x + t(y − x): отрезок как образ [0,1].`,
-		formula: String.raw`S(t)=\vec x+t(\vec y-\vec x),\qquad S(0)=\vec x,\ S(1)=\vec y,\ \ S([0,1])=\overline{xy}`,
-		body: String.raw`Приём сведения многомерного объекта к одномерному подстановкой $t\mapsto S(t)$. Через него определяется [[vypukloe-mnozhestvo|выпуклость]], через него же доказывается теорема Лагранжа для полей — функция $\varphi(t)=f(S(t))$ уже скалярная, элемент [[end-r|$\mathrm{End}(\mathbb R)$]]. Та же параметризация с коэффициентами $\alpha+\beta+\gamma=1$ даёт барицентрическую (выпуклую) комбинацию и мост к симплексам.`,
-		related: ['vypukloe-mnozhestvo', 'proizvodnaya-gato', 'end-r']
+	odnorodnost: {
+		id: 'odnorodnost',
+		term: 'Однородность',
+		short: String.raw`Растяжение аргумента выносится множителем: $F(t\vec h)=t^kF(\vec h)$.`,
+		formula: String.raw`p(\lambda x)=|\lambda|\,p(x),\qquad d^{k}f(t\,\vec{dx})=t^{k}\,d^{k}f(\vec{dx})`,
+		body: String.raw`Функция **однородна степени $k$**, если растяжение аргумента выносится множителем: $F(t\vec h)=t^kF(\vec h)$. Норма и [[polunorma|полунорма]] однородны первой степени (с модулем $|\lambda|$), первый дифференциал — тоже, второй — второй степени.
+
+Именно однородность обесценивает дробь $\|A\Delta x\|/\|\Delta x\|$: масштаб сокращается, и под знаком предела остаётся зависимость только от направления — то, что видно на [[norma-operatora|норме оператора]]. Она же половина линейности: у [[proizvodnaya-gato|производной Гато]] однородность есть всегда, а аддитивности может не быть.`,
+		related: ['polunorma', 'norma-operatora', 'proizvodnaya-gato', 'lineynyy-operator']
+	},
+
+	kompakt: {
+		id: 'kompakt',
+		term: 'Компакт',
+		short: String.raw`Из любого открытого покрытия извлекается конечное подпокрытие.`,
+		formula: String.raw`D\subset\bigcup_\alpha U_\alpha\ \Rightarrow\ \exists\,\alpha_1\dots\alpha_m:\ D\subset\bigcup_{i=1}^{m}U_{\alpha_i}`,
+		body: String.raw`Множество **компактно**, если из любого его открытого покрытия выбирается конечное подпокрытие; в $\mathbb R^n$ это равносильно замкнутости и ограниченности, а отрезок — стандартный пример ([[lsk|ЛСК]]).
+
+Компактность нужна там, где локальное свойство надо сделать равномерным: на компакте непрерывная функция ограничена, достигает своих границ и равномерно непрерывна. Отсюда и разница размерностей: единичная сфера в $\mathbb R^n$ компактна, поэтому супремум в определении [[norma-operatora|нормы оператора]] достигается, а в $\ell^2$ она уже не компактна, и супремум может остаться недостижимым.`,
+		related: ['lsk', 'lso', 'norma-operatora', 'ogranichennyy-operator']
+	},
+
+	yadro: {
+		id: 'yadro',
+		term: 'Ядро ker p',
+		short: String.raw`Где полунорма зануляется; всегда линейное подпространство.`,
+		formula: String.raw`\ker p=\lbrace x\in L:\ p(x)=0\rbrace`,
+		body: String.raw`**Ядро** [[polunorma|полунормы]] — множество векторов, на которых она обращается в нуль. Оно всегда линейное подпространство: [[odnorodnost|однородность]] даёт замкнутость относительно умножения на скаляр, неравенство треугольника — относительно сложения.
+
+Для [[normirovannoe-prostranstvo|нормы]] ядро тривиально, $\ker=\lbrace 0\rbrace$, — это и есть невырожденность; для полунормы оно какое угодно: у $p(x)=|x_1|$ в $\mathbb R^2$ ядром служит вся ось $Ox_2$. Именно ядро отбирает у отдельной полунормы [[otdelimost|отделимость]].`,
+		related: ['polunorma', 'normirovannoe-prostranstvo', 'otdelimost', 'semeystvo-polunorm']
+	},
+
+	otdelimost: {
+		id: 'otdelimost',
+		term: 'Отделимость',
+		short: String.raw`Разные точки различимы непересекающимися окрестностями.`,
+		formula: String.raw`x\ne y\ \Rightarrow\ \exists\,U_x,U_y:\ U_x\cap U_y=\varnothing`,
+		body: String.raw`Топология **отделима**, если любые две различные точки лежат в непересекающихся окрестностях. Без отделимости точки, которые топология не различает, ведут себя как одна: предел перестаёт быть единственным.
+
+Одна [[polunorma|полунорма]] топологию задаёт, но неотделимую: всё её [[yadro|ядро]] неотличимо от нуля. Возвращает отделимость [[semeystvo-polunorm|семейство полунорм]] условием $\sum_i p_i(x)>0$ при $x\ne0$ — то самое разделение точек.`,
+		related: ['polunorma', 'semeystvo-polunorm', 'yadro', 'lvtnp']
+	},
+
+	'baza-okrestnostey': {
+		id: 'baza-okrestnostey',
+		term: 'База окрестностей',
+		short: String.raw`Набор окрестностей, внутрь каждой из которых влезает элемент набора.`,
+		formula: String.raw`\forall U_x\ \exists B\in\mathcal B_x:\ B\subset U_x`,
+		body: String.raw`**База окрестностей** точки — такой набор её окрестностей, что внутри любой окрестности лежит хотя бы одна из набора. База задаёт топологию целиком: все прочие окрестности из неё собираются, поэтому топологию удобно определять именно базой.
+
+В [[lvtnp|локально выпуклом пространстве]] базу окрестностей нуля образуют конечные пересечения шаров $\lbrace x:\ p_i(x)<\varepsilon\rbrace$ по [[semeystvo-polunorm|семейству полунорм]]. Все они [[vypukloe-mnozhestvo|выпуклы]] — отсюда и слово «локально выпуклое» в названии.`,
+		related: ['lvtnp', 'semeystvo-polunorm', 'vypukloe-mnozhestvo', 'polunorma']
+	},
+
+	'lineynaya-forma': {
+		id: 'lineynaya-forma',
+		term: 'Линейная форма (функционал)',
+		short: String.raw`Линейный оператор со значениями в ℝ: вектор на входе, число на выходе.`,
+		formula: String.raw`\ell(\vec h)=\langle\vec a\mid\vec h\rangle,\qquad \ell(\lambda\vec h_1+\mu\vec h_2)=\lambda\ell(\vec h_1)+\mu\ell(\vec h_2)`,
+		body: String.raw`**Линейная форма** (линейный функционал) — [[lineynyy-operator|линейный оператор]] со значениями в $\mathbb R$. В $\mathbb R^n$ всякая такая форма есть скалярное произведение с одним фиксированным вектором: $\ell(\vec h)=\langle\vec a\mid\vec h\rangle$ в [[braket|bra-ket]]-записи, и вектор $\vec a$ восстанавливается по форме однозначно.
+
+Отсюда роль градиента: [[proizvodnaya-freshe|производная Фреше]] скалярного поля — линейная форма, а $\nabla f$ — представляющий её вектор. Первый дифференциал — та же форма, применённая к вектору приращений.`,
+		related: ['lineynyy-operator', 'proizvodnaya-freshe', 'gradient', 'braket']
 	},
 
 	'proizvodnaya-gato': {

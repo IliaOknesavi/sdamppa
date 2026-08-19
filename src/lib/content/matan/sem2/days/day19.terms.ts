@@ -12,14 +12,59 @@ import type { Glossary } from '$lib/types';
 // =====================================================================
 
 export const day19Terms: Glossary = {
+	'yadro-operatora': {
+		id: 'yadro-operatora',
+		term: 'Ядро линейного оператора',
+		short: String.raw`Прообраз нуля: $\ker A=\{x:\ Ax=0\}$.`,
+		formula: String.raw`\ker\tfrac{d}{dx}=\{h:\ h'\equiv0\}`,
+		body: String.raw`Ядро линейного оператора — множество элементов, которые он переводит в нуль; это линейное подпространство. [[polnyy-proobraz|Полный прообраз]] любой точки есть [[smezhnyy-klass|смежный класс]] по ядру, поэтому множество [[pervoobraznaya|первообразных]] устроено как «одна $F$ плюс ядро». Чему равно ядро $\frac{d}{dx}$ — вопрос не бухгалтерский: на [[promezhutok|промежутке]] это константы (теорема Лагранжа), на несвязной области — локально постоянные функции.`,
+		related: ['pervoobraznaya', 'promezhutok', 'lokalno-postoyannaya-funkciya', 'faktor-prostranstvo']
+	},
+
+	'polnyy-proobraz': {
+		id: 'polnyy-proobraz',
+		term: 'Полный прообраз f⁻(A)',
+		short: String.raw`Все элементы, попадающие в $A$; знак $^-$ не требует обратимости.`,
+		formula: String.raw`f^{-}(A)=\{x:\ f(x)\in A\}`,
+		body: String.raw`Полный прообраз множества $A$ — все точки, чей образ лежит в $A$. Верхний индекс «$-$» отличает эту операцию от обратной функции: прообраз определён у любого отображения, обратимость не нужна. Первообразные $f$ — это $\left(\frac{d}{dx}\right)^{-}(\{f\})$, прообраз одноточечного множества, то есть [[smezhnyy-klass|смежный класс]] по [[yadro-operatora|ядру]]; [[neopredelennyy-integral|неопределённый интеграл]] — имя этого прообраза.`,
+		related: ['yadro-operatora', 'neopredelennyy-integral', 'pervoobraznaya']
+	},
+
+	'smezhnyy-klass': {
+		id: 'smezhnyy-klass',
+		term: 'Смежный класс',
+		short: String.raw`Сдвиг подпространства: $x_0+L$, где $L$ — ядро оператора.`,
+		formula: String.raw`A^{-}(\{y\})=x_0+\ker A,\qquad Ax_0=y`,
+		body: String.raw`Если $Ax_0=y$, то все решения уравнения $Ax=y$ — это $x_0+\ker A$: одно частное решение плюс всё [[yadro-operatora|ядро]]. Классы не пересекаются и заполняют пространство — из них и составлено [[faktor-prostranstvo|фактор-пространство]]. Для $A=\frac{d}{dx}$ это в точности «$F+C$»: [[pervoobraznaya|первообразная]] — представитель класса, а не отдельная функция, поэтому два ответа, отличающиеся на константу, считаются одним.`,
+		related: ['yadro-operatora', 'faktor-prostranstvo', 'pervoobraznaya', 'proizvolnaya-postoyannaya']
+	},
+
+	'aksiomy-metriki': {
+		id: 'aksiomy-metriki',
+		term: 'Аксиомы метрики',
+		short: String.raw`Различимость, симметрия, неравенство треугольника.`,
+		formula: String.raw`\rho(x,y)=0\iff x=y;\quad \rho(x,y)=\rho(y,x);\quad \rho(x,z)\le\rho(x,y)+\rho(y,z)`,
+		body: String.raw`Метрика обязана удовлетворять трём требованиям, и в теме первообразных ломается первое — различимость: $\rho(x^2+4;\,x^2)=\|4\|_C=0$ при различных функциях. То, у чего уцелели симметрия и неравенство треугольника, называется [[psevdometrika|псевдометрикой]]; настоящей метрикой оно становится после перехода к [[faktor-prostranstvo|фактор-пространству]], где точками служат классы. Метрик на одном множестве много: [[metriki-rho|семейство $\rho_1,\rho_2,\rho_\infty$]].`,
+		related: ['psevdometrika', 'faktor-prostranstvo', 'metriki-rho', 'polunorma']
+	},
+
+	'aksiomy-normy': {
+		id: 'aksiomy-normy',
+		term: 'Аксиомы нормы',
+		short: String.raw`Однородность, неравенство треугольника, невырожденность.`,
+		formula: String.raw`\|\alpha h\|=|\alpha|\,\|h\|;\quad \|h_1+h_2\|\le\|h_1\|+\|h_2\|;\quad \|h\|=0\Rightarrow h=0`,
+		body: String.raw`Три требования к норме. Однородность — множитель выносится по модулю; неравенство треугольника — длина суммы не больше суммы длин; невырожденность — нуль достигается только на нуле. У $\|h\|_C=\sup_J|h'|$ первые два выполнены (производная линейна, супремум суммы не больше суммы супремумов), а третье нет: $\|C\|_C=0$ на любой константе. Отказ ровно от невырожденности даёт [[polunorma|полунорму]], а с ней [[psevdometrika|псевдометрику]] и [[faktor-prostranstvo|фактор-пространство]].`,
+		related: ['polunorma', 'psevdometrika', 'faktor-prostranstvo']
+	},
+
 	pervoobraznaya: {
 		id: 'pervoobraznaya',
 		term: 'Первообразная',
 		short: String.raw`$F$ — первообразная $f$ на промежутке, если $F'=f$ в каждой его точке.`,
 		formula: String.raw`F'(x)=f(x),\qquad x\in J`,
-		body: String.raw`Для непрерывной $f\in C^0[a,b]$: функция $F$ есть первообразная $f$, если $F'=f$. Существование в определение не входит — оно описывает только устройство множества первообразных; что у непрерывной функции первообразная есть всегда, доказывает [[teorema-nyutona-leybnica|теорема Ньютона–Лейбница]] (день 20).
+		body: String.raw`Для непрерывной $f\in C^0[a,b]$: функция $F$ есть первообразная $f$, если $F'=f$. Существование в определение не входит — оно описывает только устройство множества первообразных; что у непрерывной функции первообразная есть всегда, доказывает [[teorema-barrou|теорема Барроу]] (день 20).
 
-Слово «[[promezhutok|промежуток]]» здесь рабочее: на несвязной области две первообразные могут отличаться на [[lokalno-postoyannaya-funkciya|локально постоянную]] функцию, а не на число. Алгебраически первообразные — полный прообраз $\left(\frac{d}{dx}\right)^{-}(\{f\})$, то есть смежный класс по ядру дифференцирования.`,
+Слово «[[promezhutok|промежуток]]» здесь рабочее: на несвязной области две первообразные могут отличаться на [[lokalno-postoyannaya-funkciya|локально постоянную]] функцию, а не на число. Алгебраически первообразные — [[polnyy-proobraz|полный прообраз]] $\left(\frac{d}{dx}\right)^{-}(\{f\})$, то есть смежный класс по ядру дифференцирования.`,
 		related: ['neopredelennyy-integral', 'promezhutok', 'teorema-lagranzha', 'tablica-pervoobraznyh']
 	},
 
@@ -138,9 +183,9 @@ export const day19Terms: Glossary = {
 		term: 'Теорема Ньютона–Лейбница',
 		short: String.raw`$F(x)=\int_a^x f\,dt$ — первообразная, и $\int_a^b f=F(b)-F(a)$.`,
 		formula: String.raw`\int_a^b f(t)\,dt=F(b)-F(a)`,
-		body: String.raw`Теорема дня 20 из двух пунктов. Пункт 1: для непрерывной $f$ функция $F(x)=\int_a^x f(t)\,dt$ дифференцируема и $F'=f$ — это даёт **существование** [[pervoobraznaya|первообразной]], которое из уравнения $F'=f$ само по себе не следует. Пункт 2: $\int_a^b f=F(b)-F(a)$ для любой первообразной.
+		body: String.raw`Формула дня 20: $\int_a^b f=F(b)-F(a)$ для **любой** [[pervoobraznaya|первообразной]] $F$. Существование первообразной у непрерывной $f$ она не доказывает — это отдельное утверждение с отдельным именем, [[teorema-barrou|теорема Барроу]] ($\Phi'=f$ для $\Phi(x)=\int_a^x f$); два имени за двумя разными фактами держатся весь курс.
 
-Второй пункт корректен именно потому, что разность $F(b)-F(a)$ не зависит от выбора представителя класса: [[proizvolnaya-postoyannaya|произвольная постоянная]] сокращается. Так [[opredelennyy-integral|определённый интеграл]] оказывается функционалом на классе, а не на функции.`,
-		related: ['pervoobraznaya', 'opredelennyy-integral', 'proizvolnaya-postoyannaya']
+Формула корректна именно потому, что разность $F(b)-F(a)$ не зависит от выбора представителя класса: [[proizvolnaya-postoyannaya|произвольная постоянная]] сокращается. Так [[opredelennyy-integral|определённый интеграл]] оказывается функционалом на классе, а не на функции.`,
+		related: ['pervoobraznaya', 'opredelennyy-integral', 'proizvolnaya-postoyannaya', 'teorema-barrou']
 	}
 };

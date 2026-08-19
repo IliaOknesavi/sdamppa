@@ -11,6 +11,42 @@ import type { Glossary } from '$lib/types';
 // =====================================================================
 
 export const day18Terms: Glossary = {
+	'baza-melkosti': {
+		id: 'baza-melkosti',
+		term: 'База мелкости',
+		short: String.raw`Предел берётся не по номеру, а по семейству всех $\lambda$ с $\lambda_R<\delta$.`,
+		formula: String.raw`\lim_{\lambda_R\to0}G(\lambda)=A\iff\forall\varepsilon>0\ \exists\delta>0\ \forall\lambda\ (\lambda_R<\delta):\ |G(\lambda)-A|<\varepsilon`,
+		body: String.raw`[[razbienie|Разбиения]] не занумерованы, поэтому предел по ним определяется не как предел последовательности, а по базе: её элементы — множества всех разбиений с [[rang-razbieniya|рангом]] меньше $\delta$, они непусты и вложены друг в друга. Запись $\lim_{\lambda_R\to0}$ означает ровно выписанное $\varepsilon$–$\delta$-условие. Отличать от $\inf_\lambda U$: инфимум есть у любой ограниченной $f$, а существование предела по базе — отдельное утверждение, и его даёт [[lemma-darbu|лемма Дарбу]].`,
+		related: ['razbienie', 'rang-razbieniya', 'lemma-darbu', 'kriteriy-integriruemosti']
+	},
+
+	'klass-r': {
+		id: 'klass-r',
+		term: 'Класс ℛ[a; b]',
+		short: String.raw`Обозначение множества интегрируемых по Риману функций на отрезке.`,
+		formula: String.raw`\mathcal R[a;b]=\bigl\{f:\ \exists\lim_{\lambda_R\to0}I(f,\lambda,\vec\xi)\bigr\}`,
+		body: String.raw`$\mathcal R[a;b]$ — множество функций, интегрируемых по Риману на $[a;b]$: тех, у которых [[opredelennyy-integral|предел интегральных сумм]] существует и не зависит ни от разбиения, ни от отмеченных точек. Запись $f\in\mathcal R[a;b]$ читается «$f$ интегрируема». Класс описан двумя способами: изнутри — [[kriteriy-integriruemosti|критерием Дарбу]], снаружи — [[kriteriy-lebega|критерием Лебега]]; он содержит все непрерывные и все монотонные функции.`,
+		related: ['opredelennyy-integral', 'kriteriy-integriruemosti', 'kriteriy-lebega']
+	},
+
+	'teorema-kantora': {
+		id: 'teorema-kantora',
+		term: 'Теорема Кантора',
+		short: String.raw`Непрерывная на компакте функция равномерно непрерывна.`,
+		formula: String.raw`f\in C(K),\ K\ \text{компакт}\ \Rightarrow\ f\ \text{равномерно непрерывна на}\ K`,
+		body: String.raw`На компакте непрерывность автоматически усиливается до [[ravnomernaya-nepreryvnost|равномерной]]: одно $\delta$ годится сразу для всех точек. Для отрезка-[[lsk|ЛСК]] это и даёт интегрируемость непрерывной функции — при $\lambda_R<\delta$ все [[kolebanie-funkcii|колебания]] $h_i$ малы одновременно, и $\sum h_i\lambda_i$ оценивается без потерь. Без компактности теорема ложна: $1/x$ непрерывна на $(0;1]$, но не равномерно.`,
+		related: ['ravnomernaya-nepreryvnost', 'lsk', 'kolebanie-funkcii', 'kriteriy-integriruemosti']
+	},
+
+	'schetnoe-mnozhestvo': {
+		id: 'schetnoe-mnozhestvo',
+		term: 'Счётное множество',
+		short: String.raw`Множество, точки которого можно занумеровать: биекция с $\mathbb N_1$.`,
+		formula: String.raw`S=\{s_1,s_2,\dots\}\iff\exists\ \text{биекция}\ S\leftrightarrow\mathbb N_1`,
+		body: String.raw`Множество счётно, если его элементы выстраиваются в очередь — существует биекция с [[n-nol-n-odin|$\mathbb N_1$]]. Счётность и есть всё, что нужно для приёма «режем бюджет пополам»: $k$-я точка накрывается интервалом длины $\varepsilon/2^{k+1}$, поэтому счётное множество имеет [[mera-nol|меру нуль]]. Отрезок несчётен, и раскладка бюджета его не берёт — вот почему счётность стоит отдельным требованием к [[pokrytie-intervalami|покрытию]]. Обратное неверно: канторово множество несчётно, а мера у него нулевая.`,
+		related: ['mera-nol', 'pokrytie-intervalami', 'n-nol-n-odin']
+	},
+
 	'kriteriy-integriruemosti': {
 		id: 'kriteriy-integriruemosti',
 		term: 'Критерий интегрируемости (Дарбу)',
@@ -27,7 +63,7 @@ export const day18Terms: Glossary = {
 		formula: String.raw`U(f,\lambda)=\sum_i M_i\lambda_i,\qquad L(f,\lambda)=\sum_i m_i\lambda_i`,
 		body: String.raw`Верхняя и нижняя суммы Дарбу для [[razbienie|разбиения]] $\lambda$: $M_i=\sup_{\Delta_i}f$, $m_i=\inf_{\Delta_i}f$. При любых отмеченных точках $L\le I(f,\lambda,\vec\xi)\le U$, а разность равна взвешенной сумме [[kolebanie-funkcii|колебаний]]: $U-L=\sum_i h_i\lambda_i$.
 
-Наряду с самими суммами рассматривают пределы $\lim_{\lambda_R\to0}U(f,\lambda)$ и $\lim_{\lambda_R\to0}L(f,\lambda)$. Их существование и совпадение с $\inf_\lambda U$ и $\sup_\lambda L$ — не определение, а теорема, и доказывается она через [[izmelchenie-razbieniya|лемму об измельчении]].`,
+Наряду с самими суммами рассматривают пределы $\lim_{\lambda_R\to0}U(f,\lambda)$ и $\lim_{\lambda_R\to0}L(f,\lambda)$. Их существование и совпадение с $\inf_\lambda U$ и $\sup_\lambda L$ — не определение, а теорема Дарбу, и доказывается она через [[lemma-darbu|лемму Дарбу]].`,
 		related: ['razbienie', 'kolebanie-funkcii', 'verhniy-nizhniy-integral', 'izmelchenie-razbieniya']
 	},
 
@@ -47,7 +83,7 @@ export const day18Terms: Glossary = {
 		term: 'Верхний и нижний интегралы',
 		short: String.raw`$\inf$ верхних сумм и $\sup$ нижних — по всем разбиениям сразу.`,
 		formula: String.raw`\overline{\int_a^b}f=\inf_\lambda U(f,\lambda),\qquad \underline{\int_a^b}f=\sup_\lambda L(f,\lambda)`,
-		body: String.raw`Из [[summy-darbu|сумм Дарбу]] инфимум и супремум берутся по всем [[razbienie|разбиениям]], а не по одному. По [[izmelchenie-razbieniya|лемме об измельчении]] всегда $\underline{\int}\le\overline{\int}$, а интегрируемость — это в точности их равенство; общее значение и есть [[opredelennyy-integral|определённый интеграл]].
+		body: String.raw`Из [[summy-darbu|сумм Дарбу]] инфимум и супремум берутся по всем [[razbienie|разбиениям]], а не по одному. По [[lemma-darbu|лемме Дарбу]] всегда $\underline{\int}\le\overline{\int}$, а интегрируемость — это в точности их равенство; общее значение и есть [[opredelennyy-integral|определённый интеграл]].
 
 Те же два числа получаются как пределы $\lim_{\lambda_R\to0}U$ и $\lim_{\lambda_R\to0}L$ по базе мелкости, но это отдельная теорема, а не определение.`,
 		related: ['summy-darbu', 'izmelchenie-razbieniya', 'opredelennyy-integral', 'kriteriy-integriruemosti']

@@ -98,12 +98,23 @@ export const day04Terms: Glossary = {
 		related: ['teorema-ferma-pole', 'stacionarnaya-tochka', 'odnostoronnyaya-proizvodnaya', 'priznak-i-svoystvo']
 	},
 
+	kontrapoziciya: {
+		id: 'kontrapoziciya',
+		term: 'Контрапозиция',
+		short: String.raw`$A\Rightarrow B$ равносильно «не $B$ влечёт не $A$».`,
+		formula: String.raw`(A\Rightarrow B)\iff(\overline B\Rightarrow\overline A)`,
+		body: String.raw`**Контрапозиция** импликации $A\Rightarrow B$ — импликация $\overline B\Rightarrow\overline A$. Они равносильны, поэтому доказывать можно любую из двух. С обратной импликацией $B\Rightarrow A$ путать нельзя: обратная в общем случае ложна.
+
+В дне это работает дважды. [[teorema-ferma|Теорема Ферма]] «экстремум $\Rightarrow f'(x_0)=0$» доказывается в форме «$f'(x_0)\ne0\Rightarrow$ не экстремум» — это её контрапозиция. А [[priznak-i-svoystvo|различение признака и свойства]] — ровно вопрос о том, какая из трёх импликаций у нас в руках: прямая, обратная или контрапозиция.`,
+		related: ['teorema-ferma', 'priznak-i-svoystvo', 'stacionarnaya-tochka']
+	},
+
 	'teorema-ferma-pole': {
 		id: 'teorema-ferma-pole',
 		term: 'Теорема Ферма в скалярных полях',
 		short: String.raw`В точке экстремума градиент нулевой: все частные производные равны 0.`,
 		formula: String.raw`\vec x_0-\text{л.э.},\ \vec x_0\in\operatorname{In}D\ \Rightarrow\ \vec\nabla f(\vec x_0)=\bar 0`,
-		body: String.raw`Многомерный двойник [[teorema-ferma|одномерной теоремы Ферма]]. Доказывается сечениями: $\varphi_i(t)=f(\vec x_0+t\vec e_i)$ имеет в $t=0$ локальный экстремум, $\varphi_i'(0)=\partial f/\partial x_i(\vec x_0)$, и одномерная теорема зануляет каждую [[chastnaya-proizvodnaya|частную производную]].
+		body: String.raw`Многомерный двойник [[teorema-ferma|одномерной теоремы Ферма]]. Доказывается сечениями: $\varphi_i(t)=f(\vec x_0+t\vec e_i)$ имеет в $t=0$ локальный экстремум, $\varphi_i'(0)=\partial f/\partial x_i(\vec x_0)$, и одномерная теорема зануляет каждую [[chastnaya-proizvodnaya|частную производную]]; выкладка — день 13.
 
 Сильнее из сечений ничего не следует: существование всех частных производных не влечёт дифференцируемости поля. Версия «производная как оператор равна нулю» опирается на производную Фреше (день 8).`,
 		related: ['teorema-ferma', 'gradient', 'chastnaya-proizvodnaya', 'skalyarnoe-pole']

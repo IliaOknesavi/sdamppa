@@ -7,7 +7,9 @@ import type { Glossary } from '$lib/types';
 // принадлежащие другим дням, НЕ переобъявляются и используются только
 // ссылками:
 //   braket, lvtnp, klassy-differenciruemosti, rang-razbieniya, lsk,
-//   nepravilnaya-mera-nol, n-nol-n-odin, dopolnenie, zamykanie,
+//   nepravilnaya-mera-nol, mera-nol-v-rn, ravnomernaya-nepreryvnost,
+//   additivnost-integrala, elementarnaya-funkciya,
+//   n-nol-n-odin, dopolnenie, zamykanie,
 //   vykolotaya-okrestnost, komponenta-svyaznosti, metriki-rho, end-r,
 //   skalyarnoe-pole, lso, asimptoticheskie-klassy,
 //   skhodyashchayasya-v-sebe, chastichnaya-posledovatelnost,
@@ -51,9 +53,9 @@ export const day24Terms: Glossary = {
 		term: 'Коэффициент искажения площади',
 		short: String.raw`Во столько раз отображение растягивает площадь малой клетки.`,
 		formula: String.raw`\Delta S=|J|\cdot\Delta u\,\Delta v+\bar o(\Delta u\,\Delta v)`,
-		body: String.raw`Геометрический смысл [[yakobian|якобиана]]. Образ малого прямоугольника $\Delta u\times\Delta v$ с точностью до $\bar o$ — параллелограмм, натянутый на столбцы [[matrica-yakobi|матрицы Якоби]], а площадь параллелограмма равна модулю определителя.
+		body: String.raw`Геометрический смысл [[yakobian|якобиана]], полученный в дне 14. Образ малого прямоугольника $\Delta u\times\Delta v$ с точностью до $\bar o$ — параллелограмм, натянутый на столбцы [[matrica-yakobi|матрицы Якоби]], а площадь параллелограмма равна модулю определителя: проверяется на любом из них, школьное «основание на высоту» и определитель из сторон дают одно число.
 
-Числовая проверка: параллелограмм с вершинами $(0;0)$, $(2;0)$, $(1;1)$, $(3;1)$ натянут на векторы $(2;0)$ и $(1;1)$; по-школьному основание $2$ и высота $1$ дают площадь $1\cdot2=2$, через определитель $|1\cdot0-2\cdot1|=2$.`,
+Для доказательства теоремы о [[zamena-peremennyh-rn|замене переменных]] поточечного равенства мало: остаток должен быть мал одинаково для всех клеток разбиения сразу. Равномерную версию даёт гладкость на компакте.`,
 		related: ['yakobian', 'zamena-peremennyh-rn', 'matrica-yakobi', 'polyarnye-koordinaty']
 	},
 
@@ -119,8 +121,41 @@ export const day24Terms: Glossary = {
 		formula: String.raw`J(\vec u)\ne0\ \ \forall\,\vec u\in D'`,
 		body: String.raw`Третье условие теоремы. Если $J=0$ в точке, линейное приближение отображения схлопывает клетку в отрезок: площадь теряется, локальной [[biektivnost-otobrazheniya|обратимости]] нет, и [[yakobian-obratnogo|обратный якобиан]] $1/|J|$ не определён.
 
-Именно на невырожденности держится равномерность оценки $\bar o$ сразу по всем клеткам разбиения — самое тонкое место доказательства теоремы о замене. Как и с биективностью, нарушение на [[nepravilnaya-mera-nol|множестве меры нуль]] безвредно.`,
+В доказательстве теоремы о замене невырожденность отвечает не за равномерность остатка (её даёт непрерывность частных производных на компакте), а за то, что образ клетки остаётся двумерным и не складывается сам на себя. Как и с биективностью, нарушение на [[nepravilnaya-mera-nol|множестве меры нуль]] безвредно.`,
 		related: ['yakobian', 'biektivnost-otobrazheniya', 'yakobian-obratnogo', 'zamena-peremennyh-rn']
+	},
+
+	'cepnoe-pravilo-otobrazheniy': {
+		id: 'cepnoe-pravilo-otobrazheniy',
+		term: 'Цепное правило для отображений',
+		short: String.raw`Матрица Якоби композиции равна произведению матриц Якоби.`,
+		formula: String.raw`J_{F\circ G}(\vec x)=J_F\bigl(G(\vec x)\bigr)\cdot J_G(\vec x)`,
+		body: String.raw`Многомерная версия правила дифференцирования сложной функции: [[matrica-yakobi|матрица Якоби]] композиции — произведение матриц сомножителей, взятых в соответственных точках. Одномерное $(F(\varphi(x)))'=F'(\varphi)\varphi'$ — частный случай для матриц $1\times1$.
+
+Порядок сомножителей не переставляется: произведение матриц некоммутативно. Отсюда получается [[yakobian-obratnogo|лемма об обратном якобиане]]: дифференцируя $F\circ F^-=\mathrm{id}$, получаем $J_FJ_{F^-}=E=(\delta^i_k)$ — [[simvol-kronekera|символ Кронекера]].`,
+		related: ['matrica-yakobi', 'yakobian-obratnogo', 'simvol-kronekera', 'yakobian']
+	},
+
+	'multiplikativnost-opredelitelya': {
+		id: 'multiplikativnost-opredelitelya',
+		term: 'Мультипликативность определителя',
+		short: String.raw`$\det(AB)=\det A\cdot\det B$ — определитель произведения матриц.`,
+		formula: String.raw`\det(AB)=\det A\cdot\det B,\qquad \det(A^{-1})=\frac1{\det A}`,
+		body: String.raw`Свойство операции: определитель произведения равен произведению определителей. Геометрически это очевидно — если одно отображение растягивает площадь в $|\det A|$ раз, а второе в $|\det B|$, то композиция растягивает в произведение раз, ровно как [[koefficient-iskazheniya-ploshchadi|коэффициент искажения площади]].
+
+Прямое следствие — [[yakobian-obratnogo|лемма об обратном якобиане]]: из $J_FJ_G=E$ и $\det E=1$ выходит $\det J_F\cdot\det J_G=1$. Второе следствие: обратимость матрицы равносильна $\det\ne0$, то есть [[nevyrozhdennost-yakobiana|невырожденности]].`,
+		related: ['yakobian', 'yakobian-obratnogo', 'koefficient-iskazheniya-ploshchadi', 'nevyrozhdennost-yakobiana']
+	},
+
+	'ischerpanie-oblasti': {
+		id: 'ischerpanie-oblasti',
+		term: 'Исчерпание области',
+		short: String.raw`Растущая цепь ограниченных областей, объединение которых даёт всю $D$.`,
+		formula: String.raw`D_1\subset D_2\subset\dots,\ \ \bigcup_n D_n=D,\qquad \int_D f=\lim_{n}\int_{D_n} f`,
+		body: String.raw`Способ придать смысл интегралу по неограниченной области: берут растущую последовательность ограниченных областей и переходят к пределу. Для $\iint_{\mathbb R^2}e^{-(x^2+y^2)}$ исчерпанием служат круги радиуса $R\to\infty$ — на них [[polyarnye-koordinaty|полярная замена]] и работает.
+
+Ответ обязан не зависеть от выбора исчерпания, и при $f\ge0$ не зависит: на этом стоит вычисление [[integral-eylera-puassona|интеграла Эйлера–Пуассона]] сразу двумя исчерпаниями, кругами и квадратами. У знакопеременной функции зависимость появляется, и точные условия — день 25.`,
+		related: ['integral-eylera-puassona', 'polyarnye-koordinaty', 'kratnyy-integral', 'zamena-peremennyh-rn']
 	},
 
 	'yakobian-obratnogo': {

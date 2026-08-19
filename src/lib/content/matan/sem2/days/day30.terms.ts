@@ -8,8 +8,12 @@ import type { Glossary } from '$lib/types';
 // n-nol-n-odin, asimptoticheskie-klassy, priznak-i-svoystvo, end-r, lvtnp.
 // Канонический глоссарий склеивается последним и перекрывает совпадения,
 // поэтому одноимённые карточки заводить нельзя.
-// Карточка ravnomernaya-shodimost намеренно продублирована из дня 29, чтобы
-// день резолвился независимо.
+// Термины, введённые в других днях (ravnomernaya-shodimost и predelnyy-perehod-pod-integralom
+// из дня 29, supremum, aksiomy-normy, polunorma, teorema-lagranzha, integralnaya-summa,
+// ravnomernaya-nepreryvnost, ellipticheskiy-integral, proizvodnaya-po-napravleniyu,
+// gradient, garmonicheskiy-ryad, nesobstvennyy-integral-ii-roda, verhniy-i-nizhniy-predely),
+// здесь тоже не дублируются: глоссарий курса склеивается из всех дней, и повтор
+// был бы перекрыт днём, где термин вводится впервые.
 export const day30Terms: Glossary = {
 	'differencial-dliny-dugi': {
 		id: 'differencial-dliny-dugi',
@@ -51,7 +55,7 @@ export const day30Terms: Glossary = {
 		formula: String.raw`L_{\rho_1}=\int_a^b\bigl(|dx|+|df|\bigr)=\int_a^b\bigl(1+|f'(x)|\bigr)dx`,
 		body: String.raw`Длина в метрике [[metriki-rho|$\rho_1$]]: катеты складываются, гипотенуза не берётся. У **монотонной** кривой она равна $|\Delta x|+|\Delta y|$ и от формы не зависит вовсе — такси едет по катетам. Для четверти единичной окружности $L_{\rho_1}=1+1=2$.
 
-Модули здесь обязательны, и по отдельности: величина $\int|f'+1|\,dx$ манхэттенской длиной не является. Функция $\|(u,v)\|=|u+v|$ обращается в нуль на направлении $(1,-1)$, то есть это полунорма, а не норма; её интеграл равен [[variaciya-funkcii|вариации]] функции $x+f(x)$ — длине тени кривой на диагонали. Для четверти окружности она равна $2\sqrt2-2\approx0{,}83$, а не $2$.`,
+Модули здесь обязательны, и по отдельности: величина $|dx+df|$ задаёт [[polunorma|полунорму]], а не норму, и длиной уже не является — её интеграл считает [[variaciya-funkcii|вариацию]] суммы $x+f(x)$.`,
 		related: ['dlina-v-proizvolnoy-metrike', 'variaciya-funkcii', 'lestnichnyy-paradoks', 'ekvivalentnost-norm']
 	},
 
@@ -73,7 +77,7 @@ export const day30Terms: Glossary = {
 		formula: String.raw`V_a^b(f)=\sup_{\lambda}\sum_i\bigl|f(x_{i+1})-f(x_i)\bigr|`,
 		body: String.raw`Полная вариация — «сколько функция суммарно набегает вверх и вниз», супремум по всем разбиениям отрезка. Через неё формулируется [[spryamlyaemaya-krivaya|спрямляемость]]: в $\mathbb R^2$ выполнено $\max(b-a,\,V_a^b(f))\le L\le (b-a)+V_a^b(f)$.
 
-Для $f\in C^1$ вариация считается интегралом $V_a^b(f)=\int_a^b|f'|\,dx$ — и тогда [[manhettenskaya-dlina|манхэттенская длина]] графика есть в точности $(b-a)+V_a^b(f)$. У монотонной функции вариация равна $|f(b)-f(a)|$, поэтому $\rho_1$-длина монотонной кривой зависит только от концов.`,
+Для $f\in C^1$ вариация считается интегралом $V_a^b(f)=\int_a^b|f'|\,dx$ — и тогда [[manhettenskaya-dlina|манхэттенская длина]] графика есть в точности $(b-a)+V_a^b(f)$. У монотонной функции она сворачивается в $|f(b)-f(a)|$ — одно число при любой форме графика.`,
 		related: ['spryamlyaemaya-krivaya', 'manhettenskaya-dlina', 'rang-razbieniya']
 	},
 
@@ -121,15 +125,31 @@ export const day30Terms: Glossary = {
 		related: ['ravnomernaya-shodimost', 'manhettenskaya-dlina', 'dlina-v-proizvolnoy-metrike']
 	},
 
-	'ravnomernaya-shodimost': {
-		id: 'ravnomernaya-shodimost',
-		term: 'Равномерная сходимость',
-		short: String.raw`Один номер $N(\varepsilon)$ сразу на все $x$: $f_n\rightrightarrows f$.`,
-		formula: String.raw`f_n\rightrightarrows f:\ \forall\varepsilon>0\ \exists N(\varepsilon)\ \forall n>N\ \forall x\in[a;b]:\ |f_n(x)-f(x)|<\varepsilon`,
-		body: String.raw`Отличие от поточечной сходимости — в порядке кванторов: номер $N$ выбирается до $x$, а не после, то есть один на весь отрезок. Определение переводится на язык метрических пространств: вводится метрика на функциях $\rho(f_1,f_2)=\max_{x\in[a;b]}|f_1-f_2|$, и равномерная сходимость становится обычной сходимостью в этом метрическом пространстве, а «коридор шириной $\varepsilon$» — шаром $B_\varepsilon(f)$.
+	'metrika-porozhdennaya-normoy': {
+		id: 'metrika-porozhdennaya-normoy',
+		term: 'Метрика, порождённая нормой',
+		short: String.raw`$\rho(\vec u,\vec v)=\|\vec u-\vec v\|$: инвариантна к сдвигу и однородна.`,
+		formula: String.raw`\rho(\vec u+\vec w,\vec v+\vec w)=\rho(\vec u,\vec v),\qquad \rho(\lambda\vec u,\lambda\vec v)=|\lambda|\,\rho(\vec u,\vec v)`,
+		body: String.raw`Не всякая метрика приходит от [[aksiomy-normy|нормы]], и в выводе [[dlina-v-proizvolnoy-metrike|формулы длины]] работают ровно два её свойства. **Сдвиговая инвариантность** переписывает расстояние между соседними вершинами ломаной через одно приращение $\|\vec r(t_{i+1})-\vec r(t_i)\|$. **Положительная однородность** выносит $\Delta t_i>0$ из-под нормы, открывая интегральную сумму. У дискретной метрики нет ни того, ни другого: сумма по ломаной равна числу звеньев, и длина кривой бесконечна.`,
+		related: ['aksiomy-normy', 'dlina-v-proizvolnoy-metrike', 'normirovannoe-prostranstvo', 'metriki-rho']
+	},
 
-Возникает она как ответ на вопрос «когда $\lim\int=\int\lim$». Для длины кривой её недостаточно — см. [[lestnichnyy-paradoks|парадокс лестницы]].`,
-		related: ['lestnichnyy-paradoks', 'metriki-rho', 'dlina-krivoy']
+	'modul-nepreryvnosti': {
+		id: 'modul-nepreryvnosti',
+		term: 'Модуль непрерывности ω(δ)',
+		short: String.raw`Общий разброс значений на всех кусках длины $\delta$.`,
+		formula: String.raw`\omega(\delta)=\sup\bigl\{|g(t)-g(s)|:\ |t-s|\le\delta\bigr\},\qquad \omega(\delta)\xrightarrow[\delta\to+0]{}0`,
+		body: String.raw`Свёртка [[ravnomernaya-nepreryvnost|равномерной непрерывности]] в одну функцию от $\delta$: у непрерывной на компакте $g$ разброс значений на куске длины $\delta$ не превосходит $\omega(\delta)$, и $\omega(\delta)\to0$. В [[dlina-v-proizvolnoy-metrike|формуле длины]] им оценивают разнобой точек $\tau_{ij}$, которые [[teorema-lagranzha|теорема Лагранжа]] выдала у каждой координаты свои: замена их всех на левый конец стоит не больше $C\,n\,\omega(\lambda_R)(b-a)\to0$.`,
+		related: ['ravnomernaya-nepreryvnost', 'dlina-v-proizvolnoy-metrike', 'teorema-lagranzha', 'rang-razbieniya']
+	},
+
+	'polunepreryvnost-dliny': {
+		id: 'polunepreryvnost-dliny',
+		term: 'Полунепрерывность длины снизу',
+		short: String.raw`Длина предела не больше предела длин.`,
+		formula: String.raw`\gamma_N\rightrightarrows\gamma\ \Longrightarrow\ L(\gamma)\le\liminf_{N\to\infty}L(\gamma_N)`,
+		body: String.raw`Всё, что остаётся от равенства $\lim L=L(\lim)$, когда [[lestnichnyy-paradoks|перестановка незаконна]]: при равномерном предельном переходе длина может упасть, но не вырасти. Причина — в определении длины [[spryamlyaemaya-krivaya|супремумом по ломаным]]: сумма по фиксированному разбиению непрерывна по вершинам, а супремум таких сумм полунепрерывен снизу. На лестнице неравенство строгое, $\frac\pi2<2$, а обратного нет вовсе — «$\pi=4$» не проходит даже как оценка сверху.`,
+		related: ['lestnichnyy-paradoks', 'spryamlyaemaya-krivaya', 'dlina-krivoy', 'ravnomernaya-shodimost']
 	},
 
 	'ekvivalentnost-norm': {

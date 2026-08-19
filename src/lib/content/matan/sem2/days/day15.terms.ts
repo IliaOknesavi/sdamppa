@@ -6,8 +6,10 @@ import type { Glossary } from '$lib/types';
 //   braket, skalyarnoe-pole, klassy-differenciruemosti, priznak-i-svoystvo,
 //   blacksquare. Канонический глоссарий склеивается последним и перекрывает
 //   совпадения, поэтому одноимённые карточки заводить нельзя.
-// Карточки gradient, matrica-yakobi, teorema-ferma и teorema-neyavnoy-funkcii
-// намеренно продублированы из дней 9–14 и 16, чтобы день резолвился независимо.
+// Карточки gradient, matrica-yakobi и teorema-ferma намеренно продублированы
+// из дней 9–14, чтобы день резолвился независимо. Ссылками подключаются
+// карточки соседних дней: teorema-o-neyavnoy-funkcii (день 14),
+// osobaya-tochka-krivoy (день 14), kompakt, teorema-veyershtrassa.
 export const day15Terms: Glossary = {
 	'uslovnyy-ekstremum': {
 		id: 'uslovnyy-ekstremum',
@@ -80,10 +82,43 @@ export const day15Terms: Glossary = {
 		term: 'Условие регулярности',
 		short: String.raw`Линейная независимость градиентов $\nabla g_i(\vec x^{\,*})$ в точке.`,
 		formula: String.raw`\operatorname{rank}\left(\frac{\partial g_i}{\partial x_j}\right)=m\quad\Longleftrightarrow\quad \det\left(\frac{\partial g_i}{\partial y_j}\right)_{i,j=1}^{m}\ne0`,
-		body: String.raw`Гипотеза, без которой метод Лагранжа неверен: градиенты связей в точке линейно независимы, то есть ранг [[matrica-yakobi|матрицы Якоби]] равен $m$; равносильно — найдутся $m$ «зависимых» переменных с невырожденным якобианом (посылка [[teorema-neyavnoy-funkcii|теоремы о неявной функции]]).
+		body: String.raw`Гипотеза, без которой метод Лагранжа неверен: градиенты связей в точке линейно независимы, то есть ранг [[matrica-yakobi|матрицы Якоби]] равен $m$; равносильно — найдутся $m$ «зависимых» переменных с невырожденным якобианом (посылка [[teorema-o-neyavnoy-funkcii|теоремы о неявной функции]]).
 
 Контрпример к пропуску: $f=x\to\min$ при $g=x^3-y^2=0$. Минимум есть в $(0,0)$, но $\nabla g(0,0)=\vec 0$, и система Лагранжа несовместна — метод не находит точку вовсе.`,
-		related: ['matrica-yakobi', 'teorema-neyavnoy-funkcii', 'mnozhitel-lagranzha', 'kasatelnoe-prostranstvo']
+		related: ['matrica-yakobi', 'teorema-o-neyavnoy-funkcii', 'mnozhitel-lagranzha', 'kasatelnoe-prostranstvo']
+	},
+
+	'lineynaya-nezavisimost': {
+		id: 'lineynaya-nezavisimost',
+		term: 'Линейная независимость и ранг',
+		short: String.raw`Ни один вектор не выражается через остальные; ранг — размер такого набора.`,
+		formula: String.raw`\sum_{i=1}^{m}c_i\vec v_i=\vec 0\ \Rightarrow\ c_1=\dots=c_m=0;\qquad \operatorname{rank}J=m`,
+		body: String.raw`Набор векторов линейно независим, если нулю равна только тривиальная их комбинация; ранг матрицы — наибольшее число линейно независимых строк. Для [[matrica-yakobi|матрицы Якоби связей]] строки — это градиенты $\nabla g_i$, поэтому «$\operatorname{rank}J=m$» и «градиенты связей независимы» — одно и то же.
+
+Отсюда $\dim T=n-m$ для [[kasatelnoe-prostranstvo|касательного пространства]], а $\{\nabla g_i\}$ становится базисом, что и определяет [[mnozhitel-lagranzha|множители]] однозначно.`,
+		related: ['uslovie-regulyarnosti', 'matrica-yakobi', 'lineynaya-obolochka-gradientov', 'kasatelnoe-prostranstvo']
+	},
+
+	'ortogonalnoe-dopolnenie': {
+		id: 'ortogonalnoe-dopolnenie',
+		term: 'Ортогональное дополнение',
+		short: String.raw`Векторы, перпендикулярные всему $L$; в $\mathbb R^n$ верно $(L^{\perp})^{\perp}=L$.`,
+		formula: String.raw`L^{\perp}=\{\vec h:\ \langle\vec v\mid\vec h\rangle=0\ \ \forall\vec v\in L\},\qquad (L^{\perp})^{\perp}=L`,
+		body: String.raw`Ортогональное дополнение подпространства $L$ — множество векторов, перпендикулярных всему $L$ ([[braket|bra-ket]]); это снова подпространство, причём $\dim L+\dim L^{\perp}=n$, и в конечномерном случае двойное дополнение возвращает исходное.
+
+На этом держится последний шаг доказательства: [[kasatelnoe-prostranstvo|касательное пространство]] есть $L^{\perp}$ для $L=\operatorname{span}\{\nabla g_i\}$, из Ферма вдоль путей выходит $\nabla f\perp T$, то есть $\nabla f\in(L^{\perp})^{\perp}=L$ — [[lineynaya-obolochka-gradientov|разложение по градиентам связей]].`,
+		related: ['kasatelnoe-prostranstvo', 'lineynaya-obolochka-gradientov', 'braket', 'lineynaya-nezavisimost']
+	},
+
+	'usloviya-kuna-takkera': {
+		id: 'usloviya-kuna-takkera',
+		term: 'Условия Куна–Таккера (KKT)',
+		short: String.raw`Лагранж для неравенств: множители неотрицательны, $\mu_i g_i=0$.`,
+		formula: String.raw`\nabla f+\sum_i\mu_i\nabla g_i=\vec 0,\quad g_i\le0,\quad \mu_i\ge0,\quad \mu_i g_i=0`,
+		body: String.raw`Обобщение метода на [[ogranichenie-neravenstvo|ограничения-неравенства]] (полное имя — условия Каруша–Куна–Таккера, отсюда сокращение KKT). К стационарности [[funkciya-lagranzha|функции Лагранжа]] добавляются два требования: **знак** $\mu_i\ge0$ и **дополняющая нежёсткость** $\mu_i g_i=0$ — либо ограничение активно, либо его множитель нулевой.
+
+Знак несёт информацию, а не оформление: он отбраковывает точки края, из которых движение внутрь области уменьшает $f$.`,
+		related: ['ogranichenie-neravenstvo', 'funkciya-lagranzha', 'mnozhitel-lagranzha', 'dopustimoe-mnozhestvo']
 	},
 
 	'ogranichenie-neravenstvo': {
@@ -126,19 +161,8 @@ export const day15Terms: Glossary = {
 		formula: String.raw`J=\left(\frac{\partial g_i}{\partial x_j}\right)_{i=1\ldots m,\ j=1\ldots n},\qquad \operatorname{rank}J=m`,
 		body: String.raw`Матрица частных производных набора [[svyaz|связей]]; её строки — градиенты $\nabla g_i$, а определитель квадратного блока называется якобианом. Расщепление переменных $\vec x=(y,z)$ на $m$ «зависимых» и $n-m$ свободных задаётся выбором квадратного блока в $J$.
 
-Через неё формулируются оба требования метода: [[uslovie-regulyarnosti|регулярность]] ($\operatorname{rank}J=m$) и невырожденность блока $\partial g_i/\partial y_j$ в [[teorema-neyavnoy-funkcii|теореме о неявной функции]]. Ядро $J$ — [[kasatelnoe-prostranstvo|касательное пространство]] к $\mathcal D$.`,
-		related: ['uslovie-regulyarnosti', 'kasatelnoe-prostranstvo', 'teorema-neyavnoy-funkcii', 'gradient']
-	},
-
-	'teorema-neyavnoy-funkcii': {
-		id: 'teorema-neyavnoy-funkcii',
-		term: 'Теорема о неявной функции',
-		short: String.raw`Связи локально разрешаются как $y=\varphi(z)$ с $\varphi\in C^k$.`,
-		formula: String.raw`\exists!\,\varphi:U(z^{*})\to V(y^{*}),\ \varphi\in C^{k},\ \varphi(z^{*})=y^{*},\ g_i(\varphi(z),z)=0`,
-		body: String.raw`Инструмент, которым обосновывается метод Лагранжа: при $g_i\in C^k$ и невырожденном блоке [[matrica-yakobi|матрицы Якоби]] по «зависимым» переменным система $g_i(y,z)=0$ локально разрешается единственной гладкой $y=\varphi(z)$; для одного уравнения теорема доказана в дне 14.
-
-Именно она даёт гладкий путь по [[dopustimoe-mnozhestvo|$\mathcal D$]] в любом [[kasatelnoe-prostranstvo|касательном]] направлении — единственный недоказанный шаг сегодняшнего вывода. Она же даёт редукцию условной задачи к безусловной для $F(z)=f(\varphi(z),z)$; разбор — день 16.`,
-		related: ['matrica-yakobi', 'uslovie-regulyarnosti', 'kasatelnoe-prostranstvo', 'dopustimoe-mnozhestvo']
+Через неё формулируются оба требования метода: [[uslovie-regulyarnosti|регулярность]] ($\operatorname{rank}J=m$) и невырожденность блока $\partial g_i/\partial y_j$ в [[teorema-o-neyavnoy-funkcii|теореме о неявной функции]]. Ядро $J$ — [[kasatelnoe-prostranstvo|касательное пространство]] к $\mathcal D$.`,
+		related: ['uslovie-regulyarnosti', 'kasatelnoe-prostranstvo', 'teorema-o-neyavnoy-funkcii', 'gradient']
 	},
 
 	'teorema-ferma': {

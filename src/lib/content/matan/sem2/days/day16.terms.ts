@@ -19,7 +19,7 @@ export const day16Terms: Glossary = {
 		body: String.raw`Точка $\vec x^{\,*}\in\mathcal D$ — **локальный условный минимум**, если в некоторой окрестности $U_{\vec x^{*}}$ выполнено $f(\vec x)\ge f(\vec x^{\,*})$ для всех допустимых соседей — точек $\vec x\in U_{\vec x^{*}}\cap\mathcal D$, где $\mathcal D$ есть [[dopustimoe-mnozhestvo|допустимое множество]]; для максимума — обратное неравенство.
 
 Отличие от безусловного экстремума в одном: сравнение идёт только по допустимым соседям, поэтому [[gradient|градиент]] $\nabla f(\vec x^{\,*})$ вполне может быть ненулевым. Так, $f(x,y)=x$ при связи $x^{2}+y^{2}-1=0$ имеет условный минимум в $(-1,0)$, хотя $\nabla f\equiv(1,0)\ne\vec 0$.`,
-		related: ['dopustimoe-mnozhestvo', 'mnozhiteli-lagranzha', 'redukciya', 'gradient']
+		related: ['dopustimoe-mnozhestvo', 'mnozhitel-lagranzha', 'redukciya', 'gradient']
 	},
 
 	'dopustimoe-mnozhestvo': {
@@ -30,7 +30,7 @@ export const day16Terms: Glossary = {
 		body: String.raw`**Допустимое множество** $\mathcal D$ вырезается связями-равенствами $g_i(\vec x)=0$, $m\le n$. При выполненном [[uslovie-regulyarnosti|условии регулярности]] оно локально является гладкой поверхностью размерности $n-m$ — графиком неявной функции $\vec y=\varphi(\vec z)$.
 
 Связи-неравенства $g_i\ge0$ дают уже не поверхность, а область с границей: часть ограничений в оптимуме активна ($g_i=0$), часть нет. Равенственный метод Лагранжа к такому множеству напрямую не применяется — вместо равенств получаются условия Куна–Таккера.`,
-		related: ['uslovnyy-ekstremum', 'uslovie-regulyarnosti', 'kasatelnoe-podprostranstvo']
+		related: ['uslovnyy-ekstremum', 'uslovie-regulyarnosti', 'kasatelnoe-prostranstvo']
 	},
 
 	'funkciya-lagranzha': {
@@ -41,11 +41,11 @@ export const day16Terms: Glossary = {
 		body: String.raw`**Функция Лагранжа** упаковывает целевую функцию и связи в один объект. Необходимое условие условного экстремума равносильно $\nabla_{\vec x}\mathcal L(\vec x^{\,*},\vec\lambda^{\,*})=\vec 0$, а частные производные по множителям возвращают сами связи: $\partial\mathcal L/\partial\lambda_i=-g_i=0$. Итого $n+m$ уравнений на $n+m$ неизвестных.
 
 Знак перед суммой — вопрос соглашения: замена $\lambda_i\mapsto-\lambda_i$ переводит $\mathcal L$ в $f+\sum_i\lambda_i g_i$, стационарные точки при этом те же, меняются лишь знаки множителей (для $f=xy$ при $x+y-10=0$: $\lambda=5$ против $\lambda=-5$). Минус выбран потому, что при нём необходимое условие читается как разложение $\nabla f=\sum_i\lambda_i\nabla g_i$.`,
-		related: ['mnozhiteli-lagranzha', 'uslovnyy-ekstremum', 'dostatochnoe-uslovie-uslovnogo-ekstremuma']
+		related: ['mnozhitel-lagranzha', 'uslovnyy-ekstremum', 'dostatochnoe-uslovie-uslovnogo-ekstremuma']
 	},
 
-	'mnozhiteli-lagranzha': {
-		id: 'mnozhiteli-lagranzha',
+	'mnozhitel-lagranzha': {
+		id: 'mnozhitel-lagranzha',
 		term: 'Множители Лагранжа',
 		short: String.raw`Координаты $\nabla f$ в базисе градиентов связей — считаются, а не подбираются.`,
 		formula: String.raw`\vec\lambda^{\,T}=\frac{\partial f}{\partial\vec y}\left(\frac{\partial\vec g}{\partial\vec y}\right)^{-1}`,
@@ -62,8 +62,8 @@ export const day16Terms: Glossary = {
 		formula: String.raw`\operatorname{rank}\left(\frac{\partial g_i}{\partial x_j}\right)(\vec x^{\,*})=m\iff \det\frac{\partial\vec g}{\partial\vec y}\ne0`,
 		body: String.raw`**Условие регулярности** требует, чтобы матрица Якоби связей $J=(\partial g_i/\partial x_j)$ имела полный ранг $m$ в исследуемой точке; равносильно — чтобы после [[rasshcheplenie-peremennyh|расщепления]] квадратная подматрица $\partial\vec g/\partial\vec y$ была невырождена. Только тогда работает [[teorema-o-neyavnoy-funkcii|теорема о неявной функции]] и законно обращение матрицы в выводе.
 
-Это посылка, а не оговорка: без неё метод неверен. Для $f=x$ при связи $y^{2}-x^{3}=0$ условный минимум есть в $(0,0)$, но там $\nabla g=\vec 0$, и разложения $\nabla f=\lambda\nabla g$ не существует ни при каком $\lambda$.`,
-		related: ['rasshcheplenie-peremennyh', 'teorema-o-neyavnoy-funkcii', 'mnozhiteli-lagranzha']
+Это посылка, а не оговорка: без неё метод неверен. Ранг падает двумя способами: градиент связи обнуляется (контрпример дня 15 — $f=x$ при $g=x^{3}-y^{2}=0$) либо ненулевые градиенты оказываются линейно зависимыми, и тогда множители перестают быть определёнными однозначно.`,
+		related: ['rasshcheplenie-peremennyh', 'teorema-o-neyavnoy-funkcii', 'mnozhitel-lagranzha']
 	},
 
 	'rasshcheplenie-peremennyh': {
@@ -84,7 +84,7 @@ export const day16Terms: Glossary = {
 		body: String.raw`**Редукция** — способ обосновать метод Лагранжа: [[rasshcheplenie-peremennyh|расщепить переменные]], разрешить связи по [[teorema-o-neyavnoy-funkcii|теореме о неявной функции]] как $\vec y=\varphi(\vec z)$, подставить в цель и получить [[reducirovannaya-funkciya|редуцированную функцию]] $F(\vec z)$ без всяких связей.
 
 Дальше работает обычная [[teorema-ferma-pole|теорема Ферма]]: $\nabla F(\vec z^{\,*})=\vec 0$. Расписав это цепным правилом, получают и разложение $\nabla f$ по градиентам связей, и формулу для самих $\lambda_i$.`,
-		related: ['reducirovannaya-funkciya', 'teorema-o-neyavnoy-funkcii', 'teorema-ferma-pole', 'mnozhiteli-lagranzha']
+		related: ['reducirovannaya-funkciya', 'teorema-o-neyavnoy-funkcii', 'teorema-ferma-pole', 'mnozhitel-lagranzha']
 	},
 
 	'reducirovannaya-funkciya': {
@@ -94,8 +94,8 @@ export const day16Terms: Glossary = {
 		formula: String.raw`F(\vec z)=f(\varphi(\vec z),\vec z),\qquad \vec z\in U(\vec z^{\,*})\subset\mathbb R^{\,n-m}`,
 		body: String.raw`**Редуцированная (безусловная) функция** получается подстановкой неявно выраженных зависимых переменных в целевую: $F(\vec z)=f(\varphi(\vec z),\vec z)$. Связи в неё уже зашиты, поэтому $\vec z$ пробегает целую окрестность в $\mathbb R^{\,n-m}$ — задача стала безусловной.
 
-Полезное тождество: вдоль графика все $g_i\equiv0$, поэтому $F$ совпадает там с [[funkciya-lagranzha|функцией Лагранжа]]: $F(\vec z)=\mathcal L(\varphi(\vec z),\vec z)$. Отсюда $d^{2}F$ есть сужение $d^{2}\mathcal L$ на [[kasatelnoe-podprostranstvo|касательное подпространство]].`,
-		related: ['redukciya', 'funkciya-lagranzha', 'kasatelnoe-podprostranstvo', 'teorema-ferma-pole']
+Полезное тождество: вдоль графика все $g_i\equiv0$, поэтому $F$ совпадает там с [[funkciya-lagranzha|функцией Лагранжа]]: $F(\vec z)=\mathcal L(\varphi(\vec z),\vec z)$. Отсюда $d^{2}F$ есть сужение $d^{2}\mathcal L$ на [[kasatelnoe-prostranstvo|касательное подпространство]].`,
+		related: ['redukciya', 'funkciya-lagranzha', 'kasatelnoe-prostranstvo', 'teorema-ferma-pole']
 	},
 
 	'teorema-o-neyavnoy-funkcii': {
@@ -105,7 +105,7 @@ export const day16Terms: Glossary = {
 		formula: String.raw`\exists!\ \varphi\in C^{k}(U):\ \varphi(\vec z^{\,*})=\vec y^{\,*},\ \ g_i(\varphi(\vec z),\vec z)\equiv 0`,
 		body: String.raw`Пусть $g_i\in C^{k}$, $g_i(\vec y^{\,*},\vec z^{\,*})=0$ и $\det\frac{\partial\vec g}{\partial\vec y}\ne0$. Тогда существуют окрестности $U(\vec z^{\,*})$, $V(\vec y^{\,*})$ и **единственная** $\varphi:U\to V$ класса $C^{k}(U)$ с $\varphi(\vec z^{\,*})=\vec y^{\,*}$ и $g_i(\varphi(\vec z),\vec z)=0$ на всём $U$.
 
-Второе равенство — тождество, и его дифференцирование даёт $\frac{\partial\varphi}{\partial\vec z}=-\bigl(\frac{\partial\vec g}{\partial\vec y}\bigr)^{-1}\frac{\partial\vec g}{\partial\vec z}$ — рабочую формулу [[redukciya|редукции]]. Условие невырожденности отбросить нельзя: при $\det\frac{\partial\vec g}{\partial\vec y}=0$ разрешить связи гладко может быть невозможно, как для $y^{2}-x^{3}=0$ в нуле.`,
+Второе равенство — тождество, и его дифференцирование даёт $\frac{\partial\varphi}{\partial\vec z}=-\bigl(\frac{\partial\vec g}{\partial\vec y}\bigr)^{-1}\frac{\partial\vec g}{\partial\vec z}$ — рабочую формулу [[redukciya|редукции]]. Условие невырожденности отбросить нельзя: при $\det\frac{\partial\vec g}{\partial\vec y}=0$ разрешить связи гладко может быть невозможно, как для $x^{3}-y^{2}=0$ в нуле.`,
 		related: ['uslovie-regulyarnosti', 'redukciya', 'reducirovannaya-funkciya', 'klassy-differenciruemosti']
 	},
 
@@ -120,8 +120,8 @@ export const day16Terms: Glossary = {
 		related: ['gradient', 'redukciya', 'reducirovannaya-funkciya', 'skalyarnoe-pole']
 	},
 
-	'kasatelnoe-podprostranstvo': {
-		id: 'kasatelnoe-podprostranstvo',
+	'kasatelnoe-prostranstvo': {
+		id: 'kasatelnoe-prostranstvo',
 		term: 'Касательное подпространство',
 		short: String.raw`Направления, вдоль которых можно двигаться, не покидая $\mathcal D$.`,
 		formula: String.raw`T_{\vec x^{*}}=\lbrace\vec h\in\mathbb R^{n}:\ \langle\nabla g_i(\vec x^{\,*})\mid\vec h\rangle=0,\ i=\overline{1,m}\rbrace`,
@@ -136,10 +136,10 @@ export const day16Terms: Glossary = {
 		term: 'Окаймлённый гессиан',
 		short: String.raw`Гессиан $\mathcal L$, окаймлённый матрицей Якоби связей.`,
 		formula: String.raw`\overline H=\begin{pmatrix}0&J\\ J^{T}&H(\mathcal L)\end{pmatrix},\qquad J=\left(\frac{\partial g_i}{\partial x_j}\right)`,
-		body: String.raw`**Окаймлённый гессиан** — матрица размера $(n+m)\times(n+m)$, в которой гессиан [[funkciya-lagranzha|функции Лагранжа]] окаймлён матрицей Якоби связей. Он позволяет проверить знакоопределённость $d^{2}\mathcal L$ на [[kasatelnoe-podprostranstvo|касательном подпространстве]], не выписывая его базис явно.
+		body: String.raw`**Окаймлённый гессиан** — матрица размера $(n+m)\times(n+m)$, в которой гессиан [[funkciya-lagranzha|функции Лагранжа]] окаймлён матрицей Якоби связей. Он позволяет проверить знакоопределённость $d^{2}\mathcal L$ на [[kasatelnoe-prostranstvo|касательном подпространстве]], не выписывая его базис явно.
 
 Правило: смотрят угловые миноры $\Delta_k$ порядков $k=2m+1,\dots,n+m$. Все знаки $(-1)^{m}$ — минимум; чередование с $(-1)^{m+1}$ — максимум. При $n=2$, $m=1$: $\det\overline H<0$ — минимум, $>0$ — максимум.`,
-		related: ['dostatochnoe-uslovie-uslovnogo-ekstremuma', 'kasatelnoe-podprostranstvo', 'funkciya-lagranzha']
+		related: ['dostatochnoe-uslovie-uslovnogo-ekstremuma', 'kasatelnoe-prostranstvo', 'funkciya-lagranzha']
 	},
 
 	'dostatochnoe-uslovie-uslovnogo-ekstremuma': {
@@ -147,10 +147,10 @@ export const day16Terms: Glossary = {
 		term: 'Достаточное условие условного экстремума',
 		short: String.raw`Знакоопределённость $d^{2}\mathcal L$ на $T$, а не во всём $\mathbb R^{n}$.`,
 		formula: String.raw`d^{2}\mathcal L(\vec x^{\,*})[\vec h]>0\ \ \forall\vec h\in T_{\vec x^{*}}\setminus\lbrace\vec 0\rbrace\ \Rightarrow\ \text{строгий минимум}`,
-		body: String.raw`Пусть $\vec x^{\,*}$ регулярна и удовлетворяет необходимому условию с множителями $\vec\lambda^{\,*}$. Если второй дифференциал [[funkciya-lagranzha|функции Лагранжа]] положительно определён на [[kasatelnoe-podprostranstvo|касательном подпространстве]] — строгий условный минимум; отрицательно определён — максимум; знакопеременен на $T$ — экстремума нет.
+		body: String.raw`Пусть $\vec x^{\,*}$ регулярна и удовлетворяет необходимому условию с множителями $\vec\lambda^{\,*}$. Если второй дифференциал [[funkciya-lagranzha|функции Лагранжа]] положительно определён на [[kasatelnoe-prostranstvo|касательном подпространстве]] — строгий условный минимум; отрицательно определён — максимум; знакопеременен на $T$ — экстремума нет.
 
 Берётся именно $\mathcal L$, а не $f$: только у неё градиент в $\vec x^{\,*}$ нулевой, и при дифференцировании тождества $F=\mathcal L\circ\vec x(\vec z)$ исчезает член со вторыми производными $\varphi$. Сужение на $T$ существенно: для $f=xy$ при $x+y=10$ гессиан $H(f)$ знаконеопределён, а на $T$ форма отрицательно определена — условный максимум.`,
-		related: ['funkciya-lagranzha', 'kasatelnoe-podprostranstvo', 'okaymlennyy-gessian', 'reducirovannaya-funkciya']
+		related: ['funkciya-lagranzha', 'kasatelnoe-prostranstvo', 'okaymlennyy-gessian', 'reducirovannaya-funkciya']
 	},
 
 	gradient: {
@@ -160,7 +160,7 @@ export const day16Terms: Glossary = {
 		formula: String.raw`\nabla f=\left(\frac{\partial f}{\partial x_1},\ \dots,\ \frac{\partial f}{\partial x_n}\right)`,
 		body: String.raw`**Градиент** [[skalyarnoe-pole|скалярного поля]] — вектор его частных производных. Через [[braket|bra-ket]] он задаёт производную по направлению: $f'_{\vec h}=\langle\nabla f\mid\vec h\rangle$, откуда и геометрия — направление наибыстрейшего роста, ортогональность линиям уровня.
 
-В задаче на условный экстремум ортогональность работает дважды: $\nabla g_i$ ортогонален [[dopustimoe-mnozhestvo|допустимому множеству]], а $\nabla f(\vec x^{\,*})$ обязан быть ортогонален [[kasatelnoe-podprostranstvo|касательному подпространству]] — отсюда и разложение по градиентам связей.`,
-		related: ['skalyarnoe-pole', 'braket', 'kasatelnoe-podprostranstvo', 'teorema-ferma-pole']
+В задаче на условный экстремум ортогональность работает дважды: $\nabla g_i$ ортогонален [[dopustimoe-mnozhestvo|допустимому множеству]], а $\nabla f(\vec x^{\,*})$ обязан быть ортогонален [[kasatelnoe-prostranstvo|касательному подпространству]] — отсюда и разложение по градиентам связей.`,
+		related: ['skalyarnoe-pole', 'braket', 'kasatelnoe-prostranstvo', 'teorema-ferma-pole']
 	}
 };

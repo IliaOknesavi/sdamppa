@@ -4,6 +4,8 @@ import type { Glossary } from '$lib/types';
 // экстремума). Понятия из канонического глоссария (sem2/glossary.ts) здесь НЕ
 // дублируются и подключаются ссылками [[...]]:
 //   braket, klassy-differenciruemosti.
+// Так же ссылками подключаются термины соседних дней: kompakt,
+// teorema-veyershtrassa, teorema-klero, sobstvennye-chisla.
 // Канонический глоссарий склеивается последним и перекрывает совпадения,
 // поэтому одноимённые карточки заводить нельзя.
 // Карточки gradient, stacionarnaya-tochka, teorema-ferma, matrica-gesse,
@@ -19,6 +21,17 @@ export const day13Terms: Glossary = {
 
 Однородность $Q(t\vec h)=t^2Q(\vec h)$ позволяет проверять [[znakoopredelennost|знак формы]] только на единичной сфере. Рабочий случай — форма [[matrica-gesse|матрицы Гессе]]: второй дифференциал скалярного поля есть в точности $Q(\vec h)$.`,
 		related: ['znakoopredelennost', 'matrica-gesse', 'kriteriy-silvestra', 'braket']
+	},
+
+	'odnorodnost-formy': {
+		id: 'odnorodnost-formy',
+		term: 'Однородность второй степени',
+		short: String.raw`$Q(t\vec h)=t^2Q(\vec h)$: растяжение аргумента множится квадратом.`,
+		formula: String.raw`Q(t\vec h)=t^2Q(\vec h)\qquad\forall t\in\mathbb R`,
+		body: String.raw`Каждое слагаемое $a_{ij}h_ih_j$ [[kvadratichnaya-forma|формы]] содержит ровно два множителя из $\vec h$, поэтому замена $\vec h\mapsto t\vec h$ умножает значение на $t^2$.
+
+Отсюда два технических удобства. Первое: $Q(\vec 0)=0$ у любой формы, поэтому в определении [[znakoopredelennost|знакоопределённости]] оговорка $\vec h\ne\vec 0$ обязательна. Второе: $Q(\vec h)=\lVert\vec h\rVert^2\,Q(\vec h/\lVert\vec h\rVert)$, а множитель положителен — значит и знак, и оценка снизу читаются на единичной сфере.`,
+		related: ['kvadratichnaya-forma', 'znakoopredelennost', 'polozhitelno-opredelennaya', 'dostatochnoe-uslovie-ekstremuma']
 	},
 
 	znakoopredelennost: {
@@ -65,6 +78,39 @@ export const day13Terms: Glossary = {
 		related: ['uglovoy-minor', 'znakoopredelennost', 'dostatochnoe-uslovie-ekstremuma', 'vyrozhdennyy-sluchay']
 	},
 
+	'dopolnenie-shura': {
+		id: 'dopolnenie-shura',
+		term: 'Дополнение Шура',
+		short: String.raw`Форма от $n-1$ переменных, остающаяся после выделения первого квадрата.`,
+		formula: String.raw`a'_{ij}=a_{ij}-\frac{a_{1i}a_{1j}}{a_{11}},\qquad \Delta_{k+1}=a_{11}\Delta'_k`,
+		body: String.raw`После выделения полного квадрата по первой переменной от [[kvadratichnaya-forma|формы]] остаётся форма от остальных $n-1$ переменных; её матрица $A'$ и называется дополнением Шура.
+
+Ценность — в пересчёте миноров. Вычитание первой строки с коэффициентом $a_{1i}/a_{11}$ определитель не меняет, поэтому $\Delta_{k+1}=a_{11}\Delta'_k$, то есть [[uglovoy-minor|угловые миноры]] дополнения равны $\Delta_{k+1}/\Delta_1$. Это и есть шаг индукции в [[kriteriy-silvestra|критерии Сильвестра]].`,
+		related: ['kriteriy-silvestra', 'uglovoy-minor', 'kvadratichnaya-forma', 'simmetrichnaya-matrica']
+	},
+
+	kongruenciya: {
+		id: 'kongruenciya',
+		term: 'Конгруэнтность матриц',
+		short: String.raw`$A=S^{T}DS$ — замена переменных в форме; при $\det S=1$ миноры не меняются.`,
+		formula: String.raw`\vec\xi=S\vec h\ \Rightarrow\ A=S^{T}DS,\qquad \det S=1\ \Rightarrow\ \det A=\det D`,
+		body: String.raw`Замена переменных $\vec\xi=S\vec h$ превращает матрицу [[kvadratichnaya-forma|формы]] в $S^{T}DS$ — это и называется конгруэнтностью (не подобием: работает транспонирование, а не обращение). Последовательное выделение квадратов даёт такую замену с **унитреугольной** $S$ — треугольной с единицами на диагонали, откуда $\det S=1$ и $\det A=\det D$.
+
+На этом держится обратная импликация в [[kriteriy-silvestra|критерии Сильвестра]], а диагональ $D$ — это канонический вид через [[uglovoy-minor|угловые миноры]].`,
+		related: ['kvadratichnaya-forma', 'kriteriy-silvestra', 'uglovoy-minor', 'dopolnenie-shura']
+	},
+
+	'indeks-formy': {
+		id: 'indeks-formy',
+		term: 'Индекс формы',
+		short: String.raw`Число отрицательных квадратов в каноническом виде; от замены не зависит.`,
+		formula: String.raw`Q=\sum_{k=1}^{p}\xi_k^2-\sum_{k=p+1}^{p+q}\xi_k^2,\qquad \text{индекс}=q`,
+		body: String.raw`Приводя [[kvadratichnaya-forma|форму]] к сумме квадратов, разные замены дают разные коэффициенты, но количество плюсов $p$ и минусов $q$ одно и то же — закон инерции. Число $q$ и называют индексом.
+
+Для стационарной точки индекс — это «сколько направлений вниз». Значения $q=0$ и $q=n$ дают минимум и максимум, промежуточные — [[sedlovaya-tochka|сёдла]] разной глубины, а $p+q<n$ означает [[vyrozhdennyy-sluchay|вырожденный случай]].`,
+		related: ['kvadratichnaya-forma', 'znakoopredelennost', 'sedlovaya-tochka', 'vyrozhdennyy-sluchay']
+	},
+
 	'dostatochnoe-uslovie-ekstremuma': {
 		id: 'dostatochnoe-uslovie-ekstremuma',
 		term: 'Достаточное условие экстремума',
@@ -92,7 +138,7 @@ export const day13Terms: Glossary = {
 		term: 'Вырожденный случай (форма полуопределена)',
 		short: String.raw`Форма полуопределена — второй порядок ответа не даёт; $\det H=0$ необходим, но не достаточен.`,
 		formula: String.raw`Q\ge0\ \text{и}\ \exists\,\vec h_*\ne\vec 0:\ Q(\vec h_*)=0\ \Rightarrow\ \text{второй порядок не решает}`,
-		body: String.raw`Отказ метода наступает, когда форма гессиана **полуопределена**: обоих знаков она не принимает, но на каком-то ненулевом направлении обнуляется. Вдоль него квадратичный член ничего не решает, и знак приращения определяет первый неисчезающий член более высокого порядка, которого в формуле Тейлора второго порядка нет (у $x^2+y^3$ это третий, у $x^4\pm y^4$ — четвёртый). Нулевой [[gessian|гессиан]] для отказа необходим, но не достаточен: у $\operatorname{diag}(1,-1,0)$ определитель нулевой, а форма неопределённая — и точка седловая.
+		body: String.raw`Отказ метода наступает, когда форма гессиана **полуопределена**: обоих знаков она не принимает, но на каком-то ненулевом направлении обнуляется. Вдоль него квадратичный член ничего не решает, и знак приращения определяет первый неисчезающий член более высокого порядка, которого в формуле Тейлора второго порядка нет (у $x^2+y^3$ это третий, у $x^4\pm y^4$ — четвёртый). Нулевой [[gessian|гессиан]] для отказа необходим, но не достаточен: у $\operatorname{diag}(2,-2,0)$ определитель нулевой, а форма неопределённая — и точка седловая.
 
 Канонический пример: у $x^4+y^4$ и $x^4-y^4$ **одна и та же** нулевая матрица Гессе в начале координат, но у первой там строгий минимум, а у второй — седло. Одинаковый вход, разный ответ: критерий, читающий только $H$, различить их не может. Это и есть граница метода второго порядка.`,
 		related: ['kriteriy-silvestra', 'gessian', 'znakoopredelennost', 'dostatochnoe-uslovie-ekstremuma']

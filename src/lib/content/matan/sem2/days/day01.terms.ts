@@ -151,6 +151,94 @@ export const day01Terms: Glossary = {
 		related: ['proizvodnaya', 'formalnaya-proizvodnaya-polinoma', 'formula-eylera', 'kasatelnaya']
 	},
 
+	bilineynost: {
+		id: 'bilineynost',
+		term: 'Билинейность',
+		short: String.raw`Линейность по каждому из двух аргументов при фиксированном другом.`,
+		formula: String.raw`B(\lambda P_1+\mu P_2,\,Q)=\lambda B(P_1,Q)+\mu B(P_2,Q)`,
+		body: String.raw`Отображение двух аргументов **билинейно**, если оно линейно по каждому из них при фиксированном другом. Умножение полиномов билинейно по паре $(P,Q)$, и вместе с линейностью [[operator-differencirovaniya|оператора $d_x$]] это делает билинейными обе части [[pravilo-leybnica|тождества Лейбница]].
+
+Отсюда рабочий приём: две билинейные формы, совпавшие на всех парах базисных векторов, совпадают всюду. Поэтому тождество достаточно проверить на мономах $x^m,x^n$ — и доказательство для [[formalnaya-proizvodnaya-polinoma|формальной производной]] сводится к одной строке вместо перебора всех пар полиномов.`,
+		related: ['pravilo-leybnica', 'formalnaya-proizvodnaya-polinoma', 'operator-differencirovaniya']
+	},
+
+	distributivnost: {
+		id: 'distributivnost',
+		term: 'Дистрибутивность и коммутативность',
+		short: String.raw`Законы кольца: $a(b+c)=ab+ac$ и $ab=ba$.`,
+		formula: String.raw`a(b+c)=ab+ac,\qquad ab=ba`,
+		body: String.raw`**Дистрибутивность** связывает умножение со сложением: $a(b+c)=ab+ac$. **Коммутативность** говорит, что порядок сомножителей не важен: $ab=ba$. Это аксиомы [[kommutativnoe-kolco|кольца]], а не свойства чисел, поэтому они выполняются и там, где чисел нет.
+
+На них держится доказательство линейности [[formalnaya-proizvodnaya-polinoma|формальной производной]]: раскрытие $k(a_k+b_k)=k\,a_k+k\,b_k$ — это дистрибутивность, а перестановка множителей в проверке [[pravilo-leybnica|тождества Лейбница]] на мономах — коммутативность.`,
+		related: ['kommutativnoe-kolco', 'formalnaya-proizvodnaya-polinoma', 'pravilo-leybnica']
+	},
+
+	'kommutativnoe-kolco': {
+		id: 'kommutativnoe-kolco',
+		term: 'Коммутативное кольцо',
+		short: String.raw`Множество со сложением и коммутативным умножением.`,
+		formula: String.raw`(K,+,\cdot):\quad a+b=b+a,\ \ ab=ba,\ \ a(b+c)=ab+ac`,
+		body: String.raw`**Кольцо** — множество, где определены сложение (с нулём и противоположным элементом) и умножение, связанные [[distributivnost|дистрибутивностью]]. Кольцо **коммутативно**, если $ab=ba$. Примеры: $\mathbb Z$, $\mathbb Q$, $\mathbb R$, $\mathbb C$ и многочлены над любым из них.
+
+Зачем это здесь: определение [[formalnaya-proizvodnaya-polinoma|формальной производной]] $a_k\mapsto k\,a_k$ не упоминает ни предела, ни порядка, поэтому дословно работает над любым коммутативным кольцом коэффициентов. Оговорка «$t\ne0$ в кольце коэффициентов» в разборе [[kratnost-kornya|кратности корня]] — ровно про это: над $\mathbb R$ она выполнена автоматически, над кольцом вычетов — нет.`,
+		related: ['distributivnost', 'formalnaya-proizvodnaya-polinoma', 'kratnost-kornya']
+	},
+
+	nilpotentnost: {
+		id: 'nilpotentnost',
+		term: 'Нильпотентный оператор',
+		short: String.raw`Некоторая степень оператора равна нулевому оператору.`,
+		formula: String.raw`A^m=0\quad\text{при некотором }m\in\mathbb N_1`,
+		body: String.raw`Оператор **нильпотентен**, если какая-то его степень — нулевой оператор: $A^m=0$. Спектр такого оператора состоит из одного нуля: [[sobstvennyy-vektor|собственных значений]] $\lambda\ne0$ у него быть не может, иначе $A^m\vec x=\lambda^m\vec x\ne\bar 0$.
+
+Пример дня: [[operator-differencirovaniya|$d/dx$]] на многочленах степени $\le4$ нильпотентен с $m=5$ — пятикратное дифференцирование убивает любой такой многочлен, и матрица $5\times5$ в пятой степени равна нулю. Отсюда и вывод: экспонента, у которой $(e^x)'=e^x$, полиномом быть не может.`,
+		related: ['operator-differencirovaniya', 'sobstvennyy-vektor', 'formalnaya-proizvodnaya-polinoma']
+	},
+
+	'sobstvennyy-vektor': {
+		id: 'sobstvennyy-vektor',
+		term: 'Собственный вектор, собственное значение, спектр',
+		short: String.raw`$A\vec x=\lambda\vec x$ — вектор, который оператор только растягивает.`,
+		formula: String.raw`A\vec x=\lambda\vec x,\qquad \vec x\ne\bar 0`,
+		body: String.raw`**Собственный вектор** оператора $A$ — ненулевой вектор, который $A$ переводит в кратный ему: $A\vec x=\lambda\vec x$. Число $\lambda$ называют **собственным значением**, а множество всех собственных значений — **спектром**.
+
+Для [[operator-differencirovaniya|оператора $d/dx$]] это читается буквально: $(e^x)'=e^x$ означает, что экспонента — собственный вектор с $\lambda=1$, а $(e^{ix})'=i\,e^{ix}$ ([[formula-eylera|формула Эйлера]]) — с $\lambda=i$. На многочленах степени $\le4$ спектр состоит из одного нуля, потому что матрица оператора [[nilpotentnost|нильпотентна]].`,
+		related: ['operator-differencirovaniya', 'nilpotentnost', 'formula-eylera']
+	},
+
+	'algebra-funkciy': {
+		id: 'algebra-funkciy',
+		term: 'Алгебра функций и дифференцирование алгебры',
+		short: String.raw`Линейное пространство, в котором есть ещё и умножение элементов.`,
+		formula: String.raw`\lambda f+\mu g\in A,\qquad f\cdot g\in A`,
+		body: String.raw`**Алгебра** — линейное пространство, замкнутое ещё и относительно умножения своих элементов. Функции $\mathbb R\to\mathbb R$ ([[end-r|$\operatorname{End}(\mathbb R)$]]) и многочлены $\mathbb R[x]$ — алгебры: их можно складывать, умножать на число и перемножать между собой.
+
+Это ровно та структура, которой хватает для третьего входа в производную: **дифференцированием алгебры** называют линейный оператор $D$ с [[pravilo-leybnica|тождеством Лейбница]] $D(fg)=(Df)g+f(Dg)$. От аргумента при этом не требуется ни предела, ни метрики — только умножение внутри алгебры.`,
+		related: ['pravilo-leybnica', 'end-r', 'operator-differencirovaniya']
+	},
+
+	'zamechatelnye-predely': {
+		id: 'zamechatelnye-predely',
+		term: 'Замечательные (эталонные) пределы',
+		short: String.raw`$\sin t/t\to1$ и $(e^t-1)/t\to1$ — из них собрана вся таблица.`,
+		formula: String.raw`\lim_{t\to0}\frac{\sin t}{t}=1,\qquad \lim_{t\to0}\frac{e^t-1}{t}=1`,
+		body: String.raw`Два предела, к которым сводятся все выводы [[tablichnye-proizvodnye|табличных производных]]: $\frac{\sin t}{t}\to1$ (первый замечательный) и $\frac{e^t-1}{t}\to1$ (второй, записанный через экспоненту). Рядом с ними работает $\frac{\ln(1+u)}{u}\to1$ — тот же второй, прочитанный после замены.
+
+Приём всегда один: из [[raznostnoe-otnoshenie|разностного отношения]] выносят множитель, не зависящий от $\Delta x$, а остаток подгоняют под эталон домножением знаменателя. Отсюда $(\sin x)'=\cos x$, $(e^x)'=e^x$, $(a^x)'=\ln a\cdot a^x$.`,
+		related: ['tablichnye-proizvodnye', 'raznostnoe-otnoshenie', 'proizvodnaya']
+	},
+
+	'mashinnyy-epsilon': {
+		id: 'mashinnyy-epsilon',
+		term: 'Машинный эпсилон',
+		short: String.raw`Относительная точность арифметики double: $\approx2{,}2\cdot10^{-16}$.`,
+		formula: String.raw`\varepsilon_{\text{маш}}\approx2{,}2\cdot10^{-16},\qquad h_{\text{опт}}\approx\sqrt{\varepsilon_{\text{маш}}}`,
+		body: String.raw`**Машинный эпсилон** $\varepsilon_{\text{маш}}$ — наименьшее число, которое ещё отличимо от нуля при сложении с единицей; для двойной точности это $\approx2{,}2\cdot10^{-16}$. Вычитание близких чисел теряет значащие цифры именно на этом уровне.
+
+Отсюда оптимальный шаг численного дифференцирования: у односторонней разности погрешность метода порядка $h$, а шум округления порядка $\varepsilon_{\text{маш}}/h$, и минимум суммы даёт $h\approx\sqrt{\varepsilon_{\text{маш}}}\approx10^{-8}$; у центральной схемы — $h\approx\varepsilon_{\text{маш}}^{1/3}\approx10^{-5}$. Правило «возьму $h$ поменьше, будет точнее» поэтому ложно.`,
+		related: ['raznostnoe-otnoshenie', 'proizvodnaya', 'odnostoronnyaya-proizvodnaya']
+	},
+
 	'formula-eylera': {
 		id: 'formula-eylera',
 		term: 'Формула Эйлера',

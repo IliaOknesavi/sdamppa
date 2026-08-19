@@ -50,6 +50,39 @@ export const day07Terms: Glossary = {
 		related: ['skalyarnoe-pole', 'chastnaya-proizvodnaya', 'end-r']
 	},
 
+	kovektor: {
+		id: 'kovektor',
+		term: 'Ковектор',
+		short: String.raw`Линейная функция на векторах; при смене базиса пересчитывается обратно.`,
+		formula: String.raw`\omega(\vec h)=\sum_i\omega_i h^i,\qquad \tilde\omega=\omega A,\quad \tilde{\vec x}=A^{-1}\vec x`,
+		body: String.raw`**Ковектор** — линейная функция на векторах. От вектора его отличает закон пересчёта: при смене базиса координаты вектора и координаты ковектора преобразуются противоположными матрицами, поэтому значение $\omega(\vec h)$ от базиса не зависит.
+
+[[gradient|Градиент]] — именно ковектор: он собран из [[chastnaya-proizvodnaya|частных производных]], а не из координат точки, и на роль вектора попадает только по [[soglasovannost-po-bazisu|соглашению о базисе]]. Отождествление законно в ортонормированном базисе, где обе матрицы совпадают, — и всюду дальше базис такой.`,
+		related: ['gradient', 'chastnaya-proizvodnaya', 'soglasovannost-po-bazisu']
+	},
+
+	'matrica-perehoda': {
+		id: 'matrica-perehoda',
+		term: 'Матрица перехода',
+		short: String.raw`Выражает старые координаты точки через новые: $\vec x=A\tilde{\vec x}$.`,
+		formula: String.raw`\vec x=A\tilde{\vec x},\qquad A=\bigl(\tilde{\vec e}_1\ \tilde{\vec e}_2\ \dots\ \tilde{\vec e}_n\bigr)`,
+		body: String.raw`Столбцы **матрицы перехода** $A$ — координаты новых базисных векторов, записанные в старом базисе. Поэтому $A$ переводит новые координаты точки в старые, $\vec x=A\tilde{\vec x}$, а не наоборот — на этом чаще всего и ошибаются.
+
+Через неё формулируется [[soglasovannost-po-bazisu|согласованность по базису]]: [[skalyarnoe-pole|скалярное поле]] обязано пересчитываться по закону $\tilde f=f\circ A$. Для поворота на $45^\circ$ это и превращает $x^2+2y^2$ в $\tfrac32(\tilde x^2+\tilde y^2)+\tilde x\tilde y$ — другая формула, то же поле.`,
+		related: ['soglasovannost-po-bazisu', 'skalyarnoe-pole', 'fop-fnp']
+	},
+
+	'kasatelnaya-ploskost': {
+		id: 'kasatelnaya-ploskost',
+		term: 'Касательная плоскость',
+		short: String.raw`Гиперплоскость нулевых направлений: $\langle\vec\nabla f\mid\vec l\,\rangle=0$.`,
+		formula: String.raw`T_{\vec x_0}=\lbrace\vec l:\ \langle\vec\nabla f(\vec x_0)\mid\vec l\,\rangle=0\rbrace`,
+		body: String.raw`**Касательная плоскость** к [[poverhnost-urovnya|поверхности уровня]] в точке — множество направлений, вдоль которых [[proizvodnaya-po-napravleniyu|производная по направлению]] равна нулю. Это гиперплоскость размерности $n-1$, ортогональная [[gradient|градиенту]]; сам $\vec\nabla f$ служит для неё вектором нормали.
+
+Существование её требует $\vec\nabla f\ne\bar 0$. В [[stacionarnaya-tochka|стационарной точке]] нулевыми оказываются сразу все направления, и плоскости нет вовсе — как у конуса $x^2+y^2=z^2$ в вершине.`,
+		related: ['poverhnost-urovnya', 'gradient', 'proizvodnaya-po-napravleniyu', 'stacionarnaya-tochka']
+	},
+
 	'soglasovannost-po-bazisu': {
 		id: 'soglasovannost-po-bazisu',
 		term: 'Согласованность по базису',
@@ -123,7 +156,7 @@ export const day07Terms: Glossary = {
 		formula: String.raw`f(\vec x_0+\vec h)-f(\vec x_0)=\langle\vec a\mid\vec h\,\rangle+\bar o(\|\vec h\|)`,
 		body: String.raw`Поле **дифференцируемо** в точке, если его приращение допускает линейное приближение с остатком $\bar o(\|\vec h\|)$; полное имя такого приближения — производная Фреше (день 8). Существование всех [[chastnaya-proizvodnaya|частных производных]] — условие строго слабее: оно даёт $n$ чисел, которые в лучшем случае служат координатами приближения, и не гарантирует даже непрерывности.
 
-Различающий пример: $f=\frac{xy}{x^2+y^2}$, $f(0,0)=0$. Обе частные производные в нуле есть и равны нулю, потому что на осях $f\equiv0$; но вдоль прямой $y=x$ поле равно $\tfrac12$, так что предела в нуле нет. Полная лестница «Фреше — Гато — все направления — частные» разбирается в дне 9; про шкалу гладкости — [[klassy-differenciruemosti|классы гладкости]].`,
+Различающий пример — $f=\frac{xy}{x^2+y^2}$, $f(0,0)=0$: обе частные производные в нуле есть, а непрерывности нет. Полная лестница «Фреше — Гато — все направления — частные» вместе с разбором этого примера — день 9; про шкалу гладкости — [[klassy-differenciruemosti|классы гладкости]].`,
 		related: ['chastnaya-proizvodnaya', 'skalyarnoe-pole', 'klassy-differenciruemosti']
 	},
 

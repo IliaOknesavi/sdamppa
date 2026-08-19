@@ -6,9 +6,37 @@ import type { Glossary } from '$lib/types';
 //   lsk, rang-razbieniya, nepravilnaya-mera-nol, priznak-i-svoystvo,
 //   blacksquare. Канонический глоссарий склеивается последним и перекрывает
 //   совпадения, поэтому одноимённые карточки заводить нельзя.
-// Карточка kriteriy-integriruemosti намеренно продублирована из дня 18, чтобы
-// день резолвился независимо.
+// Термины, введённые в других днях (kompakt, teleskopicheskaya-summa,
+// teorema-veyershtrassa, lipshitsevost, kriteriy-integriruemosti), здесь не
+// объявляются: глоссарий курса склеивается из всех дней сразу.
 export const day17Terms: Glossary = {
+	funkcional: {
+		id: 'funkcional',
+		term: 'Функционал',
+		short: String.raw`Отображение, у которого аргумент — функция, а значение — число.`,
+		formula: String.raw`I:\ (f,\lambda,\vec\xi)\ \mapsto\ \sum_i f(\xi_i)\lambda_i\in\mathbb R`,
+		body: String.raw`Функционал — отображение, аргументом которого служит функция (или набор с функцией внутри), а значением — число. [[integralnaya-summa|Интегральная сумма]] $I(f,\lambda,\vec\xi)$ — функционал от тройки: подынтегральной функции, [[razbienie|разбиения]] и набора отмеченных точек. Отсюда и форма определения: требование ставится не к одному числу, а ко всему семейству значений сразу. Сам [[opredelennyy-integral|определённый интеграл]] — тоже функционал, линейный по $f$.`,
+		related: ['integralnaya-summa', 'razbienie', 'otmechennaya-tochka', 'opredelennyy-integral']
+	},
+
+	'polnota-r': {
+		id: 'polnota-r',
+		term: 'Полнота ℝ и точная грань',
+		short: String.raw`Непустое ограниченное множество имеет точную грань — это и есть полнота.`,
+		formula: String.raw`X\ne\varnothing,\ X\ \text{ограничено сверху}\ \Rightarrow\ \exists\sup X\in\mathbb R`,
+		body: String.raw`Аксиома полноты вещественной прямой: у всякого непустого ограниченного сверху множества есть точная верхняя грань, у ограниченного снизу — точная нижняя. В теории интеграла она работает дважды. Множество [[verhnyaya-summa-darbu|верхних сумм]] ограничено снизу любой нижней, значит существует $\inf_\lambda U$; множество нижних ограничено сверху, значит существует $\sup_\lambda L$. Предела для этого не нужно: [[verhniy-integral|верхний]] и [[nizhniy-integral|нижний]] интегралы есть у любой ограниченной $f$.`,
+		related: ['verhniy-integral', 'nizhniy-integral', 'summy-darbu', 'verhnyaya-summa-darbu']
+	},
+
+	'plotnoe-mnozhestvo': {
+		id: 'plotnoe-mnozhestvo',
+		term: 'Плотное множество',
+		short: String.raw`Точки множества есть в любом интервале: $\mathrm{cl}\,A=\mathbb R$.`,
+		formula: String.raw`\operatorname{cl}\mathbb Q=\mathbb R,\qquad \operatorname{cl}(\mathbb R\setminus\mathbb Q)=\mathbb R`,
+		body: String.raw`Множество $A$ плотно в $\mathbb R$, если его [[zamykanie|замыкание]] — вся прямая, то есть в любом невырожденном интервале найдётся точка $A$. Плотны и рациональные, и иррациональные, поэтому на каждом куске любого [[razbienie|разбиения]] у функции Дирихле $\sup=1$ и $\inf=0$, а [[kolebanie-funkcii|колебание]] равно единице при любом ранге. Плотность и размер — про разное: плотное $\mathbb Q$ имеет [[nepravilnaya-mera-nol|меру нуль]].`,
+		related: ['zamykanie', 'razbienie', 'kolebanie-funkcii', 'nepravilnaya-mera-nol']
+	},
+
 	razbienie: {
 		id: 'razbienie',
 		term: 'Разбиение отрезка',
@@ -139,16 +167,5 @@ export const day17Terms: Glossary = {
 
 Так строится интеграл Римана; техника его вычисления через первообразную, $F(b)-F(a)$, появляется позже (дни 19–20) и опирается на уже построенный объект.`,
 		related: ['verhniy-integral', 'nizhniy-integral', 'integralnaya-summa', 'kriteriy-integriruemosti']
-	},
-
-	'kriteriy-integriruemosti': {
-		id: 'kriteriy-integriruemosti',
-		term: 'Критерий интегрируемости',
-		short: String.raw`Ограниченная $f$ интегрируема ⟺ найдётся разбиение с $U-L<\varepsilon$.`,
-		formula: String.raw`f\in\mathcal R[a;b]\iff\forall\varepsilon>0\ \exists\lambda:\ \sum_i h_i\lambda_i<\varepsilon`,
-		body: String.raw`Подробно — день 18. Прямая импликация разворачивается через $\lim\sum h_i\lambda_i=0$ и зажатие $L\le I\le U$; обратная — выбором [[otmechennaya-tochka|отмеченных точек]], реализующих $\sup$ и $\inf$.
-
-Равносильная форма — предел по базе мелкости: $\lim_{\lambda_R\to0}\sum_i h_i\lambda_i=0$. Ответ на вопрос, насколько разрывной может быть интегрируемая функция, даёт [[nepravilnaya-mera-nol|множество меры нуль]]: разрывы допустимы, если их мера равна нулю.`,
-		related: ['summy-darbu', 'kolebanie-funkcii', 'opredelennyy-integral', 'nepravilnaya-mera-nol']
 	}
 };

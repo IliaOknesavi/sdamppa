@@ -10,6 +10,15 @@ import type { Glossary } from '$lib/types';
 // =====================================================================
 
 export const day20Terms: Glossary = {
+	'formula-stoksa': {
+		id: 'formula-stoksa',
+		term: 'Формула Стокса',
+		short: String.raw`Интеграл от $d\omega$ по области равен интегралу от $\omega$ по её границе.`,
+		formula: String.raw`\int_D d\omega=\int_{\partial D}\omega`,
+		body: String.raw`Общая форма связи «интеграл по области — интеграл по границе»: слева производный объект $d\omega$, справа сам $\omega$ на краю. [[teorema-nyutona-leybnica|Формула Ньютона–Лейбница]] — её одномерный случай: область есть отрезок, граница — пара точек, а «интеграл по двум точкам» — разность $F(b)-F(a)$ со знаками. Отсюда видно, почему [[integral-s-peremennym-verhnim-predelom|переменный верхний предел]] не переносится в $\mathbb R^n$: граница плоской области к паре точек не сводится.`,
+		related: ['teorema-nyutona-leybnica', 'integral-s-peremennym-verhnim-predelom', 'teorema-barrou']
+	},
+
 	'integral-s-peremennym-verhnim-predelom': {
 		id: 'integral-s-peremennym-verhnim-predelom',
 		term: 'Интеграл с переменным верхним пределом',

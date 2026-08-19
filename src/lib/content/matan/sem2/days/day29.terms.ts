@@ -7,10 +7,14 @@ import type { Glossary } from '$lib/types';
 // на них идут только перекрёстные ссылки [[...]]: lsk, metriki-rho, end-r,
 // skalyarnoe-pole, vykolotaya-okrestnost, skhodyashchayasya-v-sebe,
 // n-nol-n-odin, asimptoticheskie-klassy, priznak-i-svoystvo, blacksquare.
+// Карточки понятий, введённых в других днях (aksiomy-metriki, teorema-veyershtrassa,
+// kontrapoziciya, lineynost-integrala, monotonnost-integrala, ocenka-modulya-integrala,
+// teorema-barrou, teorema-nyutona-leybnica, polnota-r, ploshchad-mnozhestva,
+// indikator-oblasti, zamechatelnye-predely, mazhoranta-i-minoranta), здесь тоже
+// НЕ дублируются: глоссарий курса склеивается из всех дней, и повтор был бы
+// перекрыт днём, где термин вводится впервые.
 // Канонический глоссарий склеивается последним и перекрывает совпадения,
 // поэтому одноимённые карточки заводить нельзя.
-// Все остальные термины, на которые ссылается день, объявлены прямо здесь —
-// день должен резолвиться независимо от соседних.
 export const day29Terms: Glossary = {
 	'potochechnaya-shodimost': {
 		id: 'potochechnaya-shodimost',
@@ -43,6 +47,15 @@ export const day29Terms: Glossary = {
 
 Запись $\max$ законна на [[funkcionalnoe-prostranstvo|$C[a,b]$]] — непрерывная на [[lsk|ЛСК]] функция достигает максимума. Для разрывных функций нужен $\sup$: у $x^n$ и его разрывного предела $\sup=1$ не достигается ни в одной точке, максимума нет. У неограниченных функций $\sup|f_1-f_2|$ бывает бесконечным, поэтому метрику берут либо на ограниченных функциях, либо на $C[a,b]$.`,
 		related: ['ravnomernaya-shodimost', 'funkcionalnoe-prostranstvo', 'shar-v-funkcionalnom-prostranstve', 'metriki-rho']
+	},
+
+	'supremum': {
+		id: 'supremum',
+		term: 'Супремум и максимум',
+		short: String.raw`$\sup$ — точная верхняя грань; максимумом бывает не всегда.`,
+		formula: String.raw`\sup_{x\in D}g(x)=\min\{C:\ g(x)\le C\ \ \forall x\in D\}`,
+		body: String.raw`Наименьшая из верхних границ множества значений; существование гарантирует [[polnota-r|полнота $\mathbb R$]]. Максимум — супремум, который вдобавок достигается в точке, и разница рабочая: у $x^n$ и его разрывного предела $\sup_{x\in[0;1]}|x^n-f|=1$, а максимума нет вовсе. На непрерывных функциях супремум всегда максимум по [[teorema-veyershtrassa|теореме Вейерштрасса]]; вне этого класса и в [[metrika-ravnomernoy-shodimosti|метрике]], и в оценках писать надо $\sup$.`,
+		related: ['metrika-ravnomernoy-shodimosti', 'teorema-veyershtrassa', 'polnota-r', 'ravnomernaya-shodimost']
 	},
 
 	'funkcionalnoe-prostranstvo': {
@@ -100,6 +113,15 @@ export const day29Terms: Glossary = {
 		related: ['nepreryvnost-predelnoy-funkcii', 'funkcionalnoe-prostranstvo', 'skhodyashchayasya-v-sebe', 'metrika-ravnomernoy-shodimosti']
 	},
 
+	'polnota': {
+		id: 'polnota',
+		term: 'Полнота метрического пространства',
+		short: String.raw`Всякая сходящаяся в себе последовательность имеет предел внутри.`,
+		formula: String.raw`\forall\{x_n\}\ \text{сходящейся в себе}\quad \exists x\in M:\ \rho(x_n,x)\to0`,
+		body: String.raw`Пространство полно, если [[skhodyashchayasya-v-sebe|фундаментальность]] равносильна сходимости: предел не только существует, но и лежит в самом пространстве. $\mathbb R$ полно, $\mathbb Q$ — нет. [[polnota-r|Полнота $\mathbb R$]] работает инструментом: именно она даёт поточечный предел в доказательстве [[polnota-funkcionalnogo-prostranstva|полноты $C[a,b]$]], где кандидат сначала строится в каждой точке отдельно и лишь потом проверяется, что сходимость к нему равномерна.`,
+		related: ['skhodyashchayasya-v-sebe', 'polnota-funkcionalnogo-prostranstva', 'polnota-r', 'funkcionalnoe-prostranstvo']
+	},
+
 	'dvuhparametricheskaya-funkciya': {
 		id: 'dvuhparametricheskaya-funkciya',
 		term: 'Двухпараметрическая функция и равномерность по параметру',
@@ -148,10 +170,10 @@ export const day29Terms: Glossary = {
 		id: 'perestanovka-predela-i-proizvodnoy',
 		term: 'Перестановка предела и производной',
 		short: String.raw`Законна при равномерной сходимости производных, а не функций.`,
-		formula: String.raw`(f_n)'_x\rightrightarrows f'\ \Longrightarrow\ \lim_{n\to\infty}\bigl(f_n(x)\bigr)'_x=\Bigl(\lim_{n\to\infty}f_n(x)\Bigr)'_x`,
-		body: String.raw`Соседнее с [[predelnyy-perehod-pod-integralom|предельным переходом под интегралом]] утверждение, но с другим условием.
+		formula: String.raw`f_n\in C^1,\ \ \exists\lim_n f_n(x_0),\ \ (f_n)'\rightrightarrows g\ \Longrightarrow\ f_n\rightrightarrows f,\ \ f'=g`,
+		body: String.raw`Соседнее с [[predelnyy-perehod-pod-integralom|предельным переходом под интегралом]] утверждение, но с другим условием: [[ravnomernaya-shodimost|равномерность]] требуется от производных, а от самих $f_n$ хватает сходимости в одной точке. Заключение — сразу и существование предельной функции, и её дифференцируемость: писать $f'$ в посылке нельзя, пока $f$ не построена.
 
-[[ravnomernaya-shodimost|Равномерность]] требуется от производных, а не от самих функций. Сходимость $f_n\rightrightarrows f$ о производных не говорит ничего — у $\frac{\sin nx}{n}\rightrightarrows0$ производные $\cos nx$ не сходятся вовсе. Интегрирование в этом смысле мягче дифференцирования: оно усредняет и гасит колебания, а дифференцирование их усиливает.`,
-		related: ['ravnomernaya-shodimost', 'predelnyy-perehod-pod-integralom', 'nepreryvnost-predelnoy-funkcii']
+Доказательство в три хода: формула Ньютона–Лейбница переводит $f_n$ в интеграл от $(f_n)'$, предел заходит под интеграл, [[teorema-barrou|теорема Барроу]] возвращает производную. Интегрирование мягче дифференцирования: оно гасит колебания, а дифференцирование их усиливает — у $\frac{\sin nx}{n}\rightrightarrows0$ производные $\cos nx$ не сходятся вовсе.`,
+		related: ['ravnomernaya-shodimost', 'predelnyy-perehod-pod-integralom', 'teorema-barrou', 'nepreryvnost-predelnoy-funkcii']
 	}
 };

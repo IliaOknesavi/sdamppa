@@ -75,6 +75,39 @@ export const day12Terms: Glossary = {
 		related: ['formula-teylora', 'forma-lagranzha', 'klassy-differenciruemosti']
 	},
 
+	'teleskopicheskaya-summa': {
+		id: 'teleskopicheskaya-summa',
+		term: 'Телескопическая сумма',
+		short: String.raw`Соседние слагаемые гасят друг друга, выживают только края.`,
+		formula: String.raw`\sum_{k=1}^{n}(b_k-b_{k-1})=b_n-b_0`,
+		body: String.raw`Сумма разностей соседних членов сворачивается: всё внутреннее сокращается, остаются только края. Учебный пример — $\sum\frac{1}{k(k+1)}=\sum\bigl(\frac1k-\frac1{k+1}\bigr)$.
+
+В производной частичной суммы [[formula-teylora|Тейлора]] по точке разложения каждый слой даёт пару $\frac{f^{(k+1)}(t)(x-t)^k}{k!}-\frac{f^{(k)}(t)(x-t)^{k-1}}{(k-1)!}$, и вся сумма телескопируется в один член — на этом стоит вывод [[forma-lagranzha|формы Лагранжа]]. Тот же приём вернётся в преобразовании Абеля (день 27).`,
+		related: ['formula-teylora', 'forma-lagranzha', 'teorema-rollya']
+	},
+
+	'multinomialnaya-formula': {
+		id: 'multinomialnaya-formula',
+		term: 'Мультиномиальная формула',
+		short: String.raw`Степень суммы через мультииндексы: обобщение бинома Ньютона.`,
+		formula: String.raw`(a_1+\dots+a_n)^m=\sum_{|\alpha|=m}\frac{m!}{\alpha!}\,a^{\alpha}`,
+		body: String.raw`Обобщение бинома Ньютона на $n$ слагаемых: коэффициент при $a^{\alpha}$ равен $\frac{m!}{\alpha!}$, где $\alpha$ — [[multiindeks|мультииндекс]] показателей, а $\alpha!=\alpha^1!\dots\alpha^n!$.
+
+Ровно этот коэффициент возникает у $m$-й производной сужения поля на прямую: $g^{(m)}(t)=\sum_{|\alpha|=m}\frac{m!}{\alpha!}D^\alpha f\,\vec h^{\,\alpha}$. Множитель $m!$ сокращается с $\frac{1}{m!}$ одномерной [[formula-teylora|формулы Тейлора]], и в [[formula-teylora-pole|многомерной]] остаётся ровно $\frac{1}{\alpha!}$, а не $\frac{1}{|\alpha|!}$.`,
+		related: ['multiindeks', 'formula-teylora-pole', 'formula-teylora']
+	},
+
+	'vypuklaya-obolochka': {
+		id: 'vypuklaya-obolochka',
+		term: 'Выпуклая оболочка и общее положение',
+		short: String.raw`Наименьшее выпуклое множество, содержащее данные точки.`,
+		formula: String.raw`\operatorname{conv}\lbrace\vec v_0,\dots,\vec v_k\rbrace=\Bigl\lbrace\textstyle\sum_i\alpha_i\vec v_i:\ \alpha_i\ge0,\ \sum_i\alpha_i=1\Bigr\rbrace`,
+		body: String.raw`**Выпуклая оболочка** набора точек — наименьшее выпуклое множество, их содержащее. В координатах это в точности все точки с [[baricentricheskie-koordinaty|барицентрическими координатами]]: неотрицательными весами, сумма которых равна единице.
+
+Точки в **общем положении** — те, что не лежат в [[affinnoe-prostranstvo|аффинном подпространстве]] меньшей размерности: три не на одной прямой, четыре не в одной плоскости. Без этого условия оболочка $k+1$ точки вырождается и [[simpleks|$k$-симплексом]] не является.`,
+		related: ['simpleks', 'baricentricheskie-koordinaty', 'affinnoe-prostranstvo']
+	},
+
 	simpleks: {
 		id: 'simpleks',
 		term: 'Симплекс',

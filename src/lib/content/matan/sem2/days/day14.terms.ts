@@ -5,6 +5,7 @@ import type { Glossary } from '$lib/types';
 // здесь НЕ дублируются и подключаются перекрёстными ссылками [[...]]:
 //   end-r, skalyarnoe-pole, klassy-differenciruemosti, braket, lso,
 //   n-nol-n-odin, asimptoticheskie-klassy, priznak-i-svoystvo, blacksquare.
+// Ссылками же подключаются термины соседних дней: simvol-kronekera.
 // Канонический глоссарий склеивается последним и перекрывает совпадения,
 // поэтому одноимённые карточки заводить нельзя.
 // Карточки proizvodnaya-freshe, chastnaya-proizvodnaya, gradient,
@@ -26,7 +27,7 @@ export const day14Terms: Glossary = {
 		term: 'Якобиан',
 		short: String.raw`Определитель матрицы Якоби при $n=m$; модуль — растяжение объёма.`,
 		formula: String.raw`\det J_F=\frac{\partial(F_1,\dots,F_n)}{\partial(x_1,\dots,x_n)}`,
-		body: String.raw`**Число**, а не матрица: определитель квадратной [[matrica-yakobi|матрицы Якоби]]. Та же пара, что «[[matrica-gesse|матрица Гессе]] — гессиан». Условие $\det J_F\ne0$ равносильно обратимости оператора, то есть локальной обратимости отображения; для полярной замены $\det J_F=r$, и обратимость теряется только в нуле. В тензорной нотации его компоненты нумеруют двумя индексами: $j^i_k=\partial x^i/\partial u^k$, где $x$ — старые координаты, $u$ — новые; тождественной замене $x=u$ отвечает $\delta^i_k$, и якобиан равен единице.`,
+		body: String.raw`**Число**, а не матрица: определитель квадратной [[matrica-yakobi|матрицы Якоби]]. Та же пара, что «[[matrica-gesse|матрица Гессе]] — гессиан». Условие $\det J_F\ne0$ равносильно обратимости оператора, а с ней и [[teorema-ob-obratnom-otobrazhenii|локальной обратимости отображения]]; для полярной замены $\det J_F=r$, и обратимость теряется только в нуле. В тензорной нотации его компоненты нумеруют двумя индексами: $j^i_k=\partial x^i/\partial u^k$, где $x$ — старые координаты, $u$ — новые; тождественной замене $x=u$ отвечает $\delta^i_k$, и якобиан равен единице.`,
 		related: ['matrica-yakobi', 'koefficient-rastyazheniya-obema', 'zamena-peremennyh', 'matrica-gesse']
 	},
 
@@ -55,6 +56,39 @@ export const day14Terms: Glossary = {
 		formula: String.raw`F\in C^1,\ F(\vec x_0,z_0)=0,\ F'_z(\vec x_0,z_0)\ne0\ \Rightarrow\ \exists!\,\varphi\in C^1:\ F(\vec x,\varphi(\vec x))\equiv0`,
 		body: String.raw`Доказательство: непрерывность $F'_z$ даёт окрестность, где производная сохраняет знак, значит по $z$ функция строго монотонна; разные знаки на концах плюс [[teorema-o-promezhutochnom-znachenii|промежуточное значение]] дают корень, монотонность — его единственность. Утверждение теоремы — именно существование $\varphi$, а не формула $z'_{x_i}=-F'_{x_i}/F'_z$: формула получается дифференцированием тождества, которое без готовой $\varphi$ не имеет смысла. Для системы из $k$ уравнений условие $F'_z\ne0$ заменяется невырожденностью [[yakobian|якобиана]] по неизвестным: $\det(\partial F_i/\partial z_j)\ne0$.`,
 		related: ['neyavnaya-funkciya', 'teorema-o-promezhutochnom-znachenii', 'lokalnaya-razreshimost', 'yakobian']
+	},
+
+	'teorema-ob-obratnom-otobrazhenii': {
+		id: 'teorema-ob-obratnom-otobrazhenii',
+		term: 'Теорема об обратном отображении',
+		short: String.raw`При $\det J_F\ne0$ отображение локально биективно, а $J_{F^{-1}}=J_F^{-1}$.`,
+		formula: String.raw`\det J_F(\vec x_0)\ne0\ \Rightarrow\ \exists U_0,V_0:\ F:U_0\to V_0\ \text{биективно},\ \ J_{F^{-1}}=\bigl(J_F\bigr)^{-1}`,
+		body: String.raw`Принимается без доказательства. Пусть $F\in C^1(U)$, $F:\mathbb R^n\to\mathbb R^n$ и [[yakobian|якобиан]] в точке отличен от нуля. Тогда у точки есть окрестность, на которой $F$ биективно, обратное отображение тоже класса $C^1$, а его [[matrica-yakobi|матрица Якоби]] — обратная к $J_F$.
+
+Обратимость **локальная**: глобально $F$ бывает неинъективным, как периодическая по углу полярная замена. Сюжет тот же, что у [[teorema-o-neyavnoy-funkcii|теоремы о неявной функции]] — одна выводится из другой.`,
+		related: ['yakobian', 'matrica-yakobi', 'teorema-o-neyavnoy-funkcii', 'lokalnaya-razreshimost']
+	},
+
+	'sohranenie-znaka': {
+		id: 'sohranenie-znaka',
+		term: 'Сохранение знака непрерывной функции',
+		short: String.raw`Если $f(\vec a)>0$ и $f$ непрерывна, то $f>0$ в целой окрестности $\vec a$.`,
+		formula: String.raw`f\in C(U),\ f(\vec a)=c>0\ \Rightarrow\ \exists\delta>0:\ f>\tfrac c2\ \text{на}\ B_\delta(\vec a)`,
+		body: String.raw`Прямое следствие определения непрерывности при $\varepsilon=c/2$: значение не может упасть до нуля мгновенно, поэтому строгое неравенство в точке автоматически выполняется в целом шаре — с запасом $c/2$.
+
+Этим приёмом точечное условие превращают в условие на области. В [[teorema-o-neyavnoy-funkcii|теореме о неявной функции]] из $F'_z\ne0$ получают $F'_z>c/2$ на всём цилиндре, а оттуда — строгую монотонность по $z$; корень добавляет [[teorema-o-promezhutochnom-znachenii|теорема о промежуточном значении]].`,
+		related: ['teorema-o-neyavnoy-funkcii', 'teorema-o-promezhutochnom-znachenii', 'lokalnaya-razreshimost']
+	},
+
+	'osobaya-tochka-krivoy': {
+		id: 'osobaya-tochka-krivoy',
+		term: 'Особая точка кривой (узел, остриё)',
+		short: String.raw`Точка кривой $F=0$, где обнуляется весь градиент: $\nabla F=\vec 0$.`,
+		formula: String.raw`F(\vec x_0)=0,\qquad \nabla F(\vec x_0)=\vec 0`,
+		body: String.raw`Пока хоть одна частная производная отлична от нуля, кривая $F=0$ вблизи точки — гладкий график: по [[teorema-o-neyavnoy-funkcii|теореме о неявной функции]] её можно разрешить относительно соответствующей переменной. Если же $\nabla F(\vec x_0)=\vec 0$, теорема молчит в обе стороны сразу, и точка называется **особой**.
+
+Два портрета: узел — кривая пересекает сама себя (декартов лист $x^3+y^3-3xy=0$ в нуле) и остриё — парабола $x^3=y^2$, у которой ветви $y=\pm x^{3/2}$ склеиваются. Такая точка ломает [[lokalnaya-razreshimost|локальную разрешимость]], а с ней и метод Лагранжа (день 15).`,
+		related: ['teorema-o-neyavnoy-funkcii', 'lokalnaya-razreshimost', 'gradient', 'neyavnaya-funkciya']
 	},
 
 	'lokalnaya-razreshimost': {

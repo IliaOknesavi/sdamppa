@@ -2,8 +2,8 @@ import type { Glossary } from '$lib/types';
 
 // Термины дня 5: теоремы Ролля, Лагранжа и Коши о среднем плюс лемма о
 // монотонной функции. День должен резолвиться независимо, поэтому опорные
-// понятия из прошлых дней — теорема Ферма, теорема Вейерштрасса, градиент,
-// параметризация отрезка — продублированы здесь.
+// понятия из прошлых дней — теорема Ферма и теорема Вейерштрасса —
+// продублированы здесь.
 // НЕ дублируются термины канонического глоссария (sem2/glossary.ts и
 // sem1/glossary.ts): braket, lvtnp, klassy-differenciruemosti,
 // rang-razbieniya, lsk, nepravilnaya-mera-nol, n-nol-n-odin, dopolnenie,
@@ -96,7 +96,7 @@ export const day05Terms: Glossary = {
 		id: 'teorema-rollya-polya',
 		term: 'Теорема Ролля в скалярных полях',
 		short: String.raw`Постоянство на границе выпуклого компакта ⟹ внутри градиент обращается в нуль.`,
-		body: String.raw`Многомерный двойник [[teorema-rollya|Ролля]]: если $f\in C^1(D)$ на выпуклом компакте $D$ и $f|_{\partial D}\equiv\mathrm{const}$, то во внутренней точке $\nabla f(\vec c)=\vec 0$. Доказательство копирует одномерное — экстремумы на компакте плюс Ферма для [[skalyarnoe-pole|скалярных полей]]: если и минимум, и максимум достигаются на границе, где $f$ постоянна, то $f\equiv\mathrm{const}$. Наглядный образ — «чаша», рассечённая плоскостью по линии уровня: дно чаши лежит внутри сечения.`,
+		body: String.raw`Многомерный двойник [[teorema-rollya|Ролля]]: если $f\in C^1(D)$ на выпуклом компакте $D$ и $f|_{\partial D}\equiv\mathrm{const}$, то во внутренней точке $\nabla f(\vec c)=\vec 0$. Доказательство копирует одномерное — экстремумы на компакте плюс Ферма для [[skalyarnoe-pole|скалярных полей]]: если и минимум, и максимум достигаются на границе, где $f$ постоянна, то $f\equiv\mathrm{const}$. Выкладка — день 9. Наглядный образ — «чаша», рассечённая плоскостью по линии уровня: дно чаши лежит внутри сечения.`,
 		related: ['teorema-rollya', 'teorema-lagranzha-polya', 'gradient', 'skalyarnoe-pole']
 	},
 
@@ -105,17 +105,8 @@ export const day05Terms: Glossary = {
 		term: 'Теорема Лагранжа в скалярных полях',
 		short: String.raw`Приращение поля вдоль отрезка = скалярное произведение градиента на вектор.`,
 		formula: String.raw`f(\vec b)-f(\vec a)=\bigl\langle\nabla f(\vec c)\mid \vec b-\vec a\bigr\rangle,\qquad \vec c=\vec a+\theta(\vec b-\vec a)`,
-		body: String.raw`Сводится к одномерному случаю: вдоль [[parametrizatsiya-otrezka|параметризованного отрезка]] функция $\varphi(t)=f(S(t))$ скалярна, и к ней применим обычный [[teorema-lagranzha|Лагранж]]. Правая часть записана в [[braket|bra-ket]]-форме через [[gradient|градиент]]. Поделив обе части на $\|\vec b-\vec a\|$, получаем равенство средней скорости изменения поля вдоль отрезка и производной по направлению в точке $\vec c$. Для векторнозначных отображений равенство уже неверно ($\vec r(t)=(\cos t,\sin t)$ на $[0,2\pi]$), остаётся лишь неравенство $\|\vec r(b)-\vec r(a)\|\le\sup\|\vec r'\|\,(b-a)$.`,
+		body: String.raw`Сводится к одномерному случаю: вдоль [[parametrizatsiya-otrezka|параметризованного отрезка]] функция $\varphi(t)=f(S(t))$ скалярна, и к ней применим обычный [[teorema-lagranzha|Лагранж]] (выкладка — день 9). Правая часть записана в [[braket|bra-ket]]-форме через [[gradient|градиент]]. Поделив обе части на $\|\vec b-\vec a\|$, получаем равенство средней скорости изменения поля вдоль отрезка и производной по направлению в точке $\vec c$. Для векторнозначных отображений равенство уже неверно ($\vec r(t)=(\cos t,\sin t)$ на $[0,2\pi]$), остаётся лишь неравенство $\|\vec r(b)-\vec r(a)\|\le\sup\|\vec r'\|\,(b-a)$.`,
 		related: ['teorema-lagranzha', 'teorema-rollya-polya', 'gradient', 'parametrizatsiya-otrezka']
-	},
-
-	gradient: {
-		id: 'gradient',
-		term: 'Градиент',
-		short: String.raw`Вектор частных производных скалярного поля.`,
-		formula: String.raw`\nabla f=\left(\frac{\partial f}{\partial x_1},\ \frac{\partial f}{\partial x_2},\ \dots,\ \frac{\partial f}{\partial x_n}\right)`,
-		body: String.raw`Вектор из частных производных [[skalyarnoe-pole|скалярного поля]]; обозначается $\nabla f$ или $\vec\nabla f$. Через него производная по направлению выражается [[braket|bra-ket]]-скобкой: $f'_{\vec l}=\langle\vec\nabla f\mid\vec l\rangle$ — проекция градиента на направление. Необходимое условие экстремума поля записывается как $\nabla f(\vec x)=\bar 0$, и именно оно стоит в выводе [[teorema-rollya-polya|многомерного Ролля]].`,
-		related: ['skalyarnoe-pole', 'braket', 'teorema-lagranzha-polya', 'teorema-rollya-polya']
 	},
 
 	lipshitsevost: {
@@ -125,14 +116,5 @@ export const day05Terms: Glossary = {
 		formula: String.raw`|f(x_1)-f(x_2)|\le C|x_1-x_2|,\qquad \rho\bigl(f(x_1),f(x_2)\bigr)\le C\rho(x_1,x_2)`,
 		body: String.raw`Определение записывается в двух равносильных версиях — числовой и метрической: во второй расстояние между образами оценивается расстоянием между прообразами с тем же коэффициентом $C$. Связь с сегодняшним материалом прямая: из [[formula-konechnyh-prirashcheniy|формулы конечных приращений]] следует, что при $\sup|f'|=C<\infty$ функция липшицева с этой самой константой. Обратное неверно: $|x|$ липшицева с $C=1$, но в нуле не дифференцируема.`,
 		related: ['formula-konechnyh-prirashcheniy', 'teorema-lagranzha', 'metriki-rho']
-	},
-
-	'parametrizatsiya-otrezka': {
-		id: 'parametrizatsiya-otrezka',
-		term: 'Параметризация отрезка S(t)',
-		short: String.raw`Отрезок между точками как образ [0,1] при S(t) = x + t(y − x).`,
-		formula: String.raw`S(t)=\vec x+t(\vec y-\vec x),\qquad S(0)=\vec x,\ S(1)=\vec y,\ t\in[0,1]`,
-		body: String.raw`Запись отрезка $\overline{xy}$ в нормированном пространстве, через которую определяется выпуклость множества и сводятся к одномерному случаю многомерные теоремы. Главное свойство: композиция $\varphi(t)=f(S(t))$ превращает [[skalyarnoe-pole|скалярное поле]] в элемент $\mathrm{End}(\mathbb R)$, к которому применимы [[teorema-lagranzha|Лагранж]] и Тейлор. Промежуточная точка тогда записывается как $\vec c=S(\theta)$, $\theta\in(0,1)$ — отсюда и параметр $\theta$ в многомерном остатке Тейлора.`,
-		related: ['teorema-lagranzha-polya', 'skalyarnoe-pole', 'promezhutochnaya-tochka']
 	}
 };
