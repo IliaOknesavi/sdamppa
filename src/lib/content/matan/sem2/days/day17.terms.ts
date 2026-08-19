@@ -1,7 +1,7 @@
 import type { Glossary } from '$lib/types';
 
 // Термины дня 17 (разбиение, интегральные суммы, суммы Дарбу). Понятия сквозной
-// нотации курса живут в каноническом глоссарии (sem2/glossary.ts) и здесь НЕ
+// нотации живут в каноническом глоссарии (sem2/glossary.ts) и здесь НЕ
 // дублируются — они подключаются перекрёстными ссылками [[...]]:
 //   lsk, rang-razbieniya, nepravilnaya-mera-nol, priznak-i-svoystvo,
 //   blacksquare. Канонический глоссарий склеивается последним и перекрывает
@@ -16,7 +16,7 @@ export const day17Terms: Glossary = {
 		formula: String.raw`a\le x_1\le\ldots\le x_n\le b,\quad x_1=a,\ x_n=b,\quad \lambda_i=x_{i+1}-x_i`,
 		body: String.raw`**Разбиение** — конечный упорядоченный набор точек $x_1\ldots x_n$ отрезка-[[lsk|ЛСК]] $[a,b]$ с закреплёнными концами $x_1=a$, $x_n=b$. Длины кусков обозначаются $\lambda_i=x_{i+1}-x_i$ и в сумме дают $b-a$.
 
-⚠️ Индекс бежит до $n-1$: точек $n$, а отрезков между ними $n-1$ — в конспекте это не описка, а сознательная запись, проникающая во все интегральные суммы. Мера мелкости разбиения — [[rang-razbieniya|ранг $\lambda_R$]]; вложение наборов точек даёт [[izmelchenie-razbieniya|измельчение]].`,
+Индекс бежит до $n-1$: точек $n$, а отрезков между ними $n-1$ — эта единица проходит через все интегральные суммы. Мера мелкости разбиения — [[rang-razbieniya|ранг $\lambda_R$]]; вложение наборов точек даёт [[izmelchenie-razbieniya|измельчение]].`,
 		related: ['rang-razbieniya', 'lsk', 'integralnaya-summa', 'izmelchenie-razbieniya']
 	},
 
@@ -27,7 +27,7 @@ export const day17Terms: Glossary = {
 		formula: String.raw`\xi_i\in[x_i;\,x_{i+1}],\qquad \vec\xi=(\xi_1,\ldots,\xi_{n-1})`,
 		body: String.raw`Точка $\xi_i$, выбранная в $i$-м куске [[razbienie|разбиения]]; в значении $f(\xi_i)$ и берётся высота прямоугольника. Набор всех выбранных точек обозначается вектором $\vec\xi$ и входит третьим аргументом в [[integralnaya-summa|интегральную сумму]].
 
-Частные выборы: левые концы $\xi_i=x_i$ (с них конспект и начинает), правые $\xi_i=x_{i+1}$, средние. Предельные значения по $\xi$ дают [[summy-darbu|суммы Дарбу]]: $\sup_{\vec\xi}I=U$, $\inf_{\vec\xi}I=L$. Определение интеграла требует независимости предела от $\vec\xi$ — отсюда квантор $\forall\vec\xi$ в формулировке.`,
+Частные выборы: левые концы $\xi_i=x_i$, правые $\xi_i=x_{i+1}$, средние. Предельные значения по $\vec\xi$ дают [[summy-darbu|суммы Дарбу]]: $\sup_{\vec\xi}I=U$, $\inf_{\vec\xi}I=L$. Определение интеграла требует независимости предела от $\vec\xi$ — отсюда квантор $\forall\vec\xi$ в формулировке.`,
 		related: ['integralnaya-summa', 'razbienie', 'summy-darbu', 'opredelennyy-integral']
 	},
 
@@ -36,7 +36,7 @@ export const day17Terms: Glossary = {
 		term: 'Интегральная сумма I(f, λ, ξ⃗)',
 		short: String.raw`Функционал от тройки «функция, разбиение, набор отмеченных точек».`,
 		formula: String.raw`I(f,\lambda,\vec\xi)=\sum_{i=1}^{n-1}f(\xi_i)\,\lambda_i`,
-		body: String.raw`Курс подаёт интегральную сумму не как «сумму Римана», а как объект с явной сигнатурой $I(f,\lambda,\vec\xi)$: её значение зависит от функции, от [[razbienie|разбиения]] и от набора [[otmechennaya-tochka|отмеченных точек]] одновременно. В конспекте она сначала записана по левым концам как «$n$-е приближение интеграла» $\left(\int_a^b f\,dx\right)_n$.
+		body: String.raw`Объект с явной сигнатурой $I(f,\lambda,\vec\xi)$: значение зависит от функции, от [[razbienie|разбиения]] и от набора [[otmechennaya-tochka|отмеченных точек]] одновременно. Простейший частный случай — выбор по левым концам, «$n$-е приближение интеграла» $\left(\int_a^b f\,dx\right)_n=\sum\lambda_i f(x_i)$.
 
 При любом $\vec\xi$ сумма зажата вилкой $L\le I\le U$. [[opredelennyy-integral|Определённый интеграл]] — это её предел при $\lambda_R\to0$, одинаковый для всех $\lambda$ и всех $\vec\xi$; в $\mathbb R^2$ (день 23) та же тройка работает дословно.`,
 		related: ['otmechennaya-tochka', 'razbienie', 'summy-darbu', 'opredelennyy-integral']
@@ -47,9 +47,9 @@ export const day17Terms: Glossary = {
 		term: 'Суммы Дарбу',
 		short: String.raw`Интегральные суммы с крайним выбором точек: по $\sup$ и по $\inf$.`,
 		formula: String.raw`L(f,\lambda)\ \le\ I(f,\lambda,\vec\xi)\ \le\ U(f,\lambda)`,
-		body: String.raw`Семантическая единица 20 курса: пара [[verhnyaya-summa-darbu|$U(f,\lambda)$]] и [[nizhnyaya-summa-darbu|$L(f,\lambda)$]], в которых вместо произвольной [[otmechennaya-tochka|отмеченной точки]] берётся супремум и инфимум $f$ на куске. Они ограничивают все [[integralnaya-summa|интегральные суммы]] сразу и являются точными границами.
+		body: String.raw`Пара [[verhnyaya-summa-darbu|$U(f,\lambda)$]] и [[nizhnyaya-summa-darbu|$L(f,\lambda)$]], в которых вместо произвольной [[otmechennaya-tochka|отмеченной точки]] берётся супремум и инфимум $f$ на куске. Они ограничивают все [[integralnaya-summa|интегральные суммы]] сразу и являются точными границами.
 
-⚠️ У преподавателя обе определены как пределы при $\lambda_R\to0$, а в учебниках — как суммы при фиксированном $\lambda$, из которых потом берут $\inf_\lambda U$ и $\sup_\lambda L$. Разность $U-L=\sum h_i\lambda_i$ собирается из [[kolebanie-funkcii|колебаний]] и служит мерой недоопределённости интеграла.`,
+Обе величины — числа при фиксированном разбиении, а не пределы: предельные объекты $\inf_\lambda U$ и $\sup_\lambda L$ строятся из них отдельным шагом и существуют по полноте $\mathbb R$. Разность $U-L=\sum h_i\lambda_i$ собирается из [[kolebanie-funkcii|колебаний]] и служит мерой недоопределённости интеграла.`,
 		related: ['verhnyaya-summa-darbu', 'nizhnyaya-summa-darbu', 'lemma-darbu', 'kolebanie-funkcii']
 	},
 
@@ -60,7 +60,7 @@ export const day17Terms: Glossary = {
 		formula: String.raw`U(f,\lambda)=\sum_{i=1}^{n-1}\lambda_i\sup_{\xi\in[x_i;x_{i+1}]}f(\xi)`,
 		body: String.raw`Наибольшее из значений, которые может принять [[integralnaya-summa|интегральная сумма]] при данном [[razbienie|разбиении]]: на каждом куске берётся супремум $f$. Геометрически — площадь ступенчатой фигуры, описанной вокруг графика.
 
-Требуется ограниченность $f$, иначе супремум бесконечен; в курсе это обеспечено работой с $f\in C^0$ на компакте. По [[lemma-darbu|лемме Дарбу]] $U$ не растёт при измельчении, поэтому её предел при $\lambda_R\to0$ совпадает с [[verhniy-integral|верхним интегралом]] $\inf_\lambda U$.`,
+Требуется ограниченность $f$, иначе супремум бесконечен; для $f\in C^0$ на компакте она выполнена автоматически. По [[lemma-darbu|лемме Дарбу]] $U$ не растёт при измельчении, поэтому её предел при $\lambda_R\to0$ совпадает с [[verhniy-integral|верхним интегралом]] $\inf_\lambda U$.`,
 		related: ['nizhnyaya-summa-darbu', 'verhniy-integral', 'lemma-darbu', 'summy-darbu']
 	},
 
@@ -93,7 +93,7 @@ export const day17Terms: Glossary = {
 		formula: String.raw`\lambda\subset\lambda'\ \Rightarrow\ L(f,\lambda)\le L(f,\lambda')\le U(f,\lambda')\le U(f,\lambda)`,
 		body: String.raw`Утверждение о монотонности [[summy-darbu|сумм Дарбу]] при [[izmelchenie-razbieniya|измельчении]]. Доказательство сводится к добавлению одной точки: супремум по части отрезка не больше супремума по всему отрезку, инфимум — не меньше; дальше индукция по числу добавленных точек. Нужна ограниченность $f$ — иначе грани бесконечны.
 
-⚠️ Курс лемму **обходит**, определяя $U$ и $L$ сразу пределами при $\lambda_R\to0$. Без неё не обоснованы ни существование этих пределов, ни неравенство $\sup_\lambda L\le\inf_\lambda U$, из которого растут [[verhniy-integral|верхний]] и нижний интегралы.`,
+На лемме держатся два следствия: неравенство $\sup_\lambda L\le\inf_\lambda U$ между любыми двумя разбиениями, из которого растут [[verhniy-integral|верхний]] и нижний интегралы, и существование предела сумм при $\lambda_R\to0$ (теорема Дарбу), без которого запись $\lim_{\lambda_R\to0}U(f,\lambda)$ не имеет содержания.`,
 		related: ['izmelchenie-razbieniya', 'summy-darbu', 'verhniy-integral', 'kolebanie-funkcii']
 	},
 
@@ -102,27 +102,27 @@ export const day17Terms: Glossary = {
 		term: 'Колебание функции на отрезке hᵢ',
 		short: String.raw`Разность граней на куске разбиения; из них складывается зазор $U-L$.`,
 		formula: String.raw`h_i=\sup_{[x_i;x_{i+1}]}f-\inf_{[x_i;x_{i+1}]}f,\qquad U-L=\sum_{i=1}^{n-1}h_i\lambda_i`,
-		body: String.raw`Величина $h_i\ge0$ измеряет, насколько $f$ «скачет» на $i$-м куске [[razbienie|разбиения]]. В конспекте она появляется в доказательстве критерия: разность [[summy-darbu|сумм Дарбу]] равна $\sum h_i\lambda_i$ — сумме площадей полосок неопределённости.
+		body: String.raw`Величина $h_i\ge0$ измеряет, насколько $f$ «скачет» на $i$-м куске [[razbienie|разбиения]]. Через неё выражается разность [[summy-darbu|сумм Дарбу]]: $U-L=\sum h_i\lambda_i$ — сумма площадей полосок неопределённости; на этом равенстве держится доказательство критерия интегрируемости.
 
-Для липшицевой $f$ с константой $M$ верно $h_i\le M\lambda_i$, откуда $U-L\le M(b-a)\lambda_R\to0$. Для функции Дирихле $h_i=1$ при любом [[rang-razbieniya|ранге]], и зазор не сжимается — интеграла нет. Одноимённая величина в точке ($\eta$) вводилась в первом семестре вместе с верхним и нижним пределом.`,
+Для липшицевой $f$ с константой $M$ верно $h_i\le M\lambda_i$, откуда $U-L\le M(b-a)\lambda_R\to0$. Для функции Дирихле $h_i=1$ при любом [[rang-razbieniya|ранге]], и зазор не сжимается — интеграла нет. Аналог в точке — колебание $\eta$, разность верхнего и нижнего пределов $f$ в этой точке.`,
 		related: ['summy-darbu', 'kriteriy-integriruemosti', 'lemma-darbu', 'rang-razbieniya']
 	},
 
 	'verhniy-integral': {
 		id: 'verhniy-integral',
 		term: 'Верхний интеграл',
-		short: String.raw`Предел верхних сумм; в учебниках — их точная нижняя грань по разбиениям.`,
+		short: String.raw`Предел верхних сумм; он же — их точная нижняя грань по разбиениям.`,
 		formula: String.raw`\overline{\int_a^b} f\,dx=\lim_{\lambda_R\to0}U(f,\lambda)=\inf_{\lambda}U(f,\lambda)`,
-		body: String.raw`Обозначается чертой **над** знаком интеграла. ⚠️ Черта здесь — часть символа, а не дополнение множества (в остальном курсе $\overline X$ значит дополнение, замыкание пишется $\mathrm{cl}\,X$).
+		body: String.raw`Обозначается чертой **над** знаком интеграла. Черта здесь — часть символа, а не дополнение множества: $\overline X$ означает дополнение $X$, замыкание пишется $\mathrm{cl}\,X$.
 
-У преподавателя определён как предел [[verhnyaya-summa-darbu|верхних сумм]] при $\lambda_R\to0$, в литературе — как $\inf_\lambda U$; совпадение этих величин и есть теорема Дарбу, опирающаяся на [[lemma-darbu|лемму]]. Существует для любой ограниченной $f$ и всегда не меньше [[nizhniy-integral|нижнего интеграла]].`,
+Предел [[verhnyaya-summa-darbu|верхних сумм]] при $\lambda_R\to0$ совпадает с $\inf_\lambda U$ — это теорема Дарбу, опирающаяся на [[lemma-darbu|лемму]]. Верхний интеграл существует для любой ограниченной $f$ и всегда не меньше [[nizhniy-integral|нижнего интеграла]].`,
 		related: ['nizhniy-integral', 'verhnyaya-summa-darbu', 'opredelennyy-integral', 'lemma-darbu']
 	},
 
 	'nizhniy-integral': {
 		id: 'nizhniy-integral',
 		term: 'Нижний интеграл',
-		short: String.raw`Предел нижних сумм; в учебниках — их точная верхняя грань по разбиениям.`,
+		short: String.raw`Предел нижних сумм; он же — их точная верхняя грань по разбиениям.`,
 		formula: String.raw`\underline{\int_a^b} f\,dx=\lim_{\lambda_R\to0}L(f,\lambda)=\sup_{\lambda}L(f,\lambda)`,
 		body: String.raw`Обозначается чертой **под** знаком интеграла и строится по [[nizhnyaya-summa-darbu|нижним суммам]] так же, как [[verhniy-integral|верхний]] — по верхним. Существует для любой ограниченной $f$: множество нижних сумм ограничено сверху любой верхней суммой.
 
@@ -135,20 +135,20 @@ export const day17Terms: Glossary = {
 		term: 'Определённый интеграл',
 		short: String.raw`Общее значение верхнего и нижнего интегралов; оно же предел сумм.`,
 		formula: String.raw`\int_a^b f(x)\,dx=\overline{\int_a^b} f\,dx=\underline{\int_a^b} f\,dx=\lim_{\lambda_R\to0}I(f,\lambda,\vec\xi)`,
-		body: String.raw`Семантическая единица 17. Определяется как общее значение [[verhniy-integral|верхнего]] и [[nizhniy-integral|нижнего]] интегралов; тогда же оно оказывается пределом [[integralnaya-summa|интегральных сумм]] при $\lambda_R\to0$ независимо от выбора [[otmechennaya-tochka|отмеченных точек]] — каждая сумма зажата между $L$ и $U$.
+		body: String.raw`Определяется как общее значение [[verhniy-integral|верхнего]] и [[nizhniy-integral|нижнего]] интегралов; тогда же оно оказывается пределом [[integralnaya-summa|интегральных сумм]] при $\lambda_R\to0$ независимо от выбора [[otmechennaya-tochka|отмеченных точек]] — каждая сумма зажата между $L$ и $U$.
 
-Термин «определённый» появляется в конспекте поздно (стр. 8–9), уже после первообразной: сначала строится интеграл Римана, и только потом — техника его вычисления через $F(b)-F(a)$.`,
+Так строится интеграл Римана; техника его вычисления через первообразную, $F(b)-F(a)$, появляется позже (дни 19–20) и опирается на уже построенный объект.`,
 		related: ['verhniy-integral', 'nizhniy-integral', 'integralnaya-summa', 'kriteriy-integriruemosti']
 	},
 
 	'kriteriy-integriruemosti': {
 		id: 'kriteriy-integriruemosti',
 		term: 'Критерий интегрируемости',
-		short: String.raw`Совпадение сумм Дарбу равносильно существованию предела при любом $\vec\xi$.`,
-		formula: String.raw`\forall\lambda:\ U(f,\lambda)=L(f,\lambda)\iff\forall\lambda,\ \forall\vec\xi\ \ \exists\,I(f,\lambda,\vec\xi)`,
-		body: String.raw`Теорема со стр. 4 конспекта (подробно — день 18). Прямая импликация разворачивается через $\lim\sum h_i\lambda_i=0$ и зажатие $L\le I\le U$; обратная — выбором [[otmechennaya-tochka|отмеченных точек]], реализующих $\sup$ и $\inf$.
+		short: String.raw`Ограниченная $f$ интегрируема ⟺ найдётся разбиение с $U-L<\varepsilon$.`,
+		formula: String.raw`f\in\mathcal R[a;b]\iff\forall\varepsilon>0\ \exists\lambda:\ \sum_i h_i\lambda_i<\varepsilon`,
+		body: String.raw`Подробно — день 18. Прямая импликация разворачивается через $\lim\sum h_i\lambda_i=0$ и зажатие $L\le I\le U$; обратная — выбором [[otmechennaya-tochka|отмеченных точек]], реализующих $\sup$ и $\inf$.
 
-⚠️ Формулировка курса нестандартна: классический критерий Дарбу звучит как «$\forall\varepsilon>0$ существует разбиение с $U-L<\varepsilon$». Ответ на вопрос, насколько разрывной может быть интегрируемая функция, даёт [[nepravilnaya-mera-nol|множество меры нуль]]: разрывы допустимы, если их мера равна нулю.`,
+Равносильная форма — предел по базе мелкости: $\lim_{\lambda_R\to0}\sum_i h_i\lambda_i=0$. Ответ на вопрос, насколько разрывной может быть интегрируемая функция, даёт [[nepravilnaya-mera-nol|множество меры нуль]]: разрывы допустимы, если их мера равна нулю.`,
 		related: ['summy-darbu', 'kolebanie-funkcii', 'opredelennyy-integral', 'nepravilnaya-mera-nol']
 	}
 };

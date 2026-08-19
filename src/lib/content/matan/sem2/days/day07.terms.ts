@@ -1,8 +1,8 @@
 import type { Glossary } from '$lib/types';
 
 // Термины дня 7 (скалярные поля, частные производные, градиент). Карточки,
-// которыми день пользуется, но которые принадлежат каноническому глоссарию
-// семестра, здесь НЕ переобъявляются и подхватываются по [[...]]:
+// которыми день пользуется, но которые принадлежат общему глоссарию, здесь НЕ
+// переобъявляются и подхватываются по [[...]]:
 //   skalyarnoe-pole, braket, end-r, klassy-differenciruemosti, blacksquare.
 // Термины, введённые здесь, намеренно дублируются в поздних днях (градиент,
 // частная производная) — каждый день должен резолвиться независимо.
@@ -23,7 +23,7 @@ export const day07Terms: Glossary = {
 		term: 'Градиент',
 		short: String.raw`Вектор частных производных скалярного поля.`,
 		formula: String.raw`\vec\nabla f=\Bigl(\frac{\partial f}{\partial x_1},\ \frac{\partial f}{\partial x_2},\ \dots,\ \frac{\partial f}{\partial x_n}\Bigr)`,
-		body: String.raw`**Градиент** — вектор, составленный из всех [[chastnaya-proizvodnaya|частных производных]] поля; преподаватель пишет его со стрелкой, $\vec\nabla f$. Через него в [[braket|bra-ket]]-нотации записывается производная по направлению: $f'_{\vec l}=\langle\vec\nabla f\mid\vec l\,\rangle$.
+		body: String.raw`**Градиент** — вектор, составленный из всех [[chastnaya-proizvodnaya|частных производных]] поля; пишут его со стрелкой, $\vec\nabla f$. Через него в [[braket|bra-ket]]-нотации записывается производная по направлению: $f'_{\vec l}=\langle\vec\nabla f\mid\vec l\,\rangle$.
 
 Вся геометрия темы упакована в две фразы: градиент задаёт [[napravlenie-naibystreyshego-rosta|направление наибыстрейшего роста]] со скоростью $\|\vec\nabla f\|$ и перпендикулярен множествам уровня. Условие $\vec\nabla f=\bar0$ — необходимое условие экстремума поля.`,
 		related: ['chastnaya-proizvodnaya', 'skalyarnoe-pole', 'braket', 'napravlenie-naibystreyshego-rosta']
@@ -34,7 +34,7 @@ export const day07Terms: Glossary = {
 		term: 'Оператор набла',
 		short: String.raw`Оператор, превращающий скалярное поле в вектор его производных.`,
 		formula: String.raw`\vec\nabla=\Bigl(\frac{\partial}{\partial x_1},\ \dots,\ \frac{\partial}{\partial x_n}\Bigr)`,
-		body: String.raw`**Набла** $\vec\nabla$ — один оператор вместо $n$ операторов $\partial/\partial x_i$: на входе [[skalyarnoe-pole|скалярное поле]], на выходе вектор в каждой точке. Та же идея, что и с $\frac{d}{dx}\in\operatorname{End}(\mathbb R)$ в первом блоке курса, только для ФНП.
+		body: String.raw`**Набла** $\vec\nabla$ — один оператор вместо $n$ операторов $\partial/\partial x_i$: на входе [[skalyarnoe-pole|скалярное поле]], на выходе вектор в каждой точке. Та же идея, что и с оператором дифференцирования на [[end-r|$\operatorname{End}(\mathbb R)$]] (день 1): вместо таблицы правил один объект, применимый к чему угодно.
 
 Применённый к полю, он даёт [[gradient|градиент]]; в записи дифференциала — $df=\langle\vec\nabla f\mid\vec{dx}\rangle$, где $\vec{dx}=(dx_1,\dots,dx_n)$.`,
 		related: ['gradient', 'chastnaya-proizvodnaya', 'skalyarnoe-pole']
@@ -43,10 +43,10 @@ export const day07Terms: Glossary = {
 	'fop-fnp': {
 		id: 'fop-fnp',
 		term: 'ФОП и ФНП',
-		short: String.raw`Функция одной переменной и функция нескольких — сокращения курса.`,
-		body: String.raw`**ФОП** — функция одной переменной, **ФНП** — функция нескольких переменных; в конспектах это рабочие сокращения. Различие видно прямо в нотации: у ФОП пишут $\frac{df}{dx}$, у ФНП — $\frac{\partial f(x_1\dots x_n)}{\partial x}$.
+		short: String.raw`Функция одной переменной и функция нескольких переменных.`,
+		body: String.raw`**ФОП** — функция одной переменной, **ФНП** — функция нескольких переменных. Различие видно прямо в нотации: у ФОП пишут $\frac{df}{dx}$, у ФНП — $\frac{\partial f(x_1\dots x_n)}{\partial x}$.
 
-ФНП со значениями в $\mathbb R$ — это и есть [[skalyarnoe-pole|скалярное поле]]; ФОП в терминах курса — элемент $\operatorname{End}(\mathbb R)$. [[chastnaya-proizvodnaya|Частная производная]] переводит ФНП обратно в задачу про ФОП: заморозили всё лишнее — и считаем как в дне 1.`,
+ФНП со значениями в $\mathbb R$ — это и есть [[skalyarnoe-pole|скалярное поле]]; ФОП вида $\mathbb R\to\mathbb R$ — элемент $\operatorname{End}(\mathbb R)$. [[chastnaya-proizvodnaya|Частная производная]] переводит ФНП обратно в задачу про ФОП: заморозили всё лишнее — и считаем как в дне 1.`,
 		related: ['skalyarnoe-pole', 'chastnaya-proizvodnaya', 'end-r']
 	},
 
@@ -55,9 +55,9 @@ export const day07Terms: Glossary = {
 		term: 'Согласованность по базису',
 		short: String.raw`Значение поля в точке от базиса не зависит, а формула — зависит.`,
 		formula: String.raw`\tilde f(\tilde{\vec x})=f\bigl(A\tilde{\vec x}\bigr)`,
-		body: String.raw`Оговорка курса: само по себе отображение $L(\mathbb R)\to\mathbb R$ ещё не [[skalyarnoe-pole|скалярное поле]] — нужна согласованность при смене базиса. Координаты точки зависят от базиса, поэтому формула обязана пересчитываться по закону $\tilde f=f\circ A$, где $A$ — матрица перехода, чтобы значение в точке осталось прежним.
+		body: String.raw`Отображение $L(\mathbb R)\to\mathbb R$ становится [[skalyarnoe-pole|скалярным полем]] только вместе с согласованностью при смене базиса. Координаты точки зависят от базиса, поэтому формула обязана пересчитываться по закону $\tilde f=f\circ A$, где $A$ — матрица перехода, чтобы значение в точке осталось прежним.
 
-Пример конспекта: $x^2+2y^2$ в базисе, повёрнутом на $45^\circ$, превращается в $\tfrac32\tilde x^2+\tfrac32\tilde y^2+\tilde x\tilde y$ — другая формула, то же поле.`,
+Пример: $x^2+2y^2$ в базисе, повёрнутом на $45^\circ$, превращается в $\tfrac32\tilde x^2+\tfrac32\tilde y^2+\tilde x\tilde y$ — другая формула, то же поле.`,
 		related: ['skalyarnoe-pole', 'fop-fnp', 'gradient']
 	},
 
@@ -99,7 +99,7 @@ export const day07Terms: Glossary = {
 		term: 'Производная по направлению',
 		short: String.raw`Скорость изменения поля вдоль единичного направления.`,
 		formula: String.raw`f'_{\vec l}(\vec x)=\langle\vec\nabla f(\vec x)\mid\vec l\,\rangle`,
-		body: String.raw`**Производная по направлению** $f'_{\vec l}$ — скорость изменения поля при движении из точки вдоль единичного вектора $\vec l$: $\lim_{t\to0}\frac{f(\vec x+t\vec l)-f(\vec x)}{t}$. Семантическая единица 8 списка семестра; в курсе сразу записывается через [[gradient|градиент]] в [[braket|bra-ket]]-форме, доказательство — день 9.
+		body: String.raw`**Производная по направлению** $f'_{\vec l}$ — скорость изменения поля при движении из точки вдоль единичного вектора $\vec l$: $\lim_{t\to0}\frac{f(\vec x+t\vec l)-f(\vec x)}{t}$. Через [[gradient|градиент]] она записывается в [[braket|bra-ket]]-форме $f'_{\vec l}=\langle\vec\nabla f\mid\vec l\,\rangle$; доказательство — день 9.
 
 При $\vec l=\vec e_i$ она превращается в [[chastnaya-proizvodnaya|частную производную]], поэтому частные — это $n$ значений одной и той же функции направления.`,
 		related: ['gradient', 'chastnaya-proizvodnaya', 'braket', 'napravlenie-naibystreyshego-rosta']
@@ -110,7 +110,7 @@ export const day07Terms: Glossary = {
 		term: 'Неравенство Коши–Буняковского',
 		short: String.raw`Модуль скалярного произведения не больше произведения норм.`,
 		formula: String.raw`\bigl|\langle\vec a\mid\vec b\rangle\bigr|\le\|\vec a\|\cdot\|\vec b\|`,
-		body: String.raw`Оценка $|\langle\vec a\mid\vec b\rangle|\le\|\vec a\|\cdot\|\vec b\|$ в [[braket|bra-ket]]-записи курса; равенство достигается **только** при коллинеарности $\vec a$ и $\vec b$. Эквивалентная форма — $\langle\vec a\mid\vec b\rangle=\|\vec a\|\,\|\vec b\|\cos\alpha$, где $\cos\alpha\in[-1,1]$.
+		body: String.raw`Оценка $|\langle\vec a\mid\vec b\rangle|\le\|\vec a\|\cdot\|\vec b\|$ в [[braket|bra-ket]]-записи; равенство достигается **только** при коллинеарности $\vec a$ и $\vec b$. Эквивалентная форма — $\langle\vec a\mid\vec b\rangle=\|\vec a\|\,\|\vec b\|\cos\alpha$, где $\cos\alpha\in[-1,1]$.
 
 Именно условие равенства даёт всю теорему о [[napravlenie-naibystreyshego-rosta|наибыстрейшем росте]]: максимум проекции [[gradient|градиента]] достигается ровно на одном направлении.`,
 		related: ['braket', 'gradient', 'napravlenie-naibystreyshego-rosta']
@@ -119,11 +119,11 @@ export const day07Terms: Glossary = {
 	'differenciruemost-fnp': {
 		id: 'differenciruemost-fnp',
 		term: 'Дифференцируемость ФНП',
-		short: String.raw`У преподавателя — существование всех частных; в учебниках сильнее.`,
-		formula: String.raw`f\ \text{дифф.}\iff \exists\,\frac{\partial f}{\partial x_i}\quad\forall i`,
-		body: String.raw`⚠️ Определение курса (конспект, стр. 27): поле дифференцируемо, если существуют все [[chastnaya-proizvodnaya|частные производные]]. В учебниках дифференцируемость — существование линейного приближения (производная Фреше, день 8), и это условие строго сильнее.
+		short: String.raw`Существование линейного приближения приращения, а не частных производных.`,
+		formula: String.raw`f(\vec x_0+\vec h)-f(\vec x_0)=\langle\vec a\mid\vec h\,\rangle+\bar o(\|\vec h\|)`,
+		body: String.raw`Поле **дифференцируемо** в точке, если его приращение допускает линейное приближение с остатком $\bar o(\|\vec h\|)$; полное имя такого приближения — производная Фреше (день 8). Существование всех [[chastnaya-proizvodnaya|частных производных]] — условие строго слабее: оно даёт $n$ чисел, которые в лучшем случае служат координатами приближения, и не гарантирует даже непрерывности.
 
-Контрпример: $f=\frac{xy}{x^2+y^2}$, $f(0,0)=0$ — обе частные в нуле есть и равны нулю, но вдоль $y=x$ поле равно $\tfrac12$, то есть даже не непрерывно. Отвечать в терминах курса, помнить расхождение — см. [[klassy-differenciruemosti|классы гладкости]].`,
+Различающий пример: $f=\frac{xy}{x^2+y^2}$, $f(0,0)=0$. Обе частные производные в нуле есть и равны нулю, потому что на осях $f\equiv0$; но вдоль прямой $y=x$ поле равно $\tfrac12$, так что предела в нуле нет. Полная лестница «Фреше — Гато — все направления — частные» разбирается в дне 9; про шкалу гладкости — [[klassy-differenciruemosti|классы гладкости]].`,
 		related: ['chastnaya-proizvodnaya', 'skalyarnoe-pole', 'klassy-differenciruemosti']
 	},
 

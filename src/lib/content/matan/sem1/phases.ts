@@ -40,7 +40,7 @@ export const phases: Phase[] = [
 	{
 		id: 'kolloquium',
 		title: 'Коллоквиумы',
-		subtitle: 'КЛК1 и КЛК2 (дни 29–30)',
+		subtitle: 'Повторение и самопроверка (дни 29–30)',
 		hue: 0
 	}
 ];

@@ -1,11 +1,11 @@
 import type { Glossary } from '$lib/types';
 
-// Термины дня 14 (конспект «Пределы», стр. 7–13). День должен резолвиться
-// независимо, поэтому термины прошлых дней, на которые он ссылается,
-// продублированы здесь: predel-posledovatelnosti, obobshchennaya-posledovatelnost,
+// Термины дня 14. День должен резолвиться независимо, поэтому термины
+// прошлых дней, на которые он ссылается, продублированы здесь:
+// predel-posledovatelnosti, obobshchennaya-posledovatelnost,
 // metricheskoe-prostranstvo, normirovannoe-prostranstvo, shar,
 // neravenstvo-treugolnika, n-ot-epsilon, beskonechno-malaya.
-// НЕ дублируются термины канонического глоссария курса (он склеивается
+// НЕ дублируются термины канонического глоссария (он склеивается
 // последним и перекрывает одноимённые): n-nol-n-odin, dopolnenie, zamykanie,
 // vykolotaya-okrestnost, metriki-rho, asimptoticheskie-klassy,
 // skhodyashchayasya-v-sebe, blacksquare и прочие из glossary.ts.
@@ -17,7 +17,7 @@ export const day14Terms: Glossary = {
 		formula: String.raw`\forall n\in\mathbb N_1:\ x_n\le y_n\le z_n`,
 		body: String.raw`Последовательность $y_n$ называется **сжатой** между $x_n$ и $z_n$, если $\forall n\in\mathbb N_1:\ x_n\le y_n\le z_n$, то есть $y_n\in[x_n;z_n]$.
 
-О сходимости самой $y_n$ ничего не предполагается — она может быть сколь угодно рваной. ⚠️ Определение опирается на **порядок** $\le$, которого в [[metricheskoe-prostranstvo|метрическом пространстве]] нет; там сжатость переписывают через [[zamknutyy-shar|замкнутый шар]]: $\rho(f_n,y_n)\le t_n$.`,
+О сходимости самой $y_n$ ничего не предполагается — она может быть сколь угодно рваной. Определение опирается на **порядок** $\le$, которого в [[metricheskoe-prostranstvo|метрическом пространстве]] нет; там сжатость переписывают через [[zamknutyy-shar|замкнутый шар]]: $\rho(f_n,y_n)\le t_n$.`,
 		related: ['teorema-o-dvuh-gorodovyh', 'zamknutyy-shar', 'metricheskoe-prostranstvo']
 	},
 
@@ -37,9 +37,9 @@ export const day14Terms: Glossary = {
 		term: 'Теорема о бесконечности городовых',
 		short: String.raw`Сходится центр, стягивается радиус — сходится и точка в шаре.`,
 		formula: String.raw`\lim f_n=f,\ \lim t_n=0,\ y_n\in\overline B_{t_n}(f_n)\ \Rightarrow\ \lim y_n=f`,
-		body: String.raw`Авторское название метрического аналога теоремы о сжатии (конспект, стр. 11–13); в официальном списке КЛК1 §11 — «теорема о сжатой последовательности в произвольном метрическом пространстве», в учебниках отдельно не выделяется.
+		body: String.raw`Теорема о сжатой последовательности в произвольном [[metricheskoe-prostranstvo|метрическом пространстве]]: если $\lim f_n=f$, $\lim t_n=0$ и $\forall n:\ \rho(f_n,y_n)\le t_n$, то $\lim y_n=f$. Отношение «между» в формулировке не участвует — его место занимают [[styagivayushchiesya-shary|стягивающиеся шары]].
 
-Доказывается вставкой промежуточной точки по [[neravenstvo-treugolnika|неравенству треугольника]]: $\rho(f,y_n)\le\rho(f,f_n)+\rho(f_n,y_n)$, откуда $$N_y(\varepsilon_y)=\max\Bigl(N_f\bigl(\tfrac{\varepsilon_y}{2}\bigr),N_t\bigl(\tfrac{\varepsilon_y}{2}\bigr)\Bigr).$$`,
+Доказывается вставкой промежуточной точки по [[neravenstvo-treugolnika|неравенству треугольника]]: $\rho(f,y_n)\le\rho(f,f_n)+\rho(f_n,y_n)$, слагаемых два, поэтому $\varepsilon$ делится пополам: $$N_y(\varepsilon_y)=\max\Bigl(N_f\bigl(\tfrac{\varepsilon_y}{2}\bigr),N_t\bigl(\tfrac{\varepsilon_y}{2}\bigr)\Bigr).$$`,
 		related: ['styagivayushchiesya-shary', 'zamknutyy-shar', 'neravenstvo-treugolnika', 'teorema-o-dvuh-gorodovyh']
 	},
 
@@ -48,9 +48,9 @@ export const day14Terms: Glossary = {
 		term: 'Замкнутый шар',
 		short: String.raw`$\overline B_r(x_0)=\{x:\rho(x,x_0)\le r\}$ — шар вместе со сферой.`,
 		formula: String.raw`\overline B_r(x_0)=\{x\in M:\ \rho(x,x_0)\le r\}`,
-		body: String.raw`**Замкнутый шар** отличается от [[shar|открытого]] одним знаком: граничная сфера включена, $\rho(x,x_0)\le r$ вместо $<r$.
+		body: String.raw`**Замкнутый шар** отличается от [[shar|открытого]] одним знаком: граничная сфера включена, $\rho(x,x_0)\le r$ вместо $<r$. В $\mathbb R$ замкнутый шар — это отрезок $[x_0-r;x_0+r]$, а в $\mathbb R^2$ с $\rho_\infty$ — квадрат.
 
-⚠️ Черта сверху здесь означает «замкнутый», хотя над произвольным множеством в курсе она означает [[dopolnenie|дополнение]] (замыкание пишется $\mathrm{cl}\,A$). В $\mathbb R$ замкнутый шар — это отрезок $[x_0-r;x_0+r]$, а в $\mathbb R^2$ с $\rho_\infty$ — квадрат.`,
+Черта сверху над шаром означает «замкнутый», тогда как над произвольным множеством $A$ запись $\overline A$ означает [[dopolnenie|дополнение]] $M\setminus A$ (замыкание пишется $\mathrm{cl}\,A$). Пример на различие: для $A=B_1(0)\subset\mathbb R$ дополнение $\overline A=(-\infty;-1]\cup[1;+\infty)$, а $\mathrm{cl}\,A=[-1;1]=\overline B_1(0)$.`,
 		related: ['shar', 'metricheskoe-prostranstvo', 'styagivayushchiesya-shary', 'dopolnenie']
 	},
 
@@ -70,7 +70,7 @@ export const day14Terms: Glossary = {
 		term: 'Открытый шар',
 		short: String.raw`$B_r(x_0)=\{x:\rho(x,x_0)<r\}$ — база топологии, порождённой метрикой.`,
 		formula: String.raw`B_r(x_0)=\{x\in M:\ \rho(x,x_0)<r\}`,
-		body: String.raw`**Открытый шар** радиуса $r$ с центром $x_0$ — множество точек, удалённых от $x_0$ строго меньше чем на $r$. В конспекте порядок аргументов плавает: встречаются и $B_r(x_0)$, и $B_{x_0}(r)$.
+		body: String.raw`**Открытый шар** радиуса $r$ с центром $x_0$ — множество точек, удалённых от $x_0$ строго меньше чем на $r$. При $r=0$ он пуст, в отличие от [[zamknutyy-shar|замкнутого]]: $\overline B_0(x_0)=\{x_0\}$.
 
 Через шары записывается [[predel-posledovatelnosti|предел]]: $f(n)\in B_\varepsilon(A)$. Форма шара зависит от метрики: в $\rho_2$ это круг, в [[metriki-rho|$\rho_\infty$]] — квадрат, в $\rho_1$ — ромб.`,
 		related: ['zamknutyy-shar', 'metricheskoe-prostranstvo', 'predel-posledovatelnosti', 'metriki-rho']
@@ -92,7 +92,7 @@ export const day14Terms: Glossary = {
 		term: 'Нормированное пространство',
 		short: String.raw`Линейное пространство с нормой; метрика — $\rho(a,b)=\lVert a-b\rVert$.`,
 		formula: String.raw`\rho(a,b)=\lVert a-b\rVert,\qquad \lVert a+b\rVert\le\lVert a\rVert+\lVert b\rVert`,
-		body: String.raw`Пространство с нормой $\lVert\cdot\rVert$: неотрицательность с невырожденностью, однородность $\lVert\lambda a\rVert=|\lambda|\,\lVert a\rVert$ и неравенство треугольника. Всякое нормированное пространство — [[metricheskoe-prostranstvo|метрическое]] с $\rho(a,b)=\lVert a-b\rVert$; в курсе норма надстраивается над уже введённой метрикой.
+		body: String.raw`Пространство с нормой $\lVert\cdot\rVert$: неотрицательность с невырожденностью, однородность $\lVert\lambda a\rVert=|\lambda|\,\lVert a\rVert$ и неравенство треугольника. Всякое нормированное пространство — [[metricheskoe-prostranstvo|метрическое]] с $\rho(a,b)=\lVert a-b\rVert$; обратное неверно, метрика может не согласовываться ни с какой линейной структурой.
 
 Линейная структура возвращает то, чего нет в метрике: выпуклые комбинации, а с ними — отрезок $[x;z]$ и осмысленное «между».`,
 		related: ['metricheskoe-prostranstvo', 'neravenstvo-treugolnika', 'predel-posledovatelnosti']
@@ -103,7 +103,7 @@ export const day14Terms: Glossary = {
 		term: 'Неравенство треугольника',
 		short: String.raw`$\rho(x,z)\le\rho(x,y)+\rho(y,z)$ — крюк через промежуточную точку не короче.`,
 		formula: String.raw`\rho(x,z)\le\rho(x,y)+\rho(y,z)`,
-		body: String.raw`Третья аксиома метрики. Рабочий приём всего курса: чтобы оценить расстояние между двумя точками, вставляют **промежуточную** и оценивают два куска по отдельности.
+		body: String.raw`Третья аксиома метрики. Рабочий приём: чтобы оценить расстояние между двумя точками, вставляют **промежуточную** и оценивают два куска по отдельности.
 
 Именно так доказывается [[teorema-o-beskonechnosti-gorodovyh|теорема о бесконечности городовых]] (промежуточная точка — центр $f_n$) и арифметика пределов. Слагаемых получается два, поэтому $\varepsilon$ делят пополам — отсюда $\varepsilon/2$ в [[n-ot-epsilon|формуле номера]]. В $\mathbb R$ это привычное $|a+b|\le|a|+|b|$.`,
 		related: ['metricheskoe-prostranstvo', 'teorema-o-beskonechnosti-gorodovyh', 'n-ot-epsilon']
@@ -114,7 +114,7 @@ export const day14Terms: Glossary = {
 		term: 'Номер N(ε) как функция',
 		short: String.raw`Доказательство кончается формулой для $N$, а не словами «предел есть».`,
 		formula: String.raw`N_{x+y}(\varepsilon)=\max\bigl(N_x(\tfrac\varepsilon2),\,N_y(\tfrac\varepsilon2)\bigr)`,
-		body: String.raw`Сквозное требование курса: $N$ трактуется как **функция от $\varepsilon$**, а сам $\varepsilon$ — как ресурс, который распределяют между слагаемыми. Эпсилоны и номера индексируются по объекту: $\varepsilon_x,N_x$, $\varepsilon_y,N_y$.
+		body: String.raw`$N$ трактуется как **функция от $\varepsilon$**, а сам $\varepsilon$ — как ресурс, который распределяют между слагаемыми оценки. Эпсилоны и номера индексируются по объекту: $\varepsilon_x,N_x$, $\varepsilon_y,N_y$.
 
 Маркер для самопроверки: $\max$ без деления $\varepsilon$ означает, что работала транзитивность порядка ([[teorema-o-dvuh-gorodovyh|два городовых]]); $\varepsilon/2$ — что работало [[neravenstvo-treugolnika|неравенство треугольника]] и слагаемых было два.`,
 		related: ['predel-posledovatelnosti', 'teorema-o-dvuh-gorodovyh', 'neravenstvo-treugolnika']
@@ -125,7 +125,7 @@ export const day14Terms: Glossary = {
 		term: 'Предел последовательности',
 		short: String.raw`$\forall\varepsilon>0\ \exists N\ \forall n>N:\ \rho(f(n),A)<\varepsilon$.`,
 		formula: String.raw`\forall\varepsilon>0\ \exists N\in\mathbb N_1\ \forall n>N:\ \rho(f(n),A)<\varepsilon`,
-		body: String.raw`Курс даёт определение сразу пятью эквивалентными формами — через метрику $\rho$, через норму, через [[shar|открытый шар]] ($f(n)\in B_\varepsilon(A)$), через [[vykolotaya-okrestnost|выколотую окрестность]] и лишь последней школьной записью с модулем, помеченной как вещественный частный случай.
+		body: String.raw`Определение записывается в пяти эквивалентных формах — через метрику $\rho$, через норму, через [[shar|открытый шар]] ($f(n)\in B_\varepsilon(A)$), через [[vykolotaya-okrestnost|выколотую окрестность]] и школьной записью с модулем, которая является вещественным частным случаем первой.
 
 Доказательство сходимости считается законченным только с явной формулой [[n-ot-epsilon|$N(\varepsilon)$]]: «значит, предел существует» не принимается.`,
 		related: ['shar', 'n-ot-epsilon', 'obobshchennaya-posledovatelnost', 'vykolotaya-okrestnost']
@@ -136,9 +136,9 @@ export const day14Terms: Glossary = {
 		term: 'Обобщённая последовательность',
 		short: String.raw`Отображение $f:\mathbb N_1\to M$ в метрическое пространство, а не сеть (net).`,
 		formula: String.raw`f:\mathbb N_1\to M,\qquad (M,\rho)`,
-		body: String.raw`**Обобщённой последовательностью** в курсе называют отображение $f:\mathbb N_1\to M$, где $M$ — [[metricheskoe-prostranstvo|метрическое пространство]] вместо $\mathbb R$. Область определения остаётся прежней ([[n-nol-n-odin|натуральные без нуля]]).
+		body: String.raw`**Обобщённой последовательностью** называется отображение $f:\mathbb N_1\to M$, где $M$ — [[metricheskoe-prostranstvo|метрическое пространство]] вместо $\mathbb R$. Область определения остаётся прежней ([[n-nol-n-odin|натуральные без нуля]]), обобщается только область значений. Предел в $M$ обозначается строчной буквой ($\lim x_n=a$), вещественный — заглавной ($=A$).
 
-⚠️ В общей топологии «обобщённая последовательность» — это **сеть** (net), отображение направленного множества; читая Келли, не перепутайте. На полях конспекта предел в $M$ помечен строчной буквой ($\lim x_n=a$), вещественный — заглавной ($=A$).`,
+Термин **сеть** (net) обозначает другую конструкцию: отображение произвольного направленного множества. Различающий пример: система окрестностей точки, упорядоченная по обратному включению, — направленное множество, но не $\mathbb N_1$, и определённая на нём сеть обобщённой последовательностью не является.`,
 		related: ['metricheskoe-prostranstvo', 'predel-posledovatelnosti', 'n-nol-n-odin']
 	},
 
@@ -147,9 +147,9 @@ export const day14Terms: Glossary = {
 		term: 'Бесконечно малая последовательность',
 		short: String.raw`Последовательность с нулевым пределом; эталон — $1/n^4$.`,
 		formula: String.raw`\forall\varepsilon_f>0\ \exists N_f\ \forall n>N_f:\ |f_n|<\varepsilon_f`,
-		body: String.raw`**Бесконечно малая (б.м.)** — последовательность, предел которой равен нулю. Рабочая запись: $|f_n|<\varepsilon_f$ при $n>N_f(\varepsilon_f)$; эталонный пример конспекта — $f_n=1/n^4$.
+		body: String.raw`**Бесконечно малая (б.м.)** — последовательность, предел которой равен нулю. Рабочая запись: $|f_n|<\varepsilon_f$ при $n>N_f(\varepsilon_f)$; эталонный пример — $f_n=1/n^4$.
 
-В теореме дня радиус $t_n$ — именно б.м., причём неотрицательная, поэтому модуль снимается: $|t_n-0|=t_n$. Свойства б.м. и связанные с ними [[asimptoticheskie-klassy|асимптотические классы]] разбираются дальше в фазе «Предел последовательности».`,
+В теореме дня 14 радиус $t_n$ — именно б.м., причём неотрицательная, поэтому модуль снимается: $|t_n-0|=t_n$. Свойства б.м. и связанные с ними [[asimptoticheskie-klassy|асимптотические классы]] разбираются в днях 15–17.`,
 		related: ['predel-posledovatelnosti', 'styagivayushchiesya-shary', 'asimptoticheskie-klassy']
 	}
 };

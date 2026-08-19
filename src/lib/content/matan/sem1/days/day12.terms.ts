@@ -3,7 +3,7 @@ import type { Glossary } from '$lib/types';
 // Термины дня 12 (арифметика пределов). Термины, введённые в предыдущих днях,
 // сознательно продублированы здесь (predel-posledovatelnosti, n-ot-epsilon,
 // neravenstvo-treugolnika) — день должен резолвиться независимо.
-// НЕ дублируются термины канонического глоссария курса, на них только ссылки:
+// НЕ дублируются термины общего глоссария, на них только ссылки:
 // n-nol-n-odin, vykolotaya-okrestnost, metriki-rho, asimptoticheskie-klassy,
 // end-r, blacksquare и остальные из sem1/glossary.ts.
 export const day12Terms: Glossary = {
@@ -12,7 +12,7 @@ export const day12Terms: Glossary = {
 		term: 'Арифметика пределов',
 		short: String.raw`Сумма, разность, умножение на константу, произведение, частное.`,
 		formula: String.raw`\lim(x_n\pm y_n)=A\pm B,\quad \lim x_ny_n=AB,\quad \lim\frac{x_n}{y_n}=\frac AB\ (B\ne0)`,
-		body: String.raw`**Арифметика пределов** — блок свойств, позволяющих считать предел составного выражения по пределам частей. В курсе доказываются пять пунктов: [[predel-summy|сумма и разность]], [[umnozhenie-na-konstantu|умножение на константу]] при $C\ne0$, [[predel-proizvedeniya|произведение]] и [[predel-chastnogo|частное]] при $B\ne0$.
+		body: String.raw`**Арифметика пределов** — блок свойств, позволяющих считать предел составного выражения по пределам частей. Пунктов пять: [[predel-summy|сумма и разность]], [[umnozhenie-na-konstantu|умножение на константу]] при $C\ne0$, [[predel-proizvedeniya|произведение]] и [[predel-chastnogo|частное]] при $B\ne0$; каждый доказывается отдельно, до явной формулы для номера.
 
 Раскладывать предел законно **только при существовании обоих пределов**; обратное неверно — сумма может сходиться при расходящихся слагаемых.`,
 		related: ['predel-summy', 'predel-proizvedeniya', 'predel-chastnogo', 'n-ot-epsilon']
@@ -23,7 +23,7 @@ export const day12Terms: Glossary = {
 		term: 'Предел последовательности',
 		short: String.raw`Для любого ε найдётся номер, после которого все члены ближе ε к A.`,
 		formula: String.raw`\forall\varepsilon>0\ \exists N\in\mathbb N_1\ \forall n>N:\ |x_n-A|<\varepsilon`,
-		body: String.raw`Рабочая (вещественная) форма определения: для любого $\varepsilon>0$ существует номер $N\in$ [[n-nol-n-odin|$\mathbb N_1$]], начиная с которого $|x_n-A|<\varepsilon$. Курс даёт её последней из пяти эквивалентных: через метрику $\rho$, через норму, через открытый шар $B_A(\varepsilon)$ и через [[vykolotaya-okrestnost|выколотую окрестность]] $\mathring U_A$ — от общего к частному.
+		body: String.raw`Рабочая (вещественная) форма определения: для любого $\varepsilon>0$ существует номер $N\in$ [[n-nol-n-odin|$\mathbb N_1$]], начиная с которого $|x_n-A|<\varepsilon$. Ей эквивалентны формулировки через метрику $\rho$, через норму, через открытый шар $B_A(\varepsilon)$ и через [[vykolotaya-okrestnost|выколотую окрестность]] $\mathring U_A$ — от общего к частному.
 
 Все доказательства арифметики пределов — это переписывание кванторов этого определения. Подробно — день 11.`,
 		related: ['n-ot-epsilon', 'vykolotaya-okrestnost', 'n-nol-n-odin', 'arifmetika-predelov']
@@ -34,10 +34,10 @@ export const day12Terms: Glossary = {
 		term: 'Номер как функция от эпсилона',
 		short: String.raw`$N$ — не константа, а функция $N(\varepsilon)$; ею и кончается вывод.`,
 		formula: String.raw`N_x(\varepsilon)=\lceil 1/\varepsilon\rceil\quad\text{для } x_n=1/n`,
-		body: String.raw`Ключевой приём курса: номер трактуется как **функция от точности**, $N_x(\varepsilon)$, и его можно вычислять в любой точке — в частности, подставлять $\varepsilon/2$, $\varepsilon/|C|$, $\varepsilon/(2C)$.
+		body: String.raw`Номер трактуется как **функция от точности**, $N_x(\varepsilon)$, и его можно вычислять в любой точке — в частности, подставлять $\varepsilon/2$, $\varepsilon/|C|$, $\varepsilon/(2C)$.
 
-Отсюда требование к оформлению: [[blacksquare|доказательство считается законченным]] только когда выписана явная зависимость $N$ от $\varepsilon$. Фраза «значит, предел существует» на коллоквиуме не принимается.`,
-		related: ['indeksaciya-epsilonov', 'raspredelenie-epsilon', 'blacksquare', 'predel-posledovatelnosti']
+Отсюда и критерий законченности: пока явная зависимость $N$ от $\varepsilon$ не выписана, условие $\forall n>N$ проверить не на чем, и утверждение остаётся необоснованным. Фраза «значит, предел существует» такой зависимости не даёт и вывода не заменяет.`,
+		related: ['indeksaciya-epsilonov', 'raspredelenie-epsilon', 'predel-posledovatelnosti']
 	},
 
 	'indeksaciya-epsilonov': {
@@ -45,9 +45,9 @@ export const day12Terms: Glossary = {
 		term: 'Эпсилон с индексом по объекту',
 		short: String.raw`У каждой последовательности свой ε и свой N: ε_x, ε_y, ε_{x+y}.`,
 		formula: String.raw`\varepsilon_x,\ \varepsilon_y,\ \varepsilon_{x+y};\qquad N_x,\ N_y,\ N_{x+y}`,
-		body: String.raw`Сквозная дисциплина курса: эпсилоны и номера **именуются по объекту** — $\varepsilon_x,N_x$ для $x_n$, $\varepsilon_y,N_y$ для $y_n$, $\varepsilon_{x+y},N_{x+y}$ для результата. Во втором семестре так же различают $\varepsilon_f$ (сходимость) и $\varepsilon_\varphi$ (фундаментальность).
+		body: String.raw`Дисциплина обозначений: эпсилоны и номера **именуются по объекту** — $\varepsilon_x,N_x$ для $x_n$, $\varepsilon_y,N_y$ для $y_n$, $\varepsilon_{x+y},N_{x+y}$ для результата. Там, где к одному определению обращаются дважды за разным, различают и подставляемые эпсилоны: в доказательстве [[predel-chastnogo|частного]] значение $\varepsilon_y=|B|/2$ работает на отделённость знаменателя от нуля, а $\varepsilon_y=\frac{\varepsilon|B|^2}{4(|A|+1)}$ — на итоговую оценку, и путать их номера под знаком максимума нельзя.
 
-Смысл не косметический: индекс снимает главную студенческую ошибку — «чей это $N$», когда одна буква обслуживает три разных определения и становится непонятно, какое неравенство гарантировано.`,
+Смысл не косметический: индекс снимает главную ошибку — «чей это $N$», когда одна буква обслуживает три разных определения и становится непонятно, какое неравенство гарантировано.`,
 		related: ['n-ot-epsilon', 'raspredelenie-epsilon', 'arifmetika-predelov']
 	},
 
@@ -91,7 +91,7 @@ export const day12Terms: Glossary = {
 		formula: String.raw`N_{xy}(\varepsilon)=\max\Bigl(N_x(1),\ N_x\bigl(\tfrac{\varepsilon}{2C}\bigr),\ N_y\bigl(\tfrac{\varepsilon}{2C}\bigr)\Bigr),\quad C=\max(|B|,|A|+1)`,
 		body: String.raw`Доказательство идёт через промежуточный член: $x_ny_n-AB=x_n(y_n-B)+B(x_n-A)$, откуда $|x_ny_n-AB|\le|x_n|\,|y_n-B|+|B|\,|x_n-A|$.
 
-Переменный множитель $|x_n|$ заменяется [[mazhoranta|мажорантой]] $C$, после чего работает обычное [[raspredelenie-epsilon|распределение эпсилона]] с долями $\varepsilon/(2C)$. Именно здесь курс неявно пользуется [[ogranichennaya-posledovatelnost|ограниченностью сходящейся последовательности]] — теоремой, которую формулируют позже.`,
+Переменный множитель $|x_n|$ заменяется [[mazhoranta|мажорантой]] $C$, после чего работает обычное [[raspredelenie-epsilon|распределение эпсилона]] с долями $\varepsilon/(2C)$. Именно здесь неявно используется [[ogranichennaya-posledovatelnost|ограниченность сходящейся последовательности]] — точнее, её хвостовая часть, доступная прямо из определения предела.`,
 		related: ['mazhoranta', 'raspredelenie-epsilon', 'ogranichennaya-posledovatelnost', 'arifmetika-predelov']
 	},
 
@@ -102,7 +102,7 @@ export const day12Terms: Glossary = {
 		formula: String.raw`\lim_{n\to\infty}\frac{x_n}{y_n}=\frac AB\quad (B\ne0)`,
 		body: String.raw`При $B\ne0$ частное сходится к $A/B$. Вывод состоит из двух шагов: сначала [[otdelennost-ot-nulya|отделённость знаменателя от нуля]] (подстановка $\varepsilon_y=|B|/2$), затем оценка $\bigl|\frac{x_n}{y_n}-\frac AB\bigr|\le\frac{|B||x_n-A|+|A||y_n-B|}{|y_n||B|}$ и [[raspredelenie-epsilon|распределение эпсилона]] неравными долями.
 
-В конспекте общий случай не разобран — там только частное с бесконечно малой в числителе, но в списке тем КЛК1 свойство стоит без изъятий.`,
+Частный случай $A=0$ читается сразу: бесконечно малая, делённая на последовательность с ненулевым пределом, остаётся бесконечно малой.`,
 		related: ['otdelennost-ot-nulya', 'raspredelenie-epsilon', 'arifmetika-predelov']
 	},
 
@@ -113,7 +113,7 @@ export const day12Terms: Glossary = {
 		formula: String.raw`C=\max\bigl(|B|,\ |A|+1\bigr)\ \ge 1>0`,
 		body: String.raw`**Мажоранта** — постоянная, которой сверху накрывают переменные величины, чтобы в оценке остались только контролируемые множители. В [[predel-proizvedeniya|произведении]] мажорируются $|x_n|$ и $|B|$ одним числом $C$.
 
-Оценка $|x_n|<|A|+1$ добывается подстановкой $\varepsilon_x=1$ в определение предела и верна на хвосте $n>N_x(1)$; цена приёма — лишний член $N_x(1)$ под максимумом. В конспекте формула мажоранты записана с опиской (лишний член $-B$).`,
+Оценка $|x_n|<|A|+1$ добывается подстановкой $\varepsilon_x=1$ в определение предела и верна на хвосте $n>N_x(1)$; цена приёма — лишний член $N_x(1)$ под максимумом. При произвольном $\varepsilon_x$ годится и более тонкое $C=\max\bigl(|B|,|A+\varepsilon_x|,|A-\varepsilon_x|\bigr)$: модули обязательны, без них при отрицательных $A$ или $B$ число перестаёт мажорировать.`,
 		related: ['predel-proizvedeniya', 'ogranichennaya-posledovatelnost', 'neravenstvo-treugolnika']
 	},
 
@@ -122,9 +122,9 @@ export const day12Terms: Glossary = {
 		term: 'Ограниченная последовательность',
 		short: String.raw`Ограничена сверху и снизу: ∃A ∀n x_n ≤ A и ∃B ∀n x_n ≥ B.`,
 		formula: String.raw`\exists A\ \forall n:\ x_n\le A;\qquad \exists B\ \forall n:\ x_n\ge B`,
-		body: String.raw`Ограниченность задаётся парой условий — сверху и снизу. Сходящаяся последовательность ограничена ($\exists\sup x_n$, $\exists\inf x_n$), но эта теорема идёт **после** арифметики пределов, хотя доказательство [[predel-proizvedeniya|произведения]] ею неявно пользуется.
+		body: String.raw`Ограниченность задаётся парой условий — сверху и снизу. Сходящаяся последовательность ограничена ($\exists\sup x_n$, $\exists\inf x_n$); эта теорема доказывается в дне 15, хотя доказательство [[predel-proizvedeniya|произведения]] уже ею неявно пользуется.
 
-Петля закрывается: в произведении нужна лишь хвостовая оценка $|x_n|<|A|+1$ прямо из определения предела; полная теорема — день 15. Внимание к буквам: в конспекте границы обозначены теми же $A$, $B$, что и пределы.`,
+Петля закрывается: в произведении нужна лишь хвостовая оценка $|x_n|<|A|+1$ прямо из определения предела, и она не опирается на арифметику. В формуле $A$ — верхняя граница, $B$ — нижняя; это другие $A$ и $B$, нежели пределы в теоремах арифметики.`,
 		related: ['mazhoranta', 'predel-proizvedeniya', 'predel-posledovatelnosti']
 	},
 
@@ -133,7 +133,7 @@ export const day12Terms: Glossary = {
 		term: 'Неравенство треугольника',
 		short: String.raw`|a+b| ≤ |a|+|b|; в метрике — ρ(x,z) ≤ ρ(x,y)+ρ(y,z).`,
 		formula: String.raw`|a+b|\le|a|+|b|,\qquad \rho(x,z)\le\rho(x,y)+\rho(y,z)`,
-		body: String.raw`Инструмент, который разбивает ошибку составного выражения на слагаемые — без него [[raspredelenie-epsilon|распределять эпсилон]] было бы не между чем. В конспекте записано в форме $|a|+|b|\ge|a+b|$ и выделено красным.
+		body: String.raw`Инструмент, который разбивает ошибку составного выражения на слагаемые — без него [[raspredelenie-epsilon|распределять эпсилон]] было бы не между чем. Та же запись справа налево: $|a|+|b|\ge|a+b|$.
 
 Модульная версия — частный случай аксиомы [[metriki-rho|метрики]]; в нормированном пространстве ту же роль играет аксиома нормы $\lVert a+b\rVert\le\lVert a\rVert+\lVert b\rVert$. Полезен и «обратный» вид: $|x|\ge|A|-|x-A|$.`,
 		related: ['raspredelenie-epsilon', 'predel-summy', 'metriki-rho', 'otdelennost-ot-nulya']

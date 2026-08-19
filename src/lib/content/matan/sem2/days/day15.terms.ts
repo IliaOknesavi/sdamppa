@@ -1,7 +1,7 @@
 import type { Glossary } from '$lib/types';
 
 // Термины дня 15 (условный экстремум, множители Лагранжа). Понятия сквозной
-// нотации курса живут в каноническом глоссарии (sem2/glossary.ts) и здесь НЕ
+// нотации живут в каноническом глоссарии (sem2/glossary.ts) и здесь НЕ
 // дублируются — они подключаются перекрёстными ссылками [[...]]:
 //   braket, skalyarnoe-pole, klassy-differenciruemosti, priznak-i-svoystvo,
 //   blacksquare. Канонический глоссарий склеивается последним и перекрывает
@@ -16,7 +16,7 @@ export const day15Terms: Glossary = {
 		formula: String.raw`\exists U_{\vec x^{*}}:\ \forall \vec x\in U_{\vec x^{*}}\cap\mathcal D:\ f(\vec x)\ge f(\vec x^{\,*})`,
 		body: String.raw`Точка $\vec x^{\,*}\in\mathcal D$ — **локальный условный минимум**, если в некоторой окрестности она не хуже всех точек [[dopustimoe-mnozhestvo|допустимого множества]]; для максимума неравенство разворачивается. Всё содержание — в пересечении $U_{\vec x^{*}}\cap\mathcal D$: точка может проигрывать соседям «сбоку» от поверхности и всё равно быть условным экстремумом.
 
-В конспекте развёрнутого определения нет — $x^{*}$ просто подписана как «локальный условный экстремум» перед необходимым условием. Необходимое условие — [[lineynaya-obolochka-gradientov|разложение градиента]] по градиентам [[svyaz|связей]].`,
+Необходимое условие такой точки — [[lineynaya-obolochka-gradientov|разложение градиента]] цели по градиентам [[svyaz|связей]]; достаточным оно не является.`,
 		related: ['dopustimoe-mnozhestvo', 'svyaz', 'lineynaya-obolochka-gradientov', 'funkciya-lagranzha']
 	},
 
@@ -36,7 +36,7 @@ export const day15Terms: Glossary = {
 		term: 'Допустимое множество 𝒟',
 		short: String.raw`Множество точек, где выполнены все связи; на нём и ищется экстремум.`,
 		formula: String.raw`\mathcal D=\{\vec x\in\mathbb R^n:\ g_i(\vec x)=0,\ i=1\ldots m\}`,
-		body: String.raw`Обозначение преподавателя для множества, на котором разрешено оптимизировать: $\mathcal D=\{\vec x:\ g_i(\vec x)=0\}$. При выполненном [[uslovie-regulyarnosti|условии регулярности]] это гладкая поверхность размерности $n-m$ с [[kasatelnoe-prostranstvo|касательным пространством]] той же размерности в каждой точке.
+		body: String.raw`Множество, на котором разрешено оптимизировать: $\mathcal D=\{\vec x:\ g_i(\vec x)=0\}$. При выполненном [[uslovie-regulyarnosti|условии регулярности]] это гладкая поверхность размерности $n-m$ с [[kasatelnoe-prostranstvo|касательным пространством]] той же размерности в каждой точке.
 
 Ровно из-за $\mathcal D$ задача перестаёт быть задачей на [[teorema-ferma|Ферма]]: обнулять весь градиент больше не нужно, достаточно погасить его составляющую вдоль $\mathcal D$. Если [[svyaz|связи]] заданы неравенствами, $\mathcal D$ — область полной размерности с краем, а не поверхность.`,
 		related: ['svyaz', 'uslovnyy-ekstremum', 'kasatelnoe-prostranstvo', 'ogranichenie-neravenstvo']
@@ -47,7 +47,7 @@ export const day15Terms: Glossary = {
 		term: 'Линейная оболочка градиентов связей',
 		short: String.raw`Нормаль к $\mathcal D$: в ней обязан лежать $\nabla f$ в точке экстремума.`,
 		formula: String.raw`\nabla f(\vec x^{\,*})=\sum_{i=1}^{m}\lambda_i^{*}\,\nabla g_i(\vec x^{\,*})`,
-		body: String.raw`Главное утверждение дня подано геометрически: в точке [[uslovnyy-ekstremum|условного экстремума]] градиент цели принадлежит линейной оболочке $\operatorname{span}\{\nabla g_i(\vec x^{\,*})\}$ — нормальному пространству к [[dopustimoe-mnozhestvo|допустимому множеству]], ортогональному дополнению [[kasatelnoe-prostranstvo|касательного пространства]].
+		body: String.raw`Главное утверждение дня в геометрической форме: в точке [[uslovnyy-ekstremum|условного экстремума]] градиент цели принадлежит линейной оболочке $\operatorname{span}\{\nabla g_i(\vec x^{\,*})\}$ — нормальному пространству к [[dopustimoe-mnozhestvo|допустимому множеству]], ортогональному дополнению [[kasatelnoe-prostranstvo|касательного пространства]].
 
 Смысл: у $\nabla f$ не остаётся касательной составляющей, иначе шаг по $\mathcal D$ в её сторону увеличил бы $f$. Коэффициенты разложения — [[mnozhitel-lagranzha|множители Лагранжа]]. При $m=0$ оболочка пуста и условие превращается в $\nabla f=\vec 0$.`,
 		related: ['mnozhitel-lagranzha', 'kasatelnoe-prostranstvo', 'uslovnyy-ekstremum', 'gradient']
@@ -60,29 +60,29 @@ export const day15Terms: Glossary = {
 		formula: String.raw`\lambda_1^{*},\dots,\lambda_m^{*}:\quad \nabla f(\vec x^{\,*})-\sum_{i=1}^{m}\lambda_i^{*}\nabla g_i(\vec x^{\,*})=\vec 0`,
 		body: String.raw`**Множители** $\lambda_i^{*}$ — коэффициенты, с которыми градиент цели раскладывается по градиентам [[svyaz|связей]]. При выполненном [[uslovie-regulyarnosti|условии регулярности]] базис линейно независим, поэтому набор $\lambda^{*}$ определён однозначно.
 
-Нулевой множитель содержателен: связь в этой точке «не тянет», экстремум был бы тем же и без неё. Знак зависит от конвенции — у преподавателя [[funkciya-lagranzha|$\mathcal L=f-\sum\lambda_i g_i$]], в учебниках плюс, и тогда $\mu_i=-\lambda_i$. Вне матана $\lambda_i$ — теневая цена ограничения или коэффициент регуляризации.`,
+Нулевой множитель содержателен: связь в этой точке «не тянет», экстремум был бы тем же и без неё. Знак множителя зависит от выбранной конвенции: при [[funkciya-lagranzha|$\mathcal L=f-\sum\lambda_i g_i$]] и при $\mathcal L=f+\sum\mu_i g_i$ наборы связаны как $\mu_i=-\lambda_i$, а точки экстремума совпадают. Вне матана $\lambda_i$ — теневая цена ограничения или коэффициент регуляризации.`,
 		related: ['funkciya-lagranzha', 'lineynaya-obolochka-gradientov', 'uslovie-regulyarnosti', 'svyaz']
 	},
 
 	'funkciya-lagranzha': {
 		id: 'funkciya-lagranzha',
 		term: 'Функция Лагранжа 𝓛',
-		short: String.raw`Упаковка условия: $\mathcal L=f-\sum\lambda_i g_i$; минус — конвенция курса.`,
+		short: String.raw`Упаковка условия в стационарность: $\mathcal L=f-\sum\lambda_i g_i$.`,
 		formula: String.raw`\mathcal L(\vec x,\vec\lambda)=f(\vec x)-\sum_{i=1}^{m}\lambda_i\,g_i(\vec x)`,
 		body: String.raw`Функция $n+m$ переменных, в стационарность которой упаковано всё необходимое условие: $\partial\mathcal L/\partial x_j=0$ даёт [[lineynaya-obolochka-gradientov|разложение градиента]], а $\partial\mathcal L/\partial\lambda_i=-g_i=0$ возвращает сами [[svyaz|связи]]. Итого $\nabla\mathcal L=\vec 0$ — квадратная система из $n+m$ уравнений.
 
-Появляется **вторым** шагом, после геометрической формулировки, — как удобная запись, а не как рецепт. ⚠️ Знак: у преподавателя минус, в большинстве русскоязычных учебников плюс; расхождение снимается заменой $\lambda\mapsto-\lambda$, но сбивает при сверке промежуточных выкладок.`,
+Знак перед суммой — конвенция: запись $\mathcal L=f+\sum\mu_i g_i$ переходит в приведённую заменой $\mu_i=-\lambda_i$, множества решений совпадают. Для [[ogranichenie-neravenstvo|ограничений-неравенств]] конвенция перестаёт быть свободной: там на множители накладывается требование неотрицательности, отбрасывающее часть стационарных точек.`,
 		related: ['mnozhitel-lagranzha', 'lineynaya-obolochka-gradientov', 'uslovnyy-ekstremum', 'ogranichenie-neravenstvo']
 	},
 
 	'uslovie-regulyarnosti': {
 		id: 'uslovie-regulyarnosti',
 		term: 'Условие регулярности',
-		short: String.raw`Линейная независимость $\nabla g_i(\vec x^{\,*})$ — в конспекте её нет.`,
+		short: String.raw`Линейная независимость градиентов $\nabla g_i(\vec x^{\,*})$ в точке.`,
 		formula: String.raw`\operatorname{rank}\left(\frac{\partial g_i}{\partial x_j}\right)=m\quad\Longleftrightarrow\quad \det\left(\frac{\partial g_i}{\partial y_j}\right)_{i,j=1}^{m}\ne0`,
 		body: String.raw`Гипотеза, без которой метод Лагранжа неверен: градиенты связей в точке линейно независимы, то есть ранг [[matrica-yakobi|матрицы Якоби]] равен $m$; равносильно — найдутся $m$ «зависимых» переменных с невырожденным якобианом (посылка [[teorema-neyavnoy-funkcii|теоремы о неявной функции]]).
 
-⚠️ В конспекте условие **не выписано**: матрица частных производных нарисована частично, требования к рангу нет. Классический контрпример: $f=x\to\min$ при $g=x^3-y^2=0$. Минимум есть в $(0,0)$, но $\nabla g(0,0)=\vec 0$, и система Лагранжа несовместна — метод не находит точку вовсе.`,
+Контрпример к пропуску: $f=x\to\min$ при $g=x^3-y^2=0$. Минимум есть в $(0,0)$, но $\nabla g(0,0)=\vec 0$, и система Лагранжа несовместна — метод не находит точку вовсе.`,
 		related: ['matrica-yakobi', 'teorema-neyavnoy-funkcii', 'mnozhitel-lagranzha', 'kasatelnoe-prostranstvo']
 	},
 
@@ -91,9 +91,9 @@ export const day15Terms: Glossary = {
 		term: 'Ограничение-неравенство',
 		short: String.raw`Условие $g_i\ge0$: вырезает область с краем, а не поверхность.`,
 		formula: String.raw`g_1(x,y)\ge0,\ g_2(x,y)=x\ge0,\ g_3(x,y)=y\ge0`,
-		body: String.raw`Конспект отдельным блоком показывает, что запись «$g_1\ge0$, $g_2\ge0$» разворачивается в набор функций ($g_2=x$, $g_3=y$) и геометрически даёт **заштрихованную область**, а не поверхность: размерность не понижается, появляется край.
+		body: String.raw`Запись «$g_1\ge0$, $g_2\ge0$» разворачивается в набор функций ($g_2=x$, $g_3=y$) и геометрически даёт **область**, а не поверхность: размерность не понижается, появляется край.
 
-Метода для этого случая на данном этапе не даётся. Экстремум может лежать внутри (тогда работает $\nabla f=\vec 0$) или на краю, где часть ограничений активна и ведёт себя как [[svyaz|связь]]-равенство. Систематический разбор — **условия Куна–Таккера**, где [[mnozhitel-lagranzha|множители]] получают обязательный знак.`,
+Экстремум может лежать внутри (тогда работает $\nabla f=\vec 0$) или на краю, где часть ограничений активна и ведёт себя как [[svyaz|связь]]-равенство. Систематический разбор — **условия Куна–Таккера**, где [[mnozhitel-lagranzha|множители]] получают обязательный знак.`,
 		related: ['svyaz', 'dopustimoe-mnozhestvo', 'mnozhitel-lagranzha', 'funkciya-lagranzha']
 	},
 
@@ -124,9 +124,9 @@ export const day15Terms: Glossary = {
 		term: 'Матрица Якоби связей',
 		short: String.raw`Матрица $(\partial g_i/\partial x_j)$; её ранг и есть условие регулярности.`,
 		formula: String.raw`J=\left(\frac{\partial g_i}{\partial x_j}\right)_{i=1\ldots m,\ j=1\ldots n},\qquad \operatorname{rank}J=m`,
-		body: String.raw`Матрица частных производных набора [[svyaz|связей]]; её строки — градиенты $\nabla g_i$, а определитель квадратного блока называется якобианом. В конспекте она выписана частично (первый столбец и многоточия) прямо перед расщеплением переменных $\vec x=(y,z)$.
+		body: String.raw`Матрица частных производных набора [[svyaz|связей]]; её строки — градиенты $\nabla g_i$, а определитель квадратного блока называется якобианом. Расщепление переменных $\vec x=(y,z)$ на $m$ «зависимых» и $n-m$ свободных задаётся выбором квадратного блока в $J$.
 
-Через неё формулируются оба пропущенных в конспекте требования: [[uslovie-regulyarnosti|регулярность]] ($\operatorname{rank}J=m$) и невырожденность блока $\partial g_i/\partial y_j$ в [[teorema-neyavnoy-funkcii|теореме о неявной функции]]. Ядро $J$ — [[kasatelnoe-prostranstvo|касательное пространство]] к $\mathcal D$.`,
+Через неё формулируются оба требования метода: [[uslovie-regulyarnosti|регулярность]] ($\operatorname{rank}J=m$) и невырожденность блока $\partial g_i/\partial y_j$ в [[teorema-neyavnoy-funkcii|теореме о неявной функции]]. Ядро $J$ — [[kasatelnoe-prostranstvo|касательное пространство]] к $\mathcal D$.`,
 		related: ['uslovie-regulyarnosti', 'kasatelnoe-prostranstvo', 'teorema-neyavnoy-funkcii', 'gradient']
 	},
 
@@ -135,9 +135,9 @@ export const day15Terms: Glossary = {
 		term: 'Теорема о неявной функции',
 		short: String.raw`Связи локально разрешаются как $y=\varphi(z)$ с $\varphi\in C^k$.`,
 		formula: String.raw`\exists!\,\varphi:U(z^{*})\to V(y^{*}),\ \varphi\in C^{k},\ \varphi(z^{*})=y^{*},\ g_i(\varphi(z),z)=0`,
-		body: String.raw`Инструмент, которым обосновывается метод Лагранжа: при $g_i\in C^k$ и невырожденном блоке [[matrica-yakobi|матрицы Якоби]] по «зависимым» переменным система $g_i(y,z)=0$ локально разрешается единственной гладкой $y=\varphi(z)$.
+		body: String.raw`Инструмент, которым обосновывается метод Лагранжа: при $g_i\in C^k$ и невырожденном блоке [[matrica-yakobi|матрицы Якоби]] по «зависимым» переменным система $g_i(y,z)=0$ локально разрешается единственной гладкой $y=\varphi(z)$; для одного уравнения теорема доказана в дне 14.
 
-Именно она даёт гладкий путь по [[dopustimoe-mnozhestvo|$\mathcal D$]] в любом [[kasatelnoe-prostranstvo|касательном]] направлении — единственный недоказанный шаг сегодняшнего вывода. В конспекте условие невырожденности не выписано, а редукция $F(z)=f(\varphi(z),z)$ обрывается на определении; разбор — день 16.`,
+Именно она даёт гладкий путь по [[dopustimoe-mnozhestvo|$\mathcal D$]] в любом [[kasatelnoe-prostranstvo|касательном]] направлении — единственный недоказанный шаг сегодняшнего вывода. Она же даёт редукцию условной задачи к безусловной для $F(z)=f(\varphi(z),z)$; разбор — день 16.`,
 		related: ['matrica-yakobi', 'uslovie-regulyarnosti', 'kasatelnoe-prostranstvo', 'dopustimoe-mnozhestvo']
 	},
 
@@ -146,7 +146,7 @@ export const day15Terms: Glossary = {
 		term: 'Теорема Ферма',
 		short: String.raw`Во внутреннем экстремуме производная (градиент) обращается в нуль.`,
 		formula: String.raw`u'(0)=0;\qquad \nabla f(\vec x^{\,*})=\vec 0\ \text{для скалярного поля}`,
-		body: String.raw`Необходимое условие внутреннего экстремума: производная в точке экстремума равна нулю. В курсе теорема даётся дважды — в $\operatorname{End}(\mathbb R)$ и для [[skalyarnoe-pole|скалярных полей]], — и обратное сразу опровергается контрпримером $f=x^3$.
+		body: String.raw`Необходимое условие внутреннего экстремума: производная в точке экстремума равна нулю. Формулируется и в $\operatorname{End}(\mathbb R)$, и для [[skalyarnoe-pole|скалярных полей]]; обратное неверно — контрпример $f=x^3$.
 
 Сегодня она мотор доказательства: след $u(t)=f(\gamma(t))$ вдоль пути по [[dopustimoe-mnozhestvo|$\mathcal D$]] имеет в нуле обычный экстремум, значит $u'(0)=\langle\nabla f\mid\vec h\rangle=0$. Условие Лагранжа обобщает Ферма: при $m=0$ оно в неё и превращается.`,
 		related: ['skalyarnoe-pole', 'kasatelnoe-prostranstvo', 'uslovnyy-ekstremum', 'gradient']
