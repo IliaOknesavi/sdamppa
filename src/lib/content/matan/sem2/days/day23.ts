@@ -83,7 +83,7 @@ $$\boxed{\ \iint_P f(x,y)\,dx\,dy=\int_a^b\Bigl(\int_c^d f(x,y)\,dy\Bigr)dx=\int
 
 **Доказательство.** Приём: заменить функцию на константу внутри каждой ячейки, а право на это взять у [[ravnomernaya-nepreryvnost|равномерной непрерывности]]. Обозначим $S=(b-a)(d-c)$ — площадь прямоугольника.
 
-Шаг 1. $P$ — [[kompakt|компакт]] (произведение двух [[lsk|ЛСК]]), $f$ на нём непрерывна, значит равномерно непрерывна: по $\varepsilon>0$ найдётся $\delta=\delta_f\bigl(\tfrac\varepsilon S\bigr)$ такое, что
+Шаг 1. $P$ — [[kompakt|компакт]] (произведение двух [[lsk|ЛСК]]), $f$ на нём непрерывна, значит по [теореме Кантора](/aii/matan/1/day/28) равномерно непрерывна: по $\varepsilon>0$ найдётся $\delta=\delta_f\bigl(\tfrac\varepsilon S\bigr)$ такое, что
 
 $$\rho_2\bigl((x,y),(x',y')\bigr)<\delta\ \Longrightarrow\ |f(x,y)-f(x',y')|<\frac\varepsilon S.$$
 

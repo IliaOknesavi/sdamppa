@@ -92,7 +92,7 @@ $$\exists I\ \forall\varepsilon>0\ \exists\delta>0\ \forall\lambda\ (\lambda_R<\
 
 **Доказательство.** Зажмём все колебания разом — двумя разными рычагами: равномерной непрерывностью и телескопом.
 
-**Непрерывные.** Пусть $f\in C([a;b])$. Отрезок — [[kompakt|компакт]], поэтому по [[teorema-kantora|теореме Кантора]] $f$ на нём **[[ravnomernaya-nepreryvnost|равномерно непрерывна]]**: одно $\delta$ годится сразу для всех точек. Возьмём
+**Непрерывные.** Пусть $f\in C([a;b])$. Отрезок — [[kompakt|компакт]], поэтому по [[teorema-kantora|[теореме Кантора](/aii/matan/1/day/28)]] $f$ на нём **[[ravnomernaya-nepreryvnost|равномерно непрерывна]]**: одно $\delta$ годится сразу для всех точек. Возьмём
 
 $$\delta=\delta_f\Bigl(\frac{\varepsilon}{2(b-a)}\Bigr),\qquad\text{тогда}\qquad |x-x'|<\delta\ \Rightarrow\ |f(x)-f(x')|<\frac{\varepsilon}{2(b-a)}.$$
 
