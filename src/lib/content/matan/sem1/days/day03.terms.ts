@@ -12,8 +12,8 @@ export const day03Terms: Glossary = {
 		term: 'Биекция',
 		short: String.raw`Спаривание один-к-одному: условие с $\exists!$ выполнено в обе стороны.`,
 		formula: String.raw`\forall x\in A\ \exists!\,y\in B:\ f(x)=y,\qquad \forall y\in B\ \exists!\,x\in A:\ f(x)=y`,
-		body: String.raw`**Биекция** $f:A\to B$ — отображение, при котором каждому $x\in A$ отвечает единственный $y\in B$ и каждому $y\in B$ — единственный прообраз ($!$ читается «единственный»). На языке свойств отношений это всюду определённость, функциональность, инъективность и сюръективность разом. Обратное отображение обозначается $f^-$; у биекции оно существует и само биекция. Наличие биекции — определение [[ravnomoshchnost|равномощности]], а биекция с отрезком $[1\ldots n]$ — определение [[konechnoe-mnozhestvo|конечности]].`,
-		related: ['ravnomoshchnost', 'konechnoe-mnozhestvo', 'vlozhenie']
+		body: String.raw`Отображение, при котором каждому элементу области значений отвечает ровно один прообраз, — то есть [[inektivnost-syuryektivnost|инъекция и сюръекция]] одновременно. Ровно у биекций существует [[obratnaya-funkciya|обратное отображение]], и оно тоже биекция.`,
+		related: ['inektivnost-syuryektivnost', 'obratnaya-funkciya', 'otobrazhenie']
 	},
 
 	ravnomoshchnost: {
@@ -59,22 +59,13 @@ export const day03Terms: Glossary = {
 		related: ['biekciya', 'ravnomoshchnost', 'moshchnost-mnozhestva', 'teorema-kantora']
 	},
 
-	bulean: {
-		id: 'bulean',
-		term: 'Булеан 2^X',
-		short: String.raw`Множество всех подмножеств $X$; существование даёт аксиома степени.`,
-		formula: String.raw`2^X=\{x'\mid x'\subset X\}`,
-		body: String.raw`**Булеан** $2^X$ — множество всех подмножеств $X$; его существование постулирует аксиома степени. Обозначение выбрано не случайно: у конечного $X$ из $n$ элементов $|2^X|=2^n$, потому что подмножество — это ответ «да / нет» по каждому элементу. Для бесконечного $X$ показатель перестаёт быть числом и становится [[kardinalnoe-chislo|кардиналом]], а [[teorema-kantora|теорема Кантора]] утверждает $|X|<|2^X|$ всегда.`,
-		related: ['teorema-kantora', 'kardinalnoe-chislo', 'moshchnost-mnozhestva']
-	},
-
 	'teorema-kantora': {
 		id: 'teorema-kantora',
 		term: 'Теорема Кантора',
 		short: String.raw`$|A|<|2^A|$ для любого $A$ — булеан всегда строго мощнее.`,
 		formula: String.raw`|A|<|2^A|`,
-		body: String.raw`**Теорема Кантора**: для любого множества $A$ выполнено $|A|<|2^A|$. Доказательство идёт в двух частях: [[vlozhenie|вложение]] $x\mapsto\{x\}$ даёт $\le$, а [[diagonalnyy-metod|диагональное множество]] $D=\{x\in A\mid x\notin f(x)\}$ показывает, что ни одно $f:A\to 2^A$ не сюръективно. Следствие — башня $|A|<|2^A|<|2^{2^A}|<\ldots$: наибольшей мощности не существует, а заодно не существует и множества всех множеств.`,
-		related: ['diagonalnyy-metod', 'bulean', 'neschetnoe-mnozhestvo', 'kontinuum-gipoteza']
+		body: String.raw`Для любого [[mnozhestvo|множества]] $A$ выполнено $|A|<|2^A|$: булеан строго мощнее самого множества. Следствие — наибольшей мощности не существует.`,
+		related: ['mnozhestvo', 'schetnoe-mnozhestvo']
 	},
 
 	'diagonalnyy-metod': {
@@ -91,8 +82,8 @@ export const day03Terms: Glossary = {
 		term: 'Счётное множество',
 		short: String.raw`Равномощно $\mathbb N_1$: счётны $\mathbb N_0$, $\mathbb Z$, $\mathbb Q$.`,
 		formula: String.raw`\#A=\aleph_0\iff A\leftrightarrow\mathbb N_1`,
-		body: String.raw`Множество **счётно**, если равномощно [[n-nol-n-odin|$\mathbb N_1$]], то есть его элементы ставятся в очередь с явно выписанным номером. Счётны $\mathbb N_0$ (номер $n\mapsto n+1$), $\mathbb Z$ ($f(k)=2k$ при $k\ge1$ и $1-2k$ при $k\le0$) и $\mathbb Q$ (нумерация по слоям постоянного веса $|n|+m$). Счётность — наименьшая бесконечная мощность [[alef-nol|$\aleph_0$]]; всё, что строго больше, — [[neschetnoe-mnozhestvo|несчётно]].`,
-		related: ['alef-nol', 'neschetnoe-mnozhestvo', 'ravnomoshchnost', 'n-nol-n-odin']
+		body: String.raw`Множество, равномощное [[naturalnye-chisla|натуральному ряду]], то есть такое, все элементы которого можно занумеровать. Счётны $\mathbb Z$ и $\mathbb Q$; счётность — наименьшая бесконечная мощность.`,
+		related: ['naturalnye-chisla', 'biekciya', 'mnozhestvo']
 	},
 
 	'neschetnoe-mnozhestvo': {

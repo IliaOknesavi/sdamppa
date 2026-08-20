@@ -140,17 +140,6 @@ export const day01Terms: Glossary = {
 		related: ['vakuumnaya-istinnost', 'podmnozhestvo', 'sobstvennoe-podmnozhestvo', 'aksioma-ekstencionalnosti']
 	},
 
-	podmnozhestvo: {
-		id: 'podmnozhestvo',
-		term: 'Подмножество (включение ⊂)',
-		short: String.raw`$A\subset B$, если каждый элемент $A$ лежит в $B$; знак нестрогий.`,
-		formula: String.raw`A\subset B\iff\forall x\in A:\ x\in B`,
-		body: String.raw`**Включение** $A\subset B$ («$A$ — подмножество $B$») по определению есть $\forall x\in A:\ x\in B$; отрицание пишется $A\not\subset B$. Знак $\subset$ **нестрогий**: равенство допускается, а строгость оговаривается словом [[sobstvennoe-podmnozhestvo|«собственное»]]. Путать включение с принадлежностью $x\in B$ нельзя: одно связывает два множества, другое — элемент и множество, и объект вроде $\{\varnothing\}$ бывает и элементом, и подмножеством одновременно.
-
-Включение транзитивно и антисимметрично (антисимметричность — это и есть теорема $(A\subset B)\wedge(B\subset A)\Rightarrow A=B$), поэтому оно является отношением порядка. Все подмножества $X$ разом собраны в [[bulean|булеане]] $2^X$.`,
-		related: ['sobstvennoe-podmnozhestvo', 'aksioma-ekstencionalnosti', 'bulean', 'pustoe-mnozhestvo']
-	},
-
 	'sobstvennoe-podmnozhestvo': {
 		id: 'sobstvennoe-podmnozhestvo',
 		term: 'Собственное подмножество',

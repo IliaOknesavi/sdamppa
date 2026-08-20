@@ -34,10 +34,8 @@ export const day25Terms: Glossary = {
 		term: 'Асимптотический признак',
 		short: String.raw`aₙ ∈ Θ(1/nᵖ): при p ≤ 1 расходится, при p > 1 сходится.`,
 		formula: String.raw`a_n\in\Theta\!\left(\tfrac1{n^p}\right):\quad p\le1\Rightarrow\text{расх.},\quad p>1\Rightarrow\text{сх.}`,
-		body: String.raw`**Асимптотический признак сравнения** формулируется прямо на языке [[asimptoticheskie-klassy|асимптотических классов]]: если $a_n>0$ и $a_n\in\Theta(1/n^p)$, то при $p\le1$ ряд расходится, при $p>1$ — сходится.
-
-В одну формулировку слиты два факта: признак сравнения в предельной форме и поведение эталонного [[ryad-dirihle|ряда Дирихле]]. Условие $0<c<\infty$ держится только на пометке $\Theta$: при $c=0$ вывод неверен ($a_n=1/n^2$, $p=1$ даёт $c=0$, но ряд сходится). Доказательство — двусторонняя оценка через $\varepsilon=c/2$ и [[mazhorantnyy-priznak|поэлементный признак]].`,
-		related: ['asimptoticheskie-klassy', 'ryad-dirihle', 'mazhorantnyy-priznak', 'garmonicheskiy-ryad']
+		body: String.raw`Если члены ряда положительны и принадлежат [[asimptoticheskie-klassy|классу]] $\Theta(1/n^p)$, то при $p\le1$ ряд расходится, при $p>1$ сходится. Условие $\Theta$ существенно: при нулевом пределе отношения вывод неверен.`,
+		related: ['asimptoticheskie-klassy', 'ryad-dirihle']
 	},
 
 	'ryad-dirihle': {
@@ -45,10 +43,8 @@ export const day25Terms: Glossary = {
 		term: 'Ряд Дирихле',
 		short: String.raw`Σ1/nᵖ — эталон сходимости: сходится ровно при p > 1.`,
 		formula: String.raw`\sum_{n=1}^{\infty}\frac{1}{n^p}\ \text{сходится}\iff p>1`,
-		body: String.raw`**Ряд Дирихле** $\sum 1/n^p$ — главный эталон для степенного убывания: сходится тогда и только тогда, когда $p>1$. Отдельной теоремой он не нужен — эта классификация по $p$ и есть содержательная часть [[asimptoticheskiy-priznak|асимптотического признака]].
-
-Опорных случаев два: $p=1$ — расходящийся [[garmonicheskiy-ryad|гармонический ряд]], $p=2$ — сходящийся $\sum1/n^2$, доказываемый [[teleskopicheskaya-ocenka|телескопической оценкой]]. Общий случай $p>1$ получается той же идеей — блоками, мажорируемыми геометрической прогрессией со знаменателем $2^{1-p}<1$.`,
-		related: ['asimptoticheskiy-priznak', 'garmonicheskiy-ryad', 'teleskopicheskaya-ocenka', 'geometricheskiy-ryad']
+		body: String.raw`Ряд $\sum 1/n^p$ — эталон степенного убывания: сходится тогда и только тогда, когда $p>1$. Опорные случаи — $p=1$ ([[garmonicheskiy-ryad|гармонический ряд]], расходится) и $p=2$ (сходится).`,
+		related: ['garmonicheskiy-ryad', 'chastichnaya-summa']
 	},
 
 	'priznak-dalambera': {
@@ -56,10 +52,8 @@ export const day25Terms: Glossary = {
 		term: 'Признак Д’Аламбера',
 		short: String.raw`Предел отношения aₙ₊₁/aₙ меньше 1 — сходится, больше 1 — расходится.`,
 		formula: String.raw`\lim_{n\to\infty}\frac{a_{n+1}}{a_n}<1\Rightarrow\text{сх.},\qquad >1\Rightarrow\text{расх.}`,
-		body: String.raw`**Признак Д’Аламбера** для $a_n>0$: если $\lim\frac{a_{n+1}}{a_n}<1$, ряд сходится; если больше единицы — расходится; при значении, равном единице, ответа нет.
-
-Доказательство ведётся через **обратное** отношение $x_n=\frac{a_n}{a_{n+1}}$, $\lim x_n=c$, поэтому пороги в нём перевёрнуты: $c>1$ — сходимость (через [[geometricheskaya-mazhoranta|геометрическую мажоранту]]), $c\in[0;1)$ — расходимость (растущие члены, нарушен [[neobkhodimyy-priznak|необходимый признак]]), $c=1$ — ответа нет. Два примера с $c=1$: $1/n$ расходится, $1/n^2$ сходится.`,
-		related: ['geometricheskaya-mazhoranta', 'geometricheskiy-ryad', 'neobkhodimyy-priznak', 'asimptoticheskiy-priznak']
+		body: String.raw`Для ряда с положительными членами: если предел отношения $a_{n+1}/a_n$ меньше единицы, ряд сходится, если больше — расходится. При значении, равном единице, ответа нет.`,
+		related: ['geometricheskiy-ryad', 'priznak-i-svoystvo']
 	},
 
 	'geometricheskaya-mazhoranta': {
@@ -71,17 +65,6 @@ export const day25Terms: Glossary = {
 
 Дальше срабатывает [[mazhorantnyy-priznak|поэлементный признак]]. Зеркальный вариант с $d>1$ даёт расходящуюся **миноранту**: члены растут в прогрессии, и ряд расходится. Именно поэтому Д’Аламбер видит только экспоненциальную шкалу и слеп к степенному убыванию.`,
 		related: ['priznak-dalambera', 'geometricheskiy-ryad', 'mazhorantnyy-priznak']
-	},
-
-	'geometricheskiy-ryad': {
-		id: 'geometricheskiy-ryad',
-		term: 'Геометрический ряд',
-		short: String.raw`Σdⁿ⁻¹ — эталон: сходится при |d| < 1, расходится при |d| ≥ 1.`,
-		formula: String.raw`\sum_{n=1}^{\infty}d^{\,n-1}=\frac{1}{1-d}\quad (|d|<1)`,
-		body: String.raw`**Геометрический ряд** $\sum d^{\,n-1}$ — второй эталон наряду с [[ryad-dirihle|рядом Дирихле]]: при $|d|<1$ сходится к $\frac1{1-d}$, при $|d|\ge1$ расходится (члены не стремятся к нулю — нарушен [[neobkhodimyy-priznak|необходимый признак]]).
-
-Проверяется он в одну строку через явную [[chastichnaya-summa|частичную сумму]] $S_n=\frac{1-d^{\,n}}{1-d}$. На этом факте стоят обе ветки признака Д’Аламбера: сходящаяся мажоранта при $d<1$ и расходящаяся миноранта при $d>1$.`,
-		related: ['geometricheskaya-mazhoranta', 'ryad-dirihle', 'chastichnaya-summa', 'neobkhodimyy-priznak']
 	},
 
 	'teleskopicheskaya-ocenka': {
@@ -108,47 +91,4 @@ $$\sum_{k=n+1}^{n+p}\frac{1}{k^2}<\frac1n-\frac1{n+p}<\frac1n.$$
 		related: ['chastichnaya-summa', 'kriteriy-koshi-ryad', 'neobkhodimyy-priznak', 'garmonicheskiy-ryad']
 	},
 
-	'chastichnaya-summa': {
-		id: 'chastichnaya-summa',
-		term: 'Частичная сумма',
-		short: String.raw`Sᵢ = a₁ + … + aᵢ — конечный обрезок ряда.`,
-		formula: String.raw`S_i=\sum_{k=1}^{i}a_k,\qquad S_{n+1}=S_n+a_{n+1}`,
-		body: String.raw`**Частичная сумма** $S_i=\sum_{k=1}^{i}a_k$ — то, предел чего и называют суммой [[ryad|ряда]].
-
-Для знакопостоянного ряда с $a_n\ge0$ последовательность $S_i$ **не убывает**, поэтому сходимость равносильна ограниченности — на этом стоит весь [[mazhorantnyy-priznak|поэлементный признак]]. Рекуррентная связь $S_{n+1}=S_n+a_{n+1}$ даёт [[neobkhodimyy-priznak|необходимый признак]], а разность $S_{n+p}-S_n$ — [[kriteriy-koshi-ryad|критерий Коши]].`,
-		related: ['ryad', 'mazhorantnyy-priznak', 'kriteriy-koshi-ryad', 'neobkhodimyy-priznak']
-	},
-
-	'garmonicheskiy-ryad': {
-		id: 'garmonicheskiy-ryad',
-		term: 'Гармонический ряд',
-		short: String.raw`Σ1/n расходится, хотя члены стремятся к нулю.`,
-		formula: String.raw`\frac{1}{n+1}+\dots+\frac{1}{n+p}>\frac{p}{n+p}\ \xrightarrow{\ p=n\ }\ \frac12`,
-		body: String.raw`**Гармонический ряд** $\sum 1/n$ — главный контрпример темы: $\lim a_n=0$, но ряд расходится, то есть [[neobkhodimyy-priznak|необходимый признак]] действительно только необходим.
-
-Механика (день 24): все $p$ слагаемых блока заменяются наименьшим, получается $\frac{p}{n+p}$, и при выборе $p=n$ это ровно $\frac12$ — [[kriteriy-koshi-ryad|критерий Коши]] нарушен при $\varepsilon=\frac12$. Тот же выбор $p=n$ показывает, почему грубая оценка «$p/n^2\to0$» не годится. В [[asimptoticheskiy-priznak|асимптотическом признаке]] гармонический ряд служит расходящейся минорантой при $p\le1$.`,
-		related: ['neobkhodimyy-priznak', 'kriteriy-koshi-ryad', 'ryad-dirihle', 'asimptoticheskiy-priznak']
-	},
-
-	'kriteriy-koshi-ryad': {
-		id: 'kriteriy-koshi-ryad',
-		term: 'Критерий Коши для рядов',
-		short: String.raw`Блоки любой длины малы — необходимое и достаточное условие сходимости.`,
-		formula: String.raw`\forall\varepsilon>0\ \exists N\ \forall n>N\ \forall p\in\mathbb N_1:\ |a_{n+1}+\dots+a_{n+p}|<\varepsilon`,
-		body: String.raw`**Критерий Коши** (день 24): [[ryad|ряд]] сходится тогда и только тогда, когда блоки $a_{n+1}+\dots+a_{n+p}$ малы при больших $n$ **равномерно по $p$**. Это переписанная в терминах [[chastichnaya-summa|частичных сумм]] фундаментальность ([[skhodyashchayasya-v-sebe|сходимость в себе]]) со сдвигом $p\in\mathbb N_1$.
-
-Порядок кванторов здесь — рабочая часть формулировки: $\forall p$ стоит **после** выбора $N$, поэтому оценка блока не имеет права зависеть от $p$. Именно на этом ломается оценка $p/n^2$ для $\sum1/n^2$ и держится [[teleskopicheskaya-ocenka|телескопическая оценка]].`,
-		related: ['ryad', 'chastichnaya-summa', 'skhodyashchayasya-v-sebe', 'teleskopicheskaya-ocenka']
-	},
-
-	'neobkhodimyy-priznak': {
-		id: 'neobkhodimyy-priznak',
-		term: 'Необходимый признак сходимости',
-		short: String.raw`Ряд сходится ⟹ aₙ → 0; обратное неверно.`,
-		formula: String.raw`\sum a_n\ \text{сх.}\ \Longrightarrow\ \lim_{n\to\infty}a_n=0`,
-		body: String.raw`**Необходимый признак сходимости**: если [[ryad|ряд]] сходится, то $\lim a_n=0$. Выводится из [[kriteriy-koshi-ryad|критерия Коши]] при $p=1$: $|S_{n+1}-S_n|=|a_{n+1}|<\varepsilon$, связь номеров $N_a=N_S+1$.
-
-По терминологическому соглашению ([[priznak-i-svoystvo|признак и свойство]]) это условие **необходимое**, то есть по-хорошему свойство, — название за ним закрепилось историческое. Обратное неверно, контрпример — [[garmonicheskiy-ryad|гармонический ряд]]. Рабочее применение: если $a_n\not\to0$, ряд расходится — так быстрее всего закрываются $\sum 2^n/n^2$ и $\sum n^n/n!$.`,
-		related: ['ryad', 'kriteriy-koshi-ryad', 'garmonicheskiy-ryad', 'priznak-i-svoystvo']
-	}
 };

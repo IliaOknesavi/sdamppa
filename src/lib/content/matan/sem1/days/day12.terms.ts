@@ -12,32 +12,8 @@ export const day12Terms: Glossary = {
 		term: 'Арифметика пределов',
 		short: String.raw`Сумма, разность, умножение на константу, произведение, частное.`,
 		formula: String.raw`\lim(x_n\pm y_n)=A\pm B,\quad \lim x_ny_n=AB,\quad \lim\frac{x_n}{y_n}=\frac AB\ (B\ne0)`,
-		body: String.raw`**Арифметика пределов** — блок свойств, позволяющих считать предел составного выражения по пределам частей. Пунктов пять: [[predel-summy|сумма и разность]], [[umnozhenie-na-konstantu|умножение на константу]] при $C\ne0$, [[predel-proizvedeniya|произведение]] и [[predel-chastnogo|частное]] при $B\ne0$; каждый доказывается отдельно, до явной формулы для номера.
-
-Раскладывать предел законно **только при существовании обоих пределов**; обратное неверно — сумма может сходиться при расходящихся слагаемых.`,
-		related: ['predel-summy', 'predel-proizvedeniya', 'predel-chastnogo', 'n-ot-epsilon']
-	},
-
-	'predel-posledovatelnosti': {
-		id: 'predel-posledovatelnosti',
-		term: 'Предел последовательности',
-		short: String.raw`Для любого ε найдётся номер, после которого все члены ближе ε к A.`,
-		formula: String.raw`\forall\varepsilon>0\ \exists N\in\mathbb N_1\ \forall n>N:\ |x_n-A|<\varepsilon`,
-		body: String.raw`Рабочая (вещественная) форма определения: для любого $\varepsilon>0$ существует номер $N\in$ [[n-nol-n-odin|$\mathbb N_1$]], начиная с которого $|x_n-A|<\varepsilon$. Ей эквивалентны формулировки через метрику $\rho$, через норму, через открытый шар $B_A(\varepsilon)$ и через [[vykolotaya-okrestnost|выколотую окрестность]] $\mathring U_A$ — от общего к частному.
-
-Все доказательства арифметики пределов — это переписывание кванторов этого определения. Подробно — день 11.`,
-		related: ['n-ot-epsilon', 'vykolotaya-okrestnost', 'n-nol-n-odin', 'arifmetika-predelov']
-	},
-
-	'n-ot-epsilon': {
-		id: 'n-ot-epsilon',
-		term: 'Номер как функция от эпсилона',
-		short: String.raw`$N$ — не константа, а функция $N(\varepsilon)$; ею и кончается вывод.`,
-		formula: String.raw`N_x(\varepsilon)=\lceil 1/\varepsilon\rceil\quad\text{для } x_n=1/n`,
-		body: String.raw`Номер трактуется как **функция от точности**, $N_x(\varepsilon)$, и его можно вычислять в любой точке — в частности, подставлять $\varepsilon/2$, $\varepsilon/|C|$, $\varepsilon/(2C)$.
-
-Отсюда и критерий законченности: пока явная зависимость $N$ от $\varepsilon$ не выписана, условие $\forall n>N$ проверить не на чем, и утверждение остаётся необоснованным. Фраза «значит, предел существует» такой зависимости не даёт и вывода не заменяет.`,
-		related: ['indeksaciya-epsilonov', 'raspredelenie-epsilon', 'predel-posledovatelnosti']
+		body: String.raw`Набор свойств, позволяющих считать предел составного выражения по пределам частей: сумма, разность, умножение на константу, произведение и частное при ненулевом пределе знаменателя. Раскладывать предел законно только при существовании обоих пределов.`,
+		related: ['predel-posledovatelnosti', 'predel-funkcii']
 	},
 
 	'indeksaciya-epsilonov': {
@@ -126,17 +102,6 @@ export const day12Terms: Glossary = {
 
 Петля закрывается: в произведении нужна лишь хвостовая оценка $|x_n|<|A|+1$ прямо из определения предела, и она не опирается на арифметику. В формуле $A$ — верхняя граница, $B$ — нижняя; это другие $A$ и $B$, нежели пределы в теоремах арифметики.`,
 		related: ['mazhoranta', 'predel-proizvedeniya', 'predel-posledovatelnosti']
-	},
-
-	'neravenstvo-treugolnika': {
-		id: 'neravenstvo-treugolnika',
-		term: 'Неравенство треугольника',
-		short: String.raw`|a+b| ≤ |a|+|b|; в метрике — ρ(x,z) ≤ ρ(x,y)+ρ(y,z).`,
-		formula: String.raw`|a+b|\le|a|+|b|,\qquad \rho(x,z)\le\rho(x,y)+\rho(y,z)`,
-		body: String.raw`Инструмент, который разбивает ошибку составного выражения на слагаемые — без него [[raspredelenie-epsilon|распределять эпсилон]] было бы не между чем. Та же запись справа налево: $|a|+|b|\ge|a+b|$.
-
-Модульная версия — частный случай аксиомы [[metriki-rho|метрики]]; в нормированном пространстве ту же роль играет аксиома нормы $\lVert a+b\rVert\le\lVert a\rVert+\lVert b\rVert$. Полезен и «обратный» вид: $|x|\ge|A|-|x-A|$.`,
-		related: ['raspredelenie-epsilon', 'predel-summy', 'metriki-rho', 'otdelennost-ot-nulya']
 	},
 
 	'otdelennost-ot-nulya': {

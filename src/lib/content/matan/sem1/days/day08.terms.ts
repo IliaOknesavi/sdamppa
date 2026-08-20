@@ -13,10 +13,8 @@ export const day08Terms: Glossary = {
 		term: 'Окрестность точки',
 		short: String.raw`Любой элемент топологии, содержащий $x$; размера у неё нет.`,
 		formula: String.raw`U\in\tau,\ U\ni x\ \Longrightarrow\ U=U_x`,
-		body: String.raw`**Окрестность точки $x$** в пространстве $(S,\tau)$ — любой элемент топологии, содержащий $x$.
-
-Размера у окрестности нет: расстояние в топологическом пространстве не определено, и «маленькая окрестность» — фраза без смысла. Вся техника — в кванторе перед $U_x$: $\exists U_x$ у [[vnutrennyaya-tochka|внутренней]] и [[vneshnyaya-tochka|внешней точки]], $\forall U_x$ у [[granichnaya-tochka|граничной]]. Одна окрестность есть всегда — сам носитель $S$; вариант без самой точки — [[vykolotaya-okrestnost|выколотая окрестность]] $\mathring U_x=U\setminus\{x\}$.`,
-		related: ['vykolotaya-okrestnost', 'vnutrennyaya-tochka', 'granichnaya-tochka', 'otkrytoe-mnozhestvo']
+		body: String.raw`**Окрестность точки** — любой элемент топологии, содержащий эту точку. Размера у неё нет: расстояние в топологическом пространстве не определено, поэтому «маленькая окрестность» — фраза без смысла.`,
+		related: ['mnozhestvo', 'vykolotaya-okrestnost', 'vnutrennyaya-tochka']
 	},
 
 	'vnutrennyaya-tochka': {
@@ -24,10 +22,8 @@ export const day08Terms: Glossary = {
 		term: 'Внутренняя точка',
 		short: String.raw`Нашлась окрестность, целиком лежащая в $A$.`,
 		formula: String.raw`x\in\mathrm{In}\,A\iff\exists U_x:\ U_x\subset A`,
-		body: String.raw`Точка $x$ **внутренняя** для $A$, если существует хотя бы одна [[okrestnost|окрестность]] $U_x$, целиком лежащая в $A$. Квантор здесь — существования: достаточно одного свидетеля.
-
-Внутренняя точка всегда принадлежит $A$: она лежит в своей окрестности, а та внутри $A$. Множество всех внутренних точек — [[vnutrennost|внутренность]] $\mathrm{In}\,A$, и оно всегда [[otkrytoe-mnozhestvo|открыто]]: свидетель $U_x\subset A$ годится сразу для каждой своей точки. Геометрический образ для области на плоскости: точка, вокруг которой найдётся окружность, целиком помещающаяся внутри области.`,
-		related: ['okrestnost', 'vnutrennost', 'granichnaya-tochka', 'vneshnyaya-tochka']
+		body: String.raw`Точка множества, у которой найдётся [[okrestnost|окрестность]], целиком лежащая в этом множестве. Квантор здесь существования: достаточно одного свидетеля.`,
+		related: ['okrestnost', 'podmnozhestvo']
 	},
 
 	'granichnaya-tochka': {
@@ -118,47 +114,4 @@ export const day08Terms: Glossary = {
 		related: ['interval', 'zamknutoe-mnozhestvo', 'granica-mnozhestva', 'metriki-rho']
 	},
 
-	'otkrytoe-mnozhestvo': {
-		id: 'otkrytoe-mnozhestvo',
-		term: 'Открытое множество',
-		short: String.raw`Открыто = лежит в $\tau$ = не содержит ни одной своей граничной точки.`,
-		formula: String.raw`U\in\tau\iff\partial U\cap U=\varnothing`,
-		body: String.raw`**Открытое множество** в $(S,\tau)$ — элемент топологии: $U$ открыто $\iff U\in\tau$ (день 6). Через границу это назначение получает внутреннюю характеристику: $U$ открыто тогда и только тогда, когда $\partial U\cap U=\varnothing$, то есть все точки $U$ для него [[vnutrennyaya-tochka|внутренние]].
-
-Обратный переход опирается на лемму о склейке: если каждая точка $U$ внутренняя, то $U=\bigcup_{x\in U}U_x$ — объединение элементов $\tau$, а оно лежит в $\tau$ по третьей аксиоме. Всегда открыты [[vnutrennost|внутренность]] и [[vneshnost|внешность]] любого множества.`,
-		related: ['zamknutoe-mnozhestvo', 'granica-mnozhestva', 'okrestnost', 'vnutrennost']
-	},
-
-	'zamknutoe-mnozhestvo': {
-		id: 'zamknutoe-mnozhestvo',
-		term: 'Замкнутое множество',
-		short: String.raw`Замкнуто = открыто дополнение = граница целиком своя.`,
-		formula: String.raw`\overline U\in\tau\iff\partial U\subset U`,
-		body: String.raw`**Замкнутое множество** определяется через [[dopolnenie|дополнение]]: $U$ замкнуто, если $\overline U$ [[otkrytoe-mnozhestvo|открыто]]. Характеристика через границу: $U$ замкнуто $\iff\partial U\subset U$. Выводится из критерия открытости и симметрии $\partial\overline U=\partial U$.
-
-Открытость и замкнутость — не отрицания друг друга: полуинтервал $[a;b)$ не открыт и не замкнут, а множество с пустой границей открыто и замкнуто сразу — такие множества называются [[komponenta-svyaznosti|компонентами связности]]. По [[de-morgan|де Моргану]] пересечение произвольного семейства замкнутых замкнуто, а объединение — только конечного.`,
-		related: ['otkrytoe-mnozhestvo', 'granica-mnozhestva', 'de-morgan', 'zamykanie']
-	},
-
-	'de-morgan': {
-		id: 'de-morgan',
-		term: 'Правило де Моргана',
-		short: String.raw`Дополнение объединения равно пересечению дополнений.`,
-		formula: String.raw`\overline{\bigcup_{i\in I}x_i}=\bigcap_{i\in I}\overline{x_i}`,
-		body: String.raw`**Правило де Моргана** переводит объединения в пересечения через [[dopolnenie|дополнение]]. Это рабочий инструмент перехода «[[otkrytoe-mnozhestvo|открытое]] $\leftrightarrow$ [[zamknutoe-mnozhestvo|замкнутое]]».
-
-Перевод аксиом: произвольное объединение открытых открыто $\Rightarrow$ произвольное пересечение замкнутых замкнуто; конечное пересечение открытых открыто $\Rightarrow$ конечное объединение замкнутых замкнуто. Первый перевод и нужен, чтобы «наименьшее замкнутое надмножество» совпало с [[zamykanie|замыканием]]. Примеры в $\mathbb R$: $\overline{[x;y]}=(-\infty;x)\cup(y;+\infty)$, а дополнение двух отрезков — интервал между ними и два луча по краям.`,
-		related: ['dopolnenie', 'zamknutoe-mnozhestvo', 'otkrytoe-mnozhestvo', 'zamykanie']
-	},
-
-	'topologiya-r': {
-		id: 'topologiya-r',
-		term: 'Стандартная топология на ℝ',
-		short: String.raw`Открыты $\varnothing$, $\mathbb R$, все интервалы, лучи и их объединения.`,
-		formula: String.raw`(x;y),\ (-\infty;x),\ (x;+\infty)\in\tau`,
-		body: String.raw`Топология на $\mathbb R$ описывается перечислением: $\varnothing$; $\mathbb R$; все [[interval|интервалы]] $(x;y)$; лучи $(-\infty;x)$ и $(x;+\infty)$; произвольные объединения; конечные пересечения.
-
-Конечность в последнем пункте существенна: $\bigcap_n(-1/n;1/n)=\{0\}$ (день 6), а одноточечное множество открытым не является — по произвольному множеству индексов результат из $\tau$ выпадает. Метрика $|y-x|$ превращает открытый шар в [[interval|интервал]], а замкнутый — в [[otrezok|отрезок]]; [[komponenta-svyaznosti|открыто-замкнуты]] здесь только $\varnothing$ и $\mathbb R$.`,
-		related: ['interval', 'otrezok', 'otkrytoe-mnozhestvo', 'komponenta-svyaznosti']
-	}
 };

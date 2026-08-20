@@ -129,36 +129,4 @@ export const day07Terms: Glossary = {
 		related: ['shar', 'topologiya', 'topologiya-r', 'metricheskoe-prostranstvo']
 	},
 
-	topologiya: {
-		id: 'topologiya',
-		term: 'Топология',
-		short: String.raw`Набор подмножеств $\tau\subset 2^S$ с четырьмя аксиомами.`,
-		formula: String.raw`\varnothing\in\tau,\quad S\in\tau,\quad \bigcup_{i\in I}x_i\in\tau,\quad \bigcap_{i=1}^{r}x_i\in\tau`,
-		body: String.raw`**Топология** на $S$ — набор его подмножеств $\tau$ с четырьмя аксиомами: $\varnothing\in\tau$; $S\in\tau$; объединение по **произвольному** множеству индексов остаётся в $\tau$; пересечение **конечного** набора остаётся в $\tau$ (день 6).
-
-Асимметрия объединения и пересечения всплывает и здесь: в доказательстве того, что шары порождают [[inducirovannaya-topologiya|топологию]], конечность нужна ровно один раз — чтобы взять $\min(r_1,\dots,r_n)>0$. У бесконечного набора радиусов нижняя грань может быть нулём.`,
-		related: ['otkrytoe-mnozhestvo', 'inducirovannaya-topologiya', 'topologiya-r', 'komponenta-svyaznosti']
-	},
-
-	'otkrytoe-mnozhestvo': {
-		id: 'otkrytoe-mnozhestvo',
-		term: 'Открытое множество',
-		short: String.raw`Открыто = лежит в $\tau$; в метрике — «у каждой точки есть шар внутри».`,
-		formula: String.raw`x\ \text{открыто}\iff x\in\tau`,
-		body: String.raw`**Открытое множество** в $(S,\tau)$ — это в точности элемент [[topologiya|топологии]]: открытость не проверяется, а назначается выбором $\tau$ (день 6).
-
-В [[metricheskoe-prostranstvo|метрическом пространстве]] выбор канонический, и появляется рабочий критерий: $U$ открыто тогда и только тогда, когда каждая его точка входит в $U$ вместе с некоторым [[shar|шаром]]. Именно так школьное «интервал открыт, отрезок нет» получает доказательство, а не остаётся картинкой.`,
-		related: ['topologiya', 'inducirovannaya-topologiya', 'shar', 'dopolnenie']
-	},
-
-	'topologiya-r': {
-		id: 'topologiya-r',
-		term: 'Стандартная топология на ℝ',
-		short: String.raw`Открыты $\varnothing$, $\mathbb R$, интервалы, лучи и их объединения.`,
-		formula: String.raw`(x;y)=B_{(x+y)/2}\Bigl(\tfrac{y-x}{2}\Bigr)`,
-		body: String.raw`[[topologiya|Топология]] на $\mathbb R$ задаётся списком: $\varnothing$, $\mathbb R$, интервалы $(x;y)$, лучи, их объединения и конечные пересечения (день 8).
-
-День 7 показывает, откуда этот список берётся: для $\rho(x,y)=|x-y|$ [[shar|шар]] — это интервал $B_{x_0}(r)=(x_0-r;x_0+r)$, а всякий интервал — шар с центром в середине. Поэтому [[inducirovannaya-topologiya|индуцированная метрикой топология]] совпадает со стандартной, а лучи получаются объединением интервалов. Конечность пересечения существенна: $\bigcap_{n\in\mathbb N_1}(-1/n;1/n)=\{0\}$, а одноточечное множество не открыто.`,
-		related: ['topologiya', 'inducirovannaya-topologiya', 'shar', 'otkrytoe-mnozhestvo']
-	}
 };

@@ -6,17 +6,6 @@ import type { Glossary } from '$lib/types';
 // Метрика, метрическое и топологическое пространство продублированы из
 // соседних дней специально: день должен резолвиться независимо.
 export const day09Terms: Glossary = {
-	'lineynoe-prostranstvo': {
-		id: 'lineynoe-prostranstvo',
-		term: 'Линейное пространство',
-		short: String.raw`Множество с операциями $+$ и $\ast:\mathbb R\times M\to M$ и восемью аксиомами.`,
-		formula: String.raw`+:M\times M\to M,\qquad \ast:\mathbb R\times M\to M`,
-		body: String.raw`**Линейное (векторное) пространство** над $\mathbb R$ — множество $M$ с внутренним сложением $+:M\times M\to M$ и [[vneshnee-umnozhenie|внешним умножением]] $\ast:\mathbb R\times M\to M$. Аксиом восемь: ассоциативность и коммутативность $+$, [[neytralnyy-element|нейтральный элемент]] $\theta$, обратный $-x$, а также $1\ast x=x$, $\alpha\ast(\beta\ast x)=(\alpha\beta)\ast x$ и две дистрибутивности.
-
-Аксиомы держат теорему о [[metrika-porozhdennaya-normoy|порождённой метрике]]: переход $(-1)\ast(y-x)=x-y$ опирается на дистрибутивность и существование обратного элемента, а сокращение $(x-y)+(y-z)=x-z$ — на ассоциативность. Из них же выводятся тождества $0\ast x=\theta$ и $\alpha\ast\theta=\theta$.`,
-		related: ['vneshnee-umnozhenie', 'neytralnyy-element', 'norma', 'normirovannoe-prostranstvo']
-	},
-
 	'vneshnee-umnozhenie': {
 		id: 'vneshnee-umnozhenie',
 		term: 'Внешнее умножение',
@@ -55,10 +44,8 @@ export const day09Terms: Glossary = {
 		term: 'Нормированное пространство',
 		short: String.raw`Четвёрка $\bigl((M,\rho),\|\cdot\|,+,\ast\bigr)$ с согласованными нормой и метрикой.`,
 		formula: String.raw`\bigl((M,\rho),\ \|\cdot\|,\ +,\ \ast\bigr)`,
-		body: String.raw`**Нормированное пространство** — четвёрка $\bigl((M,\rho),\|\cdot\|,+,\ast\bigr)$: [[metricheskoe-prostranstvo|метрическое пространство]] $(M,\rho)$, [[norma|норма]] на $M$ и две операции, превращающие $M$ в [[lineynoe-prostranstvo|линейное пространство]], со связью $\|x\|=\rho(x,\theta)$ и $\|x-y\|=\rho(x,y)$.
-
-Эта связь — условие согласования, а не следствие остальных аксиом. Норма $\|x\|=|x|$ и метрика $\rho(x,y)=\frac{|x-y|}{1+|x-y|}$ на $\mathbb R$ законны каждая по отдельности, но $\|1\|=1$ при $\rho(1,\theta)=\tfrac12$. По любой норме согласованная метрика существует и единственна: [[metrika-porozhdennaya-normoy|$\rho(x,y)=\|x-y\|$]].`,
-		related: ['norma', 'lineynoe-prostranstvo', 'metricheskoe-prostranstvo', 'metrika-porozhdennaya-normoy']
+		body: String.raw`[[lineynoe-prostranstvo|Линейное пространство]] с нормой и согласованной с ней метрикой: $\|x\|=\rho(x,\theta)$ и $\|x-y\|=\rho(x,y)$. Согласование — отдельное условие, а не следствие остальных аксиом.`,
+		related: ['lineynoe-prostranstvo', 'aksiomy-normy', 'metrika-porozhdennaya-normoy']
 	},
 
 	'evklidova-norma': {
@@ -110,10 +97,8 @@ export const day09Terms: Glossary = {
 		term: 'Метрика, порождённая нормой',
 		short: String.raw`$\rho(x,y)=\|x-y\|$; обратно $\|x\|=\rho(x,\theta)$.`,
 		formula: String.raw`\rho(x,y)=\|x-y\|,\qquad \|x\|=\rho(x,\theta)`,
-		body: String.raw`Всякая [[norma|норма]] задаёт [[metrika|метрику]] формулой $\rho(x,y)=\|x-y\|$: [[nevyrozhdennost-normy|невырожденность]] даёт первую аксиому метрики, [[odnorodnost-normy|однородность]] — симметрию, [[poluadditivnost|полуаддитивность]] — неравенство треугольника.
-
-Обратное верно не всегда. Порождённая нормой метрика обязана быть трансляционно инвариантной, $\rho(x+z,y+z)=\rho(x,y)$, и абсолютно однородной, $\rho(\alpha\ast x,\alpha\ast y)=|\alpha|\rho(x,y)$. Этих двух условий уже достаточно, чтобы восстановить норму как $\|x\|=\rho(x,\theta)$.`,
-		related: ['norma', 'metrika', 'poluadditivnost', 'odnorodnost-normy']
+		body: String.raw`Метрика, построенная по норме формулой $\rho(x,y)=\|x-y\|$. Обратное верно не всегда: восстановить норму можно лишь по метрике, инвариантной относительно сдвига и абсолютно однородной.`,
+		related: ['aksiomy-normy', 'aksiomy-metriki', 'normirovannoe-prostranstvo']
 	},
 
 	polunorma: {
@@ -121,42 +106,8 @@ export const day09Terms: Glossary = {
 		term: 'Полунорма',
 		short: String.raw`Норма без невырожденности: возможно $\|x\|=0$ при $x\ne\theta$.`,
 		formula: String.raw`\|\alpha\ast x\|=|\alpha|\cdot\|x\|,\qquad \|x\|+\|y\|\ge\|x+y\|`,
-		body: String.raw`**Полунорма** — функция, у которой выполнены [[odnorodnost-normy|однородность]] и [[poluadditivnost|полуаддитивность]], но не [[nevyrozhdennost-normy|невырожденность]]: нуль может достигаться и на ненулевом векторе. Пример в $\mathbb R^2$: $p(x_1,x_2)=|x_1|$, где $p(0,5)=0$.
-
-Порождённая полунормой функция $\rho(x,y)=p(x-y)$ — не метрика, а псевдометрика: разные точки могут оказаться на нулевом расстоянии. Полунормы работают там, где одной нормы мало: производная Гато определяется в локально выпуклом пространстве, заданном **семейством** полунорм $p_1,\dots,p_n$.`,
-		related: ['norma', 'nevyrozhdennost-normy', 'odnorodnost-normy']
+		body: String.raw`Функция, у которой выполнены [[odnorodnost|однородность]] и неравенство треугольника, но не невырожденность: нуль достигается и на ненулевом векторе. Пример в $\mathbb R^2$ — $p(x_1,x_2)=|x_1|$.`,
+		related: ['aksiomy-normy', 'odnorodnost', 'psevdometrika']
 	},
 
-	metrika: {
-		id: 'metrika',
-		term: 'Метрика',
-		short: String.raw`$\rho:S\times S\to\mathbb R$ с тремя аксиомами расстояния.`,
-		formula: String.raw`\rho(x,y)=0\iff x=y;\quad \rho(x,y)=\rho(y,x);\quad \rho(x,y)+\rho(y,z)\ge\rho(x,z)`,
-		body: String.raw`**Метрика** (другие названия — функция расстояния, функция длины) — функция $\rho:S\times S\to\mathbb R$ с тремя аксиомами: неотрицательность и $\rho(x,y)=0\iff x=y$; симметрия; неравенство треугольника.
-
-В отличие от [[norma|нормы]] метрика измеряет **пару** точек и не требует на носителе никаких операций — она живёт на произвольном множестве. Семейство метрик по показателю — [[metriki-rho|$\rho_1,\rho_2,\rho_k,\rho_\infty$]]; равенство $\rho(x,x)=0$ — частный случай первой аксиомы.`,
-		related: ['metricheskoe-prostranstvo', 'metriki-rho', 'norma', 'metrika-porozhdennaya-normoy']
-	},
-
-	'metricheskoe-prostranstvo': {
-		id: 'metricheskoe-prostranstvo',
-		term: 'Метрическое пространство',
-		short: String.raw`Пара $(M,\rho)$: произвольное множество с метрикой на нём.`,
-		formula: String.raw`(M,\rho),\qquad \rho:M\times M\to\mathbb R`,
-		body: String.raw`**Метрическое пространство** — пара $(M,\rho)$, где $M$ — произвольное множество, а $\rho$ — [[metrika|метрика]] на нём.
-
-Средний из трёх этажей общности: богаче [[topologicheskoe-prostranstvo|топологического]] (появляются числа — радиусы шаров и оборот «ближе, чем на $\varepsilon$»), беднее [[normirovannoe-prostranstvo|нормированного]] (нет ни операций, ни выделенного нуля, поэтому «длина одного элемента» смысла не имеет). Открытые шары $B_{x_0}(r)$ определяются именно здесь, и они же порождают [[inducirovannaya-topologiya|топологию]]: всякое открытое множество — объединение шаров.`,
-		related: ['metrika', 'topologicheskoe-prostranstvo', 'normirovannoe-prostranstvo']
-	},
-
-	'topologicheskoe-prostranstvo': {
-		id: 'topologicheskoe-prostranstvo',
-		term: 'Топологическое пространство',
-		short: String.raw`Пара $(S,\tau)$: множество вместе с топологией $\tau\subset 2^S$.`,
-		formula: String.raw`(S,\tau),\qquad \tau\subset 2^S`,
-		body: String.raw`**Топологическое пространство** — пара $(S,\tau)$, где $\tau\subset 2^S$ — топология: $\varnothing\in\tau$, $S\in\tau$, произвольные объединения и конечные пересечения остаются в $\tau$.
-
-Самый общий из трёх этажей: чисел здесь нет, есть только «окрестность содержит точку», поэтому все $\varepsilon$-$\delta$-определения переписываются через окрестности. Не всякая топология задаётся [[metrika|метрикой]]: связное двоеточие $\tau=\{\varnothing,\{a\},S\}$ не метризуемо — в метрике две разные точки всегда разделяются шарами. Ср. [[metricheskoe-prostranstvo|метрическое пространство]].`,
-		related: ['metricheskoe-prostranstvo', 'komponenta-svyaznosti', 'metrika']
-	}
 };

@@ -8,15 +8,6 @@ import type { Glossary } from '$lib/types';
 // «Функциональность» вынесена в отдельную карточку, а D(f) и E(f) собраны в
 // одну (oblast-znacheniy) — они и разбираются только в паре.
 export const day02Terms: Glossary = {
-	'dekartovo-proizvedenie': {
-		id: 'dekartovo-proizvedenie',
-		term: 'Декартово произведение',
-		short: String.raw`$A\times B$ — все упорядоченные пары; задаётся двумя условиями.`,
-		formula: String.raw`A\times B=C:\quad \forall a\in A,\,b\in B\ \exists\,(a,b)\in C;\quad \forall\,(a,b)\in C\ \ a\in A,\,b\in B`,
-		body: String.raw`**Декартово произведение** $A\times B=C$ задаётся не оборотом «множество всех пар», а двумя условиями: в $C$ есть каждая пара $(a,b)$ с $a\in A$, $b\in B$, и в $C$ нет ничего постороннего. Без второго условия подошло бы любое надмножество произведения. Элементы — [[uporyadochennaya-para|упорядоченные пары]], мощность равна $|A|\cdot|B|$. На произведении живут [[binarnoe-otnoshenie|бинарные отношения]] ($R\subset S\times S$) и [[otobrazhenie|отображения]] ($f\subset X\times Y$).`,
-		related: ['uporyadochennaya-para', 'konsolidirovannoe-proizvedenie', 'binarnoe-otnoshenie', 'otobrazhenie']
-	},
-
 	'konsolidirovannoe-proizvedenie': {
 		id: 'konsolidirovannoe-proizvedenie',
 		term: 'Консолидированное произведение',
@@ -24,33 +15,6 @@ export const day02Terms: Glossary = {
 		formula: String.raw`\mathop{\times}\limits_{i=1}^{n}A_i=B:\quad \forall a_i\in A_i\ \exists\,(a_1,\dots,a_n)\in B`,
 		body: String.raw`«Наивное» $A\times B\times C$ раскрывается двумя неэквивалентными способами — $(A\times B)\times C$ и $A\times(B\times C)$, — поэтому $n$-арное [[dekartovo-proizvedenie|произведение]] определяется **заново**, теми же двумя условиями, но сразу для **плоских** наборов $(a_1,\dots,a_n)$, а не для вложенных [[uporyadochennaya-para|пар]]. Мощность равна $|A_1|\cdot\ldots\cdot|A_n|$: координаты выбираются независимо. Равносильное построение — множество функций $f:\{1,\dots,n\}\to\bigcup_i A_i$ с условием $f(i)\in A_i$: номер места хранится тогда в аргументе, а не в глубине вложенности.`,
 		related: ['dekartovo-proizvedenie', 'uporyadochennaya-para']
-	},
-
-	'uporyadochennaya-para': {
-		id: 'uporyadochennaya-para',
-		term: 'Упорядоченная пара',
-		short: String.raw`$(a,b)=\{a,\{b\}\}$: место элемента кодируется глубиной вложенности.`,
-		formula: String.raw`(a,b)=\{a,\{b\}\},\qquad (a,b,c)=\{a,\{b\},\{\{c\}\}\}`,
-		body: String.raw`Порядок кодируется **глубиной вложенности**: первый элемент лежит голым, второй обёрнут в синглетон один раз, третий — дважды. Из пар собирается [[dekartovo-proizvedenie|декартово произведение]], а для более длинных наборов используются плоские $n$-ки [[konsolidirovannoe-proizvedenie|консолидированного произведения]]. Эта кодировка склеивает разные пары, если элемент сам имеет вид $\{c\}$: $(\{2\},3)$ и $(\{3\},2)$ дают одно множество $\{\{2\},\{3\}\}$. Кодировка по Куратовскому $(a,b)=\{\{a\},\{a,b\}\}$ склейки не допускает: первый элемент восстанавливается как единственный элемент пересечения членов пары; она и служит рабочим определением там, где важна корректность.`,
-		related: ['dekartovo-proizvedenie', 'konsolidirovannoe-proizvedenie']
-	},
-
-	'binarnoe-otnoshenie': {
-		id: 'binarnoe-otnoshenie',
-		term: 'Бинарное отношение',
-		short: String.raw`$R\subset S\times S$ — просто множество пар; $x\,R\,y$ значит $(x,y)\in R$.`,
-		formula: String.raw`R\subset S\times S,\qquad (x,y)\in R\iff x\,R\,y,\qquad (x,y)\notin R\iff x\,\overline R\,y`,
-		body: String.raw`**Бинарное отношение** над $S$ — любое подмножество [[dekartovo-proizvedenie|декартова произведения]] $S\times S$; никакого «правила» в определении нет, отношение есть список пар. Обозначения: $x\,R\,y$ и $x\,\overline R\,y$ — черта здесь означает **отрицание отношения**, а не [[dopolnenie|дополнение множества]], хотя значок один и тот же. Отношение задают и между разными множествами: $R\subset S_1\times S_2$. Классифицируется по трём осям, начиная с [[refleksivnost|рефлексивности]].`,
-		related: ['dekartovo-proizvedenie', 'otobrazhenie', 'refleksivnost', 'dopolnenie']
-	},
-
-	otobrazhenie: {
-		id: 'otobrazhenie',
-		term: 'Отображение',
-		short: String.raw`$f:X\to Y$ — это подмножество $f\subset X\times Y$, а не «правило».`,
-		formula: String.raw`f\subset X\times Y`,
-		body: String.raw`Отображение определяется теоретико-множественно: это [[binarnoe-otnoshenie|отношение]] $f\subset X\times Y$, на которое наложено [[funkcionalnost|условие функциональности]]. Функция буквально **есть** свой график, а не правило, которому график соответствует. Пример: $f(x)=x^2$ на $X=\{1,2,-1,-2\}$ — это множество пар $\{(1,1),(-1,1),(2,4),(-2,4)\}$. Множества $D(f)$ и $E(f)$ — см. [[oblast-znacheniy|область определения и область значений]].`,
-		related: ['binarnoe-otnoshenie', 'funkcionalnost', 'oblast-znacheniy', 'dekartovo-proizvedenie']
 	},
 
 	funkcionalnost: {

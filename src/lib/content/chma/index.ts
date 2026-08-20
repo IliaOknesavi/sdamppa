@@ -10,6 +10,7 @@ import { day08 } from './days/day08';
 import { day09 } from './days/day09';
 import { day10 } from './days/day10';
 import { day11 } from './days/day11';
+import { core } from '../core/glossary';
 
 // =====================================================================
 //  ЧИСЛЕННЫЕ МЕТОДЫ АНАЛИЗА (ЧМА) — «Вычислительная математика».
@@ -20,6 +21,7 @@ import { day11 } from './days/day11';
 // =====================================================================
 
 const glossary: Glossary = {
+	...core,
 	interpolyaciya: {
 		id: 'interpolyaciya',
 		term: 'Интерполяция',

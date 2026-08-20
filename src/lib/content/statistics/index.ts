@@ -61,9 +61,11 @@ import { day29 } from './days/day29';
 import { day29Terms } from './days/day29.terms';
 import { day30 } from './days/day30';
 import { day30Terms } from './days/day30.terms';
+import { core } from '../core/glossary';
 
 // Базовый глоссарий канонический → перекрывает любые совпадающие id из дней.
 const glossary = {
+	...core,
 	...day02Terms,
 	...day03Terms,
 	...day04Terms,

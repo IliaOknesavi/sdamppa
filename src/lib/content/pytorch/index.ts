@@ -44,6 +44,7 @@ import { day19 } from './days/day19';
 import { day19Terms } from './days/day19.terms';
 import { day20 } from './days/day20';
 import { day20Terms } from './days/day20.terms';
+import { core } from '../core/glossary';
 
 const days: Day[] = [
 	day01, day02, day03, day04, day05, day06, day07, day08, day09, day10,
@@ -52,6 +53,7 @@ const days: Day[] = [
 
 // Базовый глоссарий канонический → перекрывает совпадающие id из дней.
 const glossary: Glossary = {
+	...core,
 	...day01Terms,
 	...day02Terms,
 	...day03Terms,

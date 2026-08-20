@@ -1,3 +1,4 @@
+import { core } from '../core/glossary';
 import type { Subject, Day, Phase, Glossary, LabFile } from '$lib/types';
 import { graphs2Theory } from './labs/graphs2';
 import { amortTheory } from './labs/amort';
@@ -52,6 +53,7 @@ const phases: Phase[] = [
 ];
 
 const glossary: Glossary = {
+	...core,
 	graf: {
 		id: 'graf',
 		term: 'Граф',

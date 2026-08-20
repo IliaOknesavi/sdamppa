@@ -13,10 +13,8 @@ export const day21Terms: Glossary = {
 		term: 'Полнота метрического пространства',
 		short: String.raw`Всякая сходящаяся в себе последовательность имеет предел внутри пространства.`,
 		formula: String.raw`(M,\rho)\ \text{полно}\iff \bigl(x_n\ \text{сх. в себе}\Rightarrow \exists\lim x_n\in M\bigr)`,
-		body: String.raw`Метрическое пространство $(M,\rho)$ **полно**, если каждая [[skhodyashchayasya-v-sebe|сходящаяся в себе]] последовательность его точек сходится, причём предел принадлежит $M$. Обратная импликация выполняется всегда и ни в какой полноте не нуждается, поэтому в полном пространстве фундаментальность и сходимость — одно и то же.
-
-Полнота — свойство пары «множество плюс [[metricheskoe-prostranstvo|метрика]]», а не одного множества: $\mathbb R^m$ полно, $\mathbb Q$ нет, $\mathbb R^3$ без координатной плоскости — тоже нет. Неполное пространство всегда можно достроить [[popolnenie|пополнением]].`,
-		related: ['skhodyashchayasya-v-sebe', 'kriteriy-polnoty-rm', 'popolnenie', 'metricheskoe-prostranstvo']
+		body: String.raw`Метрическое пространство **полно**, если каждая [[skhodyashchayasya-v-sebe|сходящаяся в себе]] последовательность его точек имеет предел, принадлежащий этому же пространству. Это свойство пары «множество и метрика», а не одного множества.`,
+		related: ['skhodyashchayasya-v-sebe', 'aksiomy-metriki', 'polnota-r']
 	},
 
 	popolnenie: {
@@ -52,28 +50,6 @@ export const day21Terms: Glossary = {
 		related: ['skhodyashchayasya-v-sebe', 'ogranichennaya-posledovatelnost', 'zamknutyy-shar', 'priznak-i-svoystvo']
 	},
 
-	'ogranichennaya-posledovatelnost': {
-		id: 'ogranichennaya-posledovatelnost',
-		term: 'Ограниченная последовательность',
-		short: String.raw`Все члены лежат в одном шаре фиксированного радиуса.`,
-		formula: String.raw`\exists x_0\in M,\ R>0:\ \forall n\ \ \rho(x_n,x_0)\le R`,
-		body: String.raw`Последовательность в [[metricheskoe-prostranstvo|метрическом пространстве]] **ограничена**, если существует точка $x_0$ и радиус $R$, такие что все члены лежат в [[zamknutyy-shar|замкнутом шаре]] $\overline B_R(x_0)$. В $\mathbb R$ это привычное $|x_n|\le R$, но формулировка через шар переносится на любую метрику без изменений — в том числе на [[metriki-rho|метрики]] $\rho_1,\rho_k,\rho_\infty$.
-
-Выбор центра не важен: сдвиг центра на конечное расстояние компенсируется увеличением радиуса по [[neravenstvo-treugolnika|неравенству треугольника]].`,
-		related: ['metricheskoe-prostranstvo', 'zamknutyy-shar', 'neravenstvo-treugolnika', 'metriki-rho']
-	},
-
-	podposledovatelnost: {
-		id: 'podposledovatelnost',
-		term: 'Подпоследовательность',
-		short: String.raw`Выборка членов по строго возрастающим номерам $n_1<n_2<\dots$`,
-		formula: String.raw`n_1<n_2<\dots,\qquad k\mapsto x_{n_k}`,
-		body: String.raw`**Подпоследовательность** $x_{n_k}$ — композиция исходной последовательности со строго возрастающим отображением $k\mapsto n_k$ из $\mathbb N_1$ в $\mathbb N_1$. Из строгого возрастания следует $n_k\ge k$, а значит $n_k\to\infty$ — именно это позволяет в доказательствах брать $n_k$ больше любого наперёд заданного номера.
-
-Не путать с [[chastichnaya-posledovatelnost|частичной последовательностью]]: так называется **хвост** $x_k,x_{k+1},\dots$, то есть частный случай подпоследовательности при $n_j=k+j-1$. Ключевой факт дня: фундаментальная последовательность со сходящейся подпоследовательностью сходится сама.`,
-		related: ['chastichnaya-posledovatelnost', 'kriteriy-polnoty-rm', 'predel-posledovatelnosti']
-	},
-
 	'epsilon-indeksaciya': {
 		id: 'epsilon-indeksaciya',
 		term: 'Индексация эпсилонов и номеров',
@@ -85,57 +61,11 @@ export const day21Terms: Glossary = {
 		related: ['predel-posledovatelnosti', 'skhodyashchayasya-v-sebe', 'n-ot-epsilon']
 	},
 
-	'neravenstvo-treugolnika': {
-		id: 'neravenstvo-treugolnika',
-		term: 'Неравенство треугольника',
-		short: String.raw`Третья аксиома метрики: обход через точку не короче прямого пути.`,
-		formula: String.raw`\rho(x,z)\le\rho(x,y)+\rho(y,z)`,
-		body: String.raw`Аксиома [[metricheskoe-prostranstvo|метрики]]: $\rho(x,z)\le\rho(x,y)+\rho(y,z)$ для любых трёх точек. В анализе это главный рабочий инструмент: любое расстояние разрывается вставкой промежуточной точки, и каждая половина оценивается отдельно.
-
-Все доказательства дня — вариации одного приёма. В теореме «сходимость влечёт фундаментальность» промежуточной точкой служит предел $f$, в теореме о [[podposledovatelnost|подпоследовательности]] — член $f_{n_k}$. Оба захода тратят по $\varepsilon/2$: неравенство складывает расходы, поэтому бюджет делится пополам.`,
-		related: ['metricheskoe-prostranstvo', 'metriki-rho', 'epsilon-indeksaciya']
-	},
-
-	'metricheskoe-prostranstvo': {
-		id: 'metricheskoe-prostranstvo',
-		term: 'Метрическое пространство',
-		short: String.raw`Пара $(M,\rho)$: множество и функция расстояния на нём.`,
-		formula: String.raw`\rho:M\times M\to\mathbb R_{\ge0},\quad \rho(x,y)=0\iff x=y`,
-		body: String.raw`**Метрическое пространство** — пара $(M,\rho)$, где $\rho$ удовлетворяет аксиомам невырожденности, симметричности и [[neravenstvo-treugolnika|неравенства треугольника]]. Метрика на данном множестве не единственна: на $\mathbb R^m$ живёт целое [[metriki-rho|семейство]] $\rho_1,\rho_2,\rho_k,\rho_\infty$.
-
-Все понятия дня формулируются здесь, а $\mathbb R$ и $\mathbb R^m$ идут как частные случаи: фундаментальность, [[ogranichennaya-posledovatelnost|ограниченность]] и [[polnota|полнота]] определяются через $\rho$, и только [[kriteriy-polnoty-rm|критерий полноты]] специфичен для $\mathbb R^m$.`,
-		related: ['metriki-rho', 'neravenstvo-treugolnika', 'polnota', 'zamknutyy-shar']
-	},
-
-	'predel-posledovatelnosti': {
-		id: 'predel-posledovatelnosti',
-		term: 'Предел последовательности',
-		short: String.raw`$\rho(f_n,f)<\varepsilon_f$ для всех $n>N_f(\varepsilon_f)$.`,
-		formula: String.raw`\forall\varepsilon_f>0\ \exists N_f\in\mathbb N_1:\ \forall n>N_f\ \ \rho(f_n,f)<\varepsilon_f`,
-		body: String.raw`Последовательность $f:\mathbb N_1\to M$ сходится к $f\in M$, если для любого $\varepsilon_f>0$ найдётся номер $N_f$, начиная с которого все члены ближе $\varepsilon_f$ к пределу. Номера берутся из [[n-nol-n-odin|$\mathbb N_1$]], а доказательство сходимости завершается явной зависимостью $N_f(\varepsilon_f)$.
-
-Отличие от [[skhodyashchayasya-v-sebe|фундаментальности]] — в присутствии точки $f$: сходимость сравнивает члены с внешним объектом, фундаментальность — только друг с другом. Предел в метрическом пространстве единственен, и этим постоянно пользуются в задачах на [[polnota|полноту]].`,
-		related: ['skhodyashchayasya-v-sebe', 'n-nol-n-odin', 'epsilon-indeksaciya', 'polnota']
-	},
-
-	'zamknutyy-shar': {
-		id: 'zamknutyy-shar',
-		term: 'Замкнутый шар',
-		short: String.raw`$\overline B_r(x_0)$ — точки на расстоянии не больше $r$ от центра.`,
-		formula: String.raw`\overline B_r(x_0)=\{x\in M:\ \rho(x,x_0)\le r\}`,
-		body: String.raw`**Замкнутый шар** $\overline B_r(x_0)$ отличается от открытого нестрогим неравенством: граница включена. Форма шара зависит от [[metriki-rho|метрики]] — в $\rho_\infty$ это куб, в $\rho_1$ — октаэдр, и только в $\rho_2$ он круглый.
-
-В сегодняшней схеме шар — рабочий инструмент: теорема об [[ogranichennost-fundamentalnoy|ограниченности]] загоняет в него всю последовательность, а замкнутость нужна, чтобы шар оказался [[kompakt|компактом]] в $\mathbb R^m$ и предел подпоследовательности не выпал наружу.`,
-		related: ['metricheskoe-prostranstvo', 'metriki-rho', 'kompakt', 'ogranichennost-fundamentalnoy']
-	},
-
 	kompakt: {
 		id: 'kompakt',
 		term: 'Компакт',
 		short: String.raw`Из любой последовательности извлекается сходящаяся подпоследовательность.`,
-		body: String.raw`**Компакт** — множество, в котором любая последовательность точек имеет [[podposledovatelnost|подпоследовательность]], сходящуюся к точке этого же множества (в метрическом пространстве это равносильно определению через открытые покрытия; подробно — день 22). Ключевой факт для $\mathbb R^m$: компакты — это в точности замкнутые ограниченные множества, поэтому [[zamknutyy-shar|замкнутый шар]] компактен.
-
-В доказательстве [[kriteriy-polnoty-rm|критерия в $\mathbb R^m$]] компактность шара используется как готовый факт, а доказывается в днях 22–23 — причём без обращения к [[polnota|полноте]], поэтому рассуждение не замыкается в круг.`,
-		related: ['zamknutyy-shar', 'podposledovatelnost', 'kriteriy-polnoty-rm', 'polnota']
+		body: String.raw`Множество, в котором всякая [[posledovatelnost|последовательность]] точек имеет [[podposledovatelnost|подпоследовательность]], сходящуюся к точке этого же множества. В $\mathbb R^m$ компакты — это в точности замкнутые ограниченные множества.`,
+		related: ['podposledovatelnost', 'zamykanie', 'lsk']
 	}
 };

@@ -18,17 +18,6 @@ export const day13Terms: Glossary = {
 		related: ['predel-posledovatelnosti', 'lemma-o-neperesechenii-sharov', 'ot-protivnogo', 'hausdorfovo-prostranstvo']
 	},
 
-	'obobshchennaya-posledovatelnost': {
-		id: 'obobshchennaya-posledovatelnost',
-		term: 'Обобщённая последовательность',
-		short: String.raw`Последовательность со значениями в метрическом пространстве: $f:\mathbb N_1\to M$.`,
-		formula: String.raw`f:\ \mathbb N_1\to M,\qquad (M,\rho)\ \text{— метрическое пространство}`,
-		body: String.raw`**Обобщённая последовательность** — отображение $f:\mathbb N_1\to M$ в [[metricheskoe-prostranstvo|метрическое пространство]]: обобщается **кодомен**, а область определения остаётся [[n-nol-n-odin|$\mathbb N_1$]]. Предел определяется дословно как в $\mathbb R$, с заменой модуля на метрику: $\rho(x_n,a)<\varepsilon$, то есть $x_n\in B_\varepsilon(a)$.
-
-Обобщение с другого конца — по индексу — даёт [[set-net|сеть]] $\varphi:\Lambda\to T$ над направленным множеством. Это другой объект: единственность предела сети равносильна [[hausdorfovo-prostranstvo|хаусдорфовости]] пространства, тогда как для $f:\mathbb N_1\to M$ её обеспечивает сама метрика.`,
-		related: ['posledovatelnost', 'set-net', 'metricheskoe-prostranstvo', 'predel-posledovatelnosti']
-	},
-
 	'lemma-o-neperesechenii-sharov': {
 		id: 'lemma-o-neperesechenii-sharov',
 		term: 'Лемма о непересечении шаров',
@@ -65,60 +54,6 @@ export const day13Terms: Glossary = {
 		formula: String.raw`\bigl(A\wedge\lnot B\to\bot\bigr)\ \Rightarrow\ (A\to B)`,
 		body: String.raw`Приём, на котором стоят обе теоремы [[edinstvennost-predela|единственности]]: предполагаем $A\ne B$, извлекаем из этого положительное число ($|A-B|$ или $\rho(a,b)$) и делаем его источником $\varepsilon$. Отрицание вывода даёт **рабочий объект**: без строгого неравенства $A\ne B$ нечего было бы делить на три и не из чего строить радиус. Приём называется до выкладки, а сама выкладка закрывается знаком $\blacksquare$.`,
 		related: ['edinstvennost-predela', 'n-ot-epsilon']
-	},
-
-	'predel-posledovatelnosti': {
-		id: 'predel-posledovatelnosti',
-		term: 'Предел последовательности',
-		short: String.raw`С некоторого номера все члены ближе ε к точке; пять эквивалентных записей.`,
-		formula: String.raw`\forall\varepsilon>0\ \exists N(\varepsilon)\in\mathbb N_1\ \forall n>N:\ \rho(x_n,A)<\varepsilon`,
-		body: String.raw`Определение записывается в пяти эквивалентных формах: через метрику $\rho$, через норму, через открытый [[shar|шар]] $B_\varepsilon(A)$, через [[vykolotaya-okrestnost|выколотую окрестность]] $\mathring U_A$ и последней — школьной записью $|x_n-A|<\varepsilon$ как частным вещественным случаем. Определение утверждает только «$A$ является пределом»; то, что такая точка одна, — отдельная теорема о [[edinstvennost-predela|единственности]]. Доказательство сходимости считается законченным, когда выписан [[n-ot-epsilon|$N(\varepsilon)$]].`,
-		related: ['posledovatelnost', 'shar', 'edinstvennost-predela', 'n-ot-epsilon']
-	},
-
-	posledovatelnost: {
-		id: 'posledovatelnost',
-		term: 'Последовательность',
-		short: String.raw`Отображение $f:\mathbb N_1\to\mathbb R$ — функция, а не «набор чисел».`,
-		formula: String.raw`f:\ \mathbb N_1\to\mathbb R,\qquad x_n:=f(n)`,
-		body: String.raw`Последовательность — это **отображение** из [[n-nol-n-odin|$\mathbb N_1$]] в $\mathbb R$, а запись $x_n$ — сокращение для $f(n)$. Такой взгляд сразу даёт две линии обобщения: заменив кодомен на метрическое пространство, получаем [[obobshchennaya-posledovatelnost|обобщённую последовательность]] $f:\mathbb N_1\to M$; заменив область определения на направленное множество — [[set-net|сеть]]. Первая линия ведёт к пределам в метрических пространствах, вторая — к сходимости в общей топологии.`,
-		related: ['n-nol-n-odin', 'obobshchennaya-posledovatelnost', 'predel-posledovatelnosti']
-	},
-
-	'metricheskoe-prostranstvo': {
-		id: 'metricheskoe-prostranstvo',
-		term: 'Метрическое пространство',
-		short: String.raw`Множество с расстоянием: тождество, симметрия, неравенство треугольника.`,
-		formula: String.raw`\rho(x,y)=0\iff x=y;\quad \rho(x,y)=\rho(y,x);\quad \rho(x,z)\le\rho(x,y)+\rho(y,z)`,
-		body: String.raw`Пара $(M,\rho)$, где $\rho:M\times M\to\mathbb R_{\ge0}$ подчинена трём аксиомам: тождества, симметрии и [[neravenstvo-treugolnika|треугольника]]. В доказательстве единственности предела работают ровно две из них: тождество даёт $\rho(a,b)>0$ при $a\ne b$, треугольник — [[lemma-o-neperesechenii-sharov|непересечение шаров]]. На одном множестве метрик много ([[metriki-rho|$\rho_1,\rho_2,\rho_k,\rho_\infty$]], дискретная), и слово «предел» всегда относится к выбранной: сменив $\rho$, можно сменить и ответ.`,
-		related: ['neravenstvo-treugolnika', 'shar', 'metriki-rho', 'lemma-o-neperesechenii-sharov']
-	},
-
-	shar: {
-		id: 'shar',
-		term: 'Открытый шар',
-		short: String.raw`Точки на расстоянии строго меньше радиуса: $B_r(x_0)$.`,
-		formula: String.raw`B_r(x_0)=\lbrace x\in M:\ \rho(x,x_0)<r\rbrace`,
-		body: String.raw`Множество точек, удалённых от центра **строго** меньше чем на $r$. Строгость здесь не косметика: именно она позволяет [[lemma-o-neperesechenii-sharov|лемме о непересечении шаров]] работать с нестрогим условием $d_a+d_b\le\rho(a,b)$ — касающиеся шары общей точки не имеют. Через шары даётся одно из пяти определений [[predel-posledovatelnosti|предела]]. В дискретной метрике $B_r(x)=\lbrace x\rbrace$ при $r\le1$ и $B_r(x)=M$ при $r>1$.`,
-		related: ['metricheskoe-prostranstvo', 'lemma-o-neperesechenii-sharov', 'predel-posledovatelnosti']
-	},
-
-	'neravenstvo-treugolnika': {
-		id: 'neravenstvo-treugolnika',
-		term: 'Неравенство треугольника',
-		short: String.raw`Через третью точку короче не станет: $\rho(x,z)\le\rho(x,y)+\rho(y,z)$.`,
-		formula: String.raw`\rho(x,z)\le\rho(x,y)+\rho(y,z)`,
-		body: String.raw`Третья аксиома [[metricheskoe-prostranstvo|метрики]] и единственная, связывающая **три** точки, — потому весь аппарат пределов в метрическом пространстве держится на ней. Вещественный аналог — $|a+b|\le|a|+|b|$. Приём применения всегда один: вставить между двумя интересующими точками член последовательности — так получаются и оценка $|A-B|<2\varepsilon$, и [[lemma-o-neperesechenii-sharov|лемма о шарах]].`,
-		related: ['metricheskoe-prostranstvo', 'lemma-o-neperesechenii-sharov', 'shar']
-	},
-
-	'n-ot-epsilon': {
-		id: 'n-ot-epsilon',
-		term: 'Номер N(ε) как функция',
-		short: String.raw`Доказательство сходимости кончается формулой для $N$, а не словами.`,
-		formula: String.raw`N(\varepsilon)=\max\bigl(N_a(\tfrac\varepsilon2),\ N_b(\tfrac\varepsilon2)\bigr)`,
-		body: String.raw`$N$ трактуется как **функция** от $\varepsilon$ и индексируется по объекту ($N_x,N_y,N_a,N_b$), а сам $\varepsilon$ — как ресурс, который распределяют между условиями. Доказательство закончено только тогда, когда выписана явная формула: фраза «значит, предел существует» её не заменяет. В теореме о [[edinstvennost-predela|единственности]] в метрическом пространстве итог таков: $N(\varepsilon)=\max\bigl(N_a(\frac d2),N_b(\frac d2)\bigr)$, где $d=\rho(a,b)$.`,
-		related: ['predel-posledovatelnosti', 'edinstvennost-predela']
 	},
 
 	'hausdorfovo-prostranstvo': {

@@ -98,17 +98,6 @@ $\mathbb R$ сепарабельно (годится $\mathbb Q$), $\mathbb R^n$
 		related: ['separabelnost', 'vtoraya-aksioma-schetnosti', 'topologiya-r']
 	},
 
-	'topologiya-r': {
-		id: 'topologiya-r',
-		term: 'Стандартная топология на ℝ',
-		short: String.raw`Открытые множества — всевозможные объединения интервалов.`,
-		formula: String.raw`\tau_{\mathbb R}=\Bigl\{\textstyle\bigcup_j (a_j;b_j)\Bigr\}`,
-		body: String.raw`**Стандартная топология на $\mathbb R$** объявляет открытыми всевозможные объединения интервалов $(a;b)$. Она индуцирована модулем разности как [[metriki-rho|метрикой]]: шар $B_r(x)$ здесь — это интервал $(x-r;x+r)$.
-
-У неё есть счётная [[baza-topologii|база]] из интервалов с рациональными концами, откуда $\mathbb R$ [[separabelnost|сепарабельно]]. Пересечение открытых остаётся открытым только для конечных наборов: $\bigcap_{n\in\mathbb N_1}(-1/n;1/n)=\{0\}$, а одноточечное множество здесь не открыто.`,
-		related: ['baza-topologii', 'okrestnost', 'metriki-rho', 'plotnost-q-v-r']
-	},
-
 	'plotnost-q-v-r': {
 		id: 'plotnost-q-v-r',
 		term: 'Плотность ℚ в ℝ',
@@ -120,47 +109,4 @@ $\mathbb R$ сепарабельно (годится $\mathbb Q$), $\mathbb R^n$
 		related: ['vsyudu-plotnoe', 'separabelnost', 'topologiya-r']
 	},
 
-	okrestnost: {
-		id: 'okrestnost',
-		term: 'Окрестность точки',
-		short: String.raw`Любой элемент топологии, содержащий данную точку.`,
-		formula: String.raw`U_x\in\tau,\qquad x\in U_x`,
-		body: String.raw`**Окрестность** точки $x$ — это любой элемент топологии, содержащий $x$. Никакой «малости» не требуется: само пространство тоже окрестность каждой своей точки. Обозначение — $U_x$, версия без самой точки — [[vykolotaya-okrestnost|выколотая окрестность]] $\mathring U_x$.
-
-Через окрестности записываются определения [[plotnoe-podmnozhestvo|плотности]], предела и непрерывности, поэтому проверка «пересечение с $A$ непусто» — сквозной рабочий приём, а не разовый трюк одной темы.`,
-		related: ['plotnoe-podmnozhestvo', 'vykolotaya-okrestnost', 'baza-topologii']
-	},
-
-	'schetnoe-mnozhestvo': {
-		id: 'schetnoe-mnozhestvo',
-		term: 'Счётное множество',
-		short: String.raw`Равномощно ℕ₁; произведение и объединение счётных снова счётны.`,
-		formula: String.raw`|A|=\aleph_0\iff A\leftrightarrow\mathbb N_1`,
-		body: String.raw`Множество **счётно**, если равномощно [[n-nol-n-odin|$\mathbb N_1$]]; «не более чем счётно» — конечно или счётно. Рабочие факты дня 3: образ счётного не более чем счётен, произведение двух счётных счётно (отсюда счётность $\mathbb Q$), счётное объединение счётных счётно.
-
-На них держится вся тема: [[baza-topologii|база]] из интервалов $(q_1,q_2)$ счётна как подмножество $\mathbb Q\times\mathbb Q$, а выбор по одной точке из каждого элемента счётной базы даёт счётное всюду плотное множество.`,
-		related: ['baza-topologii', 'separabelnost', 'plotnost-q-v-r']
-	},
-
-	'diskretnaya-topologiya': {
-		id: 'diskretnaya-topologiya',
-		term: 'Дискретная топология',
-		short: String.raw`τ = 2^S: открыто каждое подмножество.`,
-		formula: String.raw`\tau=2^{S}`,
-		body: String.raw`**Дискретная топология** — максимальная возможная: открыто каждое подмножество, $\tau=2^S$. Каждая точка сама себе [[okrestnost|окрестность]], поэтому [[vsyudu-plotnoe|всюду плотно]] только само $S$: любое $A\ne S$ промахивается мимо окрестности $\{x\}$ для $x\notin A$.
-
-Прямое следствие: такое пространство [[separabelnost|сепарабельно]] тогда и только тогда, когда $S$ не более чем счётно. Дискретное $\mathbb R$ не сепарабельно и счётной [[baza-topologii|базы]] не имеет — база обязана содержать все одноточечные множества.`,
-		related: ['trivialnaya-topologiya', 'separabelnost', 'okrestnost', 'baza-topologii']
-	},
-
-	'trivialnaya-topologiya': {
-		id: 'trivialnaya-topologiya',
-		term: 'Тривиальная топология',
-		short: String.raw`τ = {∅, S}: минимальная топология, сепарабельна всегда.`,
-		formula: String.raw`\tau=\{\varnothing,\ S\}`,
-		body: String.raw`**Тривиальная (антидискретная) топология** — минимальная: открыты только $\varnothing$ и само $S$. Единственная непустая [[okrestnost|окрестность]] — это $S$, поэтому [[vsyudu-plotnoe|всюду плотно]] любое непустое подмножество, включая одноточечное.
-
-Значит такое пространство [[separabelnost|сепарабельно]] всегда, каким бы огромным ни было $S$, а [[baza-topologii|база]] у него состоит из одного элемента. Пара «тривиальная — [[diskretnaya-topologiya|дискретная]]» — стандартный тест на любое топологическое свойство: свойство, одинаковое на обоих концах, ничего не различает.`,
-		related: ['diskretnaya-topologiya', 'separabelnost', 'baza-topologii', 'okrestnost']
-	}
 };

@@ -77,17 +77,6 @@ export const day20Terms: Glossary = {
 		related: ['podposledovatelnost', 'verkhniy-predel', 'kriteriy-verhnego-nizhnego', 'supremum']
 	},
 
-	podposledovatelnost: {
-		id: 'podposledovatelnost',
-		term: 'Подпоследовательность',
-		short: String.raw`Выборка членов по строго возрастающим номерам $n_1<n_2<\dots$`,
-		formula: String.raw`n_1<n_2<\dots,\qquad k\mapsto x_{n_k},\qquad n_k\ge k`,
-		body: String.raw`**Подпоследовательность** $x_{n_k}$ — композиция последовательности со строго возрастающим отображением $k\mapsto n_k$. Из строгого возрастания индукцией следует $n_k\ge k$ — единственное, что нужно в доказательствах: номера уходят в бесконечность.
-
-Отсюда **наследование предела**: если $\lim x_n=x$, то $\lim x_{n_k}=x$ с тем же номером $N_{x_{n_k}}(\varepsilon)=N_x(\varepsilon)$, без деления $\varepsilon$. Контрапозиция даёт признак расходимости: две подпоследовательности с разными пределами убивают предел. Не путать с [[chastichnaya-posledovatelnost|частичной последовательностью]] — хвостом $x_k,x_{k+1},\dots$, то есть частным случаем $n_k=k+c$: у $(-1)^n$ ни один хвост не сходится, а подпоследовательности $x_{2k}$ и $x_{2k-1}$ сходятся к $1$ и $-1$.`,
-		related: ['chastichnaya-posledovatelnost', 'princip-vybora', 'predel-posledovatelnosti']
-	},
-
 	'chastichnyy-predel': {
 		id: 'chastichnyy-predel',
 		term: 'Частичный предел',
@@ -120,47 +109,4 @@ export const day20Terms: Glossary = {
 		related: ['supremum', 'infimum', 'verhnyaya-ogibayushchaya', 'verkhniy-predel']
 	},
 
-	supremum: {
-		id: 'supremum',
-		term: 'Супремум (точная верхняя грань)',
-		short: String.raw`Наименьшая из верхних граней; рабочая форма — $\varepsilon$-условие.`,
-		formula: String.raw`1)\ \forall n:\ x_n\le S;\qquad 2')\ \forall\varepsilon>0\ \exists n:\ x_n>S-\varepsilon`,
-		body: String.raw`**Супремум** — наименьшая верхняя грань: 1) $S$ — верхняя грань; 2) любая другая верхняя грань не меньше $S$. Рабочая форма второго условия — **$\varepsilon$-форма**: $\forall\varepsilon>0\ \exists n:\ x_n>S-\varepsilon$.
-
-Сегодня она используется трижды: даёт монотонность [[verhnyaya-ogibayushchaya|огибающей]] (через «наименьшая из граней»), строгую оценку $S_n\le x+\frac\varepsilon2$ в [[kriteriy-verhnego-nizhnego|критерии]] и целую подпоследовательность в [[princip-vybora|принципе выбора]]. Супремум не обязан достигаться: $\sup\sin n=1$, а $\max\{\sin n\}=\varnothing$.`,
-		related: ['infimum', 'verhnyaya-ogibayushchaya', 'princip-vybora', 'monotonnaya-ogranichennaya']
-	},
-
-	infimum: {
-		id: 'infimum',
-		term: 'Инфимум (точная нижняя грань)',
-		short: String.raw`Наибольшая из нижних граней; $\varepsilon$-форма зеркальна супремуму.`,
-		formula: String.raw`1)\ \forall n:\ x_n\ge s;\qquad 2')\ \forall\varepsilon>0\ \exists n:\ x_n<s+\varepsilon`,
-		body: String.raw`**Инфимум** — наибольшая нижняя грань: 1) $s$ — нижняя грань; 2) любая другая нижняя грань не превосходит $s$. $\varepsilon$-форма: $\forall\varepsilon>0\ \exists n:\ x_n<s+\varepsilon$.
-
-Как и [[supremum|супремум]], инфимум может не достигаться — это не редкость, а типичная ситуация: у $x_n=\frac{n}{n-\sqrt n}$ инфимум любого хвоста равен $1$, а значения $1$ последовательность не принимает. Именно на таких примерах ломается разбор [[kriteriy-verhnego-nizhnego|критерия]] через «падения» грани. Инфимумы хвостов образуют [[nizhnyaya-ogibayushchaya|нижнюю огибающую]].`,
-		related: ['supremum', 'nizhnyaya-ogibayushchaya', 'nizhniy-predel', 'monotonnaya-ogranichennaya']
-	},
-
-	'teorema-o-dvuh-gorodovyh': {
-		id: 'teorema-o-dvuh-gorodovyh',
-		term: 'Теорема о двух городовых',
-		short: String.raw`Сжатая между двумя сходящимися к $A$ сама сходится к $A$.`,
-		formula: String.raw`x_n\le y_n\le z_n,\ \lim x_n=\lim z_n=A\ \Rightarrow\ \lim y_n=A`,
-		body: String.raw`Она же теорема о сжатой последовательности (день 14). Если $\forall n:\ x_n\le y_n\le z_n$ и $\lim x_n=\lim z_n=A$, то $\lim y_n=A$, причём номер берётся без деления $\varepsilon$: $N_y(\varepsilon)=\max(N_x(\varepsilon),N_z(\varepsilon))$.
-
-Сегодня это рабочий инструмент направления $\Leftarrow$ в [[kriteriy-verhnego-nizhnego|критерии]]: зажатие $i_n\le x_n\le S_n$ выполнено при всех $n$ по построению [[nizhnyaya-ogibayushchaya|огибающих]], поэтому равенство их пределов сразу тянет за собой предел самой последовательности.`,
-		related: ['kriteriy-verhnego-nizhnego', 'predel-posledovatelnosti', 'nizhnyaya-ogibayushchaya']
-	},
-
-	'predel-posledovatelnosti': {
-		id: 'predel-posledovatelnosti',
-		term: 'Предел последовательности',
-		short: String.raw`$|x_n-x|<\varepsilon$ для всех $n>N(\varepsilon)$.`,
-		formula: String.raw`\forall\varepsilon>0\ \exists N\in\mathbb N_1:\ \forall n>N\ \ |x_n-x|<\varepsilon`,
-		body: String.raw`Последовательность $f:\mathbb N_1\to\mathbb R$ сходится к $x$, если для любого $\varepsilon>0$ найдётся номер $N$, начиная с которого все члены ближе $\varepsilon$ к пределу; в метрическом пространстве модуль заменяется на $\rho(x_n,x)$. Явная формула $N(\varepsilon)$ — сильнейшая форма доказательства сходимости: она не только утверждает существование номера, но и предъявляет его.
-
-Предел не меняется при отбрасывании конечного числа членов — отсюда и совпадение [[chastichnyy-predel|частичного предела]] с обычным. В отличие от [[verkhniy-predel|верхнего]] и [[nizhniy-predel|нижнего]] пределов, существует не всегда: у $(-1)^n$ его нет, а огибающие сходятся.`,
-		related: ['verkhniy-predel', 'nizhniy-predel', 'chastichnyy-predel', 'podposledovatelnost']
-	}
 };

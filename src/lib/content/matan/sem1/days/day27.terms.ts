@@ -8,33 +8,6 @@ import type { Glossary } from '$lib/types';
 // напрямую: vykolotaya-okrestnost, asimptoticheskie-klassy, end-r, lso,
 // metriki-rho, blacksquare и др.
 export const day27Terms: Glossary = {
-	'predel-funkcii': {
-		id: 'predel-funkcii',
-		term: 'Предел функции',
-		short: String.raw`Значение $A$, к которому жмётся $f(x)$, когда $x$ подходит к $x_0$, не попадая в неё.`,
-		formula: String.raw`\lim_{x\to x_0}f(x)=A`,
-		body: String.raw`**Предел функции** в точке $x_0$ — значение $A$, к которому стремятся значения $f$ при приближении аргумента к $x_0$. Есть два эквивалентных определения: [[opredelenie-geyne|по Гейне]] (через последовательности) и по Коши (через $\varepsilon$ и $\delta$, сразу в четырёх средах). Оба игнорируют саму точку: аргумент берётся из [[vykolotaya-okrestnost|выколотой окрестности]], а $x_0$ обязана быть [[predelnaya-tochka|предельной точкой]] области определения, иначе выколотый шар окажется пуст.`,
-		related: ['opredelenie-geyne', 'predelnaya-tochka', 'vykolotaya-okrestnost', 'arifmetika-predelov-funkcii']
-	},
-
-	'opredelenie-geyne': {
-		id: 'opredelenie-geyne',
-		term: 'Определение по Гейне',
-		short: String.raw`Предел через последовательности: годятся все $\{x_n\}\to x_0$ с $x_n\ne x_0$.`,
-		formula: String.raw`\forall\{x_n\}:\ x_n\to x_0,\ x_n\ne x_0\ \Rightarrow\ \lim_{n\to\infty}f(x_n)=A`,
-		body: String.raw`**Определение по Гейне** сводит [[predel-funkcii|предел функции]] к пределу последовательности: $\lim f(x)=A$, если для **всякой** $x_n\to x_0$ с $x_n\ne x_0$ выполнено $f_n=f(x_n)\to A$. Это главный рабочий инструмент дня 27: вся [[arifmetika-predelov-funkcii|арифметика пределов функции]] доказывается им в три строки — сослаться на уже готовую арифметику пределов последовательностей и вернуться обратно.`,
-		related: ['predel-funkcii', 'arifmetika-predelov-funkcii', 'beskonechno-bolshaya-funkciya']
-	},
-
-	'predelnaya-tochka': {
-		id: 'predelnaya-tochka',
-		term: 'Предельная точка',
-		short: String.raw`Точка, в любой выколотой окрестности которой есть точки множества.`,
-		formula: String.raw`x_0\in A'\iff\forall\,\mathring U_{x_0}:\ \mathring U_{x_0}\cap A\ne\varnothing`,
-		body: String.raw`**Предельная точка** множества $A$ — точка, в любой [[vykolotaya-okrestnost|выколотой окрестности]] которой найдётся элемент $A$. Окрестность здесь обязана быть выколотой: иначе всякая точка самого $A$ автоматически стала бы предельной, и исчез бы отдельный класс изолированных точек — тех, у которых есть окрестность, не содержащая других точек $A$. Для дня 27 важно одно следствие: выколотый шар вокруг предельной точки **непуст**, и без этого не проходит ни доказательство [[kriteriy-sushchestvovaniya-predela|критерия существования предела]], ни само определение верхних и нижних граней по такому шару.`,
-		related: ['vykolotaya-okrestnost', 'predel-funkcii', 'kriteriy-sushchestvovaniya-predela']
-	},
-
 	'arifmetika-predelov-funkcii': {
 		id: 'arifmetika-predelov-funkcii',
 		term: 'Арифметика пределов функции',
@@ -94,8 +67,8 @@ export const day27Terms: Glossary = {
 		term: 'Колебание функции в точке',
 		short: String.raw`$\eta$ — разность верхнего и нижнего предела; числовая мера разрыва.`,
 		formula: String.raw`\eta(x_0)=\overline{\lim_{x\to x_0}}\,f-\underline{\lim_{x\to x_0}}\,f=\lim_{\delta\to0}\bigl(S(\delta)-i(\delta)\bigr)`,
-		body: String.raw`**Колебание** $\eta$ — разность [[verkhniy-predel-funkcii|верхнего]] и [[nizhniy-predel-funkcii|нижнего предела]] в точке, то есть предельная ширина полосы, в которую укладывается график около $x_0$. Перестановка «разность пределов равна пределу разности» законна по [[arifmetika-predelov-funkcii|арифметике пределов]] и только при конечных гранях. Предел существует тогда и только тогда, когда $\eta=0$. Через колебание формулируется и критерий интегрируемости по Риману: ограниченная $f$ интегрируема на отрезке тогда и только тогда, когда множество точек с $\eta(x)>0$ имеет меру нуль.`,
-		related: ['verkhniy-predel-funkcii', 'nizhniy-predel-funkcii', 'kriteriy-sushchestvovaniya-predela', 'arifmetika-predelov-funkcii']
+		body: String.raw`Разность верхнего и нижнего пределов функции в точке — предельная ширина полосы, в которую укладывается график около неё. [[predel-funkcii|Предел]] существует тогда и только тогда, когда колебание равно нулю.`,
+		related: ['predel-funkcii', 'supremum']
 	},
 
 	'kriteriy-sushchestvovaniya-predela': {

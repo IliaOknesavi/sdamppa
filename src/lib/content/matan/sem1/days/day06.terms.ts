@@ -30,17 +30,6 @@ export const day06Terms: Glossary = {
 		related: ['topologiya', 'otkrytoe-mnozhestvo', 'topologiya-r']
 	},
 
-	bulean: {
-		id: 'bulean',
-		term: 'Булеан 2^S',
-		short: String.raw`Множество всех подмножеств $S$; при $\#S=n$ в нём $2^n$ элементов.`,
-		formula: String.raw`2^{S}=\{A:\ A\subset S\}`,
-		body: String.raw`**Булеан** $2^S$ — множество всех подмножеств $S$. Запись читается «множество всех подмножеств», а не «два в степени», хотя мощность и равна $2^{\#S}$.
-
-[[topologiya|Топология]] живёт **внутри** булеана: $\tau\subset 2^S$. Отсюда первая проверка кандидата: набор $A=\{\spadesuit\}$ топологией быть не может, потому что это подмножество самого $S$, а не набор подмножеств. Максимально возможная топология совпадает со всем булеаном — это [[diskretnaya-topologiya|дискретная]].`,
-		related: ['topologiya', 'diskretnaya-topologiya', 'topologicheskoe-prostranstvo']
-	},
-
 	'otkrytoe-mnozhestvo': {
 		id: 'otkrytoe-mnozhestvo',
 		term: 'Открытое множество',

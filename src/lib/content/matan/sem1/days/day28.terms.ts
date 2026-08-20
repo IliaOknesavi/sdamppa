@@ -75,17 +75,8 @@ export const day28Terms: Glossary = {
 		term: 'Равномерная непрерывность',
 		short: String.raw`Одно $\delta(\varepsilon)$ на всё множество: точка ушла под квантор $\forall$.`,
 		formula: String.raw`\forall\varepsilon>0\ \exists\delta>0\ \forall x,x'\in D:\ \rho_1(x,x')<\delta\Rightarrow\rho_2\bigl(f(x),f(x')\bigr)<\varepsilon`,
-		body: String.raw`**Равномерная непрерывность** отличается от обычной только порядком кванторов: в [[nepreryvnost-v-tochke|непрерывности]] $\delta=\delta(\varepsilon,x_0)$ зависит от точки, здесь точка стоит правее $\exists\delta$ и $\delta=\delta(\varepsilon)$ одно на всё $D$. Топологического аналога у понятия нет: сравнить близость в разных точках можно только [[metriki-rho|расстоянием]]. Пример потери равномерности — $1/x$ на $(0;1)$: функция непрерывна в каждой точке, но $\delta(\varepsilon,x_0)$ стягивается к нулю при $x_0\to0$.`,
-		related: ['teorema-kantora', 'nepreryvnost-v-tochke', 'kompakt', 'metriki-rho']
-	},
-
-	'teorema-kantora': {
-		id: 'teorema-kantora',
-		term: 'Теорема Кантора',
-		short: String.raw`Непрерывная на компакте функция равномерно непрерывна на нём.`,
-		formula: String.raw`D\ \text{— компакт},\ f\in C(D)\ \Rightarrow\ f\ \text{равномерно непрерывна на } D`,
-		body: String.raw`**Теорема Кантора** превращает локальное свойство в глобальное: на [[kompakt|компакте]] поточечная непрерывность автоматически становится [[ravnomernaya-nepreryvnost|равномерной]]. Компактность существенна — $1/x$ непрерывна на $(0;1)$, но равномерности нет, потому что $\delta(\varepsilon,x_0)$ стягивается к нулю у края; на $[a;1]$ годится общее $\delta(\varepsilon)=a^2\varepsilon$. Это третья теорема того же куста, что и [[obraz-kompakta|теорема об образе компакта]]: компакт переводит поточечное утверждение в утверждение сразу обо всём множестве.`,
-		related: ['ravnomernaya-nepreryvnost', 'kompakt', 'obraz-kompakta']
+		body: String.raw`От обычной [[nepreryvnost|непрерывности]] отличается порядком кванторов: $\delta$ выбирается по одному $\varepsilon$ сразу для всех точек множества, а не для каждой точки своё. Топологического аналога у понятия нет — сравнивать близость в разных точках позволяет только метрика.`,
+		related: ['nepreryvnost', 'metriki-rho', 'modul-nepreryvnosti']
 	},
 
 	'obraz-kompakta': {
@@ -97,39 +88,4 @@ export const day28Terms: Glossary = {
 		related: ['kompakt', 'svyaznaya-oblast', 'topologicheskaya-nepreryvnost', 'teorema-kantora']
 	},
 
-	kompakt: {
-		id: 'kompakt',
-		term: 'Компакт',
-		short: String.raw`Из любого открытого покрытия выделяется конечное подпокрытие.`,
-		formula: String.raw`\forall\{U_\alpha\}\subset\tau:\ \bigcup_\alpha U_\alpha\supset X\ \Rightarrow\ \exists\ \text{конечный}\ K:\ \bigcup_{k\in K}U_k\supset X`,
-		body: String.raw`**Компакт** — множество, в котором любое покрытие [[otkrytoe-mnozhestvo|открытыми]] множествами содержит конечное подпокрытие. Определение сформулировано сразу в [[topologicheskoe-prostranstvo|топологическом пространстве]], без расстояния и порядка; «замкнуто и ограничено» — это уже теорема Гейне–Бореля про $\mathbb R^n$. Именно через покрытия доказывается, что образ компакта — [[obraz-kompakta|компакт]]: прообразы элементов покрытия открыты, конечное подпокрытие переносится вперёд.`,
-		related: ['otkrytoe-mnozhestvo', 'obraz-kompakta', 'teorema-kantora', 'zamykanie']
-	},
-
-	'otkrytoe-mnozhestvo': {
-		id: 'otkrytoe-mnozhestvo',
-		term: 'Открытое множество',
-		short: String.raw`Элемент топологии $\tau$; в метрике — содержит шар вокруг каждой точки.`,
-		formula: String.raw`U\in\tau\iff \forall x\in U\ \exists r>0:\ B_x(r)\subset U\quad(\text{в метрике})`,
-		body: String.raw`**Открытое множество** — элемент топологии $\tau$ по определению. В [[metricheskoe-prostranstvo|метрическом пространстве]] с индуцированной топологией это равносильно «вокруг каждой точки помещается шар», и именно эта равносильность переводит $\varepsilon$-$\delta$ определение в [[topologicheskaya-nepreryvnost|топологическое]]. Открытость всегда относительна объемлющего множества: $[0;1)$ не открыт в $\mathbb R$, но открыт в $[0;1]$ — без этой оговорки определение [[svyaznaya-oblast|связной области]] становится ложным.`,
-		related: ['topologicheskoe-prostranstvo', 'metricheskoe-prostranstvo', 'topologicheskaya-nepreryvnost', 'svyaznaya-oblast']
-	},
-
-	'topologicheskoe-prostranstvo': {
-		id: 'topologicheskoe-prostranstvo',
-		term: 'Топологическое пространство',
-		short: String.raw`Множество $S$ с системой открытых множеств $\tau$.`,
-		formula: String.raw`\varnothing,S\in\tau;\quad \bigcap_{i=1}^{r}x_i\in\tau;\quad \bigcup_{i\in I}x_i\in\tau`,
-		body: String.raw`**Топологическое пространство** $(S,\tau)$ — множество с выделенным семейством [[otkrytoe-mnozhestvo|открытых]] множеств: $\varnothing$ и $S$ открыты, **конечное** пересечение открытых открыто, произвольное объединение открыто. Это самая бедная среда, в которой ещё формулируются [[topologicheskaya-nepreryvnost|непрерывность]], [[kompakt|компактность]] и [[svyaznaya-oblast|связность]] — без расстояния и без порядка. Конечность в аксиоме пересечения существенна: в стандартной топологии $\mathbb R$ каждый интервал $(-1/n;1/n)$ открыт, а их пересечение по всем $n\in\mathbb N_1$ равно $\{0\}$ и уже не открыто.`,
-		related: ['otkrytoe-mnozhestvo', 'metricheskoe-prostranstvo', 'topologicheskaya-nepreryvnost', 'kompakt']
-	},
-
-	'metricheskoe-prostranstvo': {
-		id: 'metricheskoe-prostranstvo',
-		term: 'Метрическое пространство',
-		short: String.raw`Множество $M$ с расстоянием $\rho$; топология порождается шарами.`,
-		formula: String.raw`\rho(x,y)=0\iff x=y,\quad \rho(x,y)=\rho(y,x),\quad \rho(x,z)\leqslant\rho(x,y)+\rho(y,z)`,
-		body: String.raw`**Метрическое пространство** $(M,\rho)$ — множество с расстоянием. Аксиом три: невырожденность $\rho(x,y)=0\iff x=y$, симметричность и неравенство треугольника; неотрицательность из них выводится, потому что $0=\rho(x,x)\leqslant2\rho(x,y)$. Без невырожденности получилась бы псевдометрика, где у разных точек расстояние может быть нулевым, — и предел перестал бы быть единственным. Шары порождают топологию, поэтому всякое метрическое пространство автоматически [[topologicheskoe-prostranstvo|топологическое]], и непрерывность в нём записывается двояко — через $\rho_1,\rho_2$ и [[topologicheskaya-nepreryvnost|через прообраз]], — причём обе записи равносильны. Расстояния берутся из [[metriki-rho|семейства $\rho_1,\rho_2,\rho_k,\rho_\infty$]]. Одной метрики мало для эквивалентности ОЛСО $\Leftrightarrow$ ОСО: нужна норма или локальная линейная связность.`,
-		related: ['metriki-rho', 'topologicheskoe-prostranstvo', 'otkrytoe-mnozhestvo', 'lineyno-svyaznaya-oblast']
-	}
 };

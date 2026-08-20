@@ -1,212 +1,112 @@
 import type { Glossary } from '$lib/types';
 
-// Термины дня 13 (квадратичные формы, критерий Сильвестра, достаточное условие
-// экстремума). Понятия из канонического глоссария (sem2/glossary.ts) здесь НЕ
-// дублируются и подключаются ссылками [[...]]:
-//   braket, klassy-differenciruemosti.
-// Так же ссылками подключаются термины соседних дней: kompakt,
-// teorema-veyershtrassa, teorema-klero, sobstvennye-chisla.
-// Канонический глоссарий склеивается последним и перекрывает совпадения,
-// поэтому одноимённые карточки заводить нельзя.
-// Карточки gradient, stacionarnaya-tochka, teorema-ferma, matrica-gesse,
-// gessian и formula-teylora-pole намеренно продублированы из дней 4, 9, 11 и
-// 12, чтобы день резолвился независимо.
+// Термины дня 13 (квадратичные формы и критерий Сильвестра).
 export const day13Terms: Glossary = {
 	'kvadratichnaya-forma': {
 		id: 'kvadratichnaya-forma',
 		term: 'Квадратичная форма',
-		short: String.raw`Однородный многочлен 2-й степени $Q(\vec h)=\langle\vec h\mid A\vec h\rangle$ с симметричной $A$.`,
+		short: String.raw`Однородный многочлен второй степени $Q(\vec h)=\langle\vec h\mid A\vec h\rangle$.`,
 		formula: String.raw`Q(\vec h)=\langle\vec h\mid A\vec h\rangle=\sum_{i,j=1}^{n}a_{ij}h_ih_j,\qquad a_{ij}=a_{ji}`,
-		body: String.raw`**Квадратичная форма** на $\mathbb R^n$ — однородный многочлен второй степени, записанный через симметричную матрицу в [[braket|bra-ket-форме]]. Соответствие «форма $\leftrightarrow$ матрица» прямое: $Ax^2+2Bxy+Cy^2$ отвечает матрице со строками $A,B$ и $B,C$. Двойка перед смешанным членом делится пополам между $a_{12}$ и $a_{21}$ — иначе матрица не будет симметричной.
-
-Однородность $Q(t\vec h)=t^2Q(\vec h)$ позволяет проверять [[znakoopredelennost|знак формы]] только на единичной сфере. Рабочий случай — форма [[matrica-gesse|матрицы Гессе]]: второй дифференциал скалярного поля есть в точности $Q(\vec h)$.`,
-		related: ['znakoopredelennost', 'matrica-gesse', 'kriteriy-silvestra', 'braket']
+		body: String.raw`Однородный многочлен второй степени от координат вектора, записанный через [[simmetrichnaya-matrica|симметричную матрицу]] в [[braket|скобке]]. Соответствие «форма — матрица» взаимно однозначно: коэффициент при $h_ih_j$ делится поровну между $a_{ij}$ и $a_{ji}$.`,
+		related: ['simmetrichnaya-matrica', 'braket', 'znakoopredelennost']
 	},
 
 	'odnorodnost-formy': {
 		id: 'odnorodnost-formy',
 		term: 'Однородность второй степени',
-		short: String.raw`$Q(t\vec h)=t^2Q(\vec h)$: растяжение аргумента множится квадратом.`,
+		short: String.raw`$Q(t\vec h)=t^2Q(\vec h)$.`,
 		formula: String.raw`Q(t\vec h)=t^2Q(\vec h)\qquad\forall t\in\mathbb R`,
-		body: String.raw`Каждое слагаемое $a_{ij}h_ih_j$ [[kvadratichnaya-forma|формы]] содержит ровно два множителя из $\vec h$, поэтому замена $\vec h\mapsto t\vec h$ умножает значение на $t^2$.
-
-Отсюда два технических удобства. Первое: $Q(\vec 0)=0$ у любой формы, поэтому в определении [[znakoopredelennost|знакоопределённости]] оговорка $\vec h\ne\vec 0$ обязательна. Второе: $Q(\vec h)=\lVert\vec h\rVert^2\,Q(\vec h/\lVert\vec h\rVert)$, а множитель положителен — значит и знак, и оценка снизу читаются на единичной сфере.`,
-		related: ['kvadratichnaya-forma', 'znakoopredelennost', 'polozhitelno-opredelennaya', 'dostatochnoe-uslovie-ekstremuma']
+		body: String.raw`Каждое слагаемое [[kvadratichnaya-forma|квадратичной формы]] содержит ровно два множителя из $\vec h$, поэтому растяжение аргумента умножает значение на $t^2$. В частности, $Q(\vec 0)=0$ у любой формы.`,
+		related: ['kvadratichnaya-forma', 'odnorodnost']
 	},
 
 	znakoopredelennost: {
 		id: 'znakoopredelennost',
 		term: 'Знакоопределённость формы',
-		short: String.raw`Четыре класса: определённая ($\pm$), полуопределённая, неопределённая.`,
+		short: String.raw`Четыре класса: определённая, полуопределённая, неопределённая.`,
 		formula: String.raw`Q>0\ \forall\vec h\ne\vec 0;\quad Q<0;\quad Q\ge0\ \text{с нулём};\quad Q(\vec h_+)>0>Q(\vec h_-)`,
-		body: String.raw`Классов ровно четыре: [[polozhitelno-opredelennaya|положительно определённая]] ($Q>0$ при $\vec h\ne\vec 0$), отрицательно определённая, полуопределённая ($Q\ge0$, но ноль достигается на ненулевом векторе) и неопределённая (принимает оба знака).
-
-Оговорка $\vec h\ne\vec 0$ обязательна: $Q(\vec 0)=0$ у любой формы по однородности. Если $\det A=0$, то $A\vec h_*=\vec 0$ для некоторого $\vec h_*\ne\vec 0$, и строго определённой форма быть не может — отсюда [[vyrozhdennyy-sluchay|вырожденный случай]]. Обратное неверно: неопределённая форма бывает и при $\det A\ne0$, как $h_1^2-h_2^2$.`,
-		related: ['kvadratichnaya-forma', 'polozhitelno-opredelennaya', 'sedlovaya-tochka', 'vyrozhdennyy-sluchay']
+		body: String.raw`[[kvadratichnaya-forma|Форма]] бывает положительно определённой ($Q>0$ при $\vec h\ne\vec0$), отрицательно определённой, полуопределённой (одного знака, но обнуляется на ненулевом векторе) и неопределённой (принимает оба знака). Оговорка $\vec h\ne\vec0$ обязательна.`,
+		related: ['kvadratichnaya-forma', 'polozhitelno-opredelennaya', 'odnorodnost-formy']
 	},
 
 	'polozhitelno-opredelennaya': {
 		id: 'polozhitelno-opredelennaya',
 		term: 'Положительно определённая форма',
-		short: String.raw`$Q(\vec h)>0$ при всех $\vec h\ne\vec 0$; равносильно $\Delta_1,\dots,\Delta_n>0$.`,
-		formula: String.raw`\forall\vec h\ne\vec 0:\ \langle\vec h\mid A\vec h\rangle>0\iff\Delta_1>0,\ \dots,\ \Delta_n>0`,
-		body: String.raw`Форма положительно определена, если она строго положительна на всех ненулевых векторах. По [[kriteriy-silvestra|критерию Сильвестра]] это равносильно положительности всех [[uglovoy-minor|угловых миноров]].
-
-Рабочее следствие, на котором держится [[dostatochnoe-uslovie-ekstremuma|достаточное условие экстремума]]: на компактной единичной сфере непрерывная $Q$ достигает минимума, поэтому $m=\min_{\|\vec e\|=1}Q(\vec e)>0$ и $Q(\vec h)\ge m\|\vec h\|^2$ — форма отделена от нуля, а не просто положительна. Отрицательная определённость — то же самое для $-Q$.`,
-		related: ['znakoopredelennost', 'kriteriy-silvestra', 'dostatochnoe-uslovie-ekstremuma', 'uglovoy-minor']
+		short: String.raw`$Q(\vec h)>0$ при всех $\vec h\ne\vec 0$.`,
+		formula: String.raw`\forall\vec h\ne\vec 0:\ \langle\vec h\mid A\vec h\rangle>0`,
+		body: String.raw`[[kvadratichnaya-forma|Форма]], строго положительная на всех ненулевых векторах. По [[odnorodnost-formy|однородности]] достаточно проверить это на единичной сфере, где непрерывная форма достигает положительного минимума.`,
+		related: ['znakoopredelennost', 'kriteriy-silvestra', 'kvadratichnaya-forma']
 	},
 
 	'uglovoy-minor': {
 		id: 'uglovoy-minor',
-		term: 'Угловой минор Δ_k',
-		short: String.raw`Определитель левого верхнего блока $k\times k$; $\Delta_0=1$, $\Delta_n$ — гессиан.`,
+		term: 'Угловой минор',
+		short: String.raw`Определитель левого верхнего блока $k\times k$.`,
 		formula: String.raw`\Delta_k=\det\bigl(a_{ij}\bigr)_{i,j=1}^{k},\qquad \Delta_0=1`,
-		body: String.raw`**Угловой (ведущий главный) минор** порядка $k$ — определитель левого верхнего блока $k\times k$ матрицы формы. Последовательность $\Delta_1,\dots,\Delta_n$ и есть вход [[kriteriy-silvestra|критерия Сильвестра]]; старший минор $\Delta_n=\det A$ — это [[gessian|гессиан]], если $A=H$.
-
-Смысл миноров виден из канонического вида (формула Якоби): последовательное выделение полных квадратов даёт $Q=\sum_k\frac{\Delta_k}{\Delta_{k-1}}\xi_k^2$, то есть отношения соседних миноров — это ведущие коэффициенты разложения. При $n=2$ получаем знакомое $\Delta_1=A$, $\Delta_2=AC-B^2$.`,
-		related: ['kriteriy-silvestra', 'kvadratichnaya-forma', 'gessian', 'polozhitelno-opredelennaya']
+		body: String.raw`[[opredelitel|Определитель]] левого верхнего блока порядка $k$ данной матрицы. Старший угловой минор $\Delta_n$ совпадает с определителем всей матрицы.`,
+		related: ['opredelitel', 'matrica', 'kriteriy-silvestra']
 	},
 
 	'kriteriy-silvestra': {
 		id: 'kriteriy-silvestra',
 		term: 'Критерий Сильвестра',
-		short: String.raw`Все миноры $>0$ — минимум; чередование $-,+,-$ — максимум; иначе решают знаки самой формы.`,
+		short: String.raw`Знакоопределённость читается по знакам угловых миноров.`,
 		formula: String.raw`Q>0\iff\Delta_k>0\ \forall k;\qquad Q<0\iff(-1)^k\Delta_k>0\ \forall k`,
-		body: String.raw`Критерий переводит [[znakoopredelennost|знакоопределённость]] в проверку знаков [[uglovoy-minor|угловых миноров]]. Доказывается индукцией через выделение полного квадрата: дополнение Шура даёт $\Delta'_k=\Delta_{k+1}/\Delta_1$, а конгруэнция $A=S^TDS$ с $\det S=1$ возвращает миноры как произведения ведущих коэффициентов.
-
-Оба условия удобно писать одной последовательностью знаков, включив в неё $\Delta_0=1$: минимуму отвечает «все плюсы», максимуму — чередование $+,-,+,-$, начатое с $\Delta_0>0$ и потому дающее $\Delta_1<0,\ \Delta_2>0,\dots$ Если не выполнено ни то, ни другое, строго определённой форма не является, и остаётся отличить неопределённость от полуопределённости: при $\det A\ne0$ нулевых направлений нет вовсе, значит форма неопределённая; при $\det A=0$ решают уже не миноры, а сама форма — [[vyrozhdennyy-sluchay|вырожденный случай]] наступает лишь там, где обоих знаков она не принимает.`,
-		related: ['uglovoy-minor', 'znakoopredelennost', 'dostatochnoe-uslovie-ekstremuma', 'vyrozhdennyy-sluchay']
+		body: String.raw`[[kvadratichnaya-forma|Форма]] положительно определена тогда и только тогда, когда все [[uglovoy-minor|угловые миноры]] положительны; отрицательно определена — когда их знаки чередуются, начиная с $\Delta_1<0$. При нарушении обоих условий форма может быть как неопределённой, так и полуопределённой.`,
+		related: ['uglovoy-minor', 'znakoopredelennost', 'polozhitelno-opredelennaya']
 	},
 
 	'dopolnenie-shura': {
 		id: 'dopolnenie-shura',
 		term: 'Дополнение Шура',
 		short: String.raw`Форма от $n-1$ переменных, остающаяся после выделения первого квадрата.`,
-		formula: String.raw`a'_{ij}=a_{ij}-\frac{a_{1i}a_{1j}}{a_{11}},\qquad \Delta_{k+1}=a_{11}\Delta'_k`,
-		body: String.raw`После выделения полного квадрата по первой переменной от [[kvadratichnaya-forma|формы]] остаётся форма от остальных $n-1$ переменных; её матрица $A'$ и называется дополнением Шура.
-
-Ценность — в пересчёте миноров. Вычитание первой строки с коэффициентом $a_{1i}/a_{11}$ определитель не меняет, поэтому $\Delta_{k+1}=a_{11}\Delta'_k$, то есть [[uglovoy-minor|угловые миноры]] дополнения равны $\Delta_{k+1}/\Delta_1$. Это и есть шаг индукции в [[kriteriy-silvestra|критерии Сильвестра]].`,
-		related: ['kriteriy-silvestra', 'uglovoy-minor', 'kvadratichnaya-forma', 'simmetrichnaya-matrica']
+		formula: String.raw`a'_{ij}=a_{ij}-\frac{a_{1i}a_{1j}}{a_{11}}`,
+		body: String.raw`Матрица [[kvadratichnaya-forma|формы]] от оставшихся $n-1$ переменных после выделения полного квадрата по первой. Её [[uglovoy-minor|угловые миноры]] связаны с исходными равенством $\Delta_{k+1}=a_{11}\Delta'_k$.`,
+		related: ['kvadratichnaya-forma', 'uglovoy-minor']
 	},
 
 	kongruenciya: {
 		id: 'kongruenciya',
 		term: 'Конгруэнтность матриц',
-		short: String.raw`$A=S^{T}DS$ — замена переменных в форме; при $\det S=1$ миноры не меняются.`,
-		formula: String.raw`\vec\xi=S\vec h\ \Rightarrow\ A=S^{T}DS,\qquad \det S=1\ \Rightarrow\ \det A=\det D`,
-		body: String.raw`Замена переменных $\vec\xi=S\vec h$ превращает матрицу [[kvadratichnaya-forma|формы]] в $S^{T}DS$ — это и называется конгруэнтностью (не подобием: работает транспонирование, а не обращение). Последовательное выделение квадратов даёт такую замену с **унитреугольной** $S$ — треугольной с единицами на диагонали, откуда $\det S=1$ и $\det A=\det D$.
-
-На этом держится обратная импликация в [[kriteriy-silvestra|критерии Сильвестра]], а диагональ $D$ — это канонический вид через [[uglovoy-minor|угловые миноры]].`,
-		related: ['kvadratichnaya-forma', 'kriteriy-silvestra', 'uglovoy-minor', 'dopolnenie-shura']
+		short: String.raw`$A=S^{T}DS$ — замена переменных в квадратичной форме.`,
+		formula: String.raw`\vec\xi=S\vec h\ \Rightarrow\ A=S^{T}DS`,
+		body: String.raw`Связь матриц одной [[kvadratichnaya-forma|формы]] в разных базисах: работает транспонирование, а не обращение, — этим конгруэнтность отличается от подобия. При $\det S=1$ определитель матрицы формы не меняется.`,
+		related: ['kvadratichnaya-forma', 'matrica-perehoda', 'simmetrichnaya-matrica']
 	},
 
 	'indeks-formy': {
 		id: 'indeks-formy',
 		term: 'Индекс формы',
-		short: String.raw`Число отрицательных квадратов в каноническом виде; от замены не зависит.`,
+		short: String.raw`Число отрицательных квадратов в каноническом виде.`,
 		formula: String.raw`Q=\sum_{k=1}^{p}\xi_k^2-\sum_{k=p+1}^{p+q}\xi_k^2,\qquad \text{индекс}=q`,
-		body: String.raw`Приводя [[kvadratichnaya-forma|форму]] к сумме квадратов, разные замены дают разные коэффициенты, но количество плюсов $p$ и минусов $q$ одно и то же — закон инерции. Число $q$ и называют индексом.
-
-Для стационарной точки индекс — это «сколько направлений вниз». Значения $q=0$ и $q=n$ дают минимум и максимум, промежуточные — [[sedlovaya-tochka|сёдла]] разной глубины, а $p+q<n$ означает [[vyrozhdennyy-sluchay|вырожденный случай]].`,
-		related: ['kvadratichnaya-forma', 'znakoopredelennost', 'sedlovaya-tochka', 'vyrozhdennyy-sluchay']
+		body: String.raw`При приведении [[kvadratichnaya-forma|формы]] к сумме квадратов число плюсов $p$ и число минусов $q$ не зависят от выбранной замены — это закон инерции; $q$ и называют индексом формы.`,
+		related: ['kvadratichnaya-forma', 'znakoopredelennost', 'kongruenciya']
 	},
 
 	'dostatochnoe-uslovie-ekstremuma': {
 		id: 'dostatochnoe-uslovie-ekstremuma',
 		term: 'Достаточное условие экстремума',
-		short: String.raw`При $\nabla f=\vec 0$ тип точки определяет знакоопределённость гессиана.`,
-		formula: String.raw`\nabla f(\vec x_0)=\vec 0,\ Q(\vec h)=\langle\vec h\mid H\vec h\rangle>0\ \Rightarrow\ \vec x_0\ -\ \text{строгий минимум}`,
-		body: String.raw`Пусть $f\in C^2$ и $\nabla f(\vec x_0)=\vec 0$ (необходимое условие — [[teorema-ferma|теорема Ферма]]). Тогда положительная определённость $H(\vec x_0)$ даёт строгий минимум, отрицательная — строгий максимум, неопределённость — [[sedlovaya-tochka|седловую точку]].
-
-Доказательство — [[formula-teylora-pole|формула Тейлора]] второго порядка плюс два приёма: минимум $m$ формы по компактной единичной сфере отделяет её от нуля, а выбор $\varepsilon=m/4$ давит остаток $\bar o(\|\vec h\|^2)$. Радиус окрестности выписывается явно: $\delta=\delta_r(m/4)$. Обратное неверно — необходима лишь полуопределённость.`,
-		related: ['kriteriy-silvestra', 'teorema-ferma', 'formula-teylora-pole', 'sedlovaya-tochka']
+		short: String.raw`В стационарной точке тип определяется знакоопределённостью гессиана.`,
+		formula: String.raw`\nabla f(\vec x_0)=\vec 0,\ \ Q(\vec h)=\langle\vec h\mid H\vec h\rangle>0\ \Rightarrow\ \vec x_0\ -\ \text{строгий минимум}`,
+		body: String.raw`Пусть $f\in C^2$ и $\nabla f(\vec x_0)=\vec 0$. Если [[kvadratichnaya-forma|форма]] [[matrica-gesse|матрицы Гессе]] в этой точке положительно определена — там строгий минимум, отрицательно определена — строгий максимум, неопределённа — [[sedlovaya-tochka|седло]].`,
+		related: ['matrica-gesse', 'znakoopredelennost', 'stacionarnaya-tochka', 'sedlovaya-tochka']
 	},
 
 	'sedlovaya-tochka': {
 		id: 'sedlovaya-tochka',
 		term: 'Седловая точка',
-		short: String.raw`Стационарная точка, не являющаяся экстремумом: форма принимает оба знака.`,
+		short: String.raw`Стационарная точка, где форма гессиана принимает оба знака.`,
 		formula: String.raw`\nabla f(\vec x_0)=\vec 0,\quad \exists\,\vec e_+,\vec e_-:\ Q(\vec e_+)>0>Q(\vec e_-)`,
-		body: String.raw`**Седловая точка** — [[stacionarnaya-tochka|стационарная точка]], в которой квадратичная форма гессиана неопределённая: вдоль одних направлений функция растёт, вдоль других убывает, поэтому в любой окрестности есть значения по обе стороны от $f(\vec x_0)$.
-
-Образец — $f=x^2-y^2$ в нуле; в задачах дня такова точка $(0,0,0)$ у $e^{x^2}+8zy$ с минорами $2,0,-128$. Если $\det H\ne0$, а форма не определена ни положительно, ни отрицательно, точка гарантированно седловая — отказ [[kriteriy-silvestra|критерия]] к этому случаю не относится.`,
-		related: ['stacionarnaya-tochka', 'znakoopredelennost', 'dostatochnoe-uslovie-ekstremuma', 'kriteriy-silvestra']
+		body: String.raw`[[stacionarnaya-tochka|Стационарная точка]] с неопределённой [[kvadratichnaya-forma|формой]] гессиана: вдоль одних направлений функция растёт, вдоль других убывает, поэтому экстремумом такая точка не является. Образец — $x^2-y^2$ в нуле.`,
+		related: ['stacionarnaya-tochka', 'znakoopredelennost', 'dostatochnoe-uslovie-ekstremuma']
 	},
 
 	'vyrozhdennyy-sluchay': {
 		id: 'vyrozhdennyy-sluchay',
-		term: 'Вырожденный случай (форма полуопределена)',
-		short: String.raw`Форма полуопределена — второй порядок ответа не даёт; $\det H=0$ необходим, но не достаточен.`,
-		formula: String.raw`Q\ge0\ \text{и}\ \exists\,\vec h_*\ne\vec 0:\ Q(\vec h_*)=0\ \Rightarrow\ \text{второй порядок не решает}`,
-		body: String.raw`Отказ метода наступает, когда форма гессиана **полуопределена**: обоих знаков она не принимает, но на каком-то ненулевом направлении обнуляется. Вдоль него квадратичный член ничего не решает, и знак приращения определяет первый неисчезающий член более высокого порядка, которого в формуле Тейлора второго порядка нет (у $x^2+y^3$ это третий, у $x^4\pm y^4$ — четвёртый). Нулевой [[gessian|гессиан]] для отказа необходим, но не достаточен: у $\operatorname{diag}(2,-2,0)$ определитель нулевой, а форма неопределённая — и точка седловая.
-
-Канонический пример: у $x^4+y^4$ и $x^4-y^4$ **одна и та же** нулевая матрица Гессе в начале координат, но у первой там строгий минимум, а у второй — седло. Одинаковый вход, разный ответ: критерий, читающий только $H$, различить их не может. Это и есть граница метода второго порядка.`,
-		related: ['kriteriy-silvestra', 'gessian', 'znakoopredelennost', 'dostatochnoe-uslovie-ekstremuma']
-	},
-
-	'matrica-gesse': {
-		id: 'matrica-gesse',
-		term: 'Матрица Гессе',
-		short: String.raw`Матрица вторых частных производных; симметрична по Клеро–Шварцу.`,
-		formula: String.raw`H(f)=\left(\frac{\partial^2 f}{\partial x_i\,\partial x_j}\right)_{i,j=1}^{n}`,
-		body: String.raw`**Матрица Гессе** скалярного поля собирает все вторые частные производные. Её симметричность — не предположение, а следствие теоремы Клеро–Шварца для $f\in C^2$; без неё [[kriteriy-silvestra|критерий Сильвестра]] неприменим, поскольку сформулирован для симметричных матриц.
-
-Второй дифференциал есть [[kvadratichnaya-forma|квадратичная форма]] этой матрицы: $d^2f=\langle\vec h\mid H\vec h\rangle$. На диагонали стоят чистые вторые производные $f''_{x_ix_i}$, вне диагонали — смешанные $f''_{x_ix_j}$; сдвиг диагонального элемента $a_{kk}$ ломает все [[uglovoy-minor|угловые миноры]] начиная с $\Delta_k$.`,
-		related: ['gessian', 'kvadratichnaya-forma', 'formula-teylora-pole', 'uglovoy-minor']
-	},
-
-	gessian: {
-		id: 'gessian',
-		term: 'Гессиан',
-		short: String.raw`Определитель матрицы Гессе; он же старший угловой минор $\Delta_n$.`,
-		formula: String.raw`\det H(f)=\Delta_n`,
-		body: String.raw`**Гессиан** — определитель [[matrica-gesse|матрицы Гессе]]. В списке [[uglovoy-minor|угловых миноров]] он стоит последним: $\Delta_n=\det H$.
-
-Его роль — маркер применимости: при $\det H\ne0$ точка либо экстремум, либо гарантированно седло, а при $\det H=0$ строгой определённости уже нет, и второй порядок молчит ровно тогда, когда форма вдобавок оказывается полуопределённой — [[vyrozhdennyy-sluchay|вырожденный случай]]. Тот же мотив невырожденности повторится в теореме о неявной функции ($F'_z\ne0$) и в матрице Якоби.`,
-		related: ['matrica-gesse', 'uglovoy-minor', 'vyrozhdennyy-sluchay', 'kriteriy-silvestra']
-	},
-
-	gradient: {
-		id: 'gradient',
-		term: 'Градиент',
-		short: String.raw`Вектор частных производных скалярного поля.`,
-		formula: String.raw`\nabla f=\left(\frac{\partial f}{\partial x_1},\ \frac{\partial f}{\partial x_2},\ \dots,\ \frac{\partial f}{\partial x_n}\right)`,
-		body: String.raw`**Градиент** скалярного поля — вектор его частных производных; через него производная по направлению записывается как $f'_{\vec l}=\langle\vec\nabla f\mid\vec l\rangle$ ([[braket|bra-ket]]).
-
-Сегодня он входит в необходимое условие: [[stacionarnaya-tochka|стационарная точка]] — это решение векторного уравнения $\nabla f=\vec 0$, то есть **все** компоненты обнулены одновременно. Типичная ошибка — удовлетвориться одной обнулившейся частной производной: если хотя бы одна компонента постоянна и ненулевая (как $-1$ у $x^2+y^3-z+8$), стационарных точек нет вовсе.`,
-		related: ['stacionarnaya-tochka', 'teorema-ferma', 'matrica-gesse', 'braket']
-	},
-
-	'stacionarnaya-tochka': {
-		id: 'stacionarnaya-tochka',
-		term: 'Стационарная (критическая) точка',
-		short: String.raw`Точка, где градиент обнуляется: $\nabla f(\vec x_0)=\vec 0$.`,
-		formula: String.raw`\nabla f(\vec x_0)=\vec 0`,
-		body: String.raw`**Стационарная точка** — точка внутренней области, в которой [[gradient|градиент]] равен нулевому вектору. По [[teorema-ferma|теореме Ферма]] всякий локальный экстремум дифференцируемой функции стационарен, но не наоборот: $f=x^3$ в нуле стационарна и экстремумом не является.
-
-Поэтому исследование на экстремум состоит из двух шагов: сначала решают $\nabla f=\vec 0$ (необходимое условие, отсеивает почти всё), затем в каждой найденной точке смотрят [[znakoopredelennost|знакоопределённость]] гессиана (достаточное условие). Если стационарных точек нет, дальше идти незачем.`,
-		related: ['gradient', 'teorema-ferma', 'sedlovaya-tochka', 'dostatochnoe-uslovie-ekstremuma']
-	},
-
-	'teorema-ferma': {
-		id: 'teorema-ferma',
-		term: 'Теорема Ферма',
-		short: String.raw`Необходимое условие экстремума: в точке л. э. производная (градиент) равна нулю.`,
-		formula: String.raw`\vec x_0\ -\ \text{лок. экстремум},\ f\ \text{дифференцируема}\ \Rightarrow\ \nabla f(\vec x_0)=\vec 0`,
-		body: String.raw`Теорема Ферма даёт **необходимое** условие экстремума: если $f$ дифференцируема в точке и в некоторой её окрестности, а $\vec x_0$ — локальный экстремум, то $f'(x_0)=0$ (день 4) и, в многомерном двойнике для скалярных полей, $\nabla f(\vec x_0)=\vec 0$.
-
-Существенна открытость области: точка должна входить в неё вместе с окрестностью. Обратное утверждение неверно — контрпример $f=x^3$: производная в нуле обнуляется, а экстремума нет. Закрывает этот пробел [[dostatochnoe-uslovie-ekstremuma|достаточное условие]] через гессиан.`,
-		related: ['stacionarnaya-tochka', 'gradient', 'dostatochnoe-uslovie-ekstremuma', 'klassy-differenciruemosti']
-	},
-
-	'formula-teylora-pole': {
-		id: 'formula-teylora-pole',
-		term: 'Формула Тейлора для скалярного поля',
-		short: String.raw`Разложение до 2-го порядка: градиент в скобке плюс форма гессиана.`,
-		formula: String.raw`f(\vec x_0+\vec h)=f(\vec x_0)+\langle\nabla f(\vec x_0)\mid\vec h\rangle+\tfrac12\langle\vec h\mid H\vec h\rangle+\bar o\bigl(\|\vec h\|^2\bigr)`,
-		body: String.raw`Формула Тейлора для скалярного поля записывается в [[braket|bra-ket-форме]] (день 12): линейный член — скобка с [[gradient|градиентом]], квадратичный — [[kvadratichnaya-forma|форма]] [[matrica-gesse|матрицы Гессе]] с коэффициентом $\tfrac1{2!}$.
-
-Это рабочий инструмент дня: в стационарной точке линейный член исчезает, и приращение сводится к $\tfrac12Q(\vec h)+\bar o(\|\vec h\|^2)$ — знак приращения при малых $\vec h$ решает форма. В общей записи через мультииндексы члены суммируются по $|\alpha|\le k$, но для теории экстремума достаточно двух порядков.`,
-		related: ['matrica-gesse', 'kvadratichnaya-forma', 'gradient', 'dostatochnoe-uslovie-ekstremuma']
+		term: 'Вырожденный случай',
+		short: String.raw`Форма полуопределена — второй порядок ответа не даёт.`,
+		formula: String.raw`Q\ge0\ \text{и}\ \exists\,\vec h_*\ne\vec 0:\ Q(\vec h_*)=0`,
+		body: String.raw`Ситуация, когда [[kvadratichnaya-forma|форма]] гессиана полуопределена: вдоль некоторого направления она обнуляется, и знак приращения решает член более высокого порядка. У $x^4+y^4$ и $x^4-y^4$ гессиан в нуле один и тот же, а точки разные.`,
+		related: ['znakoopredelennost', 'dostatochnoe-uslovie-ekstremuma', 'gessian']
 	}
 };

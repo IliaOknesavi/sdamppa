@@ -7,28 +7,6 @@ import type { Glossary } from '$lib/types';
 // asimptoticheskie-klassy, chastichnaya-posledovatelnost, …) здесь НЕ
 // объявляются — на них ссылаемся через [[...]].
 export const day15Terms: Glossary = {
-	posledovatelnost: {
-		id: 'posledovatelnost',
-		term: 'Последовательность',
-		short: String.raw`Функция $f:\mathbb N_1\to\mathbb R$, а не «набор чисел».`,
-		formula: String.raw`f:\ \mathbb N_1\to\mathbb R`,
-		body: String.raw`Последовательность — это **функция** с областью определения [[n-nol-n-odin|$\mathbb N_1$]], а не набор и не список: $f:\mathbb N_1\to\mathbb R$. Если значения берутся в метрическом пространстве $M$, функцию $f:\mathbb N_1\to M$ называют **обобщённой последовательностью**. Её не следует путать с сетью: у сети областью определения служит произвольное направленное множество, а не $\mathbb N_1$, и потому сходимость по сетям описывает замыкание и непрерывность в любом топологическом пространстве, тогда как последовательностей для этого достаточно лишь при счётной базе окрестностей.
-
-Запись $f_n$ и $x_n$ используется наравне с $f(n)$. Для последовательности определяются [[predel-posledovatelnosti|предел]] и [[ogranichennaya-posledovatelnost|ограниченность]].`,
-		related: ['n-nol-n-odin', 'predel-posledovatelnosti', 'ogranichennaya-posledovatelnost']
-	},
-
-	'predel-posledovatelnosti': {
-		id: 'predel-posledovatelnosti',
-		term: 'Предел последовательности',
-		short: String.raw`$\forall\varepsilon>0\ \exists N\ \forall n>N:\ |f_n-A|<\varepsilon$.`,
-		formula: String.raw`\forall\varepsilon>0\ \exists N\in\mathbb N_1\ \forall n>N:\ |f_n-A|<\varepsilon`,
-		body: String.raw`Определение даётся в пяти эквивалентных формах: через метрику $\rho$, через норму, через открытый шар $B_\varepsilon(A)$, через [[vykolotaya-okrestnost|выколотую окрестность]] $\mathring U_A$ и, последней, в рабочей вещественной записи с модулем.
-
-Номер $N$ трактуется как **функция от $\varepsilon$**: [[n-ot-epsilon|доказательство закончено]] тогда, когда выписана явная формула $N(\varepsilon)$. Из существования предела следует [[ogranichennaya-posledovatelnost|ограниченность]] — это теорема дня 15.`,
-		related: ['posledovatelnost', 'vykolotaya-okrestnost', 'n-ot-epsilon', 'ogranichennaya-posledovatelnost']
-	},
-
 	'naibolshiy-element': {
 		id: 'naibolshiy-element',
 		term: 'Наибольший элемент (max X)',
@@ -60,17 +38,6 @@ export const day15Terms: Glossary = {
 
 Два отличия от [[naibolshiy-element|наибольшего элемента]]: грань берётся из объемлющего $X$ и **не обязана лежать в $Y$**; грань не единственна — множество верхних граней либо пусто, либо целый луч (для $(0;1)$ это $[1;+\infty)$). Наименьшая из верхних граней называется точной верхней гранью, или [[supremum|супремумом]], наибольшая из нижних — [[infimum|инфимумом]].`,
 		related: ['supremum', 'infimum', 'naibolshiy-element', 'ogranichennost-sverhu']
-	},
-
-	supremum: {
-		id: 'supremum',
-		term: 'Супремум (точная верхняя грань)',
-		short: String.raw`Наименьшая из верхних граней; проверяется двумя условиями.`,
-		formula: String.raw`1)\ \forall n:\ x_n\le S;\qquad 2)\ \forall y:\ (\forall n:\ x_n\le y)\Rightarrow S\le y`,
-		body: String.raw`**Супремум** — наименьшая [[verhnyaya-gran|верхняя грань]]. Для последовательности $x_n\subset\mathbb R$ он задаётся двумя условиями: 1) $S$ — верхняя грань; 2) любая другая верхняя грань не меньше $S$.
-
-Рабочая форма второго условия — **$\varepsilon$-форма**: $\forall\varepsilon>0\ \exists n:\ x_n>S-\varepsilon$. Существование супремума у [[ogranichennost-sverhu|ограниченной сверху]] последовательности — не тривиальность, а полнота $\mathbb R$, роль которой играет [[aksioma-vlozhennyh-otrezkov|аксиома о вложенных отрезках]].`,
-		related: ['verhnyaya-gran', 'infimum', 'nedostizhimyy-supremum', 'aksioma-vlozhennyh-otrezkov']
 	},
 
 	infimum: {
@@ -106,17 +73,6 @@ export const day15Terms: Glossary = {
 		related: ['ogranichennost-sverhu', 'ogranichennaya-posledovatelnost', 'infimum']
 	},
 
-	'ogranichennaya-posledovatelnost': {
-		id: 'ogranichennaya-posledovatelnost',
-		term: 'Ограниченная последовательность',
-		short: String.raw`Ограничена и сверху, и снизу; равносильно $|f_n|\le C$ при всех $n$.`,
-		formula: String.raw`\exists C>0\ \forall n:\ |f_n|\le C`,
-		body: String.raw`Последовательность **ограничена**, если она ограничена [[ogranichennost-sverhu|сверху]] и [[ogranichennost-snizu|снизу]] одновременно. Равносильная запись: $\exists C>0\ \forall n:\ |f_n|\le C$ (достаточно взять $C=\max(|A|,|B|,1)$: единица гарантирует $C>0$ даже при нулевых границах).
-
-Главная теорема дня: всякая [[predel-posledovatelnosti|сходящаяся]] последовательность ограничена. Доказательство берёт $\varepsilon=1$, загоняет хвост в полосу $(A-1;A+1)$ и добивает конечный префикс: $C=\max(|f_1|,\dots,|f_{N_0}|,\ |A|+1)$, где $N_0=N(1)$. Обратное неверно: $(-1)^n$ ограничена и не сходится.`,
-		related: ['ogranichennost-sverhu', 'ogranichennost-snizu', 'predel-posledovatelnosti', 'supremum']
-	},
-
 	'nedostizhimyy-supremum': {
 		id: 'nedostizhimyy-supremum',
 		term: 'Недостижимый супремум',
@@ -150,14 +106,4 @@ export const day15Terms: Glossary = {
 		related: ['supremum', 'aksioma-arhimeda', 'ogranichennost-sverhu']
 	},
 
-	'aksioma-arhimeda': {
-		id: 'aksioma-arhimeda',
-		term: 'Аксиома Архимеда',
-		short: String.raw`Для любого вещественного $x$ найдётся натуральное $n>x$.`,
-		formula: String.raw`\forall x\in\mathbb R\ \exists n\in\mathbb N_1:\ n>x`,
-		body: String.raw`Аксиома из списка аксиом $\mathbb R$ (день 5): натуральные [[n-nol-n-odin|$\mathbb N_1$]] не ограничены сверху, то есть $\forall x\in\mathbb R\ \exists n\in\mathbb N_1:\ n>x$.
-
-Рабочие следствия дня 15: у $f_n=n$ [[supremum|супремума]] нет (иначе $\forall n:\ n\le S$), и длины половинок $\frac{b_0-a_0}{2^k}$ становятся меньше любого $\varepsilon$ — без этого [[aksioma-vlozhennyh-otrezkov|вложенные отрезки]] могли бы стягиваться не к точке.`,
-		related: ['aksioma-vlozhennyh-otrezkov', 'ogranichennost-sverhu', 'n-nol-n-odin']
-	}
 };

@@ -1,92 +1,32 @@
 import type { Glossary } from '$lib/types';
 
-// Термины дня 27 (радикальный признак Коши, преобразование Абеля, признак
-// Дирихле, полная вариация). Понятия сквозной нотации живут в каноническом
-// глоссарии (sem2/glossary.ts) и здесь НЕ дублируются — на них идут только
-// перекрёстные ссылки [[...]]: priznak-i-svoystvo, skhodyashchayasya-v-sebe,
-// asimptoticheskie-klassy, chastichnaya-posledovatelnost, n-ot-epsilon.
-// Канонический глоссарий склеивается последним и перекрывает совпадения,
-// поэтому одноимённые карточки заводить нельзя.
-// Понятия, введённые раньше, подключаются ссылкой и не переобъявляются:
-// lipshitsevost (день 5), integrirovanie-po-chastyam (день 21),
-// mazhoranta-i-minoranta, neobhodimoe-uslovie-shodimosti,
-// teorema-rimana-o-perestanovke (день 26).
+// Термины дня 27 (преобразование Абеля, признаки Дирихле и Лейбница).
 export const day27Terms: Glossary = {
 	'radikalnyy-priznak-koshi': {
 		id: 'radikalnyy-priznak-koshi',
 		term: 'Радикальный признак Коши',
-		short: String.raw`По $L=\lim\sqrt[n]{a_n}$: меньше единицы — сх., больше — расх., единица — ?`,
+		short: String.raw`По $L=\lim\sqrt[n]{a_n}$: меньше единицы — сходится, больше — расходится.`,
 		formula: String.raw`L=\lim_{n\to\infty}\sqrt[n]{a_n}:\quad L<1\ \text{— сх.};\quad L>1\ \text{— расх.};\quad L=1\ \text{— ?}`,
-		body: String.raw`Из члена $a_n\ge0$ извлекается «скрытый знаменатель» прогрессии, и результат сравнивается с единицей. Доказательство: при $L<1$ берём $q=\frac{L+1}{2}\in(L;1)$ и $\varepsilon=\frac{1-L}{2}$, получаем $a_n<q^{\,n}$ при $n>N_{\sqrt[n]{a}}(\varepsilon)$ и сравниваем с [[geometricheskiy-ryad|геометрическим рядом]]; при $L>1$ выходит $a_n>1$, то есть нарушено необходимое условие.
-
-При $L=1$ ответа нет ни в какую сторону: $\sum\frac1n$ и $\sum\frac{1}{n^{2}}$ дают одно и то же значение $L$ при разных исходах. Молчание признака — не расходимость: [[priznak-i-svoystvo|признак = достаточное условие]]. В общей форме берут $L=\overline\lim\sqrt[n]{a_n}$ — отсюда формула Коши–Адамара для радиуса сходимости.`,
-		related: ['geometricheskiy-ryad', 'priznak-dalambera', 'garmonicheskiy-ryad', 'priznak-i-svoystvo']
-	},
-
-	'priznak-dalambera': {
-		id: 'priznak-dalambera',
-		term: 'Признак Д’Аламбера',
-		short: String.raw`По пределу отношения $a_{n+1}/a_n$; слабее радикального признака.`,
-		formula: String.raw`\underline\lim\frac{a_{n+1}}{a_n}\le\underline\lim\sqrt[n]{a_n}\le\overline\lim\sqrt[n]{a_n}\le\overline\lim\frac{a_{n+1}}{a_n}`,
-		body: String.raw`Для $a_n>0$ ряд сходится при $\lim\frac{a_{n+1}}{a_n}<1$ и расходится при значении больше единицы. Эталон тот же — [[geometricheskiy-ryad|геометрическая прогрессия]], но измеряется один шаг, а не усреднённая история. Равносильная запись — через **обратное** отношение $x_n=\frac{a_n}{a_{n+1}}$: условие сходимости принимает вид $x_n\ge c>1$, и порог переезжает из $q<1$ в $c=\frac1q>1$.
-
-Цепочка неравенств выше показывает точное соотношение: где Д’Аламбер дал ответ, [[radikalnyy-priznak-koshi|радикальный признак]] даст тот же, но не наоборот. Пример разрыва — $a_n=2^{-n-(-1)^{n}}$: отношение скачет между $2$ и $\frac18$, а корень идёт к $\frac12$. В дне 28 этот признак окажется нижним этажом куммеровской схемы — подстановкой $C_n\equiv1$.`,
-		related: ['radikalnyy-priznak-koshi', 'geometricheskiy-ryad', 'asimptoticheskie-klassy']
-	},
-
-	'geometricheskiy-ryad': {
-		id: 'geometricheskiy-ryad',
-		term: 'Геометрический ряд',
-		short: String.raw`$\sum q^{n}$ сходится ровно при $|q|<1$; эталон обоих сегодняшних признаков.`,
-		formula: String.raw`\sum_{n=0}^{\infty}q^{\,n}=\frac{1}{1-q}\ \ (|q|<1),\qquad \sum_{n>N}q^{\,n}=\frac{q^{\,N+1}}{1-q}`,
-		body: String.raw`Ряд с постоянным отношением членов; частичная сумма считается точно, $S_N=\frac{1-q^{N}}{1-q}$, откуда сходимость при $|q|<1$. Это единственный эталон, с которым сравнивают и [[priznak-dalambera|Д’Аламбер]], и [[radikalnyy-priznak-koshi|радикальный признак]]: оба просто извлекают из $a_n$ подходящее $q$ разными способами.
-
-Хвостовая формула $\sum_{n>N}q^{n}=\frac{q^{N+1}}{1-q}$ даёт бесплатную оценку остатка: у ряда, прошедшего радикальный признак с $L<1$, точность растёт геометрически, поэтому число слагаемых для заданной точности логарифмическое.`,
-		related: ['radikalnyy-priznak-koshi', 'priznak-dalambera', 'chastichnaya-summa']
-	},
-
-	'garmonicheskiy-ryad': {
-		id: 'garmonicheskiy-ryad',
-		term: 'Гармонический ряд',
-		short: String.raw`$\sum 1/n$ расходится, хотя члены стремятся к нулю.`,
-		formula: String.raw`\sum_{n=1}^{\infty}\frac1n=+\infty,\qquad \sum_{k=1}^{n}\frac1k=\ln n+O(1)`,
-		body: String.raw`Главный ограничитель всех признаков дня. Для него $\sqrt[n]{1/n}\to1$, то есть [[radikalnyy-priznak-koshi|радикальный признак]] даёт $L=1$ и молчит — ровно как и на сходящемся $\sum\frac{1}{n^{2}}$, у которого $L$ такое же.
-
-Он же служит контрпримером всюду, где хочется ослабить условия: при $x=2\pi m$ ряд $\sum\frac{\cos nx}{n}$ превращается в гармонический (частичные суммы косинусов перестают быть ограниченными), и он же получается из $a_n=(-1)^{n}$, $b_n=\frac{(-1)^{n}}{n}$ — контрпример к отбрасыванию монотонности в [[priznak-dirihle|признаке Дирихле]].`,
-		related: ['radikalnyy-priznak-koshi', 'priznak-dirihle', 'chastichnaya-summa']
-	},
-
-	'chastichnaya-summa': {
-		id: 'chastichnaya-summa',
-		term: 'Частичная сумма ряда',
-		short: String.raw`$A_k=\sum_{i=1}^{k}a_i$; дискретная первообразная последовательности.`,
-		formula: String.raw`A_k=\sum_{i=1}^{k}a_i,\quad A_0=0,\qquad a_k=A_k-A_{k-1},\qquad \sum_{k=p}^{q}a_k=A_q-A_{p-1}`,
-		body: String.raw`Сумма первых $k$ членов; сходимость ряда — существование конечного предела $A_k$. В сегодняшней теме частичная сумма играет роль **первообразной**: соотношение $a_k=A_k-A_{k-1}$ — дискретный аналог $F'=f$, а формула $\sum_{k=p}^{q}a_k=A_q-A_{p-1}$ — дискретная формула Ньютона–Лейбница, на которой стоит весь вывод [[preobrazovanie-abelya|преобразования Абеля]].
-
-Сдвиг индекса существен: вычитается $A_{p-1}$, а не $A_p$, иначе член $a_p$ выпадет из суммы. Проверка на $a_k\equiv1$, $p=1$, $q=3$: слева $3$, справа $A_3-A_0=3$, тогда как $A_3-A_1=2$.`,
-		related: ['preobrazovanie-abelya', 'diskretnaya-proizvodnaya', 'geometricheskiy-ryad']
+		body: String.raw`Признак для рядов с неотрицательными членами: если корень $n$-й степени из члена имеет предел меньше единицы, ряд сходится, больше единицы — расходится. При $L=1$ ответа нет: молчание признака расходимостью не является.`,
+		related: ['geometricheskiy-ryad', 'priznak-i-svoystvo', 'verhniy-i-nizhniy-predely']
 	},
 
 	'diskretnaya-proizvodnaya': {
 		id: 'diskretnaya-proizvodnaya',
-		term: '«Дискретная производная»',
-		short: String.raw`Конечная разность $b_{k+1}-b_k$: шаг сетки равен единице.`,
-		formula: String.raw`(b_k)'_n:\quad \lim_{\Delta\to1}\frac{b(n+\Delta)-b(n)}{\Delta}=\frac{b(n+1)-b(n)}{1}`,
-		body: String.raw`Мнемоника, которой мотивируется [[preobrazovanie-abelya|преобразование Абеля]]: раз шаг сетки равен единице, приращение и есть производная. Предельного перехода в записи нет: $b$ задана лишь в целых точках, у единицы нет выколотой окрестности внутри области определения, а правая часть получена подстановкой $\Delta=1$. Работают с конечной разностью $\Delta b_k=b_{k+1}-b_k$, и дальше всё чисто алгебраично.
-
-Ценность мнемоники — в словаре: $\int\leftrightarrow\sum$, $dx\leftrightarrow1$, первообразная $\leftrightarrow$ [[chastichnaya-summa|частичная сумма]], интегрирование по частям $\leftrightarrow$ суммирование по частям. Эта аналогия и объясняет, откуда в формуле Абеля берётся внеинтегральный член.`,
-		related: ['preobrazovanie-abelya', 'chastichnaya-summa', 'neravenstvo-abelya']
+		term: 'Конечная разность',
+		short: String.raw`$\Delta b_k=b_{k+1}-b_k$ — дискретный аналог производной.`,
+		formula: String.raw`\Delta b_k=b_{k+1}-b_k`,
+		body: String.raw`Приращение [[posledovatelnost|последовательности]] на один шаг. Предельного перехода здесь нет: последовательность задана лишь в целых точках, поэтому всё остаётся чисто алгебраическим.`,
+		related: ['posledovatelnost', 'preobrazovanie-abelya']
 	},
 
 	'preobrazovanie-abelya': {
 		id: 'preobrazovanie-abelya',
 		term: 'Преобразование Абеля',
-		short: String.raw`Суммирование по частям: производная снимается с $b$ и вешается на $a$.`,
+		short: String.raw`Суммирование по частям: разность снимается с $b$ и вешается на $a$.`,
 		formula: String.raw`\sum_{k=p}^{q}a_kb_k=A_qb_q-A_{p-1}b_p-\sum_{k=p}^{q-1}A_k\bigl(b_{k+1}-b_k\bigr)`,
-		body: String.raw`Вывод: подставить $a_k=A_k-A_{k-1}$, сдвинуть индекс во второй сумме и собрать краевые слагаемые. Дискретный двойник формулы $\int_p^q u\,dv=uv\big|_p^q-\int_p^q v\,du$ (день 21): внеинтегральный член превращается в $A_qb_q-A_{p-1}b_p$, а $\int v\,du$ — в сумму с разностями. Эквивалентная запись: $A_qb_{q+1}-A_{p-1}b_p-\sum_{k=p}^{q}A_k(b_{k+1}-b_k)$.
-
-Знак минус перед суммой существен, и проверяется он за одну строку: $a_k\equiv1$, $b_k=k$, $p=1$, $q=3$ дают слева $6$, справа с минусом $9-3=6$, с плюсом $12$. Догадка $A_qB_q-A_pB_p$ с $B_k=\sum_{i\le k}b_i$ на том же примере даёт $17$ и потому неверна.`,
-		related: ['neravenstvo-abelya', 'priznak-dirihle', 'chastichnaya-summa', 'diskretnaya-proizvodnaya']
+		body: String.raw`Тождество, дискретный двойник [[integrirovanie-po-chastyam|интегрирования по частям]]: через [[chastichnaya-summa|частичные суммы]] $A_k$ и [[diskretnaya-proizvodnaya|конечные разности]] последовательности $b_k$. Получается подстановкой $a_k=A_k-A_{k-1}$ и сдвигом индекса.`,
+		related: ['chastichnaya-summa', 'diskretnaya-proizvodnaya', 'integrirovanie-po-chastyam']
 	},
 
 	'neravenstvo-abelya': {
@@ -94,10 +34,8 @@ export const day27Terms: Glossary = {
 		term: 'Неравенство Абеля',
 		short: String.raw`Отрезок суммы оценивается через $\sup|A_k|$ и первое значение $b_p$.`,
 		formula: String.raw`|A_k|\le M,\ b_n\ge0\ \text{не возрастает}:\quad \Bigl|\sum_{k=p}^{q}a_kb_k\Bigr|\le 2Mb_p`,
-		body: String.raw`Рабочая лемма, ради которой и делается [[preobrazovanie-abelya|преобразование Абеля]]. Доказательство: неравенство треугольника плюс телескоп $\sum_{k=p}^{q-1}(b_k-b_{k+1})=b_p-b_q$, откуда $Mb_q+Mb_p+M(b_p-b_q)=2Mb_p$.
-
-Главное в оценке — то, чего в ней нет: правая часть не зависит ни от длины отрезка, ни от $q$. Поэтому из неё немедленно следует условие Коши, а с ним [[priznak-dirihle|признак Дирихле]]. Работает она за счёт ограниченности [[polnaya-variaciya|полной вариации]] $b_n$, которую поставляет монотонность.`,
-		related: ['preobrazovanie-abelya', 'priznak-dirihle', 'priznak-leybnica', 'kriteriy-koshi-ryad']
+		body: String.raw`Оценка отрезка суммы, получаемая из [[preobrazovanie-abelya|преобразования Абеля]]. Существенно, что правая часть не зависит ни от длины отрезка, ни от его правого конца.`,
+		related: ['preobrazovanie-abelya', 'chastichnaya-summa']
 	},
 
 	'priznak-dirihle': {
@@ -105,10 +43,8 @@ export const day27Terms: Glossary = {
 		term: 'Признак Дирихле',
 		short: String.raw`Ограниченные суммы $A_n$ и монотонное $b_n\to0$ дают сходимость $\sum a_nb_n$.`,
 		formula: String.raw`|A_n|\le M,\quad b_n\searrow 0\qquad\Longrightarrow\qquad \sum_{n=1}^{\infty}a_nb_n\ \text{— сх.}`,
-		body: String.raw`Доказательство целиком стоит на [[neravenstvo-abelya|неравенстве Абеля]]: для $q\ge p>N_b\bigl(\frac{\varepsilon}{2M+1}\bigr)$ отрезок суммы меньше $2Mb_p<\varepsilon$, то есть выполнен [[kriteriy-koshi-ryad|критерий Коши]]. Ни один из сомножителей сам по себе сходимости не даёт: $\sum a_n$ может расходиться, $\sum b_n$ обычно тоже.
-
-Следствия и применения: [[priznak-leybnica|признак Лейбница]] при $a_n=(-1)^{n-1}$ и сходимость $\sum\frac{\sin nx}{n}$ при всех $x$ (суммы синусов ограничены величиной $1/|\sin(x/2)|$). Монотонность $b_n$ выбросить нельзя: $a_n=(-1)^{n}$, $b_n=\frac{(-1)^{n}}{n}$ дают [[garmonicheskiy-ryad|гармонический ряд]].`,
-		related: ['neravenstvo-abelya', 'preobrazovanie-abelya', 'priznak-leybnica', 'kriteriy-koshi-ryad']
+		body: String.raw`Если [[chastichnaya-summa|частичные суммы]] одной последовательности ограничены, а вторая монотонно стремится к нулю, то ряд из их произведений сходится. Ни один из сомножителей сам по себе сходимости не даёт.`,
+		related: ['neravenstvo-abelya', 'chastichnaya-summa', 'priznak-leybnica']
 	},
 
 	'priznak-leybnica': {
@@ -116,10 +52,8 @@ export const day27Terms: Glossary = {
 		term: 'Признак Лейбница',
 		short: String.raw`Знакочередующийся ряд с $b_n\searrow0$ сходится; остаток не больше $b_{n+1}$.`,
 		formula: String.raw`b_n\searrow 0\ \Rightarrow\ \sum_{n=1}^{\infty}(-1)^{n-1}b_n\ \text{— сх.},\qquad |R_n|\le b_{n+1}`,
-		body: String.raw`Частный случай [[priznak-dirihle|признака Дирихле]] при $a_n=(-1)^{n-1}$: частичные суммы пробегают $1,0,1,0,\dots$, значит $M=1$, и [[neravenstvo-abelya|неравенство Абеля]] сразу даёт оценку остатка $|R_n|\le2b_{n+1}$; более тонкая оценка $|R_n|\le b_{n+1}$ получается группировкой членов в скобки.
-
-Типовой пример — $\sum\frac{(-1)^{n-1}}{\sqrt n}$: сходится, но [[znakochereduyushchiysya-ryad|условно]], потому что $\sum n^{-1/2}$ расходится. Практическая ценность именно в оценке остатка: она даёт критерий останова, не требуя знать сумму.`,
-		related: ['priznak-dirihle', 'znakochereduyushchiysya-ryad', 'neravenstvo-abelya']
+		body: String.raw`[[znakochereduyushchiysya-ryad|Знакочередующийся ряд]] с монотонно убывающими к нулю модулями членов сходится, а его остаток по модулю не превосходит первого отброшенного члена.`,
+		related: ['znakochereduyushchiysya-ryad', 'priznak-dirihle']
 	},
 
 	'znakochereduyushchiysya-ryad': {
@@ -127,32 +61,17 @@ export const day27Terms: Glossary = {
 		term: 'Знакочередующийся ряд',
 		short: String.raw`Знаки строго чередуются: $\sum(-1)^{n-1}b_n$ с $b_n\ge0$.`,
 		formula: String.raw`\sum_{n=1}^{\infty}(-1)^{n-1}b_n,\qquad b_n\ge0`,
-		body: String.raw`Ряд, у которого множитель $(-1)^{n-1}$ вынесен явно. У самого этого множителя частичные суммы пробегают $1,0,1,0,\dots$ и ограничены единицей независимо от $b_n$, поэтому знакочередующийся ряд — простейшая среда для [[priznak-dirihle|признака Дирихле]] и повод для отдельного названия ([[priznak-leybnica|признак Лейбница]]).
-
-Знакочередующийся ряд — стандартный источник **условной** сходимости: $\sum\frac{(-1)^{n-1}}{n}=\ln2$ сходится, а модули дают [[garmonicheskiy-ryad|гармонический ряд]]. Что за этим стоит — [[teorema-rimana-o-perestanovke|теорема Римана о перестановке]] (день 26).`,
-		related: ['priznak-leybnica', 'priznak-dirihle', 'garmonicheskiy-ryad']
-	},
-
-	'kriteriy-koshi-ryad': {
-		id: 'kriteriy-koshi-ryad',
-		term: 'Критерий Коши для ряда',
-		short: String.raw`Ряд сходится тогда и только тогда, когда его хвостовые отрезки малы.`,
-		formula: String.raw`\sum a_n\ \text{сх.}\iff\forall\varepsilon>0\ \exists N\ \forall q\ge p>N:\ \Bigl|\sum_{k=p}^{q}a_k\Bigr|<\varepsilon`,
-		body: String.raw`Дискретная строка теоремы дня 26: отрезок ряда $\sum_{k=p}^{q}a_k$ — это разность [[chastichnaya-summa|частичных сумм]] $A_q-A_{p-1}$, а по полноте $\mathbb R$ фундаментальность равносильна сходимости.
-
-В сегодняшнем дне это рабочий инструмент: на нём стоит доказательство [[priznak-dirihle|признака Дирихле]], где отрезок оценивается [[neravenstvo-abelya|неравенством Абеля]] и порог получается явной формулой $N(\varepsilon)=N_b\bigl(\frac{\varepsilon}{2M+1}\bigr)$. Оценивается именно отрезок, а не отдельный член, — потому знак членов роли не играет.`,
-		related: ['priznak-dirihle', 'neravenstvo-abelya', 'chastichnaya-summa', 'skhodyashchayasya-v-sebe']
+		body: String.raw`Ряд, у которого множитель $(-1)^{n-1}$ вынесен явно, а остальные множители неотрицательны. [[chastichnaya-summa|Частичные суммы]] самого множителя пробегают $1,0,1,0,\dots$ и ограничены единицей.`,
+		related: ['chastichnaya-summa', 'priznak-leybnica']
 	},
 
 	'polnaya-variaciya': {
 		id: 'polnaya-variaciya',
 		term: 'Полная вариация последовательности',
-		short: String.raw`Сумма модулей всех приращений; у монотонной равна перепаду концов.`,
+		short: String.raw`Сумма модулей всех приращений.`,
 		formula: String.raw`V_p^q=\sum_{k=p}^{q-1}|b_{k+1}-b_k|;\qquad b_n\ \text{не возрастает}:\ V_p^q=b_p-b_q`,
-		body: String.raw`Сколько последовательность суммарно набегает вверх и вниз. [[neravenstvo-abelya|Неравенству Абеля]] нужна ограниченность вариации, а не [[lipshitsevost|липшицевость]]: та ограничивает каждое приращение по отдельности, и сумма растёт как $C(q-p)$.
-
-У монотонной $b_n$ вариация сворачивается в $b_p-b_q\le b_p$ — одно число при любой длине, и ровно за этим монотонность стоит в [[priznak-dirihle|признаке Дирихле]]. У $b_n=\frac{(-1)^n}{n}$ вариация бесконечна, и признак ломается.`,
-		related: ['neravenstvo-abelya', 'priznak-dirihle', 'lipshitsevost', 'preobrazovanie-abelya']
+		body: String.raw`Сумма модулей [[diskretnaya-proizvodnaya|конечных разностей]] — насколько последовательность суммарно набегает вверх и вниз. У монотонной последовательности она сворачивается в разность крайних значений.`,
+		related: ['diskretnaya-proizvodnaya', 'neravenstvo-abelya']
 	},
 
 	'verhniy-i-nizhniy-predely': {
@@ -160,10 +79,8 @@ export const day27Terms: Glossary = {
 		term: 'Верхний и нижний пределы',
 		short: String.raw`Пределы супремумов и инфимумов хвостов; существуют всегда.`,
 		formula: String.raw`\overline\lim_{n} x_n=\lim_{n\to\infty}\sup_{k\ge n}x_k,\qquad \underline\lim_{n} x_n=\lim_{n\to\infty}\inf_{k\ge n}x_k`,
-		body: String.raw`Берут точную грань [[chastichnaya-posledovatelnost|хвоста]] $\{x_k\}_{k\ge n}$ и смотрят, куда она едет с ростом $n$. Супремум хвоста не возрастает, инфимум не убывает, поэтому оба предела существуют всегда — в $\overline{\mathbb R}$, даже когда обычного предела нет. Обычный предел существует ровно при $\underline\lim=\overline\lim$.
-
-Через них формулируют признаки, чтобы не требовать существования предела: $\overline\lim\sqrt[n]{a_n}<1$ означает «с некоторого номера — с запасом», а доказательству нужно ровно это, вместе с явным [[n-ot-epsilon|порогом $N(\varepsilon)$]].`,
-		related: ['chastichnaya-posledovatelnost', 'skhodyashchayasya-v-sebe', 'asimptoticheskie-klassy', 'n-ot-epsilon']
+		body: String.raw`[[supremum|Супремум]] и инфимум хвоста последовательности как функции номера монотонны, поэтому их пределы существуют всегда — в расширенной прямой. Обычный [[predel-posledovatelnosti|предел]] существует ровно тогда, когда они равны.`,
+		related: ['supremum', 'predel-posledovatelnosti', 'rasshirennaya-pryamaya']
 	},
 
 	'formula-koshi-adamara': {
@@ -171,9 +88,7 @@ export const day27Terms: Glossary = {
 		term: 'Формула Коши–Адамара',
 		short: String.raw`Радиус сходимости степенного ряда через $\overline\lim\sqrt[n]{|c_n|}$.`,
 		formula: String.raw`R=\Bigl(\overline\lim_{n\to\infty}\sqrt[n]{|c_n|}\Bigr)^{-1}`,
-		body: String.raw`[[radikalnyy-priznak-koshi|Радикальный признак]], применённый к ряду $\sum c_nx^{n}$: корень из модуля члена равен $|x|\sqrt[n]{|c_n|}$, и условие $L<1$ превращается в $|x|<R$. Внутри круга ряд сходится абсолютно, вне — расходится, на границе возможно и то и другое.
-
-[[verhniy-i-nizhniy-predely|Верхний предел]] здесь обязателен: у $\sqrt[n]{|c_n|}$ предела может не быть — как у отношения в примере $a_n=2^{-n-(-1)^n}$, на котором молчит [[priznak-dalambera|Д’Аламбер]]. Это и есть причина формулировать признак через $\overline\lim$.`,
-		related: ['radikalnyy-priznak-koshi', 'priznak-dalambera', 'geometricheskiy-ryad', 'verhniy-i-nizhniy-predely']
+		body: String.raw`Радиус сходимости степенного ряда $\sum c_nx^n$ — величина, обратная [[verhniy-i-nizhniy-predely|верхнему пределу]] корней из модулей коэффициентов. Внутри него ряд сходится абсолютно, вне — расходится, на границе возможно и то и другое.`,
+		related: ['radikalnyy-priznak-koshi', 'verhniy-i-nizhniy-predely', 'absolyutnaya-shodimost']
 	}
 };

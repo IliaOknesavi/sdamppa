@@ -77,21 +77,8 @@ export const day05Terms: Glossary = {
 		term: 'Полнота ℝ',
 		short: String.raw`Не постулируется явно: её роль играет аксиома Кантора.`,
 		formula: String.raw`A\ne\varnothing,\ \text{огр. сверху}\ \Rightarrow\ \exists\sup A`,
-		body: String.raw`**Полнота** $\mathbb R$ — то свойство, которым $\mathbb R$ отличается от $\mathbb Q$: у всякого непустого ограниченного сверху множества есть [[supremum|супремум]]. Отдельной аксиомой она здесь **не формулируется**: её роль исполняет [[aksioma-kantora|аксиома Кантора]], а существование супремума доказывается половинным делением.
-
-Эквивалентность схем не поштучная: «вложенные отрезки + [[aksioma-arhimeda|Архимед]]» равносильно дедекиндовой полноте, а одной вложенности мало — есть неархимедовы упорядоченные поля, где вложенные отрезки пересекаются, но супремум существует не всегда.`,
-		related: ['aksioma-kantora', 'supremum', 'sechenie-dedekinda']
-	},
-
-	supremum: {
-		id: 'supremum',
-		term: 'Супремум',
-		short: String.raw`Наименьшая из верхних границ; принадлежать множеству не обязана.`,
-		formula: String.raw`\sup A=\min\{M:\ \forall x\in A,\ x\le M\}`,
-		body: String.raw`**Супремум** (точная верхняя грань) $\sup A$ — наименьшая из верхних границ множества $A$. Достигаться он не обязан: для $A=\left\{1-\frac1n\right\}$ имеем $\sup A=1\notin A$, и доказательство минимальности идёт через [[aksioma-arhimeda|Архимеда]].
-
-Существование супремума у всякого непустого ограниченного сверху множества — это в точности [[polnota-r|полнота]] $\mathbb R$; здесь оно выводится из [[aksioma-kantora|аксиомы Кантора]], а не постулируется. В [[rasshirennaya-pryamaya|расширенной прямой]] супремум есть уже у любого множества.`,
-		related: ['polnota-r', 'aksioma-kantora', 'strogiy-nestrogiy-poryadok']
+		body: String.raw`Свойство, отличающее $\mathbb R$ от $\mathbb Q$: у всякого непустого ограниченного сверху множества есть [[supremum|супремум]]. Равносильные формы — принцип вложенных отрезков вместе с аксиомой Архимеда и сходимость монотонных ограниченных последовательностей.`,
+		related: ['aksioma-polnoty', 'supremum', 'veshchestvennye-chisla']
 	},
 
 	'sechenie-dedekinda': {
@@ -110,10 +97,8 @@ export const day05Terms: Glossary = {
 		term: 'Расширенная прямая ℝ̄ = ℝ*',
 		short: String.raw`$\mathbb R\cup\{-\infty;+\infty\}$ — упорядочена, но уже не поле.`,
 		formula: String.raw`\overline{\mathbb R}=\mathbb R^*=\mathbb R\cup\{-\infty;\ +\infty\}`,
-		body: String.raw`**Расширенная прямая** $\overline{\mathbb R}=\mathbb R^*$ — это $\mathbb R$ с добавленными [[beskonechnost|символами бесконечности]] и продолженным порядком: $-\infty<x<+\infty$ для всех вещественных $x$. Выигрыш — [[supremum|супремум]] и инфимум появляются у любого подмножества.
-
-Полем $\overline{\mathbb R}$ не является: обратных к $\pm\infty$ нет, а сложение и деление определены не всюду — отсюда три [[neopredelennost|undefined]]. Порядок при этом остаётся линейным, поэтому значения $\pm\infty$ у $\overline{\lim}$ и $\underline{\lim}$ законны.`,
-		related: ['beskonechnost', 'neopredelennost', 'supremum']
+		body: String.raw`Множество $\overline{\mathbb R}=\mathbb R\cup\{-\infty;+\infty\}$ с продолженным порядком. [[supremum|Супремум]] и инфимум появляются у любого подмножества, но [[pole|полем]] оно не является: обратных к $\pm\infty$ нет, а сложение и деление определены не всюду.`,
+		related: ['veshchestvennye-chisla', 'pole', 'supremum']
 	},
 
 	beskonechnost: {

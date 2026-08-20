@@ -54,28 +54,6 @@ export const day18Terms: Glossary = {
 		related: ['predelnaya-tochka', 'zamykanie', 'plotnost-mnozhestva', 'okrestnost']
 	},
 
-	okrestnost: {
-		id: 'okrestnost',
-		term: 'Окрестность точки',
-		short: String.raw`Любое открытое множество, содержащее точку.`,
-		formula: String.raw`U_x\in\tau,\ x\in U_x;\qquad \mathring U_x=U_x\setminus\{x\}`,
-		body: String.raw`**Окрестность** $U_x$ — это любой элемент топологии $\tau$, содержащий точку $x$; никакой «симметричности» или «малости» не требуется. В метрическом пространстве роль базовых окрестностей играют открытые шары $B_r(x)$ в любой из [[metriki-rho|метрик]] $\rho_1,\rho_2,\rho_k,\rho_\infty$.
-
-Рабочее свойство, которым пользуются в доказательствах: открытое множество является окрестностью **каждой** своей точки, а пересечение двух окрестностей одной точки — снова окрестность. Из $U_x$ выкалыванием получают [[vykolotaya-okrestnost|$\mathring U_x$]], и вся сегодняшняя тема держится на разнице между ними.`,
-		related: ['vykolotaya-okrestnost', 'topologicheskoe-prostranstvo', 'metriki-rho', 'predelnaya-tochka']
-	},
-
-	'topologicheskoe-prostranstvo': {
-		id: 'topologicheskoe-prostranstvo',
-		term: 'Топологическое пространство (T, τ)',
-		short: String.raw`Множество плюс объявленный набор открытых множеств.`,
-		formula: String.raw`\varnothing,T\in\tau;\quad \bigcup_{i\in I}U_i\in\tau;\quad \bigcap_{i=1}^{r}U_i\in\tau`,
-		body: String.raw`**Топологическое пространство** — пара $(T,\tau)$, где $\tau\subset2^{T}$ содержит $\varnothing$ и $T$, замкнуто относительно произвольных объединений и **конечных** пересечений. Открытость не проверяется, а назначается выбором $\tau$.
-
-Все определения дня формулируются здесь, а $\mathbb R$ идёт частным случаем. Два предельных случая полезно держать как тесты: в дискретной топологии ($\tau=2^{T}$) предельных точек нет вовсе и всё замкнуто, в тривиальной ($\tau=\{\varnothing,T\}$) [[predelnaya-tochka|предельной]] оказывается почти каждая точка.`,
-		related: ['okrestnost', 'predelnaya-tochka', 'komponenta-svyaznosti', 'separabelnost']
-	},
-
 	granica: {
 		id: 'granica',
 		term: 'Граница множества ∂A',
@@ -85,28 +63,6 @@ export const day18Terms: Glossary = {
 
 Включение $\partial A\subset A'$ неверно: для $A=\{0\}\subset\mathbb R$ имеем $\partial A=\{0\}$, а $A'=\varnothing$. Верная форма — $\partial A\subset A'\cup\operatorname{Isol}(A)$; граничная точка **вне** $A$ обязана быть [[predelnaya-tochka|предельной]], а граничная точка внутри $A$ может оказаться изолированной.`,
 		related: ['zamykanie', 'vnutrennost', 'dopolnenie', 'predelnaya-tochka']
-	},
-
-	vnutrennost: {
-		id: 'vnutrennost',
-		term: 'Внутренность In A',
-		short: String.raw`Множество без своей границы: In A = A \ ∂A.`,
-		formula: String.raw`\operatorname{In}A=A\setminus\partial A,\qquad x\in\operatorname{In}A\iff\exists U_x\subset A`,
-		body: String.raw`$x$ — **внутренняя точка** $A$, если у неё есть [[okrestnost|окрестность]], целиком лежащая в $A$. Внутренность обозначается $\operatorname{In}A$ и задаётся через [[granica|границу]]: $\operatorname{In}A=A\setminus\partial A$.
-
-Включение $\operatorname{In}A\subset A'$ верно не всегда. Его доказательство идёт через пересечение окрестностей $V_x=U'_x\cap U_x$ и требует $V_x\ne\{x\}$ — а это не вывод, а условие $\{x\}\notin\tau$. В $\mathbb R$ оно выполнено, в дискретной топологии нет: там всякая точка внутренняя, а [[predelnaya-tochka|предельных]] нет ни одной.`,
-		related: ['granica', 'okrestnost', 'predelnaya-tochka', 'izolirovannaya-tochka']
-	},
-
-	'vneshnyaya-tochka': {
-		id: 'vneshnyaya-tochka',
-		term: 'Внешняя точка',
-		short: String.raw`Есть окрестность, не задевающая множество вовсе.`,
-		formula: String.raw`\exists U_x:\ U_x\cap A=\varnothing`,
-		body: String.raw`**Внешняя точка** $A$ — точка, у которой найдётся окрестность, не пересекающая $A$. Это внутренняя точка [[dopolnenie|дополнения]] $\overline A$, и одновременно точка вне [[zamykanie|замыкания]]: $x\notin\operatorname{cl}A$.
-
-Внешняя точка никогда не бывает [[predelnaya-tochka|предельной]] — доказательство в одну строку, $\mathring U_x\cap A\subset U_x\cap A=\varnothing$. Тот же объект работает в критерии плотности: там от противного берут $x\in B$ вне $\operatorname{cl}A$ и получают внешнюю точку, что сразу противоречит [[plotnost-mnozhestva|плотности]].`,
-		related: ['predelnaya-tochka', 'dopolnenie', 'zamykanie', 'plotnost-mnozhestva']
 	},
 
 	'plotnost-mnozhestva': {
@@ -142,25 +98,4 @@ export const day18Terms: Glossary = {
 		related: ['kriteriy-plotnosti', 'plotnost-mnozhestva', 'separabelnost', 'plotnost-q-v-r']
 	},
 
-	separabelnost: {
-		id: 'separabelnost',
-		term: 'Сепарабельность',
-		short: String.raw`Есть счётное всюду плотное подмножество.`,
-		formula: String.raw`\exists A\subset T:\ |A|\le\aleph_0\ \wedge\ \operatorname{cl}A=T`,
-		body: String.raw`Топологическое пространство **сепарабельно**, если у него есть счётное [[vsyudu-plotnoe-mnozhestvo|всюду плотное]] подмножество. Классический пример — $\mathbb R$ со счётным $\mathbb Q$; классический контрпример — несчётное множество с дискретной топологией, где всюду плотно только оно само.
-
-Со счётной базой сепарабельность связана односторонне. Счётная база даёт сепарабельность: достаточно взять по точке из каждого непустого базисного множества. Обратное в общем случае неверно — прямая Зоргенфрея (база из полуинтервалов $[a;b)$) сепарабельна, а счётной базы не имеет. Равносильность восстанавливается в метрических пространствах.`,
-		related: ['vsyudu-plotnoe-mnozhestvo', 'plotnost-q-v-r', 'topologicheskoe-prostranstvo']
-	},
-
-	'plotnost-q-v-r': {
-		id: 'plotnost-q-v-r',
-		term: 'Плотность ℚ и 𝕀 в ℝ',
-		short: String.raw`Оба множества всюду плотны; доказательство — по десятичным разрядам.`,
-		formula: String.raw`\forall\ \text{открытого}\ S_x:\ S_x\cap\mathbb Q\ne\varnothing\ \wedge\ S_x\cap\mathbb I\ne\varnothing`,
-		body: String.raw`Плотность доказывается конструктивно, а не через принцип Архимеда: в интервале $(\xi;\zeta)\subset S_x$ берут разряд $k$ с $10^{-k}<\zeta-\xi$ и обрезают $\xi$ на нём с округлением вверх, $q=\bigl(\lfloor\xi\cdot10^{k}\rfloor+1\bigr)/10^{k}$, — получается конечная дробь, то есть рациональное число строго внутри. Для $\mathbb I$ вместо нулевого хвоста дописывают заведомо непериодический.
-
-Плотность не значит замкнутости относительно пределов: обрезания числа $\sqrt2$ лежат в счётном множестве конечных дробей, а их предел — нет, потому что всякая конечная десятичная дробь рациональна. Этот зазор дальше называется неполнотой, и его закрывает [[skhodyashchayasya-v-sebe|фундаментальность]].`,
-		related: ['vsyudu-plotnoe-mnozhestvo', 'separabelnost', 'plotnost-mnozhestva', 'skhodyashchayasya-v-sebe']
-	}
 };

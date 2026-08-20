@@ -48,10 +48,8 @@ export const day19Terms: Glossary = {
 		term: 'Строгая монотонность',
 		short: String.raw`Возрастающая ($x_i>x_j$) и убывающая ($x_i<x_j$) — со строгим знаком.`,
 		formula: String.raw`\forall i>j:\ x_i>x_j\quad\text{(возрастающая)},\qquad \forall i>j:\ x_i<x_j\quad\text{(убывающая)}`,
-		body: String.raw`Строгие классы вложены в нестрогие: возрастающая заведомо [[neubyvayushchaya-posledovatelnost|неубывающая]], убывающая — [[nevozrastayushchaya-posledovatelnost|невозрастающая]]. Обратное неверно, и зазор непустой: стационарная $x_n\equiv5$ и не убывает, и не возрастает.
-
-В [[teorema-veyershtrassa|теореме Вейерштрасса]] строгость не нужна и даже мешает: у последовательности с постоянным хвостом [[supremum|супремум]] достигается, поэтому в оценке членов знак обязан быть нестрогим — $x_n\le S$. Со строгим $x_n<S$ весь этот класс выпал бы из теоремы, хотя предел у него есть.`,
-		related: ['monotonnaya-posledovatelnost', 'neubyvayushchaya-posledovatelnost', 'teorema-veyershtrassa', 'supremum']
+		body: String.raw`Возрастание или убывание со строгим знаком: $x_i>x_j$ либо $x_i<x_j$ при $i>j$. Строгие классы вложены в нестрогие, и зазор непустой: постоянная последовательность не убывает и не возрастает.`,
+		related: ['posledovatelnost', 'monotonnost-i-proizvodnaya']
 	},
 
 	'teorema-veyershtrassa': {
@@ -59,10 +57,8 @@ export const day19Terms: Glossary = {
 		term: 'Теорема Вейерштрасса о монотонной ограниченной',
 		short: String.raw`Монотонная ограниченная последовательность сходится; предел равен sup (или inf).`,
 		formula: String.raw`x_n\ \text{неубывает и ограничена сверху}\ \Rightarrow\ \exists\lim_{n\to\infty}x_n=\sup_n x_n`,
-		body: String.raw`Доказательство целиком: берём $S=\sup x_n$, по [[epsilon-forma-supremuma|$\varepsilon$-форме]] находим $N$ с $x_N>S-\varepsilon$, монотонность растягивает неравенство на весь хвост — $S-\varepsilon<x_N\le x_n\le S$, то есть $|x_n-S|<\varepsilon$; [[n-ot-epsilon|номер]] $N(\varepsilon)=\min\{n:\ x_n>S-\varepsilon\}$. Ценность — [[sushchestvovanie-predela|существование без вычисления]]; утверждение равносильно [[polnota-r|полноте $\mathbb R$]].
-
-Имя Вейерштрасса носят и другие утверждения. Принцип выбора Больцано–Вейерштрасса (день 23) монотонности не требует, но даёт сходимость лишь [[podposledovatelnost|подпоследовательности]]: у $x_n=(-1)^n$ предела нет и ни один хвост не сходится, а подпоследовательности по чётным и нечётным номерам сходятся к $1$ и $-1$. Теорема о непрерывной функции на компакте говорит о функции и утверждает достижение точных граней.`,
-		related: ['neubyvayushchaya-posledovatelnost', 'epsilon-forma-supremuma', 'sushchestvovanie-predela', 'polnota-r']
+		body: String.raw`Монотонная ограниченная [[posledovatelnost|последовательность]] сходится, причём её предел равен [[supremum|супремуму]] (для неубывающей) или инфимуму (для невозрастающей). Ценность утверждения — существование предела без его вычисления.`,
+		related: ['posledovatelnost', 'supremum', 'predel-posledovatelnosti']
 	},
 
 	'sushchestvovanie-predela': {
@@ -81,21 +77,8 @@ export const day19Terms: Glossary = {
 		term: 'Подпоследовательность',
 		short: String.raw`Выборка членов по строго возрастающим номерам $n_1<n_2<\dots$`,
 		formula: String.raw`n_1<n_2<\dots,\qquad k\mapsto x_{n_k},\qquad n_k\ge k`,
-		body: String.raw`**Подпоследовательность** $x_{n_k}$ — композиция последовательности со строго возрастающим отображением $k\mapsto n_k$. Из строгого возрастания индукцией следует $n_k\ge k$ — единственное, что нужно в доказательствах: номера уходят в бесконечность.
-
-Отсюда **наследование предела**: если $\lim x_n=x$, то $\lim x_{n_k}=x$ с тем же номером $N_{x_{n_k}}(\varepsilon)=N_x(\varepsilon)$, без деления $\varepsilon$. Контрапозиция даёт признак расходимости: две подпоследовательности с разными пределами убивают предел. Не путать с [[chastichnaya-posledovatelnost|частичной последовательностью]] — хвостом $x_k,x_{k+1},\dots$, то есть частным случаем $n_k=k+c$: у $(-1)^n$ ни один хвост не сходится, а подпоследовательности $x_{2k}$ и $x_{2k-1}$ сходятся к $1$ и $-1$.`,
-		related: ['chastichnaya-posledovatelnost', 'princip-vybora', 'predel-posledovatelnosti']
-	},
-
-	supremum: {
-		id: 'supremum',
-		term: 'Супремум (точная верхняя грань)',
-		short: String.raw`Наименьшая из верхних граней; проверяется двумя условиями.`,
-		formula: String.raw`1)\ \forall n:\ x_n\le S;\qquad 2)\ \forall y:\ (\forall n:\ x_n\le y)\Rightarrow S\le y`,
-		body: String.raw`**Супремум** — наименьшая верхняя грань; для последовательности $x_n\subset\mathbb R$ он задаётся двумя условиями (день 15). Рабочая запись второго — [[epsilon-forma-supremuma|$\varepsilon$-форма]].
-
-Само существование $\sup$ у [[ogranichennost-sverhu|ограниченной сверху]] последовательности — не тривиальность, а [[polnota-r|полнота $\mathbb R$]]: в $\mathbb Q$ ограниченное множество наименьшей рациональной верхней грани иметь не обязано. Супремум может не достигаться ($\sup\{-\frac1n\}=0$, а $\max$ пуст) — и именно он оказывается пределом монотонной последовательности.`,
-		related: ['epsilon-forma-supremuma', 'infimum', 'ogranichennost-sverhu', 'teorema-veyershtrassa']
+		body: String.raw`Выборка членов [[posledovatelnost|последовательности]] по строго возрастающим номерам. Из строгого возрастания следует $n_k\ge k$: номера уходят в бесконечность. Если последовательность сходится, всякая её подпоследовательность сходится к тому же пределу.`,
+		related: ['posledovatelnost', 'predel-posledovatelnosti']
 	},
 
 	'epsilon-forma-supremuma': {
@@ -109,69 +92,4 @@ export const day19Terms: Glossary = {
 		related: ['supremum', 'infimum', 'teorema-veyershtrassa', 'n-ot-epsilon']
 	},
 
-	infimum: {
-		id: 'infimum',
-		term: 'Инфимум (точная нижняя грань)',
-		short: String.raw`Наибольшая из нижних граней; условия зеркальны супремуму.`,
-		formula: String.raw`1)\ \forall n:\ x_n\ge s;\qquad 2)\ \forall y:\ (\forall n:\ x_n\ge y)\Rightarrow s\ge y`,
-		body: String.raw`**Инфимум** — наибольшая нижняя грань последовательности (день 15). $\varepsilon$-форма второго условия: $\forall\varepsilon>0\ \exists N:\ x_N<s+\varepsilon$ — именно она даёт номер в доказательстве для [[nevozrastayushchaya-posledovatelnost|невозрастающей]] последовательности.
-
-Как и [[supremum|супремум]], инфимум может не достигаться: $\inf\{-\frac1n\}=-1$ достигается, а $\inf\{\frac1n\}=0$ — нет. Предел невозрастающей ограниченной снизу последовательности равен именно инфимуму.`,
-		related: ['supremum', 'epsilon-forma-supremuma', 'nevozrastayushchaya-posledovatelnost', 'teorema-veyershtrassa']
-	},
-
-	'ogranichennost-sverhu': {
-		id: 'ogranichennost-sverhu',
-		term: 'Ограниченность сверху',
-		short: String.raw`$\exists A\ \forall n:\ x_n\le A$ — второе условие теоремы дня.`,
-		formula: String.raw`\exists A\ \forall n:\ x_n\le A\qquad(\text{снизу}:\ \exists B\ \forall n:\ x_n\ge B)`,
-		body: String.raw`Ограниченность сверху и снизу определяются раздельно (день 15). Для [[neubyvayushchaya-posledovatelnost|неубывающей]] последовательности достаточно верхней границы: снизу её держит собственный первый член, поэтому в [[teorema-veyershtrassa|теореме Вейерштрасса]] проверять надо ровно одно неравенство.
-
-Ограниченность сверху равносильна существованию [[supremum|супремума]] — но обратный переход опирается на [[polnota-r|полноту $\mathbb R$]]. Отрицание ограниченности участвует в определении бесконечно большой последовательности (день 16).`,
-		related: ['neubyvayushchaya-posledovatelnost', 'supremum', 'teorema-veyershtrassa', 'polnota-r']
-	},
-
-	'predel-posledovatelnosti': {
-		id: 'predel-posledovatelnosti',
-		term: 'Предел последовательности',
-		short: String.raw`$\forall\varepsilon>0\ \exists N\ \forall n>N:\ |x_n-A|<\varepsilon$.`,
-		formula: String.raw`\forall\varepsilon>0\ \exists N\in\mathbb N_1\ \forall n>N:\ |x_n-A|<\varepsilon`,
-		body: String.raw`Определение записывается в пяти эквивалентных формах — через метрику $\rho$, норму, открытый шар, [[vykolotaya-okrestnost|выколотую окрестность]] и рабочую запись с модулем (день 11). Все они не требуют порядка и потому живут в любом метрическом пространстве, в отличие от [[monotonnaya-posledovatelnost|монотонности]].
-
-[[n-ot-epsilon|Доказательство закончено]] только тогда, когда выписана явная формула [[n-ot-epsilon|$N(\varepsilon)$]]. В теореме дня она берётся из [[epsilon-forma-supremuma|$\varepsilon$-формы супремума]].`,
-		related: ['n-ot-epsilon', 'monotonnaya-posledovatelnost', 'teorema-veyershtrassa', 'epsilon-forma-supremuma']
-	},
-
-	'n-ot-epsilon': {
-		id: 'n-ot-epsilon',
-		term: 'N(ε) — номер как функция порога',
-		short: String.raw`Итог доказательства — формула для номера, а не фраза «предел есть».`,
-		formula: String.raw`N(\varepsilon)=\min\{\,n\in\mathbb N_1:\ x_n>S-\varepsilon\,\}`,
-		body: String.raw`$N$ трактуется как **функция** от $\varepsilon$, а сам $\varepsilon$ — как ресурс. В теореме дня номер не вычисляется, а **выбирается**: [[epsilon-forma-supremuma|$\varepsilon$-форма]] гарантирует непустоту множества $\{n:\ x_n>S-\varepsilon\}$, а наименьший элемент у непустого подмножества [[n-nol-n-odin|$\mathbb N_1$]] есть всегда.
-
-Отсюда важная оговорка: формула существует, но ничего не говорит о скорости — $N(\varepsilon)$ определён супремумом и может расти как угодно. Для $-\frac1n$ он равен $\lceil\frac1\varepsilon\rceil$, для $-\frac{\ln n}{n}$ явную оценку приходится добывать отдельно.`,
-		related: ['epsilon-forma-supremuma', 'predel-posledovatelnosti', 'teorema-veyershtrassa', 'sushchestvovanie-predela']
-	},
-
-	'aksioma-vlozhennyh-otrezkov': {
-		id: 'aksioma-vlozhennyh-otrezkov',
-		term: 'Аксиома о вложенных отрезках',
-		short: String.raw`Пересечение вложенных отрезков непусто — форма полноты $\mathbb R$.`,
-		formula: String.raw`[a_{k+1};b_{k+1}]\subset[a_k;b_k]\ \Rightarrow\ \bigcap_k[a_k;b_k]\ne\varnothing`,
-		body: String.raw`Аксиома Кантора из аксиоматики $\mathbb R$ (день 5). Из неё вместе с аксиомой Архимеда половинным делением строится [[supremum|супремум]], на котором стоит [[teorema-veyershtrassa|теорема Вейерштрасса]]; обратно, из теоремы аксиома выводится в четыре строки — концы $a_k$ [[neubyvayushchaya-posledovatelnost|не убывают]], $b_k$ [[nevozrastayushchaya-posledovatelnost|не возрастают]], оба предела существуют и $a\le b$.
-
-Круг замыкается на связке «Кантор плюс Архимед» — это и есть [[polnota-r|полнота $\mathbb R$]]. Одной вложенности мало: без Архимеда отрезки не стягиваются в точку и супремум из неё не извлекается.`,
-		related: ['polnota-r', 'teorema-veyershtrassa', 'supremum', 'nevozrastayushchaya-posledovatelnost']
-	},
-
-	'polnota-r': {
-		id: 'polnota-r',
-		term: 'Полнота ℝ',
-		short: String.raw`Кантор с Архимедом, существование sup и Вейерштрасс — три записи одного свойства.`,
-		formula: String.raw`\text{Кантор}+\text{Архимед}\Rightarrow\exists\sup\Rightarrow\text{Вейерштрасс}\Rightarrow\text{Кантор}+\text{Архимед}`,
-		body: String.raw`Свойство, отличающее $\mathbb R$ от $\mathbb Q$. Его роль играет [[aksioma-vlozhennyh-otrezkov|аксиома о вложенных отрезках]]: вместе с аксиомой Архимеда она даёт существование [[supremum|супремума]], из супремума получается [[teorema-veyershtrassa|теорема Вейерштрасса]], а она замыкает круг обратно — из неё выводятся и вложенные отрезки, и Архимед. Одной вложенности мало: есть неархимедовы упорядоченные поля, где отрезки пересекаются, а супремум существует не у всякого ограниченного множества.
-
-В $\mathbb Q$ ломаются все три сразу: десятичные обрезания $\sqrt2$ монотонны и ограничены, но предела в $\mathbb Q$ у них нет. Полноту $\mathbb R$ не следует путать с полнотой метрического пространства (день 21): та формулируется через [[skhodyashchayasya-v-sebe|сходимость в себе]], обходится без порядка и потому применима всюду — в частности, к $\mathbb R^2$, где порядка нет, а полнота есть.`,
-		related: ['aksioma-vlozhennyh-otrezkov', 'teorema-veyershtrassa', 'supremum', 'sushchestvovanie-predela']
-	}
 };
