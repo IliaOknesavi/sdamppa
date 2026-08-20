@@ -67,7 +67,7 @@ export const day09Terms: Glossary = {
 	'parametrizatsiya-otrezka': {
 		id: 'parametrizatsiya-otrezka',
 		term: 'Параметризация отрезка',
-		short: String.raw`$S(t)=\vec a+t(\vec b-\vec a)$, $t\in[0,1]$.`,
+		short: String.raw`$S(t)=\vec a+t(\vec b-\vec a)$, $t\in[0;1]$.`,
 		formula: String.raw`S(t)=\vec a+t(\vec b-\vec a),\qquad S(0)=\vec a,\ S(1)=\vec b`,
 		body: String.raw`Запись отрезка между двумя точками как образа промежутка $[0;1]$. Подстановка $\varphi(t)=f(S(t))$ превращает [[skalyarnoe-pole|поле]] в функцию одной переменной.`,
 		related: ['skalyarnoe-pole', 'promezhutok', 'vypukloe-mnozhestvo']

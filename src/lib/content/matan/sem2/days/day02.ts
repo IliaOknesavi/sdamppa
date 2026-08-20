@@ -13,15 +13,11 @@ export const day02: Day = {
 			heading: 'Шесть тождеств, из которых состоит дифференцирование',
 			body: String.raw`[[proizvodnaya|Производная]] — не только число в точке, но и **[[operator-differencirovaniya|оператор]]** $\frac{d}{dx}$, действующий на функциях из [[end-r|$\operatorname{End}(\mathbb R)$]]. У оператора есть паспорт — список тождеств, которым он подчиняется:
 
-$$C'=0,\qquad (f\pm g)'=f'\pm g',\qquad (\lambda f)'=\lambda f',$$
+Тождеств шесть: производная константы, [[lineynost-proizvodnoy|линейность]] (два равенства), [[pravilo-leybnica|правило Лейбница]], [[proizvodnaya-chastnogo|правило частного]] и [[cepnoe-pravilo|цепное правило]]. Каждое сформулировано и доказано ниже отдельной теоремой.
 
-$$(fg)'=f'g+fg',\qquad \Bigl(\frac fg\Bigr)'=\frac{f'g-fg'}{g^{2}}\ \ (g\ne0),\qquad \bigl(g(f(x))\bigr)'_x=g'_f\cdot f'_x.$$
+Порядок между ними не случаен. Линейность позволяет считать $\frac{d}{dx}$ линейным оператором и выписывать его матрицей. Правило Лейбница из линейности не выводится — это независимое тождество. Зато правило частного и цепное правило добываются уже из него.
 
-Первая строка — **[[lineynost-proizvodnoy|линейность]]**: именно она позволяет считать $\frac{d}{dx}$ линейным оператором и выписывать его матрицей в базисе $1,x,x^{2},x^{3},x^{4}$. Первое равенство второй строки линейностью **не** выводится: [[pravilo-leybnica|правило Лейбница]] — независимое тождество. Зато оставшиеся два, [[proizvodnaya-chastnogo|частное]] и [[cepnoe-pravilo|суперпозиция]], уже добываются из него.
-
-Пара «линейность $+$ тождество Лейбница» — это алгебраическое определение дифференцирования; оно разобрано в дне 1, здесь же оба тождества добываются из предела.
-
-Все шесть тождеств доказываются из одного и того же предела $\lim\limits_{\Delta x\to0}\frac{\Delta f}{\Delta x}$, и ни одно из них не требует ничего сверх арифметики пределов и непрерывности.`
+Все шесть доказываются из одного и того же предела $\lim\limits_{\Delta x\to0}\frac{\Delta f}{\Delta x}$ и не требуют ничего сверх арифметики пределов и непрерывности. Утверждения [дня 1](/aii/matan/2/day/1) с теми же именами говорят о другом объекте — об операции $d_x$ над коэффициентами многочлена; здесь доказывается всё заново и про предел.`
 		},
 		{
 			kind: 'theorem',
@@ -48,8 +44,6 @@ $$h'(x_0)=\lim_{\Delta x\to0}\frac{\Delta f}{\Delta x}+\lim_{\Delta x\to0}\frac{
 			body: String.raw`**Теорема (правило Лейбница).** Пусть $f,g\in\operatorname{End}(\mathbb R)$ дифференцируемы в точке $x_0$. Тогда произведение $fg$ дифференцируемо в $x_0$ и
 
 $$(fg)'(x_0)=f'(x_0)\,g(x_0)+f(x_0)\,g'(x_0).$$
-
-Из [[lineynost-proizvodnoy|линейности]] это тождество не выводится — оно независимо: $(x\cdot x)'=2x$, тогда как $x'\cdot x'=1$.
 
 **Доказательство.** Нарисуем произведение как площадь прямоугольника и посмотрим, из чего складывается приращение площади. Стороны — $f$ и $g$, площадь $S=fg$. Сдвинем аргумент на $\Delta x$: стороны станут $f+\Delta f$ и $g+\Delta g$, и
 
@@ -145,13 +139,11 @@ $$\boxed{\ \bigl(g(f(x))\bigr)'_x=g'_f\cdot f'_x\ }$$
 
 $$\ln y=g\ln f\ \Longrightarrow\ \frac{y'}{y}=g'\ln f+g\,\frac{f'}{f}\ \Longrightarrow\ y'=f^{g}\Bigl(g'\ln f+\frac{gf'}{f}\Bigr).$$
 
-Разберём на $y=(\sin x)^{\cos x}$:
+**Следствие (степень с любым вещественным показателем).** Для $x>0$ и любого $\alpha\in\mathbb R$
 
-$$\ln y=\cos x\,\ln\sin x,\qquad \frac{y'}{y}=-\sin x\,\ln\sin x+\cos x\cdot\frac{\cos x}{\sin x},$$
+$$\bigl(x^{\alpha}\bigr)'=\alpha\,x^{\alpha-1}.$$
 
-$$y'=(\sin x)^{\cos x}\Bigl(\frac{\cos^{2}x}{\sin x}-\sin x\,\ln\sin x\Bigr).$$
-
-**Идея для запоминания:** логарифм переводит произведение в сумму, а правило Лейбница — в сложение относительных скоростей $\frac{(fg)'}{fg}=\frac{f'}{f}+\frac{g'}{g}$; это тот же ход, что и в выводе $(fg)'$ через площадь прямоугольника, только записанный в процентах прироста.`
+Действительно, $x^{\alpha}=e^{\alpha\ln x}$, и тем же логарифмированием $\ln y=\alpha\ln x$ получаем $\frac{y'}{y}=\frac{\alpha}{x}$, то есть $y'=\alpha\frac{x^{\alpha}}{x}=\alpha x^{\alpha-1}$. В [дне 1](/aii/matan/2/day/1) эта формула доказана биномом только для натуральных показателей; здесь она закрыта для всех вещественных — и дальше применяется к дробным показателям без оговорок.`
 		},
 		{
 			kind: 'intuition',
@@ -272,22 +264,22 @@ $$w'=\Bigl(1+\frac1x\Bigr)^{x}\Bigl(\ln\Bigl(1+\frac1x\Bigr)-\frac{1}{x+1}\Bigr)
 		{
 			id: 'm2-d2-t4',
 			difficulty: 'base',
-			prompt: String.raw`Выведите $(\tan x)'$ из [[proizvodnaya-chastnogo|правила частного]], а затем найдите производную $y=(\tan x)^{\sin x}$ на интервале $\left(0;\frac\pi2\right)$.`,
-			hint: String.raw`$\tan x=\frac{\sin x}{\cos x}$; в числителе после подстановки соберётся основное тригонометрическое тождество. Дальше — логарифмирование, и не забудьте сократить $\frac{1}{\tan x}\cdot\frac{1}{\cos^{2}x}$.`,
+			prompt: String.raw`Выведите $(\operatorname{tg} x)'$ из [[proizvodnaya-chastnogo|правила частного]], а затем найдите производную $y=(\operatorname{tg} x)^{\sin x}$ на интервале $\left(0;\frac\pi2\right)$.`,
+			hint: String.raw`$\operatorname{tg} x=\frac{\sin x}{\cos x}$; в числителе после подстановки соберётся основное тригонометрическое тождество. Дальше — логарифмирование, и не забудьте сократить $\frac{1}{\operatorname{tg} x}\cdot\frac{1}{\cos^{2}x}$.`,
 			solution: String.raw`Правило частного с $f=\sin x$, $g=\cos x$:
 
-$$(\tan x)'=\frac{\cos x\cdot\cos x-\sin x\cdot(-\sin x)}{\cos^{2}x}=\frac{\cos^{2}x+\sin^{2}x}{\cos^{2}x}=\frac{1}{\cos^{2}x}.$$
+$$(\operatorname{tg} x)'=\frac{\cos x\cdot\cos x-\sin x\cdot(-\sin x)}{\cos^{2}x}=\frac{\cos^{2}x+\sin^{2}x}{\cos^{2}x}=\frac{1}{\cos^{2}x}.$$
 
-Теперь логарифмируем ($\tan x>0$ на $\left(0;\frac\pi2\right)$): $\ln y=\sin x\cdot\ln\tan x$. Дифференцируем произведение, внутреннюю часть — по [[cepnoe-pravilo|цепному правилу]]:
+Теперь логарифмируем ($\operatorname{tg} x>0$ на $\left(0;\frac\pi2\right)$): $\ln y=\sin x\cdot\ln\operatorname{tg} x$. Дифференцируем произведение, внутреннюю часть — по [[cepnoe-pravilo|цепному правилу]]:
 
-$$\frac{y'}{y}=\cos x\,\ln\tan x+\sin x\cdot\frac{1}{\tan x}\cdot\frac{1}{\cos^{2}x}=\cos x\,\ln\tan x+\sin x\cdot\frac{\cos x}{\sin x}\cdot\frac{1}{\cos^{2}x}.$$
+$$\frac{y'}{y}=\cos x\,\ln\operatorname{tg} x+\sin x\cdot\frac{1}{\operatorname{tg} x}\cdot\frac{1}{\cos^{2}x}=\cos x\,\ln\operatorname{tg} x+\sin x\cdot\frac{\cos x}{\sin x}\cdot\frac{1}{\cos^{2}x}.$$
 
 Второе слагаемое сворачивается в $\frac{1}{\cos x}$, откуда
 
-$$y'=(\tan x)^{\sin x}\Bigl(\cos x\,\ln\tan x+\frac{1}{\cos x}\Bigr).$$
+$$y'=(\operatorname{tg} x)^{\sin x}\Bigl(\cos x\,\ln\operatorname{tg} x+\frac{1}{\cos x}\Bigr).$$
 
 В точке $x=\frac\pi4$ логарифм зануляется и остаётся $y'=1\cdot\sqrt2=\sqrt2$. Правило частного здесь не заучивалось, а получилось из правила Лейбница через $\left(\frac1g\right)'$; то же двухшаговое сведение даёт и $(\operatorname{ctg}x)'=-\frac{1}{\sin^{2}x}$.`,
-			answer: String.raw`$(\tan x)'=\dfrac{1}{\cos^{2}x}$; $y'=(\tan x)^{\sin x}\left(\cos x\ln\tan x+\dfrac{1}{\cos x}\right)$.`,
+			answer: String.raw`$(\operatorname{tg} x)'=\dfrac{1}{\cos^{2}x}$; $y'=(\operatorname{tg} x)^{\sin x}\left(\cos x\ln\operatorname{tg} x+\dfrac{1}{\cos x}\right)$.`,
 			xp: 12
 		},
 		{

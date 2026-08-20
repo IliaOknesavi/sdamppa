@@ -6,8 +6,8 @@ export const day05Terms: Glossary = {
 		id: 'teorema-rollya',
 		term: 'Теорема Ролля',
 		short: String.raw`Равные значения на концах — внутри есть точка с нулевой производной.`,
-		formula: String.raw`f\in C[a,b],\ f\ \text{дифф. на}\ (a,b),\ f(a)=f(b)\ \Rightarrow\ \exists c\in(a,b):\ f'(c)=0`,
-		body: String.raw`Пусть $f$ непрерывна на $[a,b]$, дифференцируема на $(a,b)$ и $f(a)=f(b)$. Тогда найдётся [[promezhutochnaya-tochka|внутренняя точка]] $c$, в которой $f'(c)=0$.`,
+		formula: String.raw`f\in C[a;b],\ f\ \text{дифф. на}\ (a,b),\ f(a)=f(b)\ \Rightarrow\ \exists c\in(a,b):\ f'(c)=0`,
+		body: String.raw`Пусть $f$ непрерывна на $[a;b]$, дифференцируема на $(a,b)$ и $f(a)=f(b)$. Тогда найдётся [[promezhutochnaya-tochka|внутренняя точка]] $c$, в которой $f'(c)=0$.`,
 		related: ['teorema-lagranzha', 'promezhutochnaya-tochka', 'teorema-ferma']
 	},
 
@@ -16,7 +16,7 @@ export const day05Terms: Glossary = {
 		term: 'Теорема Лагранжа',
 		short: String.raw`Наклон хорды достигается касательной во внутренней точке.`,
 		formula: String.raw`f(b)-f(a)=f'(c)(b-a),\qquad c\in(a,b)`,
-		body: String.raw`Пусть $f$ непрерывна на $[a,b]$ и дифференцируема на $(a,b)$. Тогда существует [[promezhutochnaya-tochka|точка]] $c\in(a,b)$, для которой $f(b)-f(a)=f'(c)(b-a)$. При $f(a)=f(b)$ обращается в [[teorema-rollya|теорему Ролля]].`,
+		body: String.raw`Пусть $f$ непрерывна на $[a;b]$ и дифференцируема на $(a,b)$. Тогда существует [[promezhutochnaya-tochka|точка]] $c\in(a,b)$, для которой $f(b)-f(a)=f'(c)(b-a)$. При $f(a)=f(b)$ обращается в [[teorema-rollya|теорему Ролля]].`,
 		related: ['teorema-rollya', 'promezhutochnaya-tochka', 'formula-konechnyh-prirashcheniy']
 	},
 
@@ -34,7 +34,7 @@ export const day05Terms: Glossary = {
 		term: 'Теорема Коши о среднем',
 		short: String.raw`Отношение приращений равно отношению производных в одной точке.`,
 		formula: String.raw`\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)},\qquad c\in(a,b),\ g'\ne0`,
-		body: String.raw`Пусть $f,g$ непрерывны на $[a,b]$, дифференцируемы на $(a,b)$ и $g'\ne0$ внутри. Тогда есть [[promezhutochnaya-tochka|точка]] $c$, где $\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)}$. Существенно, что обе производные берутся в **одной** точке.`,
+		body: String.raw`Пусть $f,g$ непрерывны на $[a;b]$, дифференцируемы на $(a,b)$ и $g'\ne0$ внутри. Тогда есть [[promezhutochnaya-tochka|точка]] $c$, где $\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)}$. Существенно, что обе производные берутся в **одной** точке.`,
 		related: ['teorema-lagranzha', 'promezhutochnaya-tochka']
 	},
 
@@ -51,7 +51,7 @@ export const day05Terms: Glossary = {
 		id: 'monotonnost-i-proizvodnaya',
 		term: 'Лемма о монотонной функции',
 		short: String.raw`$f'\ge0$ на промежутке равносильно нестрогому возрастанию.`,
-		formula: String.raw`f'\ge0\ \text{на}\ (a,b)\iff f\ \text{нестрого возрастает на}\ [a,b]`,
+		formula: String.raw`f'\ge0\ \text{на}\ (a,b)\iff f\ \text{нестрого возрастает на}\ [a;b]`,
 		body: String.raw`Для функции, непрерывной на [[promezhutok|промежутке]] и дифференцируемой внутри, условие $f'\ge0$ равносильно нестрогому возрастанию. Строгая версия — только [[priznak-i-svoystvo|признак]]: $x^3$ строго возрастает, хотя $f'(0)=0$.`,
 		related: ['teorema-lagranzha', 'promezhutok', 'priznak-i-svoystvo']
 	},

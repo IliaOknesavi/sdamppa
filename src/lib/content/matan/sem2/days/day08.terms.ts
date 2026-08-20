@@ -60,7 +60,7 @@ export const day08Terms: Glossary = {
 		id: 'vypukloe-mnozhestvo',
 		term: 'Выпуклое множество',
 		short: String.raw`Содержит отрезок между любыми двумя своими точками.`,
-		formula: String.raw`\forall \vec x,\vec y\in M\ \forall t\in[0,1]:\ \ \vec x+t(\vec y-\vec x)\in M`,
+		formula: String.raw`\forall \vec x,\vec y\in M\ \forall t\in[0;1]:\ \ \vec x+t(\vec y-\vec x)\in M`,
 		body: String.raw`Множество, которое вместе с любыми двумя точками содержит и соединяющий их [[parametrizatsiya-otrezka|отрезок]]. Заменить отрезок на всю прямую нельзя: таких ограниченных множеств, кроме пустого и одноточечного, не бывает.`,
 		related: ['parametrizatsiya-otrezka', 'lineynoe-prostranstvo']
 	},

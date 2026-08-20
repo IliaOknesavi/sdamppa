@@ -78,7 +78,7 @@ export const day20Terms: Glossary = {
 		id: 'teorema-o-srednem-integral',
 		term: 'Теорема о среднем для интеграла',
 		short: String.raw`Непрерывная $f$ принимает своё среднее по отрезку в некоторой точке.`,
-		formula: String.raw`\int_a^b f(t)\,dt=f(\xi)\,(b-a),\qquad \xi\in[a,b]`,
+		formula: String.raw`\int_a^b f(t)\,dt=f(\xi)\,(b-a),\qquad \xi\in[a;b]`,
 		body: String.raw`Для непрерывной на отрезке функции найдётся точка $\xi$, в которой $\int_a^b f=f(\xi)(b-a)$. Непрерывность существенна: у $\operatorname{sign}$ на $[-1;1]$ среднее равно нулю, а значения нуль не принимают.`,
 		related: ['nepreryvnost', 'teorema-o-promezhutochnom-znachenii', 'monotonnost-integrala']
 	},
@@ -87,7 +87,7 @@ export const day20Terms: Glossary = {
 		id: 'lemma-o-nulevoy-proizvodnoy',
 		term: 'Лемма о нулевой производной',
 		short: String.raw`$D'\equiv0$ на промежутке влечёт $D\equiv\mathrm{const}$.`,
-		formula: String.raw`D'(x)=0\ \text{на}\ [a,b]\ \Rightarrow\ D(x)=D(a)\ \ \forall x`,
+		formula: String.raw`D'(x)=0\ \text{на}\ [a;b]\ \Rightarrow\ D(x)=D(a)\ \ \forall x`,
 		body: String.raw`Функция с тождественно нулевой [[proizvodnaya|производной]] на [[promezhutok|промежутке]] постоянна. Связность существенна: на объединении двух отрезков постоянные могут различаться — тогда это лишь [[lokalno-postoyannaya-funkciya|локально постоянная]] функция.`,
 		related: ['teorema-lagranzha', 'promezhutok', 'lokalno-postoyannaya-funkciya']
 	}

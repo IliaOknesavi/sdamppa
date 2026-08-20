@@ -24,7 +24,7 @@ export const day29Terms: Glossary = {
 		id: 'metrika-ravnomernoy-shodimosti',
 		term: 'Метрика равномерной сходимости',
 		short: String.raw`$\rho(f_1,f_2)=\max|f_1-f_2|$ — расстояние между функциями.`,
-		formula: String.raw`\rho(f_1,f_2)=\max_{x\in[a,b]}\bigl|f_1(x)-f_2(x)\bigr|`,
+		formula: String.raw`\rho(f_1,f_2)=\max_{x\in[a;b]}\bigl|f_1(x)-f_2(x)\bigr|`,
 		body: String.raw`Метрика на функциях, для которой [[ravnomernaya-shodimost|равномерная сходимость]] равносильна обычной сходимости точек: $f_n\rightrightarrows f$ тогда и только тогда, когда $\rho(f_n,f)\to0$. Для разрывных функций максимум заменяют на [[supremum|супремум]].`,
 		related: ['ravnomernaya-shodimost', 'aksiomy-metriki', 'supremum']
 	},
@@ -33,7 +33,7 @@ export const day29Terms: Glossary = {
 		id: 'funkcionalnoe-prostranstvo',
 		term: 'Функциональное пространство',
 		short: String.raw`Множество функций как метрическое пространство.`,
-		formula: String.raw`C[a,b]=\{f:[a,b]\to\mathbb R\ \text{непрерывна}\}`,
+		formula: String.raw`C[a;b]=\{f:[a;b]\to\mathbb R\ \text{непрерывна}\}`,
 		body: String.raw`Множество функций на отрезке, рассматриваемое как метрическое пространство с [[metrika-ravnomernoy-shodimosti|метрикой равномерной сходимости]]. Точкой такого пространства служит целая функция.`,
 		related: ['metrika-ravnomernoy-shodimosti', 'lineynoe-prostranstvo', 'funkciya']
 	},
@@ -42,7 +42,7 @@ export const day29Terms: Glossary = {
 		id: 'shar-v-funkcionalnom-prostranstve',
 		term: 'Шар в функциональном пространстве',
 		short: String.raw`Трубка ширины $2\varepsilon$ вокруг графика.`,
-		formula: String.raw`B_\varepsilon(f)=\{g:\ \max_{x\in[a,b]}|g(x)-f(x)|<\varepsilon\}`,
+		formula: String.raw`B_\varepsilon(f)=\{g:\ \max_{x\in[a;b]}|g(x)-f(x)|<\varepsilon\}`,
 		body: String.raw`Множество функций, отстоящих от данной меньше чем на $\varepsilon$ в [[metrika-ravnomernoy-shodimosti|метрике]] $\rho$. Геометрически это полоса вокруг графика центра.`,
 		related: ['metrika-ravnomernoy-shodimosti', 'funkcionalnoe-prostranstvo', 'okrestnost']
 	},
@@ -60,16 +60,16 @@ export const day29Terms: Glossary = {
 		id: 'nepreryvnost-predelnoy-funkcii',
 		term: 'Непрерывность предельной функции',
 		short: String.raw`Равномерный предел непрерывных функций непрерывен.`,
-		formula: String.raw`f_n\in C[a,b],\ f_n\rightrightarrows f\ \Longrightarrow\ f\in C[a,b]`,
+		formula: String.raw`f_n\in C[a;b],\ f_n\rightrightarrows f\ \Longrightarrow\ f\in C[a;b]`,
 		body: String.raw`Если непрерывные функции сходятся [[ravnomernaya-shodimost|равномерно]], предельная функция тоже непрерывна. В [[kontrapoziciya|контрапозиции]]: разрывный предел означает, что сходимость не равномерна.`,
 		related: ['ravnomernaya-shodimost', 'nepreryvnost', 'kontrapoziciya']
 	},
 
 	'polnota-funkcionalnogo-prostranstva': {
 		id: 'polnota-funkcionalnogo-prostranstva',
-		term: 'Полнота $C[a,b]$',
+		term: 'Полнота $C[a;b]$',
 		short: String.raw`Сходящаяся в себе последовательность непрерывных имеет непрерывный предел.`,
-		formula: String.raw`\rho(f_n,f_{n+p})<\varepsilon\ \ \forall p\ \Longrightarrow\ \exists f\in C[a,b]:\ f_n\rightrightarrows f`,
+		formula: String.raw`\rho(f_n,f_{n+p})<\varepsilon\ \ \forall p\ \Longrightarrow\ \exists f\in C[a;b]:\ f_n\rightrightarrows f`,
 		body: String.raw`Пространство непрерывных функций с [[metrika-ravnomernoy-shodimosti|метрикой]] $\rho$ полно: всякая [[skhodyashchayasya-v-sebe|сходящаяся в себе]] последовательность сходится в нём равномерно к непрерывной функции.`,
 		related: ['skhodyashchayasya-v-sebe', 'funkcionalnoe-prostranstvo', 'nepreryvnost-predelnoy-funkcii']
 	},
