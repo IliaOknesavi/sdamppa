@@ -34,7 +34,7 @@ export const day08Terms: Glossary = {
 		term: 'Ограниченный оператор',
 		short: String.raw`Линейный оператор с конечной нормой; для линейных это то же, что непрерывный.`,
 		formula: String.raw`\|A\|=\sup_{\|h\|\le1}\|Ah\|<\infty`,
-		body: String.raw`[[lineynyy-operator|Линейный оператор]] **ограничен**, если конечна его [[norma-operatora|норма]]. Для линейных отображений ограниченность равносильна непрерывности; в конечномерном пространстве ограничены все, так что условие содержательно лишь в бесконечномерном случае.`,
+		body: String.raw`[[lineynyy-operator|Линейный оператор]] **ограничен**, если конечна его [[norma-operatora|норма]]. Для линейных отображений ограниченность равносильна непрерывности; на $\mathbb R^n$ с [[evklidova-norma|евклидовой нормой]] ограничен всякий линейный оператор — это разобрано в дне 8 через базис.`,
 		related: ['lineynyy-operator', 'norma-operatora', 'normirovannoe-prostranstvo']
 	},
 
@@ -43,7 +43,9 @@ export const day08Terms: Glossary = {
 		term: 'Норма оператора',
 		short: String.raw`Наибольший коэффициент растяжения единичного шара.`,
 		formula: String.raw`\|A\|=\sup_{\|h\|\le1}\|Ah\|=\sup_{h\ne0}\frac{\|Ah\|}{\|h\|}`,
-		body: String.raw`[[supremum|Точная верхняя грань]] растяжения, которое [[lineynyy-operator|оператор]] даёт на единичном шаре. Отсюда рабочее неравенство $\|Ah\|\le\|A\|\cdot\|h\|$.`,
+		body: String.raw`[[supremum|Точная верхняя грань]] растяжения, которое [[lineynyy-operator|оператор]] даёт на единичном шаре. Отсюда рабочее неравенство $\|Ah\|\le\|A\|\cdot\|h\|$.
+
+Две записи в формуле дают одно и то же число, и это выводится из линейности с [[odnorodnost|однородностью нормы]]. При $h\ne0$ верно $\frac{\|Ah\|}{\|h\|}=\bigl\|A\frac{h}{\|h\|}\bigr\|$, а вектор $\frac{h}{\|h\|}$ лежит в единичном шаре, поэтому $\sup_{h\ne0}\frac{\|Ah\|}{\|h\|}\le\sup_{\|h\|\le1}\|Ah\|$. Обратно: при $0<\|h\|\le1$ имеем $\|Ah\|=\|h\|\cdot\frac{\|Ah\|}{\|h\|}\le\frac{\|Ah\|}{\|h\|}$, а при $h=0$ левая часть нулевая; значит и $\sup_{\|h\|\le1}\|Ah\|\le\sup_{h\ne0}\frac{\|Ah\|}{\|h\|}$ (супремум справа неотрицателен).`,
 		related: ['lineynyy-operator', 'supremum', 'ogranichennyy-operator']
 	},
 

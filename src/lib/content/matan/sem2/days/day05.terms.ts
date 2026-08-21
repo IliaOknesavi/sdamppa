@@ -68,9 +68,9 @@ export const day05Terms: Glossary = {
 	'teorema-rollya-polya': {
 		id: 'teorema-rollya-polya',
 		term: 'Теорема Ролля для скалярного поля',
-		short: String.raw`Постоянство на границе выпуклого компакта — внутри градиент нулевой.`,
-		formula: String.raw`f\in C^1(D),\ f|_{\partial D}\equiv\mathrm{const}\ \Rightarrow\ \exists\,\vec c\in\operatorname{In}D:\ \nabla f(\vec c)=\bar 0`,
-		body: String.raw`Если [[skalyarnoe-pole|скалярное поле]] класса $C^1$ на выпуклом компакте постоянно на границе, то во внутренней точке его [[gradient|градиент]] обращается в нуль.`,
+		short: String.raw`Постоянство на границе компакта с внутренними точками — внутри градиент нулевой.`,
+		formula: String.raw`\operatorname{In}D\ne\varnothing,\ f\in C^1(D),\ f|_{\partial D}\equiv\mathrm{const}\ \Rightarrow\ \exists\,\vec c\in\operatorname{In}D:\ \nabla f(\vec c)=\bar 0`,
+		body: String.raw`Если [[skalyarnoe-pole|скалярное поле]] класса $C^1$ на компакте $D$ с непустой [[vnutrennost|внутренностью]] постоянно на границе, то во внутренней точке его [[gradient|градиент]] обращается в нуль. Условие $\operatorname{In}D\ne\varnothing$ отбросить нельзя: у отрезка в $\mathbb R^2$ внутренних точек нет вовсе. Выпуклость $D$ в доказательстве не участвует — она нужна соседней [[teorema-lagranzha-polya|теореме Лагранжа для полей]]; доказательство — [день 9](/aii/matan/2/day/9).`,
 		related: ['teorema-rollya', 'gradient', 'skalyarnoe-pole']
 	},
 

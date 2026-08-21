@@ -43,6 +43,15 @@ const own: Glossary = {
 		related: ['razbienie', 'diametr-mnozhestva']
 	},
 
+	'opredelennyy-integral': {
+		id: 'opredelennyy-integral',
+		term: 'Определённый интеграл',
+		short: String.raw`Предел интегральных сумм при ранге разбиения, стремящемся к нулю; значение — число.`,
+		formula: String.raw`\int_a^b f\,dx=\lim_{\lambda_R\to0}I(f,\lambda,\vec\xi)`,
+		body: String.raw`Число, к которому сходятся интегральные суммы $I(f,\lambda,\vec\xi)$ при [[rang-razbieniya|ранге разбиения]] $\lambda_R\to0$ — независимо от выбора отмеченных точек. Существует ровно тогда, когда верхний и нижний интегралы совпадают. С [[neopredelennyy-integral|неопределённым интегралом]] у него общий только знак $\int$: там значение — класс функций, здесь — число.`,
+		related: ['razbienie', 'rang-razbieniya', 'neopredelennyy-integral']
+	},
+
 	lsk: {
 		id: 'lsk',
 		term: 'Линейно связный компакт',
@@ -58,6 +67,24 @@ const own: Glossary = {
 		formula: String.raw`\forall\varepsilon>0\ \exists\{I_k\}:\ S\subset\bigcup_k I_k,\ \sum_k |I_k|<\varepsilon`,
 		body: String.raw`Множество имеет **меру нуль**, если для любого $\varepsilon>0$ его можно накрыть счётным набором интервалов суммарной длины меньше $\varepsilon$. Существенно именно условие на сумму: накрыть можно что угодно, вопрос в цене.`,
 		related: ['pokrytie-intervalami', 'schetnoe-mnozhestvo']
+	},
+
+	'chastnaya-proizvodnaya': {
+		id: 'chastnaya-proizvodnaya',
+		term: 'Частная производная',
+		short: String.raw`Производная по одной координате при замороженных остальных.`,
+		formula: String.raw`\frac{\partial f}{\partial x_i}(\vec x)=\lim_{\Delta x_i\to0}\frac{f(x_1,\dots,x_i+\Delta x_i,\dots,x_n)-f(x_1,\dots,x_n)}{\Delta x_i}`,
+		body: String.raw`Производная [[skalyarnoe-pole|скалярного поля]] по координате $x_i$ — обычная производная вспомогательной функции одной переменной $\varphi(t)=f(x_1,\dots,t,\dots,x_n)$ в точке $t=x_i$: остальные координаты заморожены и считаются константами. Новой теории здесь нет, вся одномерная техника переносится дословно. Собранные в вектор, частные производные дают [[gradient|градиент]].`,
+		related: ['gradient', 'skalyarnoe-pole', 'proizvodnaya-gato']
+	},
+
+	gradient: {
+		id: 'gradient',
+		term: 'Градиент',
+		short: String.raw`Вектор из всех частных производных поля.`,
+		formula: String.raw`\vec\nabla f=\Bigl(\frac{\partial f}{\partial x_1},\ \dots,\ \frac{\partial f}{\partial x_n}\Bigr)`,
+		body: String.raw`Вектор, составленный из всех [[chastnaya-proizvodnaya|частных производных]] [[skalyarnoe-pole|скалярного поля]]. На входе у оператора [[nabla|набла]] скаляр в каждой точке, на выходе вектор в каждой точке. Ради градиента всё и затевается: при дифференцируемости по Фреше [[proizvodnaya-po-napravleniyu|производная по направлению]] равна проекции $f'_{\vec l}=\langle\vec\nabla f\mid\vec l\,\rangle$, откуда сразу и наибыстрейший рост вдоль самого градиента, и ортогональность множествам уровня.`,
+		related: ['chastnaya-proizvodnaya', 'nabla', 'proizvodnaya-po-napravleniyu']
 	},
 
 	...shared
