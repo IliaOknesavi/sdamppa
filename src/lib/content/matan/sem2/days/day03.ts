@@ -292,7 +292,9 @@ $$(f^-)'\Bigl(\frac\pi4\Bigr)=\frac{1}{f'(1)}=2.$$
 
 Проверка. Здесь $\hat D=\mathbb R$, $\hat E=\bigl(-\frac\pi2;\frac\pi2\bigr)$, и обратная выписывается явно: $f^-(y)=\operatorname{tg}y$. Тогда
 
-$$(\operatorname{tg}y)'=\frac{1}{\cos^2y}\ \ \text{([правило частного](/aii/matan/2/day/2))},\qquad (\operatorname{tg}y)'\Big|_{y=\pi/4}=\frac{1}{\cos^2\frac\pi4}=\frac{1}{\bigl(\frac{\sqrt2}{2}\bigr)^2}=\frac{1}{1/2}=2.$$
+$$(\operatorname{tg}y)'\overset{\text{правило частного}}{=}\frac{1}{\cos^2y},\qquad (\operatorname{tg}y)'\Big|_{y=\pi/4}=\frac{1}{\cos^2\frac\pi4}=\frac{1}{\bigl(\frac{\sqrt2}{2}\bigr)^2}=\frac{1}{1/2}=2.$$
+
+Правило частного доказано в [дне 2](/aii/matan/2/day/2).
 
 Ответы совпали. Полезно заметить, где именно сидит $\hat E$: тангенс обратен арктангенсу только на промежутке $\bigl(-\frac\pi2;\frac\pi2\bigr)$, вне его тождество $f^-(f(x))=x$ ломается — это и есть [[obratimost-na-podmnozhestve|обратимость на подмножестве]], увиденная на конкретной паре функций.`,
 			answer: String.raw`$x_0=1$, $(f^-)'(\pi/4)=2$; проверка: $(\operatorname{tg}y)'\big|_{\pi/4}=2$.`,

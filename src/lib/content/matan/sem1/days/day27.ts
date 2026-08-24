@@ -59,7 +59,11 @@ $$\overline{\lim_{x\to x_0}}\,f(x)=\lim_{\delta\to0}\ \sup_{x\in\mathring B_{x_0
 
 Промежуток под гранями обязан быть выколотым: иначе в грань попадает само значение $f(x_0)$, которое к пределу отношения не имеет. Критерий следующей секции при такой записи ломается в одну сторону — предел может существовать, а невыколотые грани не совпасть; обратная импликация уцелеет, но описывать будет уже не существование предела, а непрерывность. Контрпример и разбор — в задаче 5. Выколотость нужна здесь ровно затем же, зачем выколот шар в определении по Коши.
 
-Обозначим огибающие $S(\delta)=\sup_{\mathring B_{x_0}(\delta)}f$ и $i(\delta)=\inf_{\mathring B_{x_0}(\delta)}f$. Пределы в определении существуют не случайно: при уменьшении $\delta$ множество точек сужается, поэтому $S$ не возрастает, а $i$ не убывает; монотонная функция имеет предел в $\overline{\mathbb R}$, и
+Обозначим огибающие $S(\delta)=\sup_{\mathring B_{x_0}(\delta)}f$ и $i(\delta)=\inf_{\mathring B_{x_0}(\delta)}f$. Пределы в определении существуют не случайно: при уменьшении $\delta$ множество точек сужается, поэтому $S$ не возрастает, а $i$ не убывает при уменьшении $\delta$. Монотонная величина предел в $\overline{\mathbb R}$ имеет всегда, и это одна строка. Положим $L:=\inf_{0<\delta<r}S(\delta)\in\overline{\mathbb R}$ (в расширенной шкале инфимум есть у любого множества, [день 5](/aii/matan/1/day/5)). Тогда
+
+$$\forall c>L\ \ \exists\delta_0:\ S(\delta_0)<c\ \overset{S\ \text{не возрастает}}{\Longrightarrow}\ \forall\,0<\delta<\delta_0:\ L\le S(\delta)\le S(\delta_0)<c,$$
+
+а это и есть $\lim_{\delta\to+0}S(\delta)=L$ — включая случаи $L=\pm\infty$. Зеркально $\lim_{\delta\to+0}i(\delta)=\sup_\delta i(\delta)$. И
 
 $$\overline{\lim}\,f=\inf_{\delta>0}S(\delta),\qquad \underline{\lim}\,f=\sup_{\delta>0}i(\delta),\qquad \underline{\lim}\,f\leqslant\overline{\lim}\,f.$$
 
@@ -116,7 +120,7 @@ $$f_n(x)=\begin{cases}5,&|x|<\frac1n,\\0,&|x|\geqslant\frac1n,\end{cases}\qquad 
 
 $$\boxed{\ \lim_{x\to x_0}h(x)=A.\ }$$
 
-**Доказательство.** Приём — **пропустить неравенство через огибающие**, чтобы вся работа досталась [[kriteriy-sushchestvovaniya-predela|критерию существования предела]]. Из $f\leqslant h\leqslant g$ на выколотом шаре следует $i_f(\delta)\leqslant i_h(\delta)$ и $S_h(\delta)\leqslant S_g(\delta)$ при $\delta<r$ (грань монотонна по функции). Переходим к пределу при $\delta\to0$ — нестрогие неравенства монотонные пределы сохраняют:
+**Доказательство.** Приём — **пропустить неравенство через огибающие**, чтобы вся работа досталась [[kriteriy-sushchestvovaniya-predela|критерию существования предела]]. Из $f\leqslant h\leqslant g$ на выколотом шаре следует $i_f(\delta)\leqslant i_h(\delta)$ и $S_h(\delta)\leqslant S_g(\delta)$ при $\delta<r$ (грань монотонна по функции). Переходим к пределу при $\delta\to0$ — [нестрогое неравенство переживает предельный переход](/aii/matan/1/day/14), и монотонные пределы здесь существуют по лемме выше:
 
 $$A=\underline{\lim}\,f\ \leqslant\ \underline{\lim}\,h\ \leqslant\ \overline{\lim}\,h\ \leqslant\ \overline{\lim}\,g=A,$$
 
