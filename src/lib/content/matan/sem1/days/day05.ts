@@ -199,27 +199,37 @@ $$\boxed{\ A\ne\varnothing,\ \ \exists M\ \forall x\in A:\ x\le M\quad\Longright
 
 **Доказательство.** Будем половинить отрезок, сохраняя инвариант «левый конец не мажорирует $A$, правый мажорирует».
 
-Возьмём любое $x_0\in A$ и положим $a_1=x_0-1$, $b_1=M$: левый конец не верхняя граница (ведь $x_0>a_1$), правый — верхняя. Шаг: берём середину $m=\frac{a_n+b_n}{2}$ и оставляем ту половину, где инвариант сохраняется, — если $m$ мажорирует $A$, кладём $[a_n,m]$, иначе $[m,b_n]$. Отрезки вложены по построению, и
+$$x_0\in A,\quad a_1:=x_0-1,\quad b_1:=M\ \Longrightarrow\ x_0>a_1\ \wedge\ \forall\,x\in A:\ x\le M=b_1$$
+
+— левый конец не верхняя граница, правый верхняя. Шаг половинного деления:
+
+$$m=\frac{a_n+b_n}{2},\qquad [a_{n+1},b_{n+1}]=\begin{cases}[a_n,m],&m\ \text{мажорирует }A,\\ [m,b_n],&\text{иначе}\end{cases}\ \Longrightarrow\ [a_{n+1},b_{n+1}]\subset[a_n,b_n],$$
+
+то есть оставляем ту половину, где инвариант сохраняется, и отрезки вложены по построению:
 
 $$b_n-a_n=\frac{b_1-a_1}{2^{\,n-1}}$$
 
-По [[aksioma-kantora|аксиоме Кантора]] существует $c\in\bigcap_n[a_n,b_n]$, то есть $a_n\le c\le b_n$ при всех $n$. Под данное $\varepsilon>0$ заранее подберём номер — здесь и работает [[aksioma-arhimeda|Архимед]], дающий $n>\frac{b_1-a_1}{\varepsilon}$ (плюс оценка $2^{\,n-1}\ge n$):
+По [[aksioma-kantora|аксиоме Кантора]]:
 
-$$n(\varepsilon)=\left\lceil\frac{b_1-a_1}{\varepsilon}\right\rceil+1\quad\Longrightarrow\quad b_n-a_n<\varepsilon$$
+$$\exists\,c\in\bigcap_n[a_n,b_n]\ \Longrightarrow\ \forall\,n:\ a_n\le c\le b_n.$$
 
-*Шаг 1: $c$ мажорирует $A$.* Иначе $\exists x\in A$ с $x>c$; берём $\varepsilon=x-c$ и его номер:
+Под данное $\varepsilon>0$ заранее подберём номер — здесь и работает [[aksioma-arhimeda|Архимед]] (плюс оценка $2^{\,n-1}\ge n$):
 
-$$b_n=a_n+(b_n-a_n)<c+\varepsilon=x$$
+$$n(\varepsilon)=\left\lceil\frac{b_1-a_1}{\varepsilon}\right\rceil+1\ \overset{\text{Архимед}}{\Longrightarrow}\ n>\frac{b_1-a_1}{\varepsilon}\quad\Longrightarrow\quad b_n-a_n<\varepsilon$$
 
-(использовано $a_n\le c$) — но $b_n$ по инварианту верхняя граница, а $x\in A$ её превысил: противоречие.
+*Шаг 1: $c$ мажорирует $A$.*
 
-*Шаг 2: $c$ — наименьшая из верхних границ.* Пусть $c'<c$ тоже мажорирует $A$; берём $\varepsilon=c-c'$ и тот же номер:
+$$\text{иначе}\ \exists\,x\in A:\ x>c;\qquad \varepsilon:=x-c,\ \ n:=n(\varepsilon)\ \Longrightarrow\ b_n=a_n+(b_n-a_n)\ \overset{a_n\le c}{<}\ c+\varepsilon=x,$$
 
-$$a_n=b_n-(b_n-a_n)>c-\varepsilon=c'$$
+$$b_n\ \text{— верхняя граница по инварианту}\ \wedge\ x\in A\ \wedge\ x>b_n\ \Longrightarrow\ \text{противоречие}.$$
 
-(использовано $b_n\ge c$) — но $a_n$ по инварианту **не** мажорирует $A$, значит нашёлся $x\in A$ с $x>a_n>c'$: противоречие.
+*Шаг 2: $c$ — наименьшая из верхних границ.*
 
-Оба шага вместе дают $c=\sup A$. $\qquad\blacksquare$
+$$\text{пусть}\ c'<c\ \text{тоже мажорирует}\ A;\qquad \varepsilon:=c-c',\ \ n:=n(\varepsilon)\ \Longrightarrow\ a_n=b_n-(b_n-a_n)\ \overset{b_n\ge c}{>}\ c-\varepsilon=c',$$
+
+$$a_n\ \textbf{не}\ \text{мажорирует }A\ \text{по инварианту}\ \Longrightarrow\ \exists\,x\in A:\ x>a_n>c'\ \Longrightarrow\ \text{противоречие}.$$
+
+$$\text{шаг 1}\ \wedge\ \text{шаг 2}\ \Longrightarrow\ c=\sup A.\qquad\blacksquare$$
 
 **Идея для запоминания:** половинное деление — это двоичный поиск по прямой: инвариант держит ответ внутри отрезка, Кантор гарантирует общую точку, Архимед — что отрезок станет мельче любого $\varepsilon$. Тот же приём вернётся в теореме Больцано–Вейерштрасса и в компактности отрезка ([дни 18–23](/aii/matan/1/day/18)).`
 		},

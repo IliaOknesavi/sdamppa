@@ -34,19 +34,15 @@ $$\boxed{\ \sum_{n=1}^{\infty}a_n\ \text{сходится}\ \Longrightarrow\ \li
 
 **Доказательство.** Приём: не вычитаем соседние частичные суммы, а переписываем $\varepsilon$–$N$-определение предела в форму разностей — и лишь потом берём частный случай.
 
-Развернём условие $\lim_{i\to\infty}S_i=c$ по определению, взяв номер сразу для половины ресурса:
+$$\lim_{i\to\infty}S_i=c\ \overset{\text{опр. предела для}\ \varepsilon/2}{\Longrightarrow}\ \forall\varepsilon>0\ \exists N=N_S(\varepsilon/2)\in\mathbb N_1:\ \forall n>N\quad |S_n-c|<\frac\varepsilon2 .$$
 
-$$\forall\varepsilon>0\ \exists N=N_S(\varepsilon/2)\in\mathbb N_1:\ \forall n>N\quad |S_n-c|<\frac\varepsilon2 .$$
-
-Возьмём номера $n$ и $n+p$, где $n>N$, $p\in\mathbb N_1$ — оба больше $N$, значит оценка годится для обоих:
-
-$$|S_n-S_{n+p}|\le|S_n-c|+|c-S_{n+p}|<\frac\varepsilon2+\frac\varepsilon2=\varepsilon$$
+$$\forall n>N\ \forall p\in\mathbb N_1:\ n+p>n>N\ \overset{\text{неравенство треугольника}}{\Longrightarrow}\ |S_n-S_{n+p}|\le|S_n-c|+|c-S_{n+p}|<\frac\varepsilon2+\frac\varepsilon2=\varepsilon$$
 
 (здесь $\varepsilon$ распределён поровну между двумя слагаемыми). Полученное верно **сразу для всех** $p$. Берём частный случай $p=1$:
 
-$$|S_{n+1}-S_n|<\varepsilon,\qquad S_{n+1}=S_n+a_{n+1}\ \Longrightarrow\ |a_{n+1}|<\varepsilon .$$
+$$\overset{p=1}{\Longrightarrow}\ |S_{n+1}-S_n|<\varepsilon,\qquad S_{n+1}=S_n+a_{n+1}\ \Longrightarrow\ |a_{n+1}|<\varepsilon ,$$
 
-Значит для всех $m>N+1$ выполнено $|a_m|<\varepsilon$, то есть явная связь номеров $N_a(\varepsilon)=N_S(\varepsilon/2)+1$ — и это ровно определение $\lim_{n\to\infty}a_n=0$. $\qquad\blacksquare$
+$$\Longrightarrow\ \forall m>N+1:\ |a_m|<\varepsilon\ \iff\ \lim_{n\to\infty}a_n=0,\qquad N_a(\varepsilon)=N_S(\varepsilon/2)+1.\qquad\blacksquare$$
 
 Строго говоря, доказано [[priznak-i-svoystvo|свойство]] сходящегося ряда, а не признак: работает оно контрапозицией — если $a_n\not\to0$, ряд заведомо расходится.`
 		},
@@ -74,7 +70,9 @@ $$a_{n+1}+\dots+a_{n+p}=\sum_{k=1}^{n+p}a_k-\sum_{k=1}^{n}a_k=S_{n+p}-S_n .$$
 
 $$\forall\varepsilon>0\ \exists N\ \forall n>N\ \forall p\in\mathbb N_1:\ |S_{n+p}-S_n|<\varepsilon,$$
 
-а это дословно определение [[skhodyashchayasya-v-sebe|сходящейся в себе]] последовательности в форме со сдвигом $x_{n+p}$. Дальше цепочка эквивалентностей: ряд сходится $\iff$ существует $\lim S_n$ $\iff$ (в $\mathbb R$ фундаментальность равносильна сходимости — [[polnota|полнота]]) последовательность $S_n$ сходится в себе $\iff$ все блоки малы. $\qquad\blacksquare$
+а это дословно определение [[skhodyashchayasya-v-sebe|сходящейся в себе]] последовательности в форме со сдвигом $x_{n+p}$. Дальше цепочка эквивалентностей, где средний переход — это [[polnota|полнота]] $\mathbb R$:
+
+$$\sum_{n=1}^{\infty}a_n\ \text{сходится}\ \iff\ \exists\lim_{n\to\infty}S_n\ \overset{\text{в}\ \mathbb R\ \text{фундаментальность}\,=\,\text{сходимость}}{\iff}\ S_n\ \text{сходится в себе}\ \iff\ \text{все блоки малы}.\qquad\blacksquare$$
 
 Квантор $\forall p$ здесь несущий: малость обязана быть **равномерной по длине блока**, и именно на этом ломаются небрежные оценки (звёздная задача).`
 		},
@@ -110,7 +108,11 @@ $$\boxed{\ \sum_{n=1}^{\infty}a_n\ \text{сходится}\iff\text{все }r_m\
 
 **Доказательство.** Приём: связать хвост с уже посчитанной частичной суммой тождеством $r_m=c-S_m$, а обратную сторону провести через [[kriteriy-koshi-ryad|критерий Коши]].
 
-$(\Rightarrow)$ Пусть $\exists c=\lim S_m$. Частичные суммы хвоста при фиксированном $m$ равны $\sum_{n=m+1}^{m+k}a_n=S_{m+k}-S_m\xrightarrow[k\to\infty]{}c-S_m$ (предел разности при постоянном вычитаемом), значит хвост существует и $r_m=c-S_m$. По определению предела $\forall\varepsilon>0\ \exists M=N_S(\varepsilon):\ \forall m>M\ |r_m|=|c-S_m|<\varepsilon$.
+$(\Rightarrow)$ Пусть $\exists c=\lim S_m$. Тогда при фиксированном $m$
+
+$$\sum_{n=m+1}^{m+k}a_n=S_{m+k}-S_m\ \xrightarrow[k\to\infty]{S_m\,=\,\text{const}}\ c-S_m\ \Longrightarrow\ \exists\,r_m=c-S_m,$$
+
+$$\overset{\text{опр. предела}}{\Longrightarrow}\ \forall\varepsilon>0\ \exists M=N_S(\varepsilon):\ \forall m>M\quad |r_m|=|c-S_m|<\varepsilon .$$
 
 $(\Leftarrow)$ Пусть все хвосты определены и $|r_m|<\frac\varepsilon2$ при $m>M$. Тогда блок — это разность хвостов:
 

@@ -114,11 +114,27 @@ $$x\,R\,y\ \Rightarrow\ y\,R\,x\qquad\text{против}\qquad x\,R\,y\ \Rightar
 
 $$\boxed{\ S=\bigcup_{x\in S}[x],\qquad [x]\cap[y]\ne\varnothing\ \Rightarrow\ [x]=[y].\ }$$
 
-**Доказательство.** Покрытие: по рефлексивности $x\,R\,x$, значит $x\in[x]$ — каждый элемент лежит хотя бы в одном классе, и объединение классов даёт всё $S$.
+**Доказательство.** *Покрытие.*
 
-Слипание. Пусть $z\in[x]\cap[y]$, то есть $x\,R\,z$ и $y\,R\,z$. Если какие-то два из $x,y,z$ совпадают, нужное $x\,R\,y$ получается сразу. Пусть они попарно различны: по симметричности из $y\,R\,z$ следует $z\,R\,y$, и по транзитивности из $x\,R\,z$, $z\,R\,y$ получаем $x\,R\,y$ (тройка $x,z,y$ попарно различна, как и требует определение).
+$$\forall\,x\in S\quad x\,R\,x\ \overset{\text{рефлексивность}}{\Longrightarrow}\ x\in[x]\ \Longrightarrow\ S=\bigcup_{x\in S}[x].$$
 
-Осталось равенство классов. Пусть $w\in[x]$, то есть $x\,R\,w$. Из $x\,R\,y$ по симметричности $y\,R\,x$, и по транзитивности $y\,R\,w$, то есть $w\in[y]$ (вырожденные случаи закрывает рефлексивность). Включение $[y]\subset[x]$ — тот же ход с переставленными $x$ и $y$. $\qquad\blacksquare$
+Каждый элемент лежит хотя бы в одном классе, и объединение классов даёт всё $S$.
+
+*Слипание.*
+
+$$z\in[x]\cap[y]\ \Longrightarrow\ x\,R\,z\ \wedge\ y\,R\,z;\qquad \bigl(x=y\ \vee\ y=z\ \vee\ x=z\bigr)\ \Longrightarrow\ x\,R\,y.$$
+
+$$x,y,z\ \text{попарно различны}:\quad y\,R\,z\ \overset{\text{симметричность}}{\Longrightarrow}\ z\,R\,y,\qquad x\,R\,z\ \wedge\ z\,R\,y\ \overset{\text{транзитивность}}{\Longrightarrow}\ x\,R\,y.$$
+
+Тройка $x,z,y$ попарно различна, как и требует определение.
+
+*Равенство классов.*
+
+$$w\in[x]\ \Longrightarrow\ x\,R\,w;\qquad x\,R\,y\ \overset{\text{симметричность}}{\Longrightarrow}\ y\,R\,x;\qquad y\,R\,x\ \wedge\ x\,R\,w\ \overset{\text{транзитивность}}{\Longrightarrow}\ y\,R\,w\ \Longrightarrow\ w\in[y].$$
+
+$$\Longrightarrow\ [x]\subset[y];\qquad x\leftrightarrow y\ \Longrightarrow\ [y]\subset[x]\qquad\Longrightarrow\ [x]=[y].\qquad\blacksquare$$
+
+Вырожденные случаи закрывает рефлексивность; включение $[y]\subset[x]$ — тот же ход с переставленными $x$ и $y$.
 
 Модельный пример — вычеты по модулю $4$: четыре класса попарно не пересекаются и вместе дают $\mathbb Z$.`
 		},

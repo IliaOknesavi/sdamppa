@@ -68,13 +68,21 @@ $$\boxed{\ S_1\ge S_2\ge S_3\ge\dots,\qquad i_1\le i_2\le i_3\le\dots\ }$$
 
 **Доказательство.** Приём: **меньше множество — меньше супремум**, и никаких $\varepsilon$ здесь не нужно.
 
-Обозначим хвост $T_i=\{x_k:\ k\ge i\}$. Тогда $T_{i+1}\subset T_i$ (выбросили один элемент). Величина $S_i$ — верхняя грань всего $T_i$, значит она верхняя грань и для меньшего множества $T_{i+1}$. А $S_{i+1}$ — **наименьшая** из верхних граней $T_{i+1}$, поэтому
+$$T_i=\{x_k:\ k\ge i\}\ \Longrightarrow\ T_{i+1}\subset T_i\quad(\text{выбросили один элемент}),$$
 
-$$S_{i+1}\le S_i.$$
+$$\forall x\in T_{i+1}\subset T_i:\ x\le S_i\ \Longrightarrow\ S_i\ \text{— верхняя грань}\ T_{i+1}\ \overset{S_{i+1}=\min\{\text{в.\,г. }T_{i+1}\}}{\Longrightarrow}\ S_{i+1}\le S_i,$$
 
-(Именно здесь и работает вторая половина определения супремума: без неё $S_{i+1}$ был бы просто какой-то гранью и сравнить их было бы нечем.) Зеркально $i_{n+1}\ge i_n$: инфимум по меньшему множеству не может стать меньше.
+$$\text{зеркально:}\quad T_{n+1}\subset T_n\ \Longrightarrow\ i_{n+1}\ge i_n\quad(\text{инфимум по меньшему множеству не меньше}).$$
 
-Теперь ограниченность. Из зажатия $i_1\le i_n\le x_n\le S_n\le S_1$: невозрастающая $S_n$ ограничена снизу числом $i_1$, неубывающая $i_n$ ограничена сверху числом $S_1$. По [[monotonnaya-ogranichennaya|теореме о монотонной ограниченной последовательности]] обе имеют предел, причём монотонность превращает предел в точную грань. $\qquad\blacksquare$
+Именно здесь и работает вторая половина определения супремума: без неё $S_{i+1}$ был бы просто какой-то гранью и сравнить их было бы нечем.
+
+$$i_1\le i_n\le x_n\le S_n\le S_1\ \Longrightarrow\ \begin{cases} S_n\ \text{не возрастает, ограничена снизу числом } i_1,\\[2pt] i_n\ \text{не убывает, ограничена сверху числом } S_1, \end{cases}$$
+
+и по [[monotonnaya-ogranichennaya|теореме о монотонной ограниченной последовательности]]
+
+$$\overset{\text{монотонная}+\text{ограниченная}}{\Longrightarrow}\ \exists\lim_{n\to\infty}S_n=\inf_n S_n,\qquad \exists\lim_{n\to\infty}i_n=\sup_n i_n$$
+
+— монотонность превращает предел в точную грань. $\qquad\blacksquare$
 
 Эти пределы и называются **[[verkhniy-predel|верхним]]** и **[[nizhniy-predel|нижним]]** пределами:
 
@@ -89,25 +97,29 @@ $$\overline{\lim_{n\to\infty}}\,x_n=\lim_{n\to\infty}\Bigl(\sup_{k\ge n}x_k\Bigr
 
 $$\boxed{\ \exists\lim_{n\to\infty}x_n=x\iff \overline{\lim_{n\to\infty}}\,x_n=\underline{\lim_{n\to\infty}}\,x_n=x\ }$$
 
-**Доказательство ($\Leftarrow$).** Приём: зажать последовательность между её же огибающими. Неравенство $i_n\le x_n\le S_n$ выполнено при всех $n$, а крайние члены по условию сходятся к одному и тому же $x$. Это в точности посылка [[teorema-o-dvuh-gorodovyh|теоремы о двух городовых]] ([день 14](/aii/matan/1/day/14)), и номер берётся без деления $\varepsilon$:
+**Доказательство ($\Leftarrow$).** Приём: зажать последовательность между её же огибающими. Это в точности посылка [[teorema-o-dvuh-gorodovyh|теоремы о двух городовых]] ([день 14](/aii/matan/1/day/14)):
+
+$$\forall n:\ i_n\le x_n\le S_n,\qquad \lim_{n\to\infty}i_n=\lim_{n\to\infty}S_n=x\ \overset{\text{два городовых}}{\Longrightarrow}\ \lim_{n\to\infty}x_n=x,$$
+
+и номер берётся без деления $\varepsilon$:
 
 $$N_x(\varepsilon)=\max\bigl(N_S(\varepsilon),\ N_i(\varepsilon)\bigr).$$
 
 **Доказательство ($\Rightarrow$).** Приём: взять **половину** эпсилон, чтобы нестрогая оценка супремума стала строгой.
 
-Пусть $\lim x_n=x$ и дано $\varepsilon>0$. По определению предела найдётся $N_x\bigl(\tfrac\varepsilon2\bigr)$ такое, что
+$$\lim_{n\to\infty}x_n=x,\quad \varepsilon>0\ \overset{\text{опр. предела}}{\Longrightarrow}\ \exists N_x\Bigl(\tfrac\varepsilon2\Bigr):\ \forall k>N_x\Bigl(\tfrac\varepsilon2\Bigr):\ x-\tfrac\varepsilon2<x_k<x+\tfrac\varepsilon2 .$$
 
-$$\forall k>N_x\Bigl(\tfrac\varepsilon2\Bigr):\qquad x-\tfrac\varepsilon2<x_k<x+\tfrac\varepsilon2 .$$
+$$n>N_x\Bigl(\tfrac\varepsilon2\Bigr)\ \Longrightarrow\ \forall x_k\in T_n\ (k\ge n):\ x_k<x+\tfrac\varepsilon2\ \Longrightarrow\ x+\tfrac\varepsilon2\ \text{— верхняя грань}\ T_n,$$
 
-Зафиксируем $n>N_x\bigl(\tfrac\varepsilon2\bigr)$. Все члены хвоста $T_n$ имеют номера $k\ge n$, то есть попадают под эту оценку, и $x+\tfrac\varepsilon2$ оказывается верхней гранью $T_n$. Супремум не превосходит любой верхней грани:
+$$\overset{\sup\,\le\,\text{любой в.\,г.}}{\Longrightarrow}\ S_n\le x+\tfrac\varepsilon2<x+\varepsilon.$$
 
-$$S_n\le x+\tfrac\varepsilon2<x+\varepsilon$$
+Вот ради чего и делился $\varepsilon$: супремум даёт только нестрогое $\le$, а определение предела требует строгого неравенства. Снизу оценка бесплатна из зажатия:
 
-(вот ради чего и делился $\varepsilon$: супремум даёт только нестрогое $\le$, а определение предела требует строгого неравенства). Снизу оценка бесплатна из зажатия:
+$$S_n\ge x_n>x-\tfrac\varepsilon2>x-\varepsilon,$$
 
-$$S_n\ge x_n>x-\tfrac\varepsilon2>x-\varepsilon.$$
+$$\Longrightarrow\ \forall n>N_x\Bigl(\tfrac\varepsilon2\Bigr):\ |S_n-x|<\varepsilon,\qquad N_S(\varepsilon)=N_x\Bigl(\tfrac\varepsilon2\Bigr),$$
 
-Итого $|S_n-x|<\varepsilon$ при $n>N_x\bigl(\tfrac\varepsilon2\bigr)$, то есть $N_S(\varepsilon)=N_x\bigl(\tfrac\varepsilon2\bigr)$. Для нижней огибающей выкладка зеркальна и даёт тот же номер $N_i(\varepsilon)=N_x\bigl(\tfrac\varepsilon2\bigr)$. $\qquad\blacksquare$
+$$\text{зеркально для}\ i_n\ \Longrightarrow\ N_i(\varepsilon)=N_x\Bigl(\tfrac\varepsilon2\Bigr).\qquad\blacksquare$$
 
 Разбор случаев вместо половинки $\varepsilon$ не проходит. Если опираться на равенство $S_n=\max(x_n,S_{n+1})$, то в точке «падения» $S_n\ne S_{n+1}$ получается $S_n=x_n$, и оценка на $S_n$ наследуется от оценки на $x_n$. Но падений может не быть ни одного: у $x_n=1-\tfrac1n$ супремум всякого хвоста равен $1$, огибающая стационарна, и стационарный случай приходится обосновывать отдельно — доказывать, что константа равна $x$. Оценка $S_n\le x+\tfrac\varepsilon2$ закрывает оба случая одной строкой, а для $\underline\lim$ она переписывается дословно с заменой $\sup$ на $\inf$ и $+\tfrac\varepsilon2$ на $-\tfrac\varepsilon2$.`
 		},

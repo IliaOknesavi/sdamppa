@@ -42,7 +42,25 @@ $$\forall U_A\ \exists\,\mathring U_{x_0}:\ \forall x\in\mathring U_{x_0}:\ f(x)
 
 Нижняя строка и есть общий случай, а верхние — её прочтения в более богатой среде. В $\mathbb R$ за $U_A$ берут интервал $(A-\varepsilon;A+\varepsilon)$, за $\mathring U_{x_0}$ — выколотый интервал $(x_0-\delta;x_0+\delta)\setminus\{x_0\}$, и топологическая запись превращается в первую.
 
-Два определения дают одно и то же, и нетривиальна тут ровно одна сторона. Если предел есть по Коши, то любая допустимая $\{x_n\}$ начиная с некоторого номера сидит в $\mathring B_{x_0}(\delta)$, значит значения лежат в $B_A(\varepsilon)$ — это и есть Гейне. Обратно рассуждаем от противного: пусть по Гейне предел равен $A$, а условие Коши нарушено, то есть какое-то $\varepsilon_0>0$ портит **все** $\delta$. Подставим $\delta=\frac1n$: для каждого $n$ найдётся точка $x_n\in\mathring B_{x_0}(\frac1n)$ из области определения с $\rho\bigl(f(x_n),A\bigr)\geqslant\varepsilon_0$. Полученная последовательность допустима — $x_n\to x_0$ и $x_n\ne x_0$, — но $f_n$ к $A$ не стремится, что противоречит Гейне. Отсюда обе записи дальше используются как одна, и выбирают ту, которая короче: Гейне удобен, когда готовый факт уже доказан для последовательностей, Коши — когда нужна явная $\delta(\varepsilon)$.`
+Два определения дают одно и то же, и нетривиальна тут ровно одна сторона.
+
+$(\text{Коши}\Rightarrow\text{Гейне})$:
+
+$$\forall\varepsilon>0\ \exists\delta>0:\ f\bigl(\mathring B_{x_0}(\delta)\bigr)\subset B_A(\varepsilon),\qquad x_n\to x_0,\ x_n\ne x_0\ \Longrightarrow\ \exists N\ \forall n>N:\ x_n\in\mathring B_{x_0}(\delta),$$
+
+$$\Longrightarrow\ \forall n>N:\ f_n\in B_A(\varepsilon)\ \Longrightarrow\ \lim_{n\to\infty}f_n=A.$$
+
+$(\text{Гейне}\Rightarrow\text{Коши})$ — от противного: пусть по Гейне предел равен $A$, а условие Коши нарушено, то есть какое-то $\varepsilon_0>0$ портит **все** $\delta$:
+
+$$\neg\,\text{Коши}:\quad \exists\varepsilon_0>0\ \forall\delta>0\ \exists x\in\mathring B_{x_0}(\delta):\ \rho\bigl(f(x),A\bigr)\geqslant\varepsilon_0,$$
+
+$$\overset{\delta=1/n}{\Longrightarrow}\ \forall n\ \exists x_n\in\mathring B_{x_0}\Bigl(\tfrac1n\Bigr):\ \rho\bigl(f(x_n),A\bigr)\geqslant\varepsilon_0$$
+
+(точка $x_n$ берётся из области определения),
+
+$$x_n\to x_0,\ \ x_n\ne x_0\ \Longrightarrow\ \{x_n\}\ \text{допустима},\qquad f_n\not\to A\ \Longrightarrow\ \text{противоречие с Гейне}.$$
+
+Отсюда обе записи дальше используются как одна, и выбирают ту, которая короче: Гейне удобен, когда готовый факт уже доказан для последовательностей, Коши — когда нужна явная $\delta(\varepsilon)$.`
 		},
 		{
 			kind: 'note',
@@ -97,9 +115,17 @@ $$\mathring U_\infty=\bigl(\{\infty\}\cup U_N\bigr)\setminus\{\infty\}=U_N=[N;+\
 
 то есть выколотые окрестности бесконечности — в точности хвосты последовательности.
 
-$(\Rightarrow)$ Пусть предел по Коши равен $A$. Возьмём $\varepsilon>0$ и окрестность $B_A(\varepsilon)$. Определение выдаёт $\mathring U_\infty=U_N$ с $f(U_N)\subset B_A(\varepsilon)$, то есть $\rho(x_n,A)<\varepsilon$ при всех $n\geqslant N$ (здесь и видно, что «лежать в хвосте» и «иметь номер больше $N$» — одно и то же). Это определение предела последовательности с явной формулой $N(\varepsilon)=N-1$; единица набегает из-за строгого $\forall n>N$.
+$(\Rightarrow)$
 
-$(\Leftarrow)$ Обратно: по данному $\varepsilon$ обычное определение даёт номер $N(\varepsilon)$, и луч $U_{N(\varepsilon)+1}$ — искомая выколотая окрестность. $\qquad\blacksquare$
+$$\lim_{x\to\infty}f(x)=A\ \text{по Коши},\ \ \forall\varepsilon>0,\ U_A=B_A(\varepsilon)\ \overset{\text{опр. Коши}}{\Longrightarrow}\ \exists\,\mathring U_\infty=U_N:\ f(U_N)\subset B_A(\varepsilon),$$
+
+$$\iff\ \forall n\geqslant N:\ \rho(x_n,A)<\varepsilon\ \Longrightarrow\ \lim_{n\to\infty}x_n=A,\qquad N(\varepsilon)=N-1.$$
+
+Здесь и видно, что «лежать в хвосте» и «иметь номер больше $N$» — одно и то же; единица в $N(\varepsilon)=N-1$ набегает из-за строгого $\forall n>N$.
+
+$(\Leftarrow)$
+
+$$\forall\varepsilon>0\ \overset{\text{обычное опр.}}{\Longrightarrow}\ \exists N(\varepsilon)\ \forall n>N(\varepsilon):\ \rho(x_n,A)<\varepsilon\ \Longrightarrow\ \mathring U_\infty=U_{N(\varepsilon)+1}\ \text{— искомая}.\qquad\blacksquare$$
 
 Обратный перевод читается по левому концу луча: выколотой окрестности $\mathring U$ отвечает наибольший $n$, при котором $\mathring U\subset U_n$, то есть попросту $n=\min\mathring U$. Наибольший, а не наименьший: лучи вложены, $U_n\subset U_{n-1}$, поэтому из $\mathring U\subset U_n$ включение в $U_{n-1}$ следует само. Точка при этом обязана быть **присоединённой**: будь она элементом $\mathbb N_1$, среди выколотых окрестностей нашлась бы наименьшая, квантор $\exists\,\mathring U$ перестал бы быть выбором и определение выродилось бы (задача 5). Так эквивалентность двух языков — «выколотая окрестность» и «номер $N$» — доказывается один раз, а дальше используется как готовый словарь.`
 		},

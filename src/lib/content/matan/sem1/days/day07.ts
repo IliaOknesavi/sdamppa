@@ -98,15 +98,45 @@ $$\boxed{\ \tau_\rho=\bigl\{\,U\subset M\ :\ \forall x\in U\ \ \exists r>0\ \ B_
 
 Тогда $\tau_\rho$ — [[topologiya|топология]] на $M$; каждый открытый шар лежит в $\tau_\rho$, и всякий элемент $\tau_\rho$ есть объединение открытых шаров.
 
-**Доказательство.** Сначала лемма о сдвиге радиуса: если $y\in B_x(r)$, то $B_y\bigl(r-\rho(x,y)\bigr)\subset B_x(r)$. Радиус положителен, потому что $\rho(x,y)<r$. Для любой $z$ из меньшего шара
+**Доказательство.** Сначала лемма о сдвиге радиуса: $\ y\in B_x(r)\ \Longrightarrow\ B_y\bigl(r-\rho(x,y)\bigr)\subset B_x(r)$.
 
-$$\rho(x,z)\leqslant\rho(x,y)+\rho(y,z)<\rho(x,y)+\bigl(r-\rho(x,y)\bigr)=r$$
+$$y\in B_x(r)\ \iff\ \rho(x,y)<r\ \Longrightarrow\ r-\rho(x,y)>0,$$
 
-(вся лемма — это третья аксиома и ничего кроме неё). Отсюда сразу $B_x(r)\in\tau_\rho$: у каждой точки шара нашёлся свой шар внутри.
+$$\forall z\in B_y\bigl(r-\rho(x,y)\bigr):\quad\rho(x,z)\ \overset{\text{аксиома 3}}{\leqslant}\ \rho(x,y)+\rho(y,z)\ \overset{\rho(y,z)<r-\rho(x,y)}{<}\ \rho(x,y)+\bigl(r-\rho(x,y)\bigr)=r\ \Longrightarrow\ z\in B_x(r).$$
 
-Теперь четыре аксиомы. **1)** $\varnothing\in\tau_\rho$ — условие «для каждой точки» выполняется впустую, точек нет. **2)** $M\in\tau_\rho$ — годится любой радиус. **3)** Пусть $x\in\bigcup_{i\in I}U_i$; тогда $x\in U_{i_0}$ для некоторого $i_0$, и найденный там шар $B_x(r)\subset U_{i_0}\subset\bigcup_i U_i$ (множество индексов $I$ произвольно — радиус берётся один и тот же, ни один переход не требует перебора всех $i$). **4)** Пусть $x\in\bigcap_{i=1}^{n}U_i$ и $B_x(r_i)\subset U_i$; положим $r=\min(r_1,\dots,r_n)>0$ (здесь уже нужна конечность: минимум конечного набора положительных чисел положителен, у бесконечного набора нижняя грань может оказаться нулём). Тогда $B_x(r)\subset U_i$ при всех $i$, то есть пересечение снова в $\tau_\rho$.
+(вся лемма — это третья аксиома и ничего кроме неё)
 
-Осталось про объединения шаров: всякое $U\in\tau_\rho$ равно $\bigcup_{x\in U}B_x(r_x)$ — включение слева направо даёт каждая точка со своим шаром, справа налево — то, что все эти шары лежат в $U$. $\qquad\blacksquare$
+$$\forall y\in B_x(r)\ \ \exists\,r':=r-\rho(x,y)>0:\ B_y(r')\subset B_x(r)\ \Longrightarrow\ B_x(r)\in\tau_\rho$$
+
+— у каждой точки шара нашёлся свой шар внутри.
+
+Теперь четыре аксиомы.
+
+**1)** Пустое множество — условие «для каждой точки» выполняется впустую, точек нет:
+
+$$\forall x\in\varnothing\ \ \exists r>0:\ B_x(r)\subset\varnothing\ \Longrightarrow\ \varnothing\in\tau_\rho.$$
+
+**2)** Носитель — годится любой радиус:
+
+$$\forall x\in M\ \ \forall r>0:\ B_x(r)\subset M\ \Longrightarrow\ M\in\tau_\rho.$$
+
+**3)** Произвольное объединение:
+
+$$x\in\bigcup_{i\in I}U_i\ \Longrightarrow\ \exists i_0\in I:\ x\in U_{i_0}\ \overset{U_{i_0}\in\tau_\rho}{\Longrightarrow}\ \exists r>0:\ B_x(r)\subset U_{i_0}\subset\bigcup_{i\in I}U_i\ \Longrightarrow\ \bigcup_{i\in I}U_i\in\tau_\rho.$$
+
+Множество индексов $I$ произвольно — радиус берётся один и тот же, ни один переход не требует перебора всех $i$.
+
+**4)** Конечное пересечение:
+
+$$x\in\bigcap_{i=1}^{n}U_i\ \Longrightarrow\ \forall i\ \ \exists r_i>0:\ B_x(r_i)\subset U_i;\qquad r:=\min(r_1,\dots,r_n)\ \overset{n\ \text{конечно}}{>}\ 0,$$
+
+$$\forall i\in\{1,\dots,n\}:\ B_x(r)\subset U_i\ \Longrightarrow\ \bigcap_{i=1}^{n}U_i\in\tau_\rho.$$
+
+(здесь уже нужна конечность: минимум конечного набора положительных чисел положителен, у бесконечного набора нижняя грань может оказаться нулём)
+
+Осталось про объединения шаров:
+
+$$\forall U\in\tau_\rho\ \ \forall x\in U\ \ \exists r_x>0:\ B_x(r_x)\subset U\ \Longrightarrow\ U\ \overset{x\in B_x(r_x)}{\subset}\ \bigcup_{x\in U}B_x(r_x)\ \overset{B_x(r_x)\subset U}{\subset}\ U\ \Longrightarrow\ U=\bigcup_{x\in U}B_x(r_x).\qquad\blacksquare$$
 
 **Следствие (индуцированная топология в $\mathbb R$).** Для $\rho(x,y)=|x-y|$ шар — это интервал, $B_{x_0}(r)=(x_0-r;\ x_0+r)$, и обратно всякий интервал — шар: $(a;b)=B_{(a+b)/2}\bigl(\tfrac{b-a}{2}\bigr)$. Семейства шаров и интервалов совпали, значит совпали и порождённые ими топологии: $\tau_\rho$ — это в точности [[topologiya-r|стандартная топология на $\mathbb R$]]. Лучи получаются как объединения: $(-\infty;x)=\bigcup_{n\in\mathbb N_1}(x-n;x)$, а аксиома 3 объединения разрешает.`
 		},

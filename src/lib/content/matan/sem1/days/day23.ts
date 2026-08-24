@@ -44,7 +44,9 @@ $$n_{k+1}=\min\Bigl\lbrace n>n_k:\ |x_n-a|<\tfrac1{k+1}\Bigr\rbrace$$
 
 давала бы подпоследовательность с пределом $a$, вопреки предположению. Дальше — покрытие:
 
-$$\lbrace U_a\rbrace_{a\in[\alpha;\beta]}\ \text{— открытое [[otkrytoe-pokrytie|покрытие]] отрезка}\ \overset{\text{Борель–Лебег}}{\Longrightarrow}\ \exists\,U_{a_1},\dots,U_{a_t}:\ [\alpha;\beta]\subset\bigcup_{j=1}^{t}U_{a_j},$$
+Набор $\lbrace U_a\rbrace_{a\in[\alpha;\beta]}$ — открытое [[otkrytoe-pokrytie|покрытие]] отрезка, поэтому
+
+$$\overset{\text{Борель–Лебег}}{\Longrightarrow}\ \exists\,U_{a_1},\dots,U_{a_t}:\ [\alpha;\beta]\subset\bigcup_{j=1}^{t}U_{a_j},$$
 
 $$\mathbb N_1=\bigl\lbrace n:\ x_n\in[\alpha;\beta]\bigr\rbrace\subset\bigcup_{j=1}^{t}\lbrace n:\ x_n\in U_{a_j}\rbrace\ \Longrightarrow\ |\mathbb N_1|<\aleph_0$$
 

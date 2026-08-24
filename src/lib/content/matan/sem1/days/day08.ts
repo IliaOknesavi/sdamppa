@@ -87,13 +87,29 @@ $$\mathrm{cl}\,\mathrm{cl}\,A=\mathrm{cl}\,A.$$
 
 $$\boxed{\ U\in\tau\iff \partial U\cap U=\varnothing,\qquad \overline U\in\tau\iff \partial U\subset U.\ }$$
 
-**Доказательство.** Сначала лемма о склейке: если каждая точка множества $V$ внутренняя для $V$, то $V$ открыто. Действительно, для каждого $x\in V$ есть $U_x\subset V$, и $V=\bigcup_{x\in V}U_x$ лежит в $\tau$ по третьей аксиоме (объединение по произвольному $I$, [день 6](/aii/matan/1/day/6)).
+**Доказательство.** Сначала лемма о склейке: если каждая точка множества $V$ внутренняя для $V$, то $V$ открыто.
 
-$(\Rightarrow)$ Пусть $U\in\tau$. Тогда $U$ — окрестность каждой своей точки и $U\subset U$: все точки $U$ внутренние, а значит по трихотомии не граничные, то есть $\partial U\cap U=\varnothing$.
+$$\forall x\in V\ \ \exists U_x:\ U_x\subset V\ \Longrightarrow\ V=\bigcup_{x\in V}U_x\ \overset{\text{аксиома 3}}{\Longrightarrow}\ V\in\tau.$$
 
-$(\Leftarrow)$ Пусть $\partial U\cap U=\varnothing$ и $x\in U$. Внешней $x$ быть не может (свидетель $U_x\subset\overline U$ противоречил бы $x\in U$), граничной — по условию, значит она внутренняя. Лемма даёт $U\in\tau$.
+Объединение здесь берётся по произвольному множеству индексов $I$ — это ровно третья аксиома ([день 6](/aii/matan/1/day/6)).
 
-Вторая половина сводится к первой [[dopolnenie|дополнением]]: $U$ замкнуто $\iff\overline U\in\tau\iff\partial\overline U\cap\overline U=\varnothing\iff\partial U\cap\overline U=\varnothing\iff\partial U\subset U$, где использована симметрия границы $\partial\overline U=\partial U$ (доказана выше, при разборе трёх классов точек). $\qquad\blacksquare$
+$(\Rightarrow)$ Пусть $U\in\tau$:
+
+$$x\in U\ \Longrightarrow\ \exists U_x=U:\ U_x\subset U\ \Longrightarrow\ x\ \text{внутренняя}\ \overset{\text{трихотомия}}{\Longrightarrow}\ x\notin\partial U,$$
+
+$$\forall x\in U:\ x\notin\partial U\ \iff\ \partial U\cap U=\varnothing.$$
+
+$(\Leftarrow)$ Пусть $\partial U\cap U=\varnothing$ и $x\in U$:
+
+$$x\ \text{внешняя}\ \Longrightarrow\ \exists U_x\subset\overline U\ \Longrightarrow\ x\in\overline U\ \text{— противоречие с}\ x\in U,$$
+
+$$x\ \text{не внешняя},\ \ x\ \overset{\text{условие}}{\notin}\ \partial U\ \overset{\text{трихотомия}}{\Longrightarrow}\ x\ \text{внутренняя}\ \Longrightarrow\ \forall x\in U\ \ \exists U_x\subset U\ \overset{\text{лемма}}{\Longrightarrow}\ U\in\tau.$$
+
+Вторая половина сводится к первой [[dopolnenie|дополнением]]:
+
+$$U\ \text{замкнуто}\ \iff\ \overline U\in\tau\ \overset{\text{первая половина}}{\iff}\ \partial\overline U\cap\overline U=\varnothing\ \overset{\partial\overline U=\partial U}{\iff}\ \partial U\cap\overline U=\varnothing\ \iff\ \partial U\subset U.\qquad\blacksquare$$
+
+Симметрия границы $\partial\overline U=\partial U$ доказана выше, при разборе трёх классов точек.
 
 **Следствие (идемпотентность).** Множество $\mathrm{Ext}\,A$ открыто: свидетель $U_x\subset\overline A$ годится сразу для каждой своей точки, поэтому работает лемма. Тогда $\mathrm{cl}\,A=\overline{\mathrm{Ext}\,A}$ замкнуто, по критерию $\partial(\mathrm{cl}\,A)\subset\mathrm{cl}\,A$, и потому $\mathrm{cl}\,\mathrm{cl}\,A=\mathrm{cl}\,A$. Тем же рассуждением открыта [[vnutrennost|внутренность]] $\mathrm{In}\,A$.`
 		},

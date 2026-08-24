@@ -47,9 +47,23 @@ $$0:=\varnothing,\qquad n+1:=\{n\},$$
 
 $$\boxed{\;S(n)=S(m)\Rightarrow n=m,\qquad \varnothing\notin S(\mathbb N_0).\;}$$
 
-**Доказательство.** Заметим сначала, что $n\in S(n)$ всегда: $S(n)=n\cup\{n\}$ содержит $n$ как элемент. Пусть $S(n)=S(m)$. Тогда $n\in S(n)=S(m)=m\cup\{m\}$, значит $n\in m$ или $n=m$; симметрично $m\in n$ или $m=n$. Допустим $n\ne m$; тогда одновременно $n\in m$ и $m\in n$. Рассмотрим пару $\{n,m\}$ (существует по ZF3). Аксиома регулярности ZF8 требует, чтобы у $\{n,m\}$ нашёлся элемент, не пересекающийся с самой парой, — но $m\in n\cap\{n,m\}$ и $n\in m\cap\{n,m\}$, то есть оба элемента пересекаются с ней (здесь и нужна регулярность: без неё «взаимная принадлежность» не запрещена). Противоречие, значит $n=m$.
+**Доказательство.** Третья аксиома:
 
-Четвёртая аксиома достаётся даром: $n\in S(n)$, поэтому $S(n)\ne\varnothing=0$ ни при каком $n$. $\qquad\blacksquare$`
+$$\forall\,n\quad S(n)=n\cup\{n\}\ \Longrightarrow\ n\in S(n).$$
+
+$$S(n)=S(m)\ \Longrightarrow\ n\in S(n)=S(m)=m\cup\{m\}\ \Longrightarrow\ n\in m\ \vee\ n=m;\qquad\text{симметрично}\ \ m\in n\ \vee\ m=n.$$
+
+$$n\ne m\ \Longrightarrow\ n\in m\ \wedge\ m\in n;\qquad \exists\,\{n,m\}\ \ (\text{ZF3}).$$
+
+$$\text{ZF8}\ \Longrightarrow\ \exists\,x\in\{n,m\}:\ x\cap\{n,m\}=\varnothing;\qquad m\in n\cap\{n,m\}\ \wedge\ n\in m\cap\{n,m\}\ \Longrightarrow\ n\cap\{n,m\}\ne\varnothing\ \wedge\ m\cap\{n,m\}\ne\varnothing.$$
+
+$$\Longrightarrow\ \text{противоречие с ZF8}\ \Longrightarrow\ n=m.$$
+
+Здесь и нужна регулярность: без неё «взаимная принадлежность» не запрещена.
+
+Четвёртая аксиома достаётся даром:
+
+$$\forall\,n\quad n\in S(n)\ \Longrightarrow\ S(n)\ne\varnothing=0.\qquad\blacksquare$$`
 		},
 		{
 			kind: 'derivation',
@@ -105,15 +119,25 @@ $$(a,b)\sim(c,d)\iff a+d=b+c,$$
 
 $$\boxed{\;\sqrt2\notin\mathbb Q.\;}$$
 
-**Доказательство.** От противного. Пусть $\sqrt2\in\mathbb Q$, тогда по определению рациональных $\sqrt2=\tfrac nm$, где $m\in\mathbb N_1$, $n\in\mathbb Z$ и $(|n|,m)=1$ (несократимость — часть определения, а не дополнительное допущение: каноническая запись всегда такова). Так как $\sqrt2>0$, можно считать $n\in\mathbb N_1$. Возведём в квадрат и умножим на $m^2$:
+**Доказательство.** От противного:
+
+$$\sqrt2\in\mathbb Q\ \overset{\text{опр. }\mathbb Q}{\Longrightarrow}\ \sqrt2=\tfrac nm,\quad m\in\mathbb N_1,\ n\in\mathbb Z,\ (|n|,m)=1;\qquad \sqrt2>0\ \Longrightarrow\ n\in\mathbb N_1.$$
+
+Несократимость — часть определения, а не дополнительное допущение: каноническая запись всегда такова. Возведём в квадрат и умножим на $m^2$:
 
 $$\frac{n^2}{m^2}=2\quad\Longrightarrow\quad n^2=2m^2.$$
 
-Значит $n^2$ чётно. Отсюда чётно и само $n$: будь $n=2k+1$, получилось бы $n^2=4k^2+4k+1$ — нечётное число (это единственное место, где нужна конкретика про двойку: чётность квадрата равносильна чётности основания). Подставим $n=2k$:
+$$n^2=2m^2\ \Longrightarrow\ n^2\ \text{чётно};\qquad n=2k+1\ \Longrightarrow\ n^2=4k^2+4k+1\ \text{нечётно}\ \Longrightarrow\ n=2k.$$
+
+Подставим $n=2k$:
 
 $$4k^2=2m^2\quad\Longrightarrow\quad m^2=2k^2,$$
 
-и по тому же рассуждению $m$ тоже чётно. Но тогда $2$ — общий делитель $|n|$ и $m$, то есть $(|n|,m)\ge2$, что противоречит несократимости. Следовательно, предположение неверно и $\sqrt2\notin\mathbb Q$. $\qquad\blacksquare$
+$$m^2=2k^2\ \overset{\text{то же рассуждение}}{\Longrightarrow}\ m\ \text{чётно};\qquad 2\mid|n|\ \wedge\ 2\mid m\ \Longrightarrow\ (|n|,m)\ge2\ \Longrightarrow\ \text{противоречие с}\ (|n|,m)=1.$$
+
+$$\Longrightarrow\ \sqrt2\notin\mathbb Q.\qquad\blacksquare$$
+
+Чётность квадрата равносильна чётности основания — это единственное место, где нужна конкретика про двойку.
 
 Отсюда сразу: множество [[irracionalnye-chisla|иррациональных чисел]] $\mathbb I=\mathbb R\setminus\mathbb Q$ непусто — башня обязана расти дальше $\mathbb Q$. Всё противоречие упирается ровно в условие $(|n|,m)=1$ из определения $\mathbb Q$: само по себе равенство $n^2=2m^2$ ни к чему не приводит, ведь общий множитель можно выносить сколько угодно раз, — запрещает это только каноничность записи.
 

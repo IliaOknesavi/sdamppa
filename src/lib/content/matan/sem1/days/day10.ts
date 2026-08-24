@@ -70,19 +70,27 @@ $$\boxed{\ T\ \text{сепарабельно}\iff\exists A\subset T:\ A\ \text{�
 
 $$\boxed{\ \exists\ \text{счётная база}\ \Longrightarrow\ \exists\ \text{счётное всюду плотное}\ X\subset T\ }$$
 
-**Доказательство.** Выберем по одной точке из каждого кирпича. Для каждого $i\in\mathbb N_1$ ([[n-nol-n-odin|нумерация без нуля]]) возьмём произвольную $x_i\in U_i$ — это законно, потому что $U_i\ne\varnothing$; выбор здесь счётный, никакой аксиомы выбора сверх счётной формы не нужно. Положим
+**Доказательство.** Выберем по одной точке из каждого кирпича; индекс пробегает $\mathbb N_1$ — [[n-nol-n-odin|нумерация без нуля]].
 
-$$X=\{x_1,x_2,\dots\}=\{x_i:\ i\in\mathbb N_1\}.$$
+$$\forall i\in\mathbb N_1:\ U_i\ne\varnothing\ \Longrightarrow\ \exists x_i\in U_i;\qquad X:=\{x_1,x_2,\dots\}=\{x_i:\ i\in\mathbb N_1\}.$$
 
-Множество $X$ не более чем счётно: это образ $\mathbb N_1$ при отображении $i\mapsto x_i$, а образ [[schetnoe-mnozhestvo|счётного]] не более чем счётен ([день 3](/aii/matan/1/day/3)).
+Выбор здесь счётный, никакой аксиомы выбора сверх счётной формы не нужно.
 
-Осталось проверить, что $X$ [[vsyudu-plotnoe|всюду плотно]]. Возьмём произвольную точку $t\in T$ и произвольную её окрестность $U_t\in\tau$. По определению базы
+$$X=\{x_i:\ i\in\mathbb N_1\}\ \text{— образ}\ \mathbb N_1\ \text{при}\ i\mapsto x_i\ \Longrightarrow\ X\ \text{не более чем счётно},$$
 
-$$U_t=\bigcup_j U_{k_j},\qquad U_{k_j}\in\mathcal B.$$
+потому что образ [[schetnoe-mnozhestvo|счётного]] не более чем счётен ([день 3](/aii/matan/1/day/3)).
 
-Окрестность непуста — в ней лежит сама $t$, — значит непуст и хотя бы один член разложения; пусть это $U_{k_1}$ (здесь используется только то, что объединение пустых множеств пусто). Но из $U_{k_1}$ мы точку уже выбрали:
+Осталось проверить, что $X$ [[vsyudu-plotnoe|всюду плотно]]. Берём произвольные $t$ и $U_t$ и раскладываем окрестность по базе:
 
-$$x_{k_1}\in U_{k_1}\subset U_t,\qquad x_{k_1}\in X\ \Longrightarrow\ U_t\cap X\ne\varnothing.$$
+$$\forall t\in T\ \ \forall U_t\in\tau,\ U_t\ni t:\qquad U_t\ \overset{\text{определение базы}}{=}\ \bigcup_j U_{k_j},\qquad U_{k_j}\in\mathcal B,$$
+
+$$t\in U_t\ \Longrightarrow\ U_t\ne\varnothing\ \Longrightarrow\ \exists j:\ U_{k_j}\ne\varnothing\ \ \text{— пусть это}\ U_{k_1}$$
+
+(здесь используется только то, что объединение пустых множеств пусто). Но из $U_{k_1}$ мы точку уже выбрали:
+
+$$x_{k_1}\in U_{k_1}\subset U_t,\qquad x_{k_1}\in X\ \Longrightarrow\ U_t\cap X\ne\varnothing,$$
+
+$$\forall t\in T\ \ \forall U_t:\ U_t\cap X\ne\varnothing\ \iff\ X\ \text{всюду плотно в}\ T.$$
 
 Это ровно определение плотности через окрестности — доказывать больше нечего. Счётное всюду плотное множество построено, значит $T$ [[separabelnost|сепарабельно]]. $\qquad\blacksquare$
 
