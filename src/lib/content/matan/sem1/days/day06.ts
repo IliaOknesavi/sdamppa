@@ -125,11 +125,33 @@ $$x_i\ \text{замкнуты}\ \Longrightarrow\ \overline{x_i}\in\tau\ \overset
 
 $$\boxed{\ x\ \text{компонента}\ \Longrightarrow\ \overline x_S\ \text{компонента};\qquad K=\{x\in\tau:\ \overline x_S\in\tau\},\quad \#K<\infty\ \Rightarrow\ \#K\ \vdots\ 2\ }$$
 
-**Доказательство.** (1) По аксиоме 1 $\varnothing\in\tau$, по аксиоме 2 $S\in\tau$ — оба открыты. Их дополнения $\overline{\varnothing}_S=S$ и $\overline S_S=\varnothing$ тоже лежат в $\tau$, значит оба множества ещё и замкнуты. Открыто и замкнуто одновременно — это и есть компонента связности: две штуки достаются даром в любом пространстве.
+**Доказательство.**
 
-(2) Пусть $x\in\tau$ и $\overline x_S\in\tau$. Положим $y=\overline x_S$. Множество $y$ открыто — это ровно замкнутость $x$; и $\overline y_S=x\in\tau$, значит $y$ замкнуто (дополнение инволютивно: дополнение дополнения возвращает исходное множество). Обе половины определения выполнены.
+**(1) Две компоненты есть всегда.**
 
-(3) Разобьём семейство компонент на пары. По пункту (2) отображение $x\mapsto\overline x_S$ переводит это семейство в себя и совпадает со своим обратным. Неподвижных точек у него нет: равенство $x=\overline x_S$ дало бы сразу $x=x\cap\overline x_S=\varnothing$ и $x=x\cup\overline x_S=S$, то есть $S=\varnothing$ — противоречие с непустотой. Значит компоненты разбиваются на непересекающиеся пары вида $\{x,\ \overline x_S\}$, а если компонент конечное число, то оно чётно. $\qquad\blacksquare$`
+$$\varnothing\in\tau\ \ (\text{аксиома 1}),\qquad S\in\tau\ \ (\text{аксиома 2}),$$
+
+$$\overline{\varnothing}_S=S\in\tau\ \Longrightarrow\ \varnothing\ \text{замкнуто};\qquad \overline S_S=\varnothing\in\tau\ \Longrightarrow\ S\ \text{замкнуто}.$$
+
+Оба открыты и замкнуты одновременно, то есть оба — компоненты.
+
+**(2) Дополнение компоненты — компонента.** Пусть $x\in\tau$ и $\overline x_S\in\tau$; положим $y:=\overline x_S$.
+
+$$y=\overline x_S\in\tau\ \Longrightarrow\ y\ \text{открыто};\qquad \overline y_S=\overline{\overline x_S}_S=x\in\tau\ \Longrightarrow\ y\ \text{замкнуто}.$$
+
+Второй переход — инволютивность дополнения: $\overline{\overline x}=x$.
+
+**(3) Чётность.**
+
+$$\sigma:\ x\mapsto\overline x_S\ \overset{(2)}{\Longrightarrow}\ \sigma\ \text{переводит семейство компонент в себя},\qquad \sigma\circ\sigma=\mathrm{id}.$$
+
+$$x=\sigma(x)\ \Longrightarrow\ x=x\cap\overline x_S=\varnothing\ \ \text{и}\ \ x=x\cup\overline x_S=S\ \Longrightarrow\ S=\varnothing,$$
+
+что противоречит непустоте $S$. Значит неподвижных точек нет:
+
+$$\sigma\ \text{— инволюция без неподвижных точек}\ \Longrightarrow\ \text{компоненты разбиты на пары }\lbrace x,\overline x_S\rbrace$$
+
+$$\Longrightarrow\ \text{при конечном числе компонент это число чётно}.\qquad\blacksquare$$`
 		},
 		{
 			kind: 'note',

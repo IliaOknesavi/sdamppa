@@ -55,17 +55,21 @@ $$\forall\varepsilon>0\ \ \exists N\in\mathbb N_1:\ \forall n\in\mathbb N_1,\ n>
 
 $$\boxed{\;(4)\ \Longrightarrow\ (1)\iff(2)\iff(3)\iff(5)\;}$$
 
-**Доказательство.** Пойдём по цепочке, сворачивая каждую запись в соседнюю.
+**Доказательство.** Каждый переход — переписывание одной и той же строки в другой нотации.
 
-$(1)\iff(2)$: метрика порождена нормой, $\rho(x,y)=\lVert x-y\rVert$, поэтому под кванторами стоит буквально одно неравенство.
+$$(1)\iff(2):\qquad \rho(x,y)\overset{\text{метрика от нормы}}{=}\lVert x-y\rVert\ \Longrightarrow\ \rho(f(n),A)<\varepsilon\iff\lVert f(n)-A\rVert<\varepsilon.$$
 
-$(1)\iff(3)$: по определению открытого шара $B_A(\varepsilon)=\{x\in M:\ \rho(x,A)<\varepsilon\}$, так что «$f(n)\in B_A(\varepsilon)$» и «$\rho(f(n),A)<\varepsilon$» — две записи одной строки.
+$$(1)\iff(3):\qquad B_A(\varepsilon)\overset{\text{опр. шара}}{=}\lbrace x\in M:\ \rho(x,A)<\varepsilon\rbrace\ \Longrightarrow\ f(n)\in B_A(\varepsilon)\iff\rho(f(n),A)<\varepsilon.$$
 
-$(2)\iff(5)$: в $\mathbb R$ норма — это модуль, $\lVert x\rVert=|x|$.
+$$(2)\iff(5):\qquad M=\mathbb R\ \Longrightarrow\ \lVert x\rVert=|x|\ \Longrightarrow\ \lVert f(n)-A\rVert<\varepsilon\iff|f(n)-A|<\varepsilon.$$
 
-$(4)\Rightarrow(3)$: возьмём произвольное $\varepsilon>0$ и положим $U_A=B_A(\varepsilon)$ — это [[okrestnost|окрестность]] точки $A$, значит $\mathring U_A=B_A(\varepsilon)\setminus\{A\}$ допустима в записи 4. По ней $\exists N\ \forall n>N:\ f(n)\in\mathring U_A\subset B_A(\varepsilon)$ — а это и есть запись 3 (в проколотый шар попасть труднее, чем в целый).
+$$(4)\Rightarrow(3):\qquad \forall\varepsilon>0\ \ U_A:=B_A(\varepsilon)\ \overset{\text{шар открыт}}{\Longrightarrow}\ U_A\ \text{— окрестность }A,\quad \mathring U_A=B_A(\varepsilon)\setminus\lbrace A\rbrace,$$
 
-Обратная импликация $(3)\Rightarrow(4)$ **неверна** — контрпример в следующей секции. $\qquad\blacksquare$
+$$\overset{(4)}{\Longrightarrow}\ \exists N\ \forall n>N:\ f(n)\in\mathring U_A\subset B_A(\varepsilon)\ \Longrightarrow\ (3).$$
+
+Последнее включение и есть причина односторонности: в проколотый шар попасть труднее, чем в целый.
+
+$$(3)\Rightarrow(4):\qquad\text{неверно — контрпример в следующей секции}.\qquad\blacksquare$$
 
 За этим стоит иерархия сред: топологическое $\supset$ метрическое $\supset$ нормированное $\supset\mathbb R$. Запись 4 живёт в самой общей среде и потому не может опираться на числовой допуск, запись 5 — в самой частной, где расстояние вычисляется модулем.`
 		},

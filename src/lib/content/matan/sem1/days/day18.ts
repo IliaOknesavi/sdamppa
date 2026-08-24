@@ -91,15 +91,29 @@ $$\boxed{\operatorname{cl}A=A'\cup\operatorname{Isol}(A)}$$
 
 причём объединение дизъюнктно: $\operatorname{Isol}(A)=A\setminus A'$ по определению. Замыкание здесь понимается как $\operatorname{cl}A=A\cup\partial A$ — через [[granica|границу]].
 
-**Доказательство.** Приём — разбор по принадлежности точки множеству $A$; выколотость снимается там, где точка в $A$ не лежит.
+**Доказательство.** Приём — разбор по принадлежности точки множеству $A$: выколотость снимается там, где точка в $A$ не лежит.
 
-($\supset$) Включение $\operatorname{Isol}(A)\subset A$ — это определение $\operatorname{Isol}(A)=A\setminus A'$, а $A\subset\operatorname{cl}A=A\cup\partial A$ — включение в объединение; им же покрыт случай $x\in A'\cap A$. Пусть теперь $x\in A'$, но $x\notin A$. Любая $U_x$ содержит $\mathring U_x$, поэтому
+**($\supset$).** Два включения читаются прямо с определений:
 
-$$U_x\cap A\ \supset\ \mathring U_x\cap A\ne\varnothing;$$
+$$\operatorname{Isol}(A)\overset{\text{опр.}}{=}A\setminus A'\subset A,\qquad A\subset A\cup\partial A\overset{\text{опр.}}{=}\operatorname{cl}A.$$
 
-кроме того $x\in U_x$ и $x\in\overline A$ (черта — [[dopolnenie|дополнение]]), значит $U_x\cap\overline A\ne\varnothing$. Оба условия границы выполнены: $x\in\partial A\subset\operatorname{cl}A$.
+Ими же покрыт случай $x\in A'\cap A$. Остаётся $x\in A'$, $x\notin A$:
 
-($\subset$) Пусть $x\in A$ — тогда по дихотомии он лежит либо в $A'$, либо в $\operatorname{Isol}(A)$. Пусть теперь $x\in\partial A$ и $x\notin A$. Каждая $U_x$ пересекает $A$, а точка пересечения заведомо отлична от $x$ (сама $x$ в $A$ не лежит), поэтому $\mathring U_x\cap A=U_x\cap A\ne\varnothing$, то есть $x\in A'$. $\qquad\blacksquare$
+$$\mathring U_x\subset U_x\ \Longrightarrow\ U_x\cap A\ \supset\ \mathring U_x\cap A\ \overset{x\in A'}{\ne}\ \varnothing,$$
+
+$$x\in U_x,\ \ x\in\overline A\ \Longrightarrow\ U_x\cap\overline A\ne\varnothing,$$
+
+где черта — [[dopolnenie|дополнение]].
+
+$$\Longrightarrow\ \text{оба условия границы выполнены}\ \Longrightarrow\ x\in\partial A\subset\operatorname{cl}A.$$
+
+**($\subset$).**
+
+$$x\in A\ \overset{\text{дихотомия }A=A'\sqcup\operatorname{Isol}(A)}{\Longrightarrow}\ x\in A'\ \text{или}\ x\in\operatorname{Isol}(A);$$
+
+$$x\in\partial A,\ x\notin A\ \Longrightarrow\ \forall U_x:\ U_x\cap A\ne\varnothing,\quad\text{а точка пересечения}\ne x\ (\text{ибо }x\notin A),$$
+
+$$\Longrightarrow\ \mathring U_x\cap A=U_x\cap A\ne\varnothing\ \Longrightarrow\ x\in A'.\qquad\blacksquare$$
 
 Оговорка «не лежащая в $A$» во втором случае существенна. Без неё утверждение ложно: для $A=\{0\}\subset\mathbb R$ имеем $\partial A=\{0\}$, а $A'=\varnothing$. Соблазнительный короткий путь — заметить, что $\mathring U_x$ задевает $\overline A$, и перескочить отсюда к $A$ — не проходит: из $\mathring U_x\cap\overline A\ne\varnothing$ про пересечение с $A$ не следует ничего. Верная общая форма — $\partial A\subset A'\cup\operatorname{Isol}(A)$, и всё, что «теряется» по сравнению с включением $\partial A\subset A'$, оседает ровно в изолированных точках.`
 		},
