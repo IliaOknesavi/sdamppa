@@ -112,7 +112,7 @@ $$f_n(x)=\begin{cases}5,&|x|<\frac1n,\\0,&|x|\geqslant\frac1n,\end{cases}\qquad 
 		{
 			kind: 'theorem',
 			heading: 'Сжатие: классическая теорема через критерий и обобщение на метрические пространства',
-			body: String.raw`**Теорема (о [[teorema-o-szhatoy-funkcii|сжатой функции]]).** Пусть $f,g,h\in\operatorname{End}(\mathbb R)$, $f(x)\leqslant h(x)\leqslant g(x)$ при всех $x\in\mathring B_{x_0}(r)$ и $\lim_{x\to x_0}f=\lim_{x\to x_0}g=A$. Тогда
+			body: String.raw`**Теорема (о [[teorema-o-szhatoy-funkcii|сжатой функции]]).** Пусть $f,g,h$ определены на выколотом шаре $\mathring B_{x_0}(r)$ (в самой точке $x_0$ — не обязательно), $f(x)\leqslant h(x)\leqslant g(x)$ при всех $x\in\mathring B_{x_0}(r)$ и $\lim_{x\to x_0}f=\lim_{x\to x_0}g=A$. Тогда
 
 $$\boxed{\ \lim_{x\to x_0}h(x)=A.\ }$$
 

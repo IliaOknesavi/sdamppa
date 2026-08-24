@@ -46,9 +46,9 @@ export const day26Terms: Glossary = {
 	neogranichennost: {
 		id: 'neogranichennost',
 		term: 'Неограниченность последовательности',
-		short: String.raw`Почти все члены выходят из любого шара (или любой окрестности $U_t\ne T$).`,
+		short: String.raw`Почти все члены выходят из любого шара и больше в него не возвращаются.`,
 		formula: String.raw`\forall\varepsilon>0\ \forall m\in M\ \exists N\ \forall n>N:\ \rho(x_n,m)>\varepsilon`,
-		body: String.raw`**Неограниченность** дана в двух версиях. Метрическая: для любой точки $m$ почти все члены лежат вне [[shar|шара]] $B_m(\varepsilon)$. Топологическая: $\forall t\in T\ \forall U_t\ne T\ \exists N\ \forall n>N:\ x_n\notin U_t$, причём оговорка $U_t\ne T$ обязательна — иначе условие $x_n\notin T$ невыполнимо. Через неё определяется [[beskonechnyy-predel|бесконечный предел]] и в метрическом, и в [[topologicheskoe-prostranstvo|топологическом пространстве]].`,
+		body: String.raw`**Неограниченность** — метрическое понятие: для любой точки $m$ почти все члены лежат вне [[shar|шара]] $B_m(\varepsilon)$. Топология её не различает, поэтому топологической версии нет. Через неограниченность определяется [[beskonechnyy-predel|бесконечный предел]].`,
 		related: ['beskonechnyy-predel', 'metricheskoe-prostranstvo', 'topologicheskoe-prostranstvo', 'shar']
 	},
 

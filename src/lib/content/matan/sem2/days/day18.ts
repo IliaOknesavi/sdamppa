@@ -157,11 +157,7 @@ $$S'\subset S,\quad S\subset\bigcup_k I_k,\ \ \sum_k|I_k|<\varepsilon\quad\Longr
 
 $$\forall j\ \ \exists\,\lbrace I_{j,k}\rbrace_{k\in\mathbb N_1}:\qquad S_j\subset\bigcup_k I_{j,k},\qquad \sum_k|I_{j,k}|<\frac{\varepsilon}{2^{\,j+1}}.$$
 
-Счётность объединённого семейства — явная нумерация пар слоями $w=j+k$:
-
-$$\nu(j,k)=\frac{(w-1)(w-2)}{2}+j,\qquad 1\le j\le w-1,$$
-
-$$\nu\ \text{инъективна}\quad\Longrightarrow\quad \lbrace I_{j,k}\rbrace_{j,k}\ \text{не более чем счётно}.$$
+Объединённое семейство $\lbrace I_{j,k}\rbrace_{j,k}$ не более чем счётно: это образ $\mathbb N_1\times\mathbb N_1$, а [пара натуральных нумеруется явной формулой](/aii/matan/1/day/3).
 
 Оценка произвольной конечной подсемьи $F$:
 
