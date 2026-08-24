@@ -99,29 +99,49 @@ $$\bigl|\langle\vec a\mid\vec b\rangle\bigr|\le\|\vec a\|\cdot\|\vec b\|,$$
 
 причём равенство достигается тогда и только тогда, когда векторы **коллинеарны**, то есть один из них равен скалярному кратному другого: $\vec a=\mu\vec b$ или $\vec b=\mu\vec a$ при некотором $\mu\in\mathbb R$. Определения коллинеарности в курсе до сих пор не было, поэтому оно и выписано здесь; из него сразу видно, что $\bar0$ коллинеарен любому вектору ($\bar0=0\cdot\vec a$).
 
-**Доказательство.** Обе участвующие величины — суммы по координатам: [[braket|скалярное произведение]] есть $\langle\vec u\mid\vec v\rangle=\sum_i u_iv_i$, а квадрат [[evklidova-norma|евклидовой нормы]] — $\|\vec u\|^{2}=\sum_i u_i^{2}=\langle\vec u\mid\vec u\rangle$. Поэтому всё, что ниже называется раскрытием скобки, есть почленное раскрытие суммы квадратов.
+**Доказательство.**
 
-Случай $\vec b=\bar0$ разберём сразу: обе части равны нулю ($\langle\vec a\mid\bar0\rangle=\sum_i a_i\cdot0=0$ и $\|\bar0\|=0$), то есть равенство выполнено; коллинеарность тоже выполнена — $\vec b=0\cdot\vec a$, — так что обе стороны «$\iff$» здесь истинны и критерий верен. Симметрично разбирается $\vec a=\bar0$. Дальше $\vec b\ne\bar0$; пусть $t\in\mathbb R$:
+$$\langle\vec u\mid\vec v\rangle=\sum_i u_iv_i,\qquad\|\vec u\|^{2}=\sum_i u_i^{2}=\langle\vec u\mid\vec u\rangle.$$
 
-$$0\le\|\vec a+t\vec b\|^{2}=\sum_i(a_i+tb_i)^{2}=\sum_i a_i^{2}+2t\sum_i a_ib_i+t^{2}\sum_i b_i^{2}=\|\vec a\|^{2}+2t\,\langle\vec a\mid\vec b\rangle+t^{2}\|\vec b\|^{2}.$$
+Обе участвующие величины — суммы по координатам: [[braket|скалярное произведение]] и квадрат [[evklidova-norma|евклидовой нормы]]. Поэтому всё, что ниже называется раскрытием скобки, есть почленное раскрытие суммы квадратов.
 
-Справа — квадратный трёхчлен от $t$ со старшим коэффициентом $\|\vec b\|^{2}>0$, неотрицательный при всех $t$. Значит его дискриминант неположителен: будь он положителен, у трёхчлена нашлись бы два различных корня $t_1<t_2$, а в середине между ними значение было бы отрицательным — противоречие с неотрицательностью. Итак,
+$$\vec b=\bar0\ \Longrightarrow\ \bigl|\langle\vec a\mid\bar0\rangle\bigr|=\Bigl|\sum_i a_i\cdot0\Bigr|=0,\qquad\|\vec a\|\cdot\|\bar0\|=\|\vec a\|\cdot0=0\ \Longrightarrow\ \text{равенство};\qquad\vec b=0\cdot\vec a\ \Longrightarrow\ \text{коллинеарность}.$$
 
-$$4\,\langle\vec a\mid\vec b\rangle^{2}-4\,\|\vec a\|^{2}\|\vec b\|^{2}\le0,$$
+Обе стороны «$\iff$» здесь истинны, критерий верен; симметрично разбирается $\vec a=\bar0$. Дальше $\vec b\ne\bar0$.
 
-что после деления на $4$ и извлечения корня и даёт неравенство.
+$$\forall t\in\mathbb R:\quad 0\le\|\vec a+t\vec b\|^{2}=\sum_i(a_i+tb_i)^{2}=\sum_i a_i^{2}+2t\sum_i a_ib_i+t^{2}\sum_i b_i^{2}=\underbrace{\|\vec b\|^{2}}_{>0}\,t^{2}+2\,\langle\vec a\mid\vec b\rangle\,t+\|\vec a\|^{2}=:P(t);$$
 
-Равенство означает нулевой дискриминант, то есть у трёхчлена есть корень $t_0$, и в нём $\|\vec a+t_0\vec b\|^{2}=0$. По [невырожденности нормы](/aii/matan/1/day/9) отсюда $\vec a=-t_0\vec b$ — векторы коллинеарны. Обратно, при $\vec a=\mu\vec b$ обе части равны $|\mu|\,\|\vec b\|^{2}$; вторая форма коллинеарности, $\vec b=\mu\vec a$, разбирается той же строкой с переставленными буквами (обе части равны $|\mu|\,\|\vec a\|^{2}$). $\qquad\blacksquare$
+$$D:=4\,\langle\vec a\mid\vec b\rangle^{2}-4\,\|\vec a\|^{2}\|\vec b\|^{2};\qquad D>0\ \Longrightarrow\ \exists\,t_1<t_2:\ P(t_1)=P(t_2)=0\ \Longrightarrow\ P\Bigl(\frac{t_1+t_2}{2}\Bigr)<0\ \Longrightarrow\ \text{противоречие с }\forall t:\ P(t)\ge0;$$
 
-**Доказательство.** Оценим скалярное произведение [[neravenstvo-koshi-bunyakovskogo|неравенством Коши–Буняковского]]: для любого единичного $\vec l$
+$$\Longrightarrow\ D\le0\ \overset{:\,4,\ \sqrt{\phantom{x}}}{\Longrightarrow}\ \bigl|\langle\vec a\mid\vec b\rangle\bigr|\le\|\vec a\|\cdot\|\vec b\|.$$
 
-$$|f'_{\vec l}|=\bigl|\langle\vec\nabla f\mid\vec l\,\rangle\bigr|\le\|\vec\nabla f\|\cdot\|\vec l\|=\|\vec\nabla f\|,$$
+Справа в первой выкладке стоит квадратный трёхчлен от $t$ со старшим коэффициентом $\|\vec b\|^{2}>0$, неотрицательный при всех $t$; вторая выкладка — разбор случая $D>0$, который и вынуждает $D\le0$.
 
-то есть быстрее $\|\vec\nabla f\|$ поле не растёт ни в каком направлении. Граница достигается: подставим $\vec l_0=\vec\nabla f/\|\vec\nabla f\|$ (он единичный — здесь и нужно $\vec\nabla f\ne\bar0$, иначе делить не на что) и вынесем скаляр из скобки, что законно по той же покоординатной записи $\langle\vec u\mid\lambda\vec v\rangle=\sum_i u_i\lambda v_i=\lambda\langle\vec u\mid\vec v\rangle$:
+$$\bigl|\langle\vec a\mid\vec b\rangle\bigr|=\|\vec a\|\cdot\|\vec b\|\iff D=0\ \Longrightarrow\ \exists t_0:\ \|\vec a+t_0\vec b\|^{2}=P(t_0)=0\ \overset{\text{невырожд. нормы}}{\Longrightarrow}\ \vec a=-t_0\vec b\ \Longrightarrow\ \text{коллинеарность};$$
 
-$$f'_{\vec l_0}=\Bigl\langle\vec\nabla f\ \Big|\ \frac{\vec\nabla f}{\|\vec\nabla f\|}\Bigr\rangle=\frac{\langle\vec\nabla f\mid\vec\nabla f\rangle}{\|\vec\nabla f\|}=\frac{\|\vec\nabla f\|^2}{\|\vec\nabla f\|}=\|\vec\nabla f\|.$$
+$$\vec a=\mu\vec b\ \Longrightarrow\ \bigl|\langle\vec a\mid\vec b\rangle\bigr|=|\mu|\,\|\vec b\|^{2}=\|\vec a\|\cdot\|\vec b\|,\qquad\vec b=\mu\vec a\ \Longrightarrow\ \bigl|\langle\vec a\mid\vec b\rangle\bigr|=|\mu|\,\|\vec a\|^{2}=\|\vec a\|\cdot\|\vec b\|.\qquad\blacksquare$$
 
-Осталась единственность. Равенство в неравенстве Коши–Буняковского возможно только при коллинеарности, а из двух её форм обе дают здесь одно и то же: вторая форма $\vec\nabla f=\mu\vec l$ вынуждает $\mu\ne0$ (иначе $\vec\nabla f=\bar0$, что исключено условием), и тогда $\vec l=\frac1\mu\vec\nabla f$. Значит в любом случае $\vec l=\lambda\vec\nabla f$; из $\|\vec l\|=1$ следует $\lambda=\pm1/\|\vec\nabla f\|$, причём знак $+$ даёт $+\|\vec\nabla f\|$, знак $-$ — минимум $-\|\vec\nabla f\|$. Других направлений с этими значениями нет. $\qquad\blacksquare$`
+Пометка «невырожд. нормы» — это [невырожденность нормы](/aii/matan/1/day/9); вторая форма коллинеарности разбирается той же строкой с переставленными буквами.
+
+**Доказательство.**
+
+$$\forall\vec l,\ \|\vec l\|=1:\qquad|f'_{\vec l}|=\bigl|\langle\vec\nabla f\mid\vec l\,\rangle\bigr|\overset{\text{К.-Б.}}{\le}\|\vec\nabla f\|\cdot\|\vec l\|=\|\vec\nabla f\|,$$
+
+то есть быстрее $\|\vec\nabla f\|$ поле не растёт ни в каком направлении; пометка «К.-Б.» — [[neravenstvo-koshi-bunyakovskogo|неравенство Коши–Буняковского]].
+
+$$\vec\nabla f\ne\bar0\ \Longrightarrow\ \vec l_0:=\frac{\vec\nabla f}{\|\vec\nabla f\|}\ \text{определён},\qquad\|\vec l_0\|=\frac{\|\vec\nabla f\|}{\|\vec\nabla f\|}=1;$$
+
+$$f'_{\vec l_0}=\Bigl\langle\vec\nabla f\ \Big|\ \frac{\vec\nabla f}{\|\vec\nabla f\|}\Bigr\rangle\overset{\text{вынос скаляра}}{=}\frac{\langle\vec\nabla f\mid\vec\nabla f\rangle}{\|\vec\nabla f\|}=\frac{\|\vec\nabla f\|^2}{\|\vec\nabla f\|}=\|\vec\nabla f\|.$$
+
+Вынос скаляра законен по той же покоординатной записи: $\langle\vec u\mid\lambda\vec v\rangle=\sum_i u_i\lambda v_i=\lambda\langle\vec u\mid\vec v\rangle$. Условие $\vec\nabla f\ne\bar0$ работает ровно здесь: иначе делить не на что.
+
+$$|f'_{\vec l}|=\|\vec\nabla f\|\ \overset{\text{равенство в К.-Б.}}{\Longrightarrow}\ \vec l=\mu\vec\nabla f\ \ \text{или}\ \ \vec\nabla f=\mu\vec l;$$
+
+$$\vec\nabla f=\mu\vec l\ \wedge\ \vec\nabla f\ne\bar0\ \Longrightarrow\ \mu\ne0\ \Longrightarrow\ \vec l=\tfrac1\mu\,\vec\nabla f\ \Longrightarrow\ \exists\lambda:\ \vec l=\lambda\vec\nabla f;$$
+
+$$\|\vec l\|=1\ \Longrightarrow\ |\lambda|\cdot\|\vec\nabla f\|=1\ \Longrightarrow\ \lambda=\pm\frac{1}{\|\vec\nabla f\|}\ \Longrightarrow\ \vec l=\pm\vec l_0,\qquad f'_{+\vec l_0}=+\|\vec\nabla f\|,\quad f'_{-\vec l_0}=-\|\vec\nabla f\|.$$
+
+Из двух форм коллинеарности обе дают здесь одно и то же, поэтому других направлений с этими значениями нет. $\qquad\blacksquare$`
 		},
 		{
 			kind: 'theorem',
@@ -134,17 +154,29 @@ $$\boxed{\ \bigl\langle\vec\nabla f(\vec x_0)\ \big|\ \vec l\,\bigr\rangle=0\ }$
 
 Само множество уровня одно и то же во всех размерностях: [[liniya-urovnya|линия уровня]] поля двух переменных и [[poverhnost-urovnya|поверхность уровня]] поля трёх — это $\lbrace\vec x:\ f(\vec x)=c\rbrace$, на карте высот горизонталь, в пространстве — поверхность постоянной температуры или потенциала.
 
-**Доказательство.** Пойдём вдоль уровня и продифференцируем тождество. По определению уровня
+**Доказательство.**
 
-$$f\bigl(\vec\gamma(t)\bigr)=c\qquad\text{при всех }t.$$
+$$\forall t\in(-\delta;\delta):\qquad f\bigl(\vec\gamma(t)\bigr)=c.$$
 
-Слева композиция $f\circ\vec\gamma$, справа константа. Дифференцируем по $t$ — в этом и весь приём: тождество продифференцировано целиком. Справа [производная константы](/aii/matan/2/day/2) равна нулю, слева работает [[cepnoe-pravilo-pole|цепное правило для поля вдоль кривой]]: $\bigl(f\circ\vec\gamma\bigr)'(t)=\langle\vec\nabla f(\vec\gamma(t))\mid\vec\gamma\,'(t)\rangle$. Оно доказывается в [дне 9](/aii/matan/2/day/9), но применимо в точке $t$ не даром: там требуется дифференцируемость $f$ по Фреше в окрестности точки $\vec\gamma(t)$, а посылка теоремы даёт её лишь в окрестности $\vec x_0$. Поэтому сначала сузим промежуток параметра.
+Слева композиция $f\circ\vec\gamma$, справа константа; весь приём — продифференцировать это тождество по $t$ целиком.
 
-Пусть $U$ — та самая окрестность, в которой $f$ дифференцируема; возьмём $r>0$ с $B_{\vec x_0}(r)\subset U$. Кривая дифференцируема в нуле, то есть $\vec\gamma(t)-\vec\gamma(0)=\vec l\,t+\vec\varepsilon(t)$, где $\frac{\|\vec\varepsilon(t)\|}{|t|}\to0$. Из последнего найдётся $\delta_0>0$ с $\|\vec\varepsilon(t)\|\le|t|$ при $0<|t|<\delta_0$, и тогда по неравенству треугольника $\|\vec\gamma(t)-\vec x_0\|\le\bigl(\|\vec l\|+1\bigr)|t|$. Значит годится $\delta'=\min\bigl\{\delta,\ \delta_0,\ \frac{r}{\|\vec l\|+1}\bigr\}$: при $|t|<\delta'$ выходит $\|\vec\gamma(t)-\vec x_0\|<r$ (при $t=0$ левая часть нулевая). Для таких $t$ точка $\vec\gamma(t)$ лежит в открытом шаре $B_{\vec x_0}(r)\subset U$, поэтому $U$ — окрестность и точки $\vec\gamma(t)$, и цепное правило в ней законно. Значит при $|t|<\delta'$
+$$\bigl(f\circ\vec\gamma\bigr)'(t)=\bigl\langle\vec\nabla f(\vec\gamma(t))\mid\vec\gamma\,'(t)\bigr\rangle,\qquad(c)'_t=0.$$
 
-$$\bigl\langle\vec\nabla f(\vec\gamma(t))\mid\vec\gamma\,'(t)\bigr\rangle=0.$$
+Слева — [[cepnoe-pravilo-pole|цепное правило для поля вдоль кривой]] из [дня 9](/aii/matan/2/day/9), справа — [производная константы](/aii/matan/2/day/2). Даром цепное правило в точке $t$ не даётся: там требуется дифференцируемость $f$ по Фреше в окрестности точки $\vec\gamma(t)$, а посылка теоремы даёт её лишь в окрестности $\vec x_0$. Поэтому сначала сузим промежуток параметра.
 
-Ноль $t=0$ в этот промежуток входит, и при $t=0$ получаем $\langle\vec\nabla f(\vec x_0)\mid\vec l\,\rangle=0$, а после нормировки $\vec l$ до единичного это и означает $f'_{\vec l}(\vec x_0)=0$: вдоль уровня поле не растёт вовсе — что и не удивительно, ведь на уровне оно постоянно. Кривую мы брали произвольную, поэтому градиент ортогонален **всем** касательным направлениям множества уровня сразу, то есть всей касательной плоскости. $\qquad\blacksquare$
+$$U\ \text{— окрестность, в которой }f\ \text{дифференцируема},\qquad\exists r>0:\ B_{\vec x_0}(r)\subset U;$$
+
+$$\vec\gamma\ \text{дифф. в }0\ \Longrightarrow\ \vec\gamma(t)-\vec\gamma(0)=\vec l\,t+\vec\varepsilon(t),\quad\frac{\|\vec\varepsilon(t)\|}{|t|}\xrightarrow[t\to0]{}0\ \Longrightarrow\ \exists\delta_0>0\ \ \forall t,\ 0<|t|<\delta_0:\ \|\vec\varepsilon(t)\|\le|t|;$$
+
+$$\Longrightarrow\ \|\vec\gamma(t)-\vec x_0\|=\|\vec l\,t+\vec\varepsilon(t)\|\overset{\triangle}{\le}\|\vec l\|\,|t|+\|\vec\varepsilon(t)\|\le\bigl(\|\vec l\|+1\bigr)|t|;$$
+
+$$\delta':=\min\Bigl\lbrace\delta,\ \delta_0,\ \frac{r}{\|\vec l\|+1}\Bigr\rbrace\ \Longrightarrow\ \forall\,|t|<\delta':\ \|\vec\gamma(t)-\vec x_0\|<r\ \Longrightarrow\ \vec\gamma(t)\in B_{\vec x_0}(r)\subset U.$$
+
+Здесь $\triangle$ — неравенство треугольника, а при $t=0$ левая часть нулевая. Значит $U$ — окрестность и точки $\vec\gamma(t)$, и цепное правило в ней законно.
+
+$$\forall\,|t|<\delta':\quad\bigl\langle\vec\nabla f(\vec\gamma(t))\mid\vec\gamma\,'(t)\bigr\rangle=0\ \overset{t=0}{\Longrightarrow}\ \bigl\langle\vec\nabla f(\vec x_0)\mid\vec l\,\bigr\rangle=0\ \overset{\vec l\,\mapsto\,\vec l/\|\vec l\|}{\Longrightarrow}\ f'_{\vec l}(\vec x_0)=0.$$
+
+Ноль $t=0$ в этот промежуток входит, а последний переход — нормировка $\vec l$ до единичного. Вдоль уровня поле не растёт вовсе — что и не удивительно, ведь на уровне оно постоянно. Кривую мы брали произвольную, поэтому градиент ортогонален **всем** касательным направлениям множества уровня сразу, то есть всей касательной плоскости. $\qquad\blacksquare$
 
 Обе половины геометрии градиента — одно утверждение, прочитанное под разными углами: $f'_{\vec l}=\|\vec\nabla f\|\cos\alpha$ максимально при $\alpha=0$ и обращается в нуль при $\alpha=\pi/2$. Направления, вдоль которых ничего не набираешь, и образуют уровень.
 

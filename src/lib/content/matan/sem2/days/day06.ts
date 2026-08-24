@@ -36,23 +36,35 @@ $$\boxed{\ \exists\lim_{n\to\infty}\frac{x_n}{y_n}=\lim_{n\to\infty}\frac{x_{n+1
 
 Первые два условия не лишние: при отказе от любого из них равенство становится ложным. Третье устроено иначе — оно стоит в посылке, и без него у правой части предела попросту нет; зато выясняется, что обратная импликация неверна. Всё это — в следующей секции.
 
-**Доказательство** (конечный $\theta$). Приём — **телескопировать числитель и оценить каждое звено одним и тем же $\varepsilon$**. По $\varepsilon>0$ возьмём $N_1(\varepsilon)$ из условия 3: при $k>N_1$
+**Доказательство** (конечный $\theta$). Приём — **телескопировать числитель и оценить каждое звено одним и тем же $\varepsilon$**.
 
-$$\left|\frac{x_{k+1}-x_k}{y_{k+1}-y_k}-\theta\right|<\frac\varepsilon2\ \iff\ \bigl|(x_{k+1}-x_k)-\theta(y_{k+1}-y_k)\bigr|<\frac\varepsilon2\,(y_{k+1}-y_k)$$
+$$\forall\varepsilon>0\ \ \exists N_1(\varepsilon)\ \ \forall k>N_1:\qquad\left|\frac{x_{k+1}-x_k}{y_{k+1}-y_k}-\theta\right|<\frac\varepsilon2\ \overset{y_{k+1}-y_k>0}{\iff}\ \bigl|(x_{k+1}-x_k)-\theta(y_{k+1}-y_k)\bigr|<\frac\varepsilon2\,(y_{k+1}-y_k).$$
 
-(домножение на $y_{k+1}-y_k$ не переворачивает неравенство только потому, что эта разность **положительна** — вот единственное место, где работает строгая монотонность). Зафиксируем номер $m>N_1$ настолько большой, что $y_m>0$ и что начиная с него $\{y_n\}$ строго возрастает (первое даёт условие 2, второе — условие 1); тогда $y_{k+1}-y_k>0$ при $k\ge m$ и $y_n>y_m>0$ при $n>m$. Сложим неравенства по $k=m,\dots,n-1$ — слева сумма телескопируется, а модуль суммы не превосходит суммы модулей:
+$$\exists m>N_1:\ \ y_m>0\ \wedge\ \forall k\ge m\ \ y_{k+1}>y_k\qquad\Longrightarrow\qquad\forall k\ge m\ \ y_{k+1}-y_k>0,\qquad\forall n>m\ \ y_n>y_m>0.$$
 
-$$\bigl|x_n-x_m-\theta(y_n-y_m)\bigr|\leqslant\sum_{k=m}^{n-1}\bigl|(x_{k+1}-x_k)-\theta(y_{k+1}-y_k)\bigr|<\frac\varepsilon2(y_n-y_m)<\frac\varepsilon2\,y_n.$$
+$$\overset{\text{сумма по }k=m,\dots,n-1}{\Longrightarrow}\quad\bigl|x_n-x_m-\theta(y_n-y_m)\bigr|\overset{\text{телескоп},\ \text{нер-во треуг.}}{\leqslant}\sum_{k=m}^{n-1}\bigl|(x_{k+1}-x_k)-\theta(y_{k+1}-y_k)\bigr|<\frac\varepsilon2(y_n-y_m)<\frac\varepsilon2\,y_n.$$
 
-Делим на $y_n>0$ и переносим фиксированный «хвост начала» вправо:
+$$\overset{:\ y_n>0}{\Longrightarrow}\quad\left|\frac{x_n}{y_n}-\theta\right|\leqslant\frac{|x_m-\theta y_m|}{y_n}+\frac\varepsilon2.$$
 
-$$\left|\frac{x_n}{y_n}-\theta\right|\leqslant\frac{|x_m-\theta y_m|}{y_n}+\frac\varepsilon2.$$
-
-Номер $m$ уже зафиксирован, поэтому $|x_m-\theta y_m|$ — константа, а $y_n\to+\infty$; значит есть $N_2(\varepsilon)$ с $\frac{|x_m-\theta y_m|}{y_n}<\frac\varepsilon2$ при $n>N_2$. Номер выписывается явно:
+$$|x_m-\theta y_m|=\mathrm{const}\ \wedge\ y_n\to+\infty\ \Longrightarrow\ \exists N_2(\varepsilon)\ \forall n>N_2:\ \frac{|x_m-\theta y_m|}{y_n}<\frac\varepsilon2\ \Longrightarrow\ \left|\frac{x_n}{y_n}-\theta\right|<\varepsilon,$$
 
 $$N(\varepsilon)=\max\bigl\{m,\ N_2(\varepsilon)\bigr\},\qquad m=m\bigl(N_1(\varepsilon)\bigr).$$
 
-Случай $\theta=+\infty$ сводится к доказанному. Зафиксируем номер $m$, начиная с которого выполнено сразу три требования: $\{y_n\}$ строго возрастает (условие 1), $y_m>0$ (условие 2) и разностное отношение больше единицы (условие 3 при $\theta=+\infty$); каждое из трёх верно начиная со своего номера, поэтому годится максимум этих трёх номеров. Тогда $y_{k+1}-y_k>0$ при $k\ge m$, и домножение неравенства $\frac{x_{k+1}-x_k}{y_{k+1}-y_k}>1$ на эту положительную разность даёт $x_{k+1}-x_k>y_{k+1}-y_k>0$ при $k\ge m$; сложив по $k=m,\dots,n-1$, получаем $x_n-x_m>y_n-y_m$, поэтому $\{x_n\}$ строго возрастает начиная с $m$ и вместе с $\{y_n\}$ уходит в $+\infty$. У перевёрнутой пары $(y,x)$ разностное отношение $\frac{y_{k+1}-y_k}{x_{k+1}-x_k}$ обратно бесконечно большой величине, а [обратная к бесконечно большой бесконечно мала](/aii/matan/1/day/16), то есть стремится к нулю. Все три условия для пары $(y,x)$ выполнены, и по уже доказанному $\frac{y_n}{x_n}\to0$; члены этой дроби положительны начиная с некоторого номера (обе последовательности уходят в $+\infty$, поэтому каждая рано или поздно становится положительной), а величина, обратная бесконечно малой, бесконечно велика — значит $\frac{x_n}{y_n}\to+\infty$. Случай $\theta=-\infty$ — замена $x_n$ на $-x_n$. $\qquad\blacksquare$`
+Домножение на $y_{k+1}-y_k$ в первой строке не переворачивает неравенство только потому, что эта разность **положительна** — вот единственное место, где работает строгая монотонность. Во второй строке $y_m>0$ даёт условие 2, а строгий рост начиная с $m$ — условие 1. В третьей слева сумма телескопируется, а модуль суммы не превосходит суммы модулей; в четвёртой фиксированный «хвост начала» перенесён вправо, и он константа, потому что номер $m$ уже зафиксирован.
+
+Случай $\theta=+\infty$ сводится к доказанному.
+
+$$\exists m:\qquad\bigl[\forall k\ge m\ \ y_{k+1}>y_k\bigr]\ \wedge\ y_m>0\ \wedge\ \Bigl[\forall k\ge m\ \ \frac{x_{k+1}-x_k}{y_{k+1}-y_k}>1\Bigr].$$
+
+$$\forall k\ge m:\ y_{k+1}-y_k>0\ \overset{\cdot\,(y_{k+1}-y_k)}{\Longrightarrow}\ x_{k+1}-x_k>y_{k+1}-y_k>0\ \overset{\text{сумма по }k=m,\dots,n-1}{\Longrightarrow}\ x_n-x_m>y_n-y_m$$
+
+$$\Longrightarrow\ \{x_n\}\ \text{строго возрастает при }n\ge m\ \wedge\ x_n\to+\infty.$$
+
+$$\frac{y_{k+1}-y_k}{x_{k+1}-x_k}=\Bigl(\frac{x_{k+1}-x_k}{y_{k+1}-y_k}\Bigr)^{-1}\ \overset{\text{обратная к б. б.}}{\longrightarrow}\ 0\ \Longrightarrow\ \text{для пары }(y,x)\ \text{верны условия 1–3}\ \Longrightarrow\ \frac{y_n}{x_n}\to0.$$
+
+$$\frac{y_n}{x_n}>0\ (n\ \text{велико})\ \wedge\ \frac{y_n}{x_n}\to0\ \overset{\text{обратная к б. м.}}{\Longrightarrow}\ \frac{x_n}{y_n}\to+\infty;\qquad\theta=-\infty:\ \ x_n\mapsto-x_n.\qquad\blacksquare$$
+
+Каждое из трёх требований к номеру $m$ верно начиная со своего номера (условие 1, условие 2 и условие 3 при $\theta=+\infty$), поэтому годится максимум этих трёх номеров. Дальше работает то, что [обратная к бесконечно большой бесконечно мала](/aii/matan/1/day/16); члены дроби $\frac{y_n}{x_n}$ положительны начиная с некоторого номера, потому что обе последовательности уходят в $+\infty$ и каждая рано или поздно становится положительной, а величина, обратная бесконечно малой, бесконечно велика.`
 		},
 		{
 			kind: 'note',
@@ -87,25 +99,45 @@ $$\boxed{\ \exists\lim_{x\to x_0}\frac{f(x)}{g(x)}=\lim_{x\to x_0}\frac{f'(x)}{g
 
 **Доказательство** (случай $\frac00$, конечное $x_0$). Приём — **теорема Коши меняет отношение функций на отношение производных, а Гейне переносит предел**.
 
-*Шаг 1.* Доопределим $f(x_0)=g(x_0)=0$. Это законно: значение в самой точке на $\lim\frac fg$ не влияет, аргумент берётся из выколотой окрестности. Зато теперь $f$ и $g$ непрерывны в $x_0$ — ровно потому, что их пределы нулевые.
+*Шаг 1.*
 
-*Шаг 2.* Возьмём $x\in\mathring U_{x_0}$ и применим [[teorema-koshi-o-srednem|теорему Коши]] к отрезку с концами $x_0$ и $x$. Условия проверяются по очереди: внутри отрезка обе функции дифференцируемы по (a), а значит и [непрерывны](/aii/matan/2/day/1); в самой $x_0$ непрерывность дал шаг 1, в $x$ — та же дифференцируемость; $g'\ne0$ внутри — это (b). Именно в такой, ослабленной форме теорема Коши и [доказана в дне 5](/aii/matan/2/day/5): класс $C^1$ ей не нужен. Получаем точку $c=c(x)$ строго между $x_0$ и $x$:
+$$f(x_0):=0,\ \ g(x_0):=0\ \overset{\text{(c)}}{\Longrightarrow}\ \lim_{x\to x_0}f=0=f(x_0),\ \ \lim_{x\to x_0}g=0=g(x_0)\ \Longrightarrow\ f,g\ \text{непрерывны в }x_0.$$
 
-$$\frac{f(x)}{g(x)}=\frac{f(x)-f(x_0)}{g(x)-g(x_0)}=\frac{f'(c)}{g'(c)}.$$
+Доопределение законно: значение в самой точке на $\lim\frac fg$ не влияет, аргумент берётся из выколотой окрестности.
 
-Знаменатель слева не ноль: будь $g(x)=g(x_0)$, [[teorema-rollya|теорема Ролля]] ([день 5](/aii/matan/2/day/5), в той же ослабленной форме) дала бы внутреннюю точку с $g'=0$, чего условие (b) не допускает.
+*Шаг 2.*
 
-*Шаг 3.* Возьмём произвольную $x_n\to x_0$, $x_n\ne x_0$, $x_n\in\mathring U_{x_0}$ — работаем [[predelnyy-perekhod-po-geyne|по Гейне]] ([определение и его равносильность записи Коши — первый семестр](/aii/matan/1/day/26)). Каждому $x_n$ отвечает своя $c_n=c(x_n)$, **зажатая** между $x_0$ и $x_n$, поэтому $0<|c_n-x_0|<|x_n-x_0|\to0$: последовательность $\{c_n\}$ допустима для предела (d). Пусть $\varepsilon>0$ и $\delta(\varepsilon)$ — из (d): $\bigl|\frac{f'(t)}{g'(t)}-\theta\bigr|<\varepsilon$ при $t\in\mathring B_{x_0}(\delta)$. Возьмём $N(\varepsilon)=N_x\bigl(\delta(\varepsilon)\bigr)$ — номер, начиная с которого $|x_n-x_0|<\delta$. Тогда $c_n$ попадает в тот же шар, и при $n>N$
+$$\forall x\in\mathring U_{x_0}:\qquad\text{(a)}\ \wedge\ \text{шаг 1}\ \wedge\ \text{(b)}\ \overset{\text{Коши}}{\Longrightarrow}\ \exists\,c=c(x)\ \text{строго между }x_0\ \text{и}\ x:$$
 
-$$\left|\frac{f(x_n)}{g(x_n)}-\theta\right|=\left|\frac{f'(c_n)}{g'(c_n)}-\theta\right|<\varepsilon.$$
+$$\frac{f(x)}{g(x)}\overset{f(x_0)=g(x_0)=0}{=}\frac{f(x)-f(x_0)}{g(x)-g(x_0)}=\frac{f'(c)}{g'(c)}.$$
 
-Последовательность была произвольной, значит по Гейне $\lim\frac fg=\theta$ с явной формулой $N(\varepsilon)=N_x\bigl(\delta_{f'/g'}(\varepsilon)\bigr)$.
+$$g(x)=g(x_0)\ \overset{\text{Ролль}}{\Longrightarrow}\ \exists\,\xi\ \text{строго между }x_0\ \text{и}\ x:\ g'(\xi)=0\ \overset{\text{(b)}}{\Longrightarrow}\ \text{противоречие}\ \Longrightarrow\ g(x)-g(x_0)\ne0.$$
 
-*Шаг 4 (бесконечное $\theta$).* Шаги 1 и 2 к величине $\theta$ не обращались: тождество $\frac{f(x)}{g(x)}=\frac{f'(c(x))}{g'(c(x))}$ с точкой $c(x)$ строго между $x_0$ и $x$ доказано для всех $x\in\mathring U_{x_0}$ независимо от того, конечен предел (d) или нет. Пусть $\theta=+\infty$; это значит, что по каждому $M$ найдётся $\delta(M)>0$, для которого $\mathring B_{x_0}(\delta)\subset\mathring U_{x_0}$ и $\frac{f'(t)}{g'(t)}>M$ при всех $t\in\mathring B_{x_0}(\delta)$. Возьмём любое $x$ из этого шара: точка $c(x)$ зажата между $x_0$ и $x$, поэтому лежит в том же шаре, и
+Условия [[teorema-koshi-o-srednem|теоремы Коши]] на отрезке с концами $x_0$ и $x$ проверяются по очереди: внутри отрезка обе функции дифференцируемы по (a), а значит и [непрерывны](/aii/matan/2/day/1); в самой $x_0$ непрерывность дал шаг 1, в $x$ — та же дифференцируемость; $g'\ne0$ внутри — это (b). Именно в такой, ослабленной форме теорема Коши и [доказана в дне 5](/aii/matan/2/day/5): класс $C^1$ ей не нужен. Последняя строка — про то, что знаменатель слева не ноль; работает в ней [[teorema-rollya|теорема Ролля]] ([день 5](/aii/matan/2/day/5), в той же ослабленной форме).
 
-$$\frac{f(x)}{g(x)}=\frac{f'(c(x))}{g'(c(x))}>M.$$
+*Шаг 3.*
 
-Это ровно определение $\lim_{x\to x_0}\frac fg=+\infty$, причём с той же самой $\delta(M)$ — никакого перехода по Гейне здесь даже не нужно. Запись «$=+\infty$» читается здесь по порядку [[rasshirennaya-pryamaya|расширенной прямой]] — «рано или поздно больше любого $M$», — а не через беззнаковую неограниченность [дня 26 первого семестра](/aii/matan/1/day/26); ровно в этом смысле $+\infty$ уже употреблялся выше, в теореме Штольца. Случай $\theta=-\infty$ сводится заменой $f$ на $-f$: у пары $(-f,g)$ условия (a)–(c) те же, а отношение производных стремится к $+\infty$, значит $\frac{-f}{g}\to+\infty$, то есть $\frac fg\to-\infty$.
+$$\forall\{x_n\}:\ x_n\to x_0,\ x_n\ne x_0,\ x_n\in\mathring U_{x_0};\qquad c_n:=c(x_n)\ \Longrightarrow\ 0<|c_n-x_0|<|x_n-x_0|\to0.$$
+
+$$\text{(d)}\ \Longrightarrow\ \forall\varepsilon>0\ \exists\delta(\varepsilon):\ t\in\mathring B_{x_0}(\delta)\ \Longrightarrow\ \left|\frac{f'(t)}{g'(t)}-\theta\right|<\varepsilon;\qquad N(\varepsilon):=N_x\bigl(\delta(\varepsilon)\bigr).$$
+
+$$n>N\ \Longrightarrow\ |x_n-x_0|<\delta\ \Longrightarrow\ c_n\in\mathring B_{x_0}(\delta)\ \Longrightarrow\ \left|\frac{f(x_n)}{g(x_n)}-\theta\right|\overset{\text{шаг 2}}{=}\left|\frac{f'(c_n)}{g'(c_n)}-\theta\right|<\varepsilon$$
+
+$$\overset{\text{Гейне}}{\Longrightarrow}\ \lim_{x\to x_0}\frac fg=\theta,\qquad N(\varepsilon)=N_x\bigl(\delta_{f'/g'}(\varepsilon)\bigr).$$
+
+Работаем [[predelnyy-perekhod-po-geyne|по Гейне]] ([определение и его равносильность записи Коши — первый семестр](/aii/matan/1/day/26)). Каждая точка $c_n$ **зажата** между $x_0$ и $x_n$ — потому последовательность $\{c_n\}$ и допустима для предела (d); $N_x(\delta)$ — номер, начиная с которого $|x_n-x_0|<\delta$. Последовательность $\{x_n\}$ была произвольной.
+
+*Шаг 4 (бесконечное $\theta$).*
+
+$$\text{шаги 1–2 не обращались к }\theta\ \Longrightarrow\ \forall x\in\mathring U_{x_0}:\ \ \frac{f(x)}{g(x)}=\frac{f'(c(x))}{g'(c(x))},\quad c(x)\ \text{строго между }x_0\ \text{и}\ x.$$
+
+$$\theta=+\infty\ \Longrightarrow\ \forall M\ \exists\delta(M)>0:\ \mathring B_{x_0}(\delta)\subset\mathring U_{x_0}\ \wedge\ \forall t\in\mathring B_{x_0}(\delta)\ \ \frac{f'(t)}{g'(t)}>M.$$
+
+$$\forall x\in\mathring B_{x_0}(\delta)\ \Longrightarrow\ c(x)\in\mathring B_{x_0}(\delta)\ \Longrightarrow\ \frac{f(x)}{g(x)}=\frac{f'(c(x))}{g'(c(x))}>M\ \Longrightarrow\ \lim_{x\to x_0}\frac fg=+\infty.$$
+
+$$\theta=-\infty:\quad f\mapsto-f\ \Longrightarrow\ \frac{(-f)'}{g'}\to+\infty\ \Longrightarrow\ \frac{-f}{g}\to+\infty\ \Longrightarrow\ \frac fg\to-\infty.$$
+
+Определение предела $+\infty$ получено с той же самой $\delta(M)$ — никакого перехода по Гейне здесь даже не нужно. Запись «$=+\infty$» читается здесь по порядку [[rasshirennaya-pryamaya|расширенной прямой]] — «рано или поздно больше любого $M$», — а не через беззнаковую неограниченность [дня 26 первого семестра](/aii/matan/1/day/26); ровно в этом смысле $+\infty$ уже употреблялся выше, в теореме Штольца. У пары $(-f,g)$ условия (a)–(c) те же, что у $(f,g)$.
 
 Тот же счёт дословно проходит для одностороннего предела (отрезок берётся с одной стороны от $x_0$); случай $x_0=\pm\infty$ — следующая секция, случай $\frac\infty\infty$ — задача 5. $\qquad\blacksquare$`
 		},

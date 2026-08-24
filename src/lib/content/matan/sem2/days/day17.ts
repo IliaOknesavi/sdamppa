@@ -95,27 +95,51 @@ $$\boxed{\ L(f,\lambda)\ \le\ L(f,\lambda')\ \le\ U(f,\lambda')\ \le\ U(f,\lambd
 
 **Доказательство.** Приём: свести к добавлению одной точки и воспользоваться тем, что грань по подмножеству не выходит за грань по множеству.
 
-Шаг 1. Разберём сначала случай $\lambda'=\lambda\cup\{c\}$, $c\in(x_k;\,x_{k+1})$ (шаги 2–4), а общий случай получим из него индукцией по числу $p$ добавленных точек. База $p=0$ — это $\lambda'=\lambda$, и все три неравенства обращаются в равенства (кроме среднего, разобранного в шаге 4). Шаг: пусть $\lambda'$ получено из $\lambda$ добавлением $p+1$ точки; выбросим из них одну, скажем последнюю, и обозначим через $\lambda''$ измельчение с остальными $p$ точками. Тогда $\lambda\subset\lambda''\subset\lambda'$, к паре $(\lambda,\lambda'')$ применимо предположение индукции, а к паре $(\lambda'',\lambda')$ — разобранный случай одной точки. Цепочка $U(f,\lambda')\le U(f,\lambda'')\le U(f,\lambda)$ и зеркальная ей для нижних сумм и дают требуемое. Попутно фиксируем то, что понадобится [в дне 18](/aii/matan/2/day/18): ранг при добавлении точек не растёт, ведь куски только дробятся, поэтому оценка «одна точка роняет $U$ не больше чем на $\Omega\lambda_R$» законна на каждом шаге индукции с одним и тем же $\lambda_R$ исходного разбиения.
+**Шаг 1 — индукция по числу добавленных точек.** Основной случай — $\lambda'=\lambda\cup\lbrace c\rbrace$, $c\in(x_k;\,x_{k+1})$ (шаги 2–4); общий получается из него индукцией по числу $p$ добавленных точек.
 
-Шаг 2. Обозначим
-$$M=\sup_{[x_k;x_{k+1}]}f,\qquad M'=\sup_{[x_k;c]}f,\qquad M''=\sup_{[c;x_{k+1}]}f .$$
-Все три конечны (здесь и нужна ограниченность $f$ — без неё $M=+\infty$ и вычитать будет нечего). Отрезки $[x_k;c]$ и $[c;x_{k+1}]$ лежат внутри $[x_k;x_{k+1}]$, значит $M'\le M$ и $M''\le M$. Это прямо из определения грани: если $A\subset B$ и обе грани существуют, то $\sup B$ мажорирует все элементы $B$, в частности все элементы $A$, то есть служит верхней границей $A$; а $\sup A$ — наименьшая из верхних границ $A$, поэтому $\sup A\le\sup B$.
+$$p=0:\quad \lambda'=\lambda\ \Longrightarrow\ L(f,\lambda)=L(f,\lambda'),\qquad U(f,\lambda')=U(f,\lambda);$$
 
-Шаг 3. Все слагаемые, кроме $k$-го, у $U(f,\lambda)$ и $U(f,\lambda')$ совпадают дословно, а $k$-е распалось надвое:
+$$p\to p+1:\quad \lambda\subset\lambda''\subset\lambda',\qquad |\lambda''\setminus\lambda|=p,\qquad |\lambda'\setminus\lambda''|=1;$$
 
-$$M'(c-x_k)+M''(x_{k+1}-c)\ \le\ M(c-x_k)+M(x_{k+1}-c)=M\lambda_k ,$$
+$$U(f,\lambda')\overset{\text{1 точка}}{\le}U(f,\lambda'')\overset{\text{инд. предп.}}{\le}U(f,\lambda),\qquad L(f,\lambda')\overset{\text{1 точка}}{\ge}L(f,\lambda'')\overset{\text{инд. предп.}}{\ge}L(f,\lambda).$$
 
-(длины сложились обратно в $\lambda_k$ — точки-то те же). Значит $U(f,\lambda')\le U(f,\lambda)$. Полезно записать разность точно:
+База $p=0$ обращает крайние неравенства в равенства (среднее разобрано в шаге 4). На шаге индукции выбрасываем из добавленных точек одну, скажем последнюю, и обозначаем через $\lambda''$ измельчение с остальными $p$ точками: к паре $(\lambda,\lambda'')$ применимо предположение индукции, к паре $(\lambda'',\lambda')$ — разобранный случай одной точки. Попутно фиксируем то, что понадобится [в дне 18](/aii/matan/2/day/18): ранг при добавлении точек не растёт, ведь куски только дробятся, поэтому оценка «одна точка роняет $U$ не больше чем на $\Omega\lambda_R$» законна на каждом шаге индукции с одним и тем же $\lambda_R$ исходного разбиения.
 
-$$U(f,\lambda)-U(f,\lambda')=(M-M')(c-x_k)+(M-M'')(x_{k+1}-c)\ \le\ h_k\lambda_k ,$$
+**Шаг 2 — грань по подмножеству не выходит за грань по множеству.**
 
-где $h_k=M-m$ — [[kolebanie-funkcii|колебание]] $f$ на $k$-м куске, $m=\inf_{[x_k;x_{k+1}]}f$. Оценка каждой скобки требует отдельного слова: $M-M'\le M-m$ равносильно $M'\ge m$, а это верно, потому что супремум по непустому подмножеству не меньше инфимума по всему множеству — взяв любую точку $\xi\in[x_k;c]$, получаем $M'\ge f(\xi)\ge m$; то же для $M''$. Длины же складываются обратно в $\lambda_k$. Смысл оценки: одна добавленная точка не может уронить $U$ больше чем на «площадь полоски», в которую она попала.
+$$M=\sup_{[x_k;x_{k+1}]}f,\qquad M'=\sup_{[x_k;c]}f,\qquad M''=\sup_{[c;x_{k+1}]}f;\qquad f\ \text{ограничена}\ \Longrightarrow\ M,M',M''<+\infty;$$
 
-Шаг 4. Для нижней суммы всё зеркально. Обозначим $m=\inf_{[x_k;x_{k+1}]}f$, $m'=\inf_{[x_k;c]}f$, $m''=\inf_{[c;x_{k+1}]}f$. Инфимум по меньшему множеству не меньше — по тому же счёту: при $A\subset B$ число $\inf B$ есть нижняя граница $A$, а $\inf A$ — наибольшая из нижних границ $A$, поэтому $\inf A\ge\inf B$. Значит $m'\ge m$, $m''\ge m$, и
+$$A\subset B\ \Longrightarrow\ \forall a\in A:\ a\le\sup B\ \Longrightarrow\ \sup B\ \text{— верхняя граница}\ A\ \Longrightarrow\ \sup A\le\sup B;$$
 
-$$L(f,\lambda')-L(f,\lambda)=(m'-m)(c-x_k)+(m''-m)(x_{k+1}-c)\ \ge\ 0,$$
+$$[x_k;c]\subset[x_k;x_{k+1}],\ \ [c;x_{k+1}]\subset[x_k;x_{k+1}]\ \Longrightarrow\ M'\le M,\qquad M''\le M.$$
 
-причём разность так же не превосходит $h_k\lambda_k$: обе скобки не больше $h_k=M-m$ (ведь $m'\le M$ и $m''\le M$ — инфимум по непустому подмножеству не больше супремума по всему множеству), а длины складываются в $\lambda_k$. Среднее неравенство $L(f,\lambda')\le U(f,\lambda')$ верно для любого разбиения почленно: кусок непуст, возьмём в нём любую точку $\xi$, тогда $\inf f\le f(\xi)\le\sup f$. $\qquad\blacksquare$`
+Ограниченность $f$ нужна именно здесь: без неё $M=+\infty$ и вычитать будет нечего. Вторая строка — прямо из определения грани: $\sup A$ есть наименьшая из верхних границ $A$.
+
+**Шаг 3 — верхняя сумма не растёт.**
+
+$$M'(c-x_k)+M''(x_{k+1}-c)\ \le\ M(c-x_k)+M(x_{k+1}-c)=M\lambda_k\quad\Longrightarrow\quad U(f,\lambda')\le U(f,\lambda);$$
+
+$$U(f,\lambda)-U(f,\lambda')=(M-M')(c-x_k)+(M-M'')(x_{k+1}-c);$$
+
+$$\xi\in[x_k;c]\ \Longrightarrow\ M'\ge f(\xi)\ge m\ \iff\ M-M'\le M-m=h_k;\qquad\text{то же для }M''$$
+
+$$\Longrightarrow\quad U(f,\lambda)-U(f,\lambda')\ \le\ h_k\bigl((c-x_k)+(x_{k+1}-c)\bigr)=h_k\lambda_k .$$
+
+Все слагаемые, кроме $k$-го, у $U(f,\lambda)$ и $U(f,\lambda')$ совпадают дословно, а $k$-е распалось надвое; длины сложились обратно в $\lambda_k$ — точки-то те же. Здесь $h_k=M-m$ — [[kolebanie-funkcii|колебание]] $f$ на $k$-м куске, $m=\inf_{[x_k;x_{k+1}]}f$; супремум по непустому подмножеству не меньше инфимума по всему множеству, отсюда и оценка скобок. Смысл: одна добавленная точка не может уронить $U$ больше чем на «площадь полоски», в которую она попала.
+
+**Шаг 4 — нижняя сумма зеркально.**
+
+$$m=\inf_{[x_k;x_{k+1}]}f,\qquad m'=\inf_{[x_k;c]}f,\qquad m''=\inf_{[c;x_{k+1}]}f;$$
+
+$$A\subset B\ \Longrightarrow\ \inf B\ \text{— нижняя граница}\ A\ \Longrightarrow\ \inf A\ge\inf B\ \Longrightarrow\ m'\ge m,\qquad m''\ge m;$$
+
+$$L(f,\lambda')-L(f,\lambda)=(m'-m)(c-x_k)+(m''-m)(x_{k+1}-c)\ \ge\ 0;$$
+
+$$m'\le M,\ \ m''\le M\ \Longrightarrow\ m'-m\le M-m=h_k,\ \ m''-m\le h_k\ \Longrightarrow\ L(f,\lambda')-L(f,\lambda)\ \le\ h_k\lambda_k;$$
+
+$$\xi\in[x_i;x_{i+1}]\ \Longrightarrow\ \inf f\le f(\xi)\le\sup f\ \Longrightarrow\ L(f,\lambda')\le U(f,\lambda').\qquad\blacksquare$$
+
+Инфимум по меньшему множеству не меньше — по тому же счёту, что и в шаге 2: $\inf A$ есть наибольшая из нижних границ $A$. Оценка $m'\le M$, $m''\le M$ — инфимум по непустому подмножеству не больше супремума по всему множеству; длины опять складываются в $\lambda_k$. Среднее неравенство вилки верно для любого разбиения почленно: кусок непуст, берём в нём любую точку $\xi$.`
 		},
 		{
 			kind: 'theorem',
@@ -128,15 +152,15 @@ $$L(f,\lambda_1)\ \le\ U(f,\lambda_2).$$
 
 **Доказательство.** Сравним два произвольных разбиения через их общее измельчение — приём, который лемма Дарбу делает возможным.
 
-Положим $\lambda=\lambda_1\cup\lambda_2$: объединение наборов точек измельчает каждое из них. Дважды применяем лемму:
+$$\lambda:=\lambda_1\cup\lambda_2\ \Longrightarrow\ \lambda\ \text{измельчает и}\ \lambda_1,\ \text{и}\ \lambda_2\ \overset{\text{лемма Дарбу}}{\Longrightarrow}\ L(f,\lambda_1)\ \le\ L(f,\lambda)\ \le\ U(f,\lambda)\ \le\ U(f,\lambda_2).$$
 
-$$L(f,\lambda_1)\ \le\ L(f,\lambda)\ \le\ U(f,\lambda)\ \le\ U(f,\lambda_2)$$
+Первое неравенство — потому что $\lambda$ измельчает $\lambda_1$, последнее — потому что $\lambda$ измельчает $\lambda_2$; в середине стоит вилка одного разбиения.
 
-(первое неравенство — потому что $\lambda$ измельчает $\lambda_1$, последнее — потому что $\lambda$ измельчает $\lambda_2$; в середине стоит вилка одного разбиения). Множество всех нижних сумм оказалось ограничено сверху любой верхней, множество всех верхних — ограничено снизу любой нижней, значит по полноте $\mathbb R$ ([существование супремума](/aii/matan/1/day/5), для инфимума — через $\inf A=-\sup(-A)$) существуют
+$$\forall\lambda_1,\lambda_2:\ L(f,\lambda_1)\le U(f,\lambda_2)\ \Longrightarrow\ \lbrace L(f,\lambda)\rbrace\ \text{огр. сверху},\ \ \lbrace U(f,\lambda)\rbrace\ \text{огр. снизу}\ \overset{\text{полнота }\mathbb R}{\Longrightarrow}\ \exists\,\underline I=\sup_{\lambda}L(f,\lambda),\ \ \exists\,\overline I=\inf_{\lambda}U(f,\lambda);$$
 
-$$\underline I=\sup_{\lambda}L(f,\lambda)\ \le\ \overline I=\inf_{\lambda}U(f,\lambda)$$
+$$\forall\lambda_2:\ \underline I=\sup_{\lambda_1}L(f,\lambda_1)\le U(f,\lambda_2)\ \Longrightarrow\ \underline I\ \text{— нижняя граница}\ \lbrace U(f,\lambda_2)\rbrace\ \Longrightarrow\ \underline I\ \le\ \inf_{\lambda_2}U(f,\lambda_2)=\overline I.\qquad\blacksquare$$
 
-— [[nizhniy-integral|нижний]] и [[verhniy-integral|верхний]] интегралы существуют для **любой** ограниченной $f$, без всяких дополнительных условий. Само неравенство между ними читается из той же цепочки дважды: каждая верхняя сумма $U(f,\lambda_2)$ мажорирует все нижние, значит мажорирует и их точную верхнюю грань, то есть $\underline I\le U(f,\lambda_2)$ при всех $\lambda_2$; теперь $\underline I$ — нижняя граница множества верхних сумм, а $\overline I$ — наибольшая из нижних границ этого множества, откуда $\underline I\le\overline I$. $\qquad\blacksquare$
+Полнота $\mathbb R$ — это [существование супремума](/aii/matan/1/day/5), для инфимума — через $\inf A=-\sup(-A)$. Значит [[nizhniy-integral|нижний]] и [[verhniy-integral|верхний]] интегралы существуют для **любой** ограниченной $f$, без всяких дополнительных условий. Само неравенство между ними читается из той же цепочки дважды: каждая верхняя сумма мажорирует все нижние, значит мажорирует и их точную верхнюю грань; а $\overline I$ — наибольшая из нижних границ множества верхних сумм, откуда последний переход.
 
 **Теорема (интегрируемость липшицевой функции).** Пусть $f$ [[lipshitsevost|липшицева]] на $[a;b]$ с константой $M$, то есть $|f(u)-f(v)|\le M|u-v|$ при всех $u,v\in[a;b]$; в частности годится любая $f\in C^1[a;b]$ с $M=\max|f'|$ — этот максимум существует, потому что $|f'|$ непрерывна на компакте ([теорема об образе компакта](/aii/matan/1/day/28)), а из ограничения $|f'|\le M$ липшицевость выводится [следствием из теоремы Лагранжа](/aii/matan/2/day/5). Тогда для любого разбиения
 
@@ -144,19 +168,27 @@ $$U(f,\lambda)-L(f,\lambda)\ \le\ M\,(b-a)\,\lambda_R,$$
 
 и потому $f$ интегрируема: неравенство $U-L<\varepsilon$ выполнено, как только $\lambda_R<\varepsilon/\bigl(M(b-a)\bigr)$.
 
-**Доказательство.** Сначала оценим колебание на одном куске. Для любых $u,v\in[x_i;x_{i+1}]$ имеем $f(u)-f(v)\le M|u-v|\le M\lambda_i$, то есть при фиксированном $v$ число $f(v)+M\lambda_i$ мажорирует все значения $f$ на куске; значит и точную верхнюю грань: $\sup f\le f(v)+M\lambda_i$. Переписав это как $\sup f-M\lambda_i\le f(v)$ и вспомнив, что $v$ было любым, получаем, что $\sup f-M\lambda_i$ — нижняя граница значений, поэтому $\sup f-M\lambda_i\le\inf f$, то есть $h_i\le M\lambda_i$. Дальше складываем и заменяем каждую длину рангом:
+**Доказательство.** Сначала оценим колебание на одном куске.
+
+$$\forall u,v\in[x_i;x_{i+1}]:\quad f(u)-f(v)\overset{\text{липшиц}}{\le}M|u-v|\le M\lambda_i\ \Longrightarrow\ f(u)\le f(v)+M\lambda_i\ \Longrightarrow\ \sup_{[x_i;x_{i+1}]}f\le f(v)+M\lambda_i;$$
+
+$$\sup f-M\lambda_i\le f(v)\ \ \forall v\ \Longrightarrow\ \sup f-M\lambda_i\ \text{— нижняя граница значений}\ \Longrightarrow\ \sup f-M\lambda_i\le\inf f\ \iff\ h_i\le M\lambda_i;$$
 
 $$0\ \le\ U(f,\lambda)-L(f,\lambda)=\sum h_i\lambda_i\ \le\ M\sum\lambda_i^2\ \le\ M\lambda_R\sum\lambda_i=M(b-a)\,\lambda_R .$$
+
+При фиксированном $v$ число $f(v)+M\lambda_i$ мажорирует все значения $f$ на куске, значит мажорирует и точную верхнюю грань; в последней строке складываем по кускам и заменяем каждую длину рангом.
 
 Отсюда явная формула: чтобы получить $U-L<\varepsilon$, достаточно взять
 
 $$\lambda_R(\varepsilon)<\frac{\varepsilon}{M(b-a)} .$$
 
-Тогда $\overline I-\underline I\le U-L<\varepsilon$ при любом $\varepsilon$, то есть $\overline I=\underline I$; обозначим это общее значение $I$. Общий предел обеих сумм Дарбу получается тут же, без отдельной теоремы: из $L(f,\lambda)\le\underline I=I=\overline I\le U(f,\lambda)$ следует
+$$\forall\varepsilon>0:\quad \overline I-\underline I\le U-L<\varepsilon\quad\Longrightarrow\quad \overline I=\underline I=:I;$$
 
-$$|U(f,\lambda)-I|\le U-L\le M(b-a)\lambda_R,\qquad |I-L(f,\lambda)|\le U-L\le M(b-a)\lambda_R,$$
+$$L(f,\lambda)\le\underline I=I=\overline I\le U(f,\lambda)\ \Longrightarrow\ |U(f,\lambda)-I|\le U-L\le M(b-a)\lambda_R,\qquad |I-L(f,\lambda)|\le U-L\le M(b-a)\lambda_R;$$
 
-а правая часть меньше любого наперёд заданного $\varepsilon$, как только $\lambda_R<\varepsilon/\bigl(M(b-a)\bigr)$. $\qquad\blacksquare$
+$$\lambda_R<\frac{\varepsilon}{M(b-a)}\quad\Longrightarrow\quad M(b-a)\lambda_R<\varepsilon .\qquad\blacksquare$$
+
+Общий предел обеих сумм Дарбу получается тут же, без отдельной теоремы: правая часть двух последних оценок меньше любого наперёд заданного $\varepsilon$, как только ранг достаточно мал.
 
 **Идея для запоминания:** это тот же приём двустороннего зажатия, что у верхней и нижней огибающих $S_n=\sup_{k\ge n}x_k$, $i_n=\inf_{k\ge n}x_k$ — два монотонных семейства ползут навстречу, и ответ существует ровно тогда, когда они встретились; в дне 18 из этой же встречи получится критерий интегрируемости.`
 		},

@@ -63,17 +63,23 @@ $\varepsilon$-форма поставляет **номер по порогу** �
 
 $$\boxed{\ x_n\ \text{неубывает и ограничена сверху}\ \Longrightarrow\ \exists\lim_{n\to\infty}x_n=\sup_n x_n\ }$$
 
-**Доказательство.** Пусть $x_n$ — [[neubyvayushchaya-posledovatelnost|неубывающая]] и ограниченная сверху (снизу она ограничена сама собой: $x_n\ge x_1$ при всех $n$, так что второе требование излишне). По ограниченности сверху существует
+**Доказательство.** Пусть $x_n$ [[neubyvayushchaya-posledovatelnost|неубывает]] и ограничена сверху. Снизу она ограничена сама собой, так что второе требование излишне:
 
-$$S=\sup_n x_n$$
+$$n\ge1\ \Longrightarrow\ x_n\ge x_1.$$
 
-(здесь и работает [[polnota-r|полнота $\mathbb R$]] — сам факт существования супремума).
+Существование супремума — это [[polnota-r|полнота $\mathbb R$]] ([теорема дня 5](/aii/matan/1/day/5)):
 
-Зафиксируем $\varepsilon>0$. По [[epsilon-forma-supremuma|$\varepsilon$-форме]] найдётся номер $N$ с $x_N>S-\varepsilon$. Возьмём любое $n>N$. По монотонности в индексной записи ($n>N$ — готовая пара индексов, цепочку строить не нужно) имеем $x_n\ge x_N$, а по определению супремума $x_n\le S$. Собираем всё в одну строку:
+$$\lbrace x_n\rbrace\ne\varnothing,\ \ \text{ограничено сверху}\ \Longrightarrow\ \exists\,S:=\sup_n x_n.$$
 
-$$S-\varepsilon\ <\ x_N\ \le\ x_n\ \le\ S\ <\ S+\varepsilon,$$
+Дальше одна цепочка. Фиксируем $\varepsilon>0$:
 
-то есть $|x_n-S|<\varepsilon$ при всех $n>N$. Это и есть определение предела с $A=S$.
+$$\overset{\varepsilon\text{-форма супремума}}{\Longrightarrow}\ \exists N:\ x_N>S-\varepsilon,$$
+
+$$\forall n>N:\qquad S-\varepsilon\ \overset{\text{выбор }N}{<}\ x_N\ \overset{\text{неубывание}}{\le}\ x_n\ \overset{S=\sup}{\le}\ S\ <\ S+\varepsilon,$$
+
+$$\Longrightarrow\ |x_n-S|<\varepsilon\quad\forall n>N\ \Longrightarrow\ \lim_n x_n=S.$$
+
+Про $\varepsilon$-форму: будь $x_n\le S-\varepsilon$ при всех $n$, число $S-\varepsilon$ оказалось бы верхней границей меньше точной.
 
 Явная формула для номера:
 

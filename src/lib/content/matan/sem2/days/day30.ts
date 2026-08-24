@@ -40,21 +40,29 @@ $$\frac{f(c)-f(a)}{c-a}=\frac{f(b)-f(a)}{b-a}\qquad\text{сразу при вс�
 
 $$L=\int_a^b\sqrt{1+f'(x)^2}\,dx.$$
 
-**Доказательство.** Заменим дугу вписанной ломаной и превратим её длину в интегральную сумму. Возьмём разбиение $\lambda$ отрезка $[a;b]$ точками $a=x_0<x_1<\dots<x_m=b$ с рангом $\lambda_R=\max_i\Delta x_i$. Звено ломаной над $[x_i;x_{i+1}]$ — это хорда, её длина по Пифагору
+**Доказательство.** Заменим дугу вписанной ломаной и превратим её длину в интегральную сумму.
 
-$$\sqrt{\Delta x_i^2+\Delta f_i^2}=\Delta x_i\sqrt{1+\Bigl(\frac{\Delta f_i}{\Delta x_i}\Bigr)^2}$$
+$$\lambda:\ \ a=x_0<x_1<\dots<x_m=b,\qquad \Delta x_i=x_{i+1}-x_i>0,\quad \Delta f_i=f(x_{i+1})-f(x_i),\quad \lambda_R=\max_i\Delta x_i.$$
 
-(вынесли $\Delta x_i>0$ из-под корня — знак важен, иначе появился бы модуль).
+Звено ломаной над $[x_i;x_{i+1}]$ — это хорда, её длина по Пифагору
 
-Теперь переводчик между $\Delta f$ и $f'$ — [[teorema-lagranzha|[теорема Лагранжа](/aii/matan/2/day/5)]]: при $f\in C^1$ найдётся $\xi_i\in(x_i;x_{i+1})$ с $\Delta f_i=f'(\xi_i)\,\Delta x_i$. Подставляем и складываем по всем звеньям:
+$$\sqrt{\Delta x_i^2+\Delta f_i^2}\ \overset{\Delta x_i>0}{=}\ \Delta x_i\sqrt{1+\Bigl(\frac{\Delta f_i}{\Delta x_i}\Bigr)^2}$$
 
-$$L(\lambda)=\sum_{i}\Delta x_i\sqrt{1+f'(\xi_i)^2}=I\bigl(\sqrt{1+f'^2},\ \lambda,\ \vec\xi\,\bigr)$$
+(знак важен, иначе при выносе $\Delta x_i$ из-под корня появился бы модуль).
 
-— справа стоит [[integralnaya-summa|интегральная сумма]], функционал от тройки «функция, разбиение, набор точек». Здесь уже нужна непрерывность $f'$, и вот почему: набор $\vec\xi$ нам выдала теорема Лагранжа, выбрать его мы не можем, значит предел обязан существовать при **любом** наборе точек — а это и есть интегрируемость подкоренной функции.
+$$f\in C^1\ \overset{\text{Лагранж}}{\Longrightarrow}\ \forall i\ \ \exists\xi_i\in(x_i;x_{i+1}):\ \ \Delta f_i=f'(\xi_i)\,\Delta x_i$$
 
-Функция $f'$ непрерывна по условию $f\in C^1$, значит непрерывна и $1+f'^2$ по [арифметике непрерывных функций](/aii/matan/1/day/28); её значения не меньше единицы, а корень на $(0;+\infty)$ [дифференцируем](/aii/matan/2/day/3) и потому [непрерывен](/aii/matan/2/day/1), так что $\sqrt{1+f'^2}$ непрерывна как [композиция непрерывных](/aii/matan/1/day/28). Непрерывная на [[lsk|линейно связном компакте]] $[a;b]$ функция [интегрируема](/aii/matan/2/day/18), а интегрируемость и означает, что предел интегральных сумм при $\lambda_R\to0$ существует и не зависит ни от $\lambda$, ни от $\vec\xi$:
+$$\Longrightarrow\qquad L(\lambda)=\sum_i\sqrt{\Delta x_i^2+\Delta f_i^2}=\sum_{i}\Delta x_i\sqrt{1+f'(\xi_i)^2}=I\bigl(\sqrt{1+f'^2},\ \lambda,\ \vec\xi\,\bigr).$$
+
+Переводчик между $\Delta f$ и $f'$ — [[teorema-lagranzha|теорема Лагранжа]] ([день 5](/aii/matan/2/day/5)); справа стоит [[integralnaya-summa|интегральная сумма]], функционал от тройки «функция, разбиение, набор точек». Здесь уже нужна непрерывность $f'$, и вот почему: набор $\vec\xi$ нам выдала теорема Лагранжа, выбрать его мы не можем, значит предел обязан существовать при **любом** наборе точек — а это и есть интегрируемость подкоренной функции.
+
+$$f\in C^1\ \Longrightarrow\ f'\ \text{непр.}\ \overset{\text{арифметика}}{\Longrightarrow}\ 1+f'^2\ \text{непр.},\quad 1+f'^2\ge1;\qquad \sqrt{\ \cdot\ }\ \text{непр. на }(0;+\infty)$$
+
+$$\overset{\text{композиция}}{\Longrightarrow}\ \sqrt{1+f'^2}\ \text{непр. на }[a;b]\ \overset{[a;b]\ \text{компакт}}{\Longrightarrow}\ \sqrt{1+f'^2}\ \text{интегрируема}\ \Longrightarrow\ \exists\lim_{\lambda_R\to0}I\ \ \text{при любых }\lambda,\vec\xi,$$
 
 $$L=\lim_{\lambda_R\to0}L(\lambda)=\int_a^b\sqrt{1+f'(x)^2}\,dx.\qquad\blacksquare$$
+
+Использованные шаги: [арифметика непрерывных функций](/aii/matan/1/day/28); корень на $(0;+\infty)$ [дифференцируем](/aii/matan/2/day/3) и потому [непрерывен](/aii/matan/2/day/1); [композиция непрерывных](/aii/matan/1/day/28); непрерывная на [[lsk|линейно связном компакте]] $[a;b]$ функция [интегрируема](/aii/matan/2/day/18), а интегрируемость и означает, что предел интегральных сумм при $\lambda_R\to0$ существует и не зависит ни от $\lambda$, ни от $\vec\xi$.
 
 **Идея для запоминания:** это тот же приём, что и в определении определённого интеграла через суммы Дарбу (дни 17–18) — подгоняем ступенчатый объект к гладкому и читаем предел как интеграл; теорема Лагранжа здесь работает переводчиком «приращение $\to$ производная», ровно в той роли, ради которой её [доказывали в день 5](/aii/matan/2/day/5).`
 		},
@@ -75,15 +83,33 @@ $$\max\bigl(b-a,\ V_a^b(f)\bigr)\ \le\ L\ \le\ (b-a)+V_a^b(f),$$
 
 и, следовательно, график спрямляем **в том и только том случае**, когда вариация $V_a^b(f)$ конечна.
 
-**Доказательство.** На каждом звене $\max\bigl(|\Delta x_i|,|\Delta f_i|\bigr)\le\sqrt{\Delta x_i^2+\Delta f_i^2}\le|\Delta x_i|+|\Delta f_i|$. Суммируем по звеньям: слева получается либо $\sum|\Delta x_i|=b-a$, либо $\sum|\Delta f_i|$ — годится каждое из двух, а значит и большее из них; справа выходит $(b-a)+\sum|\Delta f_i|$. Остаётся взять супремум по разбиениям. $\qquad\blacksquare$
+**Доказательство.**
+
+$$\forall i:\qquad \max\bigl(|\Delta x_i|,|\Delta f_i|\bigr)\ \le\ \sqrt{\Delta x_i^2+\Delta f_i^2}\ \le\ |\Delta x_i|+|\Delta f_i|$$
+
+$$\overset{\sum_i}{\Longrightarrow}\qquad \max\Bigl(\sum_i|\Delta x_i|,\ \sum_i|\Delta f_i|\Bigr)\ \le\ \sum_i\sqrt{\Delta x_i^2+\Delta f_i^2}\ \le\ \sum_i|\Delta x_i|+\sum_i|\Delta f_i|$$
+
+$$\overset{\sum_i|\Delta x_i|=b-a}{\Longrightarrow}\qquad \max\Bigl(b-a,\ \sum_i|\Delta f_i|\Bigr)\ \le\ \sum_i\sqrt{\Delta x_i^2+\Delta f_i^2}\ \le\ (b-a)+\sum_i|\Delta f_i|.$$
+
+Слева годится каждое из двух чисел по отдельности, а значит и большее из них.
+
+$$\overset{\sup_\lambda}{\Longrightarrow}\qquad \max\bigl(b-a,\ V_a^b(f)\bigr)\ \le\ L\ \le\ (b-a)+V_a^b(f).\qquad\blacksquare$$
 
 **Что даёт супремум вместо предела.** Во-первых, определение живёт в любом метрическом пространстве и не требует ни производной, ни гладкости, ни даже координат. Во-вторых, супремум автоматически не зависит от [[parametrizaciya-krivoy|параметризации]] (измельчение разбиения только увеличивает сумму — неравенство треугольника), тогда как формула $\int\sqrt{1+f'^2}$ эту независимость получает лишь как следствие замены переменной. В-третьих, появляются контрпримеры.
 
 **Утверждение.** Непрерывности для спрямляемости мало: у функции $f(x)=x\sin\frac1x$, $f(0)=0$, непрерывной на $[0;1]$, вариация бесконечна, поэтому её график не спрямляем.
 
-**Доказательство.** Непрерывность вне нуля даёт [арифметика и композиция непрерывных](/aii/matan/1/day/28), а в нуле она следует из $|f(x)|=|x|\cdot|\sin\frac1x|\le|x|$: по $\varepsilon$ годится $\delta=\varepsilon$.
+**Доказательство.** Непрерывность вне нуля даёт [арифметика и композиция непрерывных](/aii/matan/1/day/28), а в нуле:
 
-Теперь вариация. Возьмём точки $x_k=\frac{1}{\pi\left(k+\frac12\right)}$, $k=1,2,\dots$ — все они лежат в $(0;1]$ и убывают с ростом $k$. В них $\sin\frac{1}{x_k}=\sin\pi\bigl(k+\tfrac12\bigr)=(-1)^{k}$, поэтому $f(x_k)=(-1)^{k}x_k$: у соседних значений разные знаки, и модули складываются, а не вычитаются:
+$$|f(x)|=|x|\cdot\Bigl|\sin\frac1x\Bigr|\le|x|\qquad\Longrightarrow\qquad \forall\varepsilon>0\ \ \exists\delta=\varepsilon:\ \ |x|<\delta\ \Longrightarrow\ |f(x)|<\varepsilon.$$
+
+Теперь вариация.
+
+$$x_k=\frac{1}{\pi\left(k+\frac12\right)}\in(0;1],\quad x_{k+1}<x_k\qquad(k=1,2,\dots);$$
+
+$$\sin\frac{1}{x_k}=\sin\pi\Bigl(k+\tfrac12\Bigr)=(-1)^{k}\qquad\Longrightarrow\qquad f(x_k)=(-1)^{k}x_k.$$
+
+У соседних значений разные знаки, и модули складываются, а не вычитаются:
 
 $$\bigl|f(x_k)-f(x_{k+1})\bigr|=\bigl|(-1)^{k}x_k-(-1)^{k+1}x_{k+1}\bigr|=x_k+x_{k+1}\ \ge\ x_k\ \ge\ \frac{1}{\pi(k+1)}.$$
 
@@ -91,7 +117,9 @@ $$\bigl|f(x_k)-f(x_{k+1})\bigr|=\bigl|(-1)^{k}x_k-(-1)^{k+1}x_{k+1}\bigr|=x_k+x_
 
 $$\sum_i\bigl|\Delta f_i\bigr|\ \ge\ \sum_{k=1}^{m-1}\bigl|f(x_k)-f(x_{k+1})\bigr|\ \ge\ \frac1\pi\sum_{k=1}^{m-1}\frac{1}{k+1}.$$
 
-Справа — кусок [[garmonicheskiy-ryad|гармонического ряда]], а он [расходится](/aii/matan/1/day/24), то есть частичные суммы неограниченно растут: выбором $m$ правую часть можно сделать сколь угодно большой. Значит супремум сумм по всем разбиениям бесконечен, $V_0^1(f)=+\infty$, и по только что доказанному критерию спрямляемости нет. Вывод через $d\ell$ к такой кривой просто неприменим: $f'$ не ограничена и под интегралом стоит расходящийся объект. $\qquad\blacksquare$
+$$\frac1\pi\sum_{k=1}^{m-1}\frac{1}{k+1}\ \xrightarrow[m\to\infty]{}\ +\infty\qquad\Longrightarrow\qquad V_0^1(f)=\sup_\lambda\sum_i|\Delta f_i|=+\infty\qquad\overset{\text{критерий}}{\Longrightarrow}\qquad \text{график не спрямляем.}\qquad\blacksquare$$
+
+Справа в оценке стоял кусок [[garmonicheskiy-ryad|гармонического ряда]], а он [расходится](/aii/matan/1/day/24), то есть частичные суммы неограниченно растут: выбором $m$ правую часть можно сделать сколь угодно большой. Вывод через $d\ell$ к такой кривой просто неприменим: $f'$ не ограничена и под интегралом стоит расходящийся объект.
 
 Ограничение классом $C^1$ отсекает такие примеры — и в обмен даёт формулу сразу, без теории вариации. Заодно снимается вопрос о согласии двух определений: для $f\in C^1$ супремум и предел совпадают, и вот почему. Обозначим $I=\int_a^b\sqrt{1+f'^2}\,dx$ и возьмём произвольное разбиение $\lambda$. Измельчая его дальше и дальше, получим разбиения $\lambda'$ сколь угодно малого ранга, причём $L(\lambda)\le L(\lambda')$ — суммы при измельчении только растут (см. выше). По доказанной теореме $L(\lambda')\to I$ при $\lambda'_R\to0$, а [нестрогое неравенство переживает предельный переход](/aii/matan/2/day/1), поэтому $L(\lambda)\le I$. Значит и супремум по всем разбиениям не превосходит $I$. С другой стороны, супремум не меньше предела по рангу, то есть не меньше $I$. Обе величины совпали, и дальше можно пользоваться пределом, ничего не теряя.`
 		},
@@ -118,7 +146,11 @@ $$L_{\rho_2}=\int_{x_0}^{x_1}\sqrt{\Bigl(\tfrac{dz}{dx}\Bigr)^2+(\ell'_x)^2+(x'_
 
 Единица под корнем — не «добавка», а честная третья координата $\dot x=1$; выписанная явно, формула читается как параметрически однородная $\int\sqrt{\dot x^2+\dot y^2+\dot z^2}\,dt$, просто с $t=x$. По $z$ здесь стоит **полная** производная вдоль кривой, а не частная $f'_x$: поле меняется и оттого, что вместе с $x$ едет $y=\ell(x)$.
 
-**Доказательство.** Тот же предел ломаной, но расстояние меряется $\rho$. Звено между соседними вершинами: $\rho(\vec r(t_i),\vec r(t_{i+1}))=\|\vec r(t_{i+1})-\vec r(t_i)\|$ — здесь впервые нужна [[metrika-porozhdennaya-normoy|инвариантность относительно сдвига]], у произвольной метрики расстояние через одно приращение не переписывается.
+**Доказательство.** Тот же предел ломаной, но расстояние меряется $\rho$. Звено между соседними вершинами:
+
+$$\rho\bigl(\vec r(t_i),\vec r(t_{i+1})\bigr)=\bigl\|\vec r(t_{i+1})-\vec r(t_i)\bigr\|.$$
+
+Здесь впервые нужна [[metrika-porozhdennaya-normoy|инвариантность относительно сдвига]]: у произвольной метрики расстояние через одно приращение не переписывается.
 
 Понадобится одна оценка, и берётся она прямо из [[aksiomy-normy|аксиом нормы]] — общая теорема об эквивалентности норм для этого не нужна.
 
@@ -128,23 +160,49 @@ $$\|\vec v\|\ \le\ C\sum_{j=1}^{n}|v_j|\ \le\ C\,n\,\max_j|v_j|,$$
 
 а кроме того $\bigl|\,\|\vec u\|-\|\vec v\|\,\bigr|\le\|\vec u-\vec v\|$.
 
-**Доказательство леммы.** Разложим $\vec v=\sum_j v_j\vec e_j$ и применим неравенство треугольника $n-1$ раз, а затем положительную однородность: $\|\vec v\|\le\sum_j\|v_j\vec e_j\|=\sum_j|v_j|\cdot\|\vec e_j\|\le C\sum_j|v_j|$. Второе неравенство — оценка каждого из $n$ слагаемых максимумом. Наконец, $\|\vec u\|\le\|\vec u-\vec v\|+\|\vec v\|$ и симметрично $\|\vec v\|\le\|\vec v-\vec u\|+\|\vec u\|$, а $\|\vec v-\vec u\|=\|(-1)(\vec u-\vec v)\|=\|\vec u-\vec v\|$ по однородности — вместе это и есть последнее неравенство. $\qquad\blacksquare$
+**Доказательство леммы.**
 
-Применим теорему Лагранжа ([день 5](/aii/matan/2/day/5)) покоординатно: $x_j(t_{i+1})-x_j(t_i)=\dot x_j(\tau_{ij})\Delta t_i$, причём точки $\tau_{ij}$ у разных координат свои. Заменим их все на левый конец $t_i$. Каждая $\dot x_j$ непрерывна на отрезке, а отрезок — компакт, поэтому по [теореме Кантора](/aii/matan/1/day/28) она [[ravnomernaya-nepreryvnost|равномерно непрерывна]]; координат конечное число, значит у них есть общий [[modul-nepreryvnosti|модуль непрерывности]]
+$$\vec v=\sum_{j=1}^{n}v_j\vec e_j\ \overset{\text{нер-во треуг. }(n-1)\text{ раз}}{\Longrightarrow}\ \|\vec v\|\le\sum_{j=1}^{n}\|v_j\vec e_j\|\ \overset{\text{однородность}}{=}\ \sum_{j=1}^{n}|v_j|\cdot\|\vec e_j\|\ \overset{C=\max_j\|\vec e_j\|}{\le}\ C\sum_{j=1}^{n}|v_j|\ \le\ C\,n\max_j|v_j|.$$
+
+Последний переход — оценка каждого из $n$ слагаемых максимумом.
+
+$$\|\vec u\|\le\|\vec u-\vec v\|+\|\vec v\|,\qquad \|\vec v\|\le\|\vec v-\vec u\|+\|\vec u\|,\qquad \|\vec v-\vec u\|\overset{\text{однородность}}{=}\bigl\|(-1)(\vec u-\vec v)\bigr\|=\|\vec u-\vec v\|$$
+
+$$\Longrightarrow\qquad \pm\bigl(\|\vec u\|-\|\vec v\|\bigr)\ \le\ \|\vec u-\vec v\|\qquad\Longrightarrow\qquad \bigl|\,\|\vec u\|-\|\vec v\|\,\bigr|\le\|\vec u-\vec v\|.\qquad\blacksquare$$
+
+Применим теорему Лагранжа ([день 5](/aii/matan/2/day/5)) покоординатно:
+
+$$\forall j\le n\ \ \exists\tau_{ij}\in(t_i;t_{i+1}):\qquad x_j(t_{i+1})-x_j(t_i)=\dot x_j(\tau_{ij})\,\Delta t_i$$
+
+— точки $\tau_{ij}$ у разных координат свои. Заменим их все на левый конец $t_i$. Каждая $\dot x_j$ непрерывна на отрезке, а отрезок — компакт, поэтому по [теореме Кантора](/aii/matan/1/day/28) она [[ravnomernaya-nepreryvnost|равномерно непрерывна]]; координат конечное число, значит у них есть общий [[modul-nepreryvnosti|модуль непрерывности]]
 
 $$\omega(\delta)=\max_{j\le n}\ \sup\bigl\{|\dot x_j(t)-\dot x_j(s)|:\ |t-s|\le\delta\bigr\},$$
 
-и $\omega(\delta)\to0$ при $\delta\to0$ (по $\varepsilon>0$ берём наименьшее из $n$ чисел $\delta_j$, отвечающих порогу $\varepsilon/2$ в определении равномерной непрерывности $\dot x_j$; тогда $\omega(\delta)\le\varepsilon/2<\varepsilon$).
+$$\forall\varepsilon>0\ \ \delta:=\min_{j\le n}\delta_j\bigl(\tfrac\varepsilon2\bigr)\ \Longrightarrow\ \omega(\delta)\le\frac\varepsilon2<\varepsilon\qquad\Longrightarrow\qquad \omega(\delta)\xrightarrow[\delta\to0]{}0,$$
+
+где $\delta_j(\frac\varepsilon2)$ — число, отвечающее порогу $\frac\varepsilon2$ в определении равномерной непрерывности $\dot x_j$.
 
 Теперь оценим разницу между звеном ломаной и слагаемым интегральной суммы. По положительной однородности $\|\Delta t_i\cdot\vec v\|=\Delta t_i\|\vec v\|$ при $\Delta t_i>0$, поэтому
 
 $$\Bigl|\ \bigl\|\vec r(t_{i+1})-\vec r(t_i)\bigr\|-\bigl\|\dot{\vec r}(t_i)\bigr\|\Delta t_i\ \Bigr| =\Delta t_i\,\Bigl|\ \bigl\|(\dot x_j(\tau_{ij}))_j\bigr\|-\bigl\|(\dot x_j(t_i))_j\bigr\|\ \Bigr| \le\Delta t_i\,\bigl\|(\dot x_j(\tau_{ij})-\dot x_j(t_i))_j\bigr\|$$
 
-(последний переход — второе неравенство леммы). Каждая координата справа по модулю не превосходит $\omega(\lambda_R)$, значит по первому неравенству леммы вся норма не больше $C\,n\,\omega(\lambda_R)$. Суммируя по звеньям и пользуясь $\sum_i\Delta t_i=b-a$:
+(последний переход — второе неравенство леммы). Дальше:
+
+$$|\tau_{ij}-t_i|\le\Delta t_i\le\lambda_R\ \Longrightarrow\ \bigl|\dot x_j(\tau_{ij})-\dot x_j(t_i)\bigr|\le\omega(\lambda_R)\ \overset{\text{лемма, 1-е нер-во}}{\Longrightarrow}\ \bigl\|(\dot x_j(\tau_{ij})-\dot x_j(t_i))_j\bigr\|\le C\,n\,\omega(\lambda_R).$$
+
+Суммируя по звеньям и пользуясь $\sum_i\Delta t_i=b-a$:
 
 $$\Bigl|\sum_i\rho\bigl(\vec r(t_i),\vec r(t_{i+1})\bigr)-\sum_i\bigl\|\dot{\vec r}(t_i)\bigr\|\,\Delta t_i\Bigr|\ \le\ C\,n\,\omega(\lambda_R)\,(b-a)\ \xrightarrow[\lambda_R\to0]{}\ 0.$$
 
-Справа во второй сумме стоит интегральная сумма функции $t\mapsto\|\dot{\vec r}(t)\|$, а эта функция непрерывна: по второму неравенству леммы $\bigl|\|\dot{\vec r}(t)\|-\|\dot{\vec r}(s)\|\bigr|\le\|\dot{\vec r}(t)-\dot{\vec r}(s)\|\le C\,n\,\max_j|\dot x_j(t)-\dot x_j(s)|$, а каждая $\dot x_j$ непрерывна по условию $\vec r\in C^1$. Непрерывная функция [интегрируема](/aii/matan/2/day/18), поэтому её интегральные суммы имеют предел $\int_a^b\|\dot{\vec r}\|\,dt$ при $\lambda_R\to0$; вместе с только что доказанной оценкой тот же предел имеют и суммы по ломаной. $\qquad\blacksquare$
+Во второй сумме стоит интегральная сумма функции $t\mapsto\|\dot{\vec r}(t)\|$, а эта функция непрерывна:
+
+$$\bigl|\ \|\dot{\vec r}(t)\|-\|\dot{\vec r}(s)\|\ \bigr|\ \overset{\text{лемма, 2-е нер-во}}{\le}\ \bigl\|\dot{\vec r}(t)-\dot{\vec r}(s)\bigr\|\ \overset{\text{лемма, 1-е нер-во}}{\le}\ C\,n\,\max_j\bigl|\dot x_j(t)-\dot x_j(s)\bigr|,$$
+
+$$\vec r\in C^1\ \Longrightarrow\ \dot x_j\ \text{непр.}\ \Longrightarrow\ t\mapsto\|\dot{\vec r}(t)\|\ \text{непр.}\ \Longrightarrow\ \text{интегрируема}\ \Longrightarrow\ \sum_i\bigl\|\dot{\vec r}(t_i)\bigr\|\,\Delta t_i\ \xrightarrow[\lambda_R\to0]{}\ \int_a^b\bigl\|\dot{\vec r}\bigr\|\,dt.$$
+
+Непрерывная функция [интегрируема](/aii/matan/2/day/18); вместе с только что доказанной оценкой тот же предел имеют и суммы по ломаной:
+
+$$L_\rho=\lim_{\lambda_R\to0}\sum_i\rho\bigl(\vec r(t_i),\vec r(t_{i+1})\bigr)=\int_a^b\bigl\|\dot{\vec r}(t)\bigr\|\,dt.\qquad\blacksquare$$
 
 Оба свойства нормы работали по делу. Без однородности и сдвиговой инвариантности интегральной формулы нет вовсе: для дискретной метрики ($\rho=1$ при $\vec u\ne\vec v$) сумма по ломаной равна числу звеньев и уходит в $+\infty$ при любом измельчении, так что супремум-определение даёт $+\infty$ для каждой невырожденной кривой. Слова «произвольная метрика» здесь означают «произвольная норма».`
 		},
@@ -210,9 +268,15 @@ $$G'(t)=F'(\sqrt t)\cdot\frac{1}{2\sqrt t}=\frac12\sqrt{\frac{3t+1}{t(1-t)}}=\fr
 
 **Доказательство леммы.** Для любого разбиения по [формуле Ньютона–Лейбница, оценке модуля и аддитивности интеграла](/aii/matan/2/day/20)
 
-$$\sum_i|\Delta g_i|=\sum_i\Bigl|\int_{x_i}^{x_{i+1}}g'\,dx\Bigr|\ \le\ \sum_i\int_{x_i}^{x_{i+1}}|g'|\,dx\ =\ \int_a^b|g'|\,dx,$$
+$$\sum_i|\Delta g_i|=\sum_i\Bigl|\int_{x_i}^{x_{i+1}}g'\,dx\Bigr|\ \le\ \sum_i\int_{x_i}^{x_{i+1}}|g'|\,dx\ =\ \int_a^b|g'|\,dx\qquad\overset{\sup_\lambda}{\Longrightarrow}\qquad V_a^b(g)\le\int_a^b|g'|\,dx.$$
 
-значит и супремум по всем разбиениям не превосходит правой части: $V_a^b(g)\le\int_a^b|g'|$. Обратно, по [теореме Лагранжа](/aii/matan/2/day/5) $\sum_i|\Delta g_i|=\sum_i|g'(\xi_i)|\,\Delta x_i$ — это интегральная сумма непрерывной, а потому [интегрируемой](/aii/matan/2/day/18) функции $|g'|$; вдоль разбиений ранга $\lambda_R\to0$ такие суммы стремятся к $\int_a^b|g'|$, а супремум не меньше предела любой своей последовательности. $\qquad\blacksquare$
+Обратно:
+
+$$\sum_i|\Delta g_i|\ \overset{\text{Лагранж}}{=}\ \sum_i|g'(\xi_i)|\,\Delta x_i\ \xrightarrow[\lambda_R\to0]{}\ \int_a^b|g'|\,dx\qquad\overset{\sup\,\ge\,\lim}{\Longrightarrow}\qquad V_a^b(g)\ \ge\ \int_a^b|g'|\,dx.$$
+
+Здесь использована [теорема Лагранжа](/aii/matan/2/day/5); справа от знака Лагранжа стоит интегральная сумма непрерывной, а потому [интегрируемой](/aii/matan/2/day/18) функции $|g'|$, поэтому вдоль разбиений ранга $\lambda_R\to0$ такие суммы стремятся к $\int_a^b|g'|$, а супремум не меньше предела любой своей последовательности. Два неравенства вместе дают
+
+$$V_a^b(g)=\int_a^b|g'|\,dx.\qquad\blacksquare$$
 
 К нашей $g(x)=x+f(x)$ лемма применяется в той же параметризации $x=\cos t$, что и в оговорке выше: там $g(t)=x(t)+y(t)$ принадлежит $C^1\bigl([0;\frac\pi2]\bigr)$, а вариация от такой замены не меняется — строго монотонная непрерывная замена переводит разбиения в разбиения взаимно однозначно, так что множество сумм модулей приращений то же самое, и супремум тот же.
 
@@ -259,9 +323,17 @@ $$\boxed{\ L=\int_{\ell_0}^{\ell_1}\sqrt{1+\bigl(f(\vec\ell)'_{\vec\ell}\bigr)^2
 
 **Доказательство.** Кривая параметризуется координатой $x$: $\vec r(x)=\bigl(x,\ \ell(x),\ f(x,\ell(x))\bigr)$. Все три координаты принадлежат $C^1$. У первых двух это условие теоремы, у третьей — два отдельных шага.
 
-*Шаг 1: производная существует.* [Цепное правило для поля вдоль кривой](/aii/matan/2/day/9) требует дифференцируемости $f$ **по Фреше** в окрестности точки, а дано лишь $f\in C^1$, то есть существование и непрерывность частных производных. Мост между этими двумя условиями — [достаточное условие дифференцируемости](/aii/matan/2/day/9) того же дня: непрерывные в точке частные производные дают дифференцируемость по Фреше. Применяем его в каждой точке окрестности кривой, после чего цепное правило законно и даёт $\frac{dz}{dx}=f'_x+f'_y\ell'$.
+*Шаг 1: производная существует.*
 
-*Шаг 2: производная непрерывна.* Цепное правило само по себе даёт только существование $\frac{dz}{dx}$, а формуле длины нужен класс $C^1$. Правая часть $f'_x+f'_y\ell'$ составлена из $f'_x,f'_y$, непрерывных по условию $f\in C^1$ и взятых вдоль непрерывного отображения $x\mapsto(x,\ell(x))$, и из непрерывной $\ell'$; [композиция непрерывных непрерывна, сумма и произведение — тоже](/aii/matan/1/day/28), значит $\frac{dz}{dx}$ непрерывна и третья координата действительно лежит в $C^1$.
+$$f\in C^1\ \Longrightarrow\ f'_x,f'_y\ \text{существуют и непрерывны}\ \overset{\text{дост. условие}}{\Longrightarrow}\ f\ \text{дифф. по Фреше в окрестности кривой}\ \overset{\text{цепное правило}}{\Longrightarrow}\ \exists\frac{dz}{dx}=f'_x+f'_y\ell'.$$
+
+[Цепное правило для поля вдоль кривой](/aii/matan/2/day/9) требует дифференцируемости $f$ **по Фреше** в окрестности точки, а дано лишь $f\in C^1$. Мост между этими двумя условиями — [достаточное условие дифференцируемости](/aii/matan/2/day/9) того же дня: непрерывные в точке частные производные дают дифференцируемость по Фреше; применяем его в каждой точке окрестности кривой.
+
+*Шаг 2: производная непрерывна.*
+
+$$f'_x,f'_y\ \text{непр.},\quad x\mapsto(x,\ell(x))\ \text{непр.},\quad \ell'\ \text{непр.}\ \overset{\text{сумма, произв., композиция}}{\Longrightarrow}\ \frac{dz}{dx}=f'_x+f'_y\ell'\ \text{непр.}\ \Longrightarrow\ \text{3-я координата}\in C^1.$$
+
+Цепное правило само по себе даёт только существование $\frac{dz}{dx}$, а формуле длины нужен класс $C^1$; непрерывность $f'_x,f'_y$ — по условию $f\in C^1$, непрерывность $\ell'$ — по условию $\ell\in C^1$, а [композиция непрерывных непрерывна, сумма и произведение — тоже](/aii/matan/1/day/28).
 
 Поэтому применима доказанная выше формула длины в метрике, порождённой нормой, в случае $\rho_2$:
 
@@ -286,7 +358,7 @@ $$L=\int_{\ell_0}^{\ell_1}\sqrt{1+\bigl(f(\vec\ell)'_{\vec\ell}\bigr)^2}\;d\ell.
 
 $$\lim_{N\to\infty}L_{\rho_2}(\gamma_N)=2\ \ne\ \frac\pi2=L_{\rho_2}\bigl(\lim_{N\to\infty}\gamma_N\bigr).$$
 
-Это школьное «доказательство, что $\pi=4$», и ломается оно ровно здесь. Длина зависит не от $f$, а от $f'$: под интегралом стоит $\sqrt{1+f'^2}$. [[ravnomernaya-shodimost|Равномерная сходимость]] $f_N\rightrightarrows f$ про производные не говорит ничего — у лестницы $f_N'$ равна то нулю, то бесконечности и ни к чему не сходится. [[predelnyy-perehod-pod-integralom|[Теорема о предельном переходе под интегралом](/aii/matan/2/day/29)]] требовала равномерной сходимости именно **подынтегральных** функций; здесь подынтегральное выражение построено из производной, условие не выполнено, и переставлять $\lim$ с $\int$ нельзя. Остаётся только неравенство.
+Это школьное «доказательство, что $\pi=4$», и ломается оно ровно здесь. Длина зависит не от $f$, а от $f'$: под интегралом стоит $\sqrt{1+f'^2}$. [[ravnomernaya-shodimost|Равномерная сходимость]] $f_N\rightrightarrows f$ про производные не говорит ничего — у лестницы $f_N'$ равна то нулю, то бесконечности и ни к чему не сходится. [[predelnyy-perehod-pod-integralom|Теорема о предельном переходе под интегралом]] ([день 29](/aii/matan/2/day/29)) требовала равномерной сходимости именно **подынтегральных** функций; здесь подынтегральное выражение построено из производной, условие не выполнено, и переставлять $\lim$ с $\int$ нельзя. Остаётся только неравенство.
 
 **Утверждение (полунепрерывность длины снизу).** Пусть кривые $\gamma$ и $\gamma_N$ заданы на общем отрезке параметров $[a;b]$ и $\gamma_N\rightrightarrows\gamma$, то есть $\sup_{t\in[a;b]}\rho\bigl(\gamma(t),\gamma_N(t)\bigr)\to0$. Тогда $L(\gamma)\le\liminf_{N\to\infty}L(\gamma_N)$: [[polunepreryvnost-dliny|длина предела не больше предела длин]].
 
@@ -296,15 +368,27 @@ $$\lim_{N\to\infty}L_{\rho_2}(\gamma_N)=2\ \ne\ \frac\pi2=L_{\rho_2}\bigl(\lim_{
 
 **Лемма (четырёхугольное неравенство).** Для любых четырёх точек $\bigl|\rho(u,v)-\rho(u',v')\bigr|\le\rho(u,u')+\rho(v,v')$.
 
-**Доказательство леммы.** Дважды применяем неравенство треугольника: $\rho(u,v)\le\rho(u,u')+\rho(u',v')+\rho(v',v)$, то есть $\rho(u,v)-\rho(u',v')\le\rho(u,u')+\rho(v,v')$. Поменяв пары $(u,v)$ и $(u',v')$ ролями, получаем ту же оценку для разности с обратным знаком. $\qquad\blacksquare$
+**Доказательство леммы.**
+
+$$\rho(u,v)\ \overset{\text{нер-во треуг. дважды}}{\le}\ \rho(u,u')+\rho(u',v')+\rho(v',v)\qquad\Longrightarrow\qquad \rho(u,v)-\rho(u',v')\le\rho(u,u')+\rho(v,v');$$
+
+$$(u,v)\leftrightarrow(u',v')\qquad\Longrightarrow\qquad \rho(u',v')-\rho(u,v)\le\rho(u,u')+\rho(v,v')$$
+
+$$\Longrightarrow\qquad \bigl|\rho(u,v)-\rho(u',v')\bigr|\le\rho(u,u')+\rho(v,v').\qquad\blacksquare$$
 
 Зафиксируем разбиение $\lambda=\{t_0<\dots<t_m\}$ и обозначим $S_\lambda(\gamma)=\sum_i\rho\bigl(\gamma(t_i),\gamma(t_{i+1})\bigr)$. Складывая лемму по звеньям,
 
 $$\bigl|S_\lambda(\gamma)-S_\lambda(\gamma_N)\bigr|\ \le\ \sum_{i}\Bigl(\rho\bigl(\gamma(t_i),\gamma_N(t_i)\bigr)+\rho\bigl(\gamma(t_{i+1}),\gamma_N(t_{i+1})\bigr)\Bigr)\ \le\ 2m\,\sup_{t}\rho\bigl(\gamma(t),\gamma_N(t)\bigr).$$
 
-Число звеньев $m$ зафиксировано вместе с $\lambda$, а супремум справа стремится к нулю по равномерной сходимости — значит $S_\lambda(\gamma_N)\to S_\lambda(\gamma)$.
+$$m=\mathrm{const}(\lambda),\qquad \sup_t\rho\bigl(\gamma(t),\gamma_N(t)\bigr)\xrightarrow[N\to\infty]{}0\qquad\Longrightarrow\qquad S_\lambda(\gamma_N)\xrightarrow[N\to\infty]{}S_\lambda(\gamma).$$
 
-Возьмём $\varepsilon>0$ и номер $N_0$, начиная с которого $S_\lambda(\gamma)\le S_\lambda(\gamma_N)+\varepsilon$. Каждая сумма $S_\lambda(\gamma_N)$ не превосходит $L(\gamma_N)$ — та есть супремум таких сумм. Значит $S_\lambda(\gamma)-\varepsilon\le L(\gamma_N)$ при всех $N>N_0$, откуда $S_\lambda(\gamma)-\varepsilon\le\inf_{N>N_0}L(\gamma_N)\le\liminf_{N\to\infty}L(\gamma_N)$ — [[verhniy-i-nizhniy-predely|нижний предел]] есть [предел инфимумов по хвостам](/aii/matan/1/day/20), а те не убывают. Число $\varepsilon$ произвольно, поэтому $S_\lambda(\gamma)\le\liminf_N L(\gamma_N)$; правая часть от $\lambda$ не зависит, значит она мажорирует и супремум по всем разбиениям: $L(\gamma)\le\liminf_N L(\gamma_N)$. $\qquad\blacksquare$
+$$\forall\varepsilon>0\ \ \exists N_0:\ \forall N>N_0\qquad S_\lambda(\gamma)\ \le\ S_\lambda(\gamma_N)+\varepsilon\ \le\ L(\gamma_N)+\varepsilon$$
+
+$$\Longrightarrow\qquad S_\lambda(\gamma)-\varepsilon\ \le\ \inf_{N>N_0}L(\gamma_N)\ \le\ \liminf_{N\to\infty}L(\gamma_N)\qquad\overset{\varepsilon\ \text{произвольно}}{\Longrightarrow}\qquad S_\lambda(\gamma)\le\liminf_{N\to\infty}L(\gamma_N),$$
+
+$$\overset{\sup_\lambda}{\Longrightarrow}\qquad L(\gamma)=\sup_\lambda S_\lambda(\gamma)\ \le\ \liminf_{N\to\infty}L(\gamma_N).\qquad\blacksquare$$
+
+Число звеньев $m$ зафиксировано вместе с $\lambda$, а супремум расстояний стремится к нулю по равномерной сходимости. Каждая сумма $S_\lambda(\gamma_N)$ не превосходит $L(\gamma_N)$ — та есть супремум таких сумм; [[verhniy-i-nizhniy-predely|нижний предел]] есть [предел инфимумов по хвостам](/aii/matan/1/day/20), а те не убывают. Правая часть от $\lambda$ не зависит, значит она мажорирует и супремум по всем разбиениям.
 
 Обратного неравенства нет, и на лестнице разрыв как раз строгий: $\frac\pi2<2$.
 

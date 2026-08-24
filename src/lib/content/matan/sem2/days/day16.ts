@@ -80,23 +80,27 @@ $$\boxed{\ \frac{\partial\varphi}{\partial\vec z}=-\left(\frac{\partial\vec g}{\
 
 $$\boxed{\ \nabla F(\vec z^{\,*})=\vec 0\ }$$
 
-**Доказательство.** Шаг 1 — перенос экстремума. Тождество $\vec g(\varphi(\vec z),\vec z)=\vec 0$ означает, что $(\varphi(\vec z),\vec z)\in\mathcal D$ при всех $\vec z\in U$; сузим $U$ так, чтобы вдобавок $(\varphi(\vec z),\vec z)\in U_{\vec x^{*}}$ (это законно: $\varphi$ непрерывна и $\varphi(\vec z^{\,*})=\vec y^{\,*}$). Тогда в случае минимума
+**Доказательство.**
 
-$$F(\vec z)=f(\varphi(\vec z),\vec z)\ \ge\ f(\vec x^{\,*})=F(\vec z^{\,*}).$$
+**Шаг 1 — перенос экстремума.**
 
-Существенно, что $\vec z$ пробегает **целую** окрестность в $\mathbb R^{\,n-m}$: связей на $\vec z$ больше нет, они уже зашиты в $\varphi$. А поточечная единственность из теоремы о неявной функции гарантирует, что при этом не потеряно ни одной допустимой точки. Именно: для $\vec z\in U$ и $\vec y\in V$ равенство $\vec g(\vec y,\vec z)=\vec 0$ равносильно $\vec y=\varphi(\vec z)$, то есть
+$$\vec g(\varphi(\vec z),\vec z)=\vec 0\ \ \forall\vec z\in U\ \Longrightarrow\ (\varphi(\vec z),\vec z)\in\mathcal D;\qquad \varphi\in C,\ \ \varphi(\vec z^{\,*})=\vec y^{\,*}\ \Longrightarrow\ U\ \text{сужаем}:\ \ (\varphi(\vec z),\vec z)\in U_{\vec x^{*}};$$
 
-$$\mathcal D\cap(V\times U)=\lbrace(\varphi(\vec z),\vec z):\ \vec z\in U\rbrace$$
+$$\vec x^{\,*}\ \text{— условный минимум}\ \Longrightarrow\ F(\vec z)=f(\varphi(\vec z),\vec z)\ \ge\ f(\vec x^{\,*})=F(\vec z^{\,*})\qquad\forall\vec z\in U;$$
 
-— в цилиндре $V\times U$ допустимое множество совпадает с графиком $\varphi$ и других допустимых точек там нет. Именно эта окрестность точки $\vec x^{\,*}$ и имеется в виду дальше, когда говорится «вблизи $\vec x^{\,*}$».
+$$\forall\vec z\in U\ \forall\vec y\in V:\ \ \vec g(\vec y,\vec z)=\vec 0\ \iff\ \vec y=\varphi(\vec z)\quad\Longrightarrow\quad \mathcal D\cap(V\times U)=\lbrace(\varphi(\vec z),\vec z):\ \vec z\in U\rbrace.$$
 
-Шаг 2 — теорема Ферма для скалярных полей. Сначала предъявим у $F$ частные производные. Зафиксируем номер $j$: функция
+Существенно, что $\vec z$ пробегает **целую** окрестность в $\mathbb R^{\,n-m}$: связей на $\vec z$ больше нет, они уже зашиты в $\varphi$. Последняя строка — поточечная единственность из теоремы о неявной функции; она и гарантирует, что при переходе к $F$ не потеряно ни одной допустимой точки: в цилиндре $V\times U$ допустимое множество совпадает с графиком $\varphi$ и других допустимых точек там нет. Именно эта окрестность точки $\vec x^{\,*}$ и имеется в виду дальше, когда говорится «вблизи $\vec x^{\,*}$».
 
-$$u_j(t)=F(\vec z^{\,*}+t\vec e_j)=f\bigl(\gamma_j(t)\bigr),\qquad \gamma_j(t)=\bigl(\varphi(\vec z^{\,*}+t\vec e_j),\ \vec z^{\,*}+t\vec e_j\bigr),$$
+**Шаг 2 — теорема Ферма для скалярных полей.** Сначала предъявим у $F$ частные производные.
 
-есть композиция поля $f$ с кривой $\gamma_j$, а кривая дифференцируема, потому что $\varphi\in C^{1}$. По [цепному правилу вдоль кривой](/aii/matan/2/day/9) $u_j$ дифференцируема в нуле, и $u_j'(0)$ — это по определению частная производная $\frac{\partial F}{\partial z_j}(\vec z^{\,*})$. Номер $j$ произволен, значит все частные производные у $F$ в $\vec z^{\,*}$ есть.
+$$u_j(t)=F(\vec z^{\,*}+t\vec e_j)=f\bigl(\gamma_j(t)\bigr),\qquad \gamma_j(t)=\bigl(\varphi(\vec z^{\,*}+t\vec e_j),\ \vec z^{\,*}+t\vec e_j\bigr);$$
 
-По шагу 1 точка $\vec z^{\,*}$ — локальный экстремум $F$, и она внутренняя: $\vec z$ пробегает целую окрестность. Значит применима [теорема Ферма для скалярных полей](/aii/matan/2/day/13), и $\nabla F(\vec z^{\,*})=\vec 0$. $\qquad\blacksquare$`
+$$\varphi\in C^{1}\ \Longrightarrow\ \gamma_j\ \text{дифференцируема}\ \overset{\text{цепное правило}}{\Longrightarrow}\ \exists\,u_j'(0)=\frac{\partial F}{\partial z_j}(\vec z^{\,*}),\qquad j=\overline{1,n-m};$$
+
+$$\text{шаг 1}\ \Longrightarrow\ \vec z^{\,*}\ \text{— локальный экстремум}\ F,\ \ \vec z^{\,*}\ \text{внутренняя}\ \overset{\text{Ферма}}{\Longrightarrow}\ \nabla F(\vec z^{\,*})=\vec 0.\qquad\blacksquare$$
+
+Вторая строка — [цепное правило вдоль кривой](/aii/matan/2/day/9) плюс определение частной производной; номер $j$ произволен, значит все частные производные у $F$ в $\vec z^{\,*}$ есть. Внутренность точки — это и есть «$\vec z$ пробегает целую окрестность», а последний переход — [теорема Ферма для скалярных полей](/aii/matan/2/day/13).`
 		},
 		{
 			kind: 'theorem',
@@ -113,23 +117,29 @@ $$\nabla f(\vec x^{\,*})-\sum_{i=1}^{m}\lambda_i^{*}\,\nabla g_i(\vec x^{\,*})=\
 
 **Доказательство.** Распишем $\nabla F$ цепным правилом и подставим уже найденную $\frac{\partial\varphi}{\partial\vec z}$.
 
-Каждая свободная переменная $z_j$ влияет на $f$ дважды: напрямую и через зависимые $\vec y=\varphi(\vec z)$. Отсюда — снова [цепным правилом вдоль кривой](/aii/matan/2/day/9), применённым к $t\mapsto\bigl(\varphi(\vec z+t\vec e_j),\ \vec z+t\vec e_j\bigr)$, —
+$$z_j\ \text{влияет на}\ f\ \text{дважды}\ \overset{\text{цепное правило}}{\Longrightarrow}\ \frac{\partial F}{\partial z_j}=\frac{\partial f}{\partial z_j}+\sum_{i=1}^{m}\frac{\partial f}{\partial y_i}\cdot\frac{\partial\varphi_i}{\partial z_j},\qquad j=\overline{1,n-m};$$
 
-$$\frac{\partial F}{\partial z_j}=\frac{\partial f}{\partial z_j}+\sum_{i=1}^{m}\frac{\partial f}{\partial y_i}\cdot\frac{\partial\varphi_i}{\partial z_j},\qquad j=\overline{1,n-m},$$
+$$\iff\ \nabla F^{T}=\frac{\partial f}{\partial\vec z}+\frac{\partial f}{\partial\vec y}\cdot\frac{\partial\varphi}{\partial\vec z}\ \overset{\text{бокс выше}}{=}\ \frac{\partial f}{\partial\vec z}-\underbrace{\frac{\partial f}{\partial\vec y}\left(\frac{\partial\vec g}{\partial\vec y}\right)^{-1}}_{\textstyle\vec\lambda^{\,T}}\cdot\frac{\partial\vec g}{\partial\vec z}.$$
 
-то есть в строчной матричной форме $\nabla F^{T}=\frac{\partial f}{\partial\vec z}+\frac{\partial f}{\partial\vec y}\cdot\frac{\partial\varphi}{\partial\vec z}$. Подставляем бокс предыдущей секции (минус из него и даст привычный знак):
+Дважды — напрямую и через зависимые $\vec y=\varphi(\vec z)$; правило — снова [цепное вдоль кривой](/aii/matan/2/day/9), применённое к $t\mapsto\bigl(\varphi(\vec z+t\vec e_j),\ \vec z+t\vec e_j\bigr)$. Минус пришёл из подставленного бокса предыдущей секции, а возникшая комбинация и есть [[mnozhitel-lagranzha|множители Лагранжа]] — их не подбирают, их считают.
 
-$$\nabla F^{T}=\frac{\partial f}{\partial\vec z}-\underbrace{\frac{\partial f}{\partial\vec y}\left(\frac{\partial\vec g}{\partial\vec y}\right)^{-1}}_{\textstyle\vec\lambda^{\,T}}\cdot\frac{\partial\vec g}{\partial\vec z}.$$
+Теперь читаем обе группы координат:
 
-Возникшая комбинация и есть [[mnozhitel-lagranzha|множители Лагранжа]] — их не подбирают, их считают. Теперь читаем обе группы координат. По свободным переменным работает теорема о редукции $\nabla F(\vec z^{\,*})=\vec 0$:
+$$\text{свободные}:\quad \nabla F(\vec z^{\,*})=\vec 0\ \Longrightarrow\ \frac{\partial f}{\partial z_j}-\sum_{i=1}^{m}\lambda_i^{*}\frac{\partial g_i}{\partial z_j}=0,\qquad j=\overline{1,n-m};$$
 
-$$\frac{\partial f}{\partial z_j}-\sum_{i=1}^{m}\lambda_i^{*}\frac{\partial g_i}{\partial z_j}=0,\qquad j=\overline{1,n-m}.$$
+$$\text{зависимые}:\quad \vec\lambda^{\,T}=\frac{\partial f}{\partial\vec y}\left(\frac{\partial\vec g}{\partial\vec y}\right)^{-1}\ \iff\ \vec\lambda^{\,T}\frac{\partial\vec g}{\partial\vec y}=\frac{\partial f}{\partial\vec y}\ \Longrightarrow\ \frac{\partial f}{\partial y_j}-\sum_{i=1}^{m}\lambda_i^{*}\frac{\partial g_i}{\partial y_j}=0,\qquad j=\overline{1,m};$$
 
-По зависимым то же равенство выполнено **тождественно** — это просто определение $\vec\lambda$, переписанное как $\vec\lambda^{\,T}\frac{\partial\vec g}{\partial\vec y}=\frac{\partial f}{\partial\vec y}$:
+$$(n-m)+m=n\quad\Longrightarrow\quad \nabla f(\vec x^{\,*})-\sum_{i=1}^{m}\lambda_i^{*}\,\nabla g_i(\vec x^{\,*})=\vec 0 .$$
 
-$$\frac{\partial f}{\partial y_j}-\sum_{i=1}^{m}\lambda_i^{*}\frac{\partial g_i}{\partial y_j}=0,\qquad j=\overline{1,m}.$$
+По свободным переменным работает теорема о редукции $\nabla F(\vec z^{\,*})=\vec 0$; по зависимым то же равенство выполнено **тождественно** — это просто определение $\vec\lambda$, переписанное иначе. Две группы вместе — это все $n$ координат, то есть заявленное равенство.
 
-Две группы вместе — это все $n$ координат, то есть заявленное равенство. Единственность набора: матрица $\frac{\partial\vec g}{\partial\vec y}$ невырождена, а значит обратима (тот же принятый выше факт), поэтому уравнение $\vec\lambda^{\,T}\frac{\partial\vec g}{\partial\vec y}=\frac{\partial f}{\partial\vec y}$ имеет ровно одно решение $\vec\lambda^{\,T}=\frac{\partial f}{\partial\vec y}\bigl(\frac{\partial\vec g}{\partial\vec y}\bigr)^{-1}$. Недостающие $m$ уравнений системы даёт $\partial\mathcal L/\partial\lambda_i=-g_i=0$ — сами связи. $\qquad\blacksquare$
+Единственность набора и недостающие уравнения:
+
+$$\det\frac{\partial\vec g}{\partial\vec y}\ne0\ \Longrightarrow\ \frac{\partial\vec g}{\partial\vec y}\ \text{обратима}\ \Longrightarrow\ \exists!\ \vec\lambda^{\,T}:\ \ \vec\lambda^{\,T}\frac{\partial\vec g}{\partial\vec y}=\frac{\partial f}{\partial\vec y},\qquad \vec\lambda^{\,T}=\frac{\partial f}{\partial\vec y}\Bigl(\frac{\partial\vec g}{\partial\vec y}\Bigr)^{-1};$$
+
+$$\frac{\partial\mathcal L}{\partial\lambda_i}=-g_i=0,\ \ i=\overline{1,m}\quad\Longrightarrow\quad \text{недостающие }m\text{ уравнений системы — сами связи}.\qquad\blacksquare$$
+
+«Невырождена, значит обратима» — тот же принятый выше факт.
 
 **Идея для запоминания:** метод Лагранжа — это подстановка, доведённая до конца: $\vec y$-координаты обслуживают *определение* $\vec\lambda$, $\vec z$-координаты — *теорему Ферма*, а вместе они складываются в симметричное равенство, в котором расщепления уже не видно.`
 		},
@@ -150,19 +160,41 @@ $$\boxed{\ d^{2}\mathcal L(\vec x^{\,*})[\vec h]=\vec h^{\,T}H(\mathcal L)\,\vec
 
 $$F(\vec z)=f(\vec x(\vec z))-\sum_i\lambda_i^{*}\underbrace{g_i(\vec x(\vec z))}_{\equiv\,0}=\mathcal L(\vec x(\vec z)).$$
 
-Дифференцируем это тождество дважды. Каждое дифференцирование по $z_j$ — это [цепное правило вдоль кривой](/aii/matan/2/day/9), применённое к $t\mapsto\vec x(\vec z+t\vec e_j)$; на втором шаге под производной стоит сумма произведений, и её разбирают [линейность и правило Лейбница](/aii/matan/2/day/2):
+**Шаг 1 — дифференцируем тождество дважды.**
 
-$$\frac{\partial^{2}F}{\partial z_j\partial z_k}=\sum_{p,q}\frac{\partial^{2}\mathcal L}{\partial x_p\partial x_q}\frac{\partial x_p}{\partial z_j}\frac{\partial x_q}{\partial z_k}+\sum_{p}\frac{\partial\mathcal L}{\partial x_p}\frac{\partial^{2}x_p}{\partial z_j\partial z_k}.$$
+$$\frac{\partial^{2}F}{\partial z_j\partial z_k}=\sum_{p,q}\frac{\partial^{2}\mathcal L}{\partial x_p\partial x_q}\frac{\partial x_p}{\partial z_j}\frac{\partial x_q}{\partial z_k}+\sum_{p}\frac{\partial\mathcal L}{\partial x_p}\frac{\partial^{2}x_p}{\partial z_j\partial z_k};$$
 
-Вторая сумма в точке $\vec x^{\,*}$ исчезает, потому что $\nabla\mathcal L(\vec x^{\,*})=\vec 0$ — уже доказанное необходимое условие (вот зачем берётся $\mathcal L$, а не $f$: у $f$ градиент в $\vec x^{\,*}$ не ноль, и второй член никуда бы не делся). Значит $d^{2}F(\vec z^{\,*})[\vec w]=d^{2}\mathcal L(\vec x^{\,*})[M\vec w]$, где $M$ — матрица размера $n\times(n-m)$ со столбцами $\frac{\partial\vec x}{\partial z_j}$, то есть $M=\bigl(\frac{\partial\varphi}{\partial\vec z};E\bigr)$.
+$$\nabla\mathcal L(\vec x^{\,*})=\vec 0\ \Longrightarrow\ \sum_{p}\frac{\partial\mathcal L}{\partial x_p}\frac{\partial^{2}x_p}{\partial z_j\partial z_k}\bigg|_{\vec x^{\,*}}=0\ \Longrightarrow\ d^{2}F(\vec z^{\,*})[\vec w]=d^{2}\mathcal L(\vec x^{\,*})[M\vec w],\qquad M=\Bigl(\frac{\partial\varphi}{\partial\vec z};E\Bigr).$$
 
-Проверим, что $M$ переводит $\mathbb R^{\,n-m}$ ровно на $T_{\vec x^{*}}$, и притом взаимно однозначно. Включение: для $\vec h=M\vec w=\bigl(\frac{\partial\varphi}{\partial\vec z}\vec w,\ \vec w\bigr)$ по выведенному выше тождеству $\frac{\partial\vec g}{\partial\vec y}\frac{\partial\varphi}{\partial\vec z}+\frac{\partial\vec g}{\partial\vec z}=0$ получаем
+Каждое дифференцирование по $z_j$ — это [цепное правило вдоль кривой](/aii/matan/2/day/9), применённое к $t\mapsto\vec x(\vec z+t\vec e_j)$; на втором шаге под производной стоит сумма произведений, и её разбирают [линейность и правило Лейбница](/aii/matan/2/day/2). Вторая сумма исчезает по уже доказанному необходимому условию — вот зачем берётся $\mathcal L$, а не $f$: у $f$ градиент в $\vec x^{\,*}$ не ноль, и второй член никуда бы не делся. Матрица $M$ размера $n\times(n-m)$ составлена из столбцов $\frac{\partial\vec x}{\partial z_j}$.
 
-$$J\vec h=\frac{\partial\vec g}{\partial\vec y}\frac{\partial\varphi}{\partial\vec z}\vec w+\frac{\partial\vec g}{\partial\vec z}\vec w=\vec 0,$$
+**Шаг 2 — $M$ взаимно однозначно переводит $\mathbb R^{\,n-m}$ на $T_{\vec x^{*}}$.**
 
-то есть $\vec h\in T_{\vec x^{*}}$. Обратно: пусть $\vec h=(\vec h_y,\vec h_z)\in T_{\vec x^{*}}$, тогда $\frac{\partial\vec g}{\partial\vec y}\vec h_y+\frac{\partial\vec g}{\partial\vec z}\vec h_z=\vec 0$; обращая $\frac{\partial\vec g}{\partial\vec y}$, получаем $\vec h_y=-\bigl(\frac{\partial\vec g}{\partial\vec y}\bigr)^{-1}\frac{\partial\vec g}{\partial\vec z}\vec h_z=\frac{\partial\varphi}{\partial\vec z}\vec h_z$, то есть $\vec h=M\vec h_z$. Взаимная однозначность видна по нижнему блоку: из $M\vec w=\vec 0$ следует $\vec w=\vec 0$.
+$$(\ast)\qquad \frac{\partial\vec g}{\partial\vec y}\frac{\partial\varphi}{\partial\vec z}+\frac{\partial\vec g}{\partial\vec z}=0\qquad\text{— тождество, выведенное выше};$$
 
-Поэтому знак $d^{2}F(\vec z^{\,*})$ на $\mathbb R^{\,n-m}\setminus\lbrace\vec 0\rbrace$ и знак $d^{2}\mathcal L(\vec x^{\,*})$ на $T_{\vec x^{*}}\setminus\lbrace\vec 0\rbrace$ — один и тот же. Функция $F$ принадлежит $C^{2}$, и это читается прямо по выписанной строкой выше формуле для $\frac{\partial^{2}F}{\partial z_j\partial z_k}$. В её правой части стоят: вторые производные $\frac{\partial^{2}\mathcal L}{\partial x_p\partial x_q}$, непрерывные, потому что $f,g_i\in C^{2}$, а $\mathcal L$ — их линейная комбинация с постоянными коэффициентами; первые производные $\frac{\partial x_p}{\partial z_j}$ и вторые $\frac{\partial^{2}x_p}{\partial z_j\partial z_k}$, непрерывные, потому что $\vec x(\vec z)=(\varphi(\vec z),\vec z)$ и $\varphi\in C^{2}$ (класс гладкости $\varphi$ теорема о неявной функции наследует у связей); наконец, сами $\frac{\partial^{2}\mathcal L}{\partial x_p\partial x_q}$ берутся в точке $\vec x(\vec z)$, а $\vec x(\cdot)$ непрерывно — работает [непрерывность композиции](/aii/matan/1/day/28). Вся правая часть собрана из этих непрерывных функций конечным числом умножений и сложений, поэтому непрерывна по [арифметике непрерывных функций](/aii/matan/1/day/28); тем же рассуждением, но на один порядок ниже, непрерывны и первые производные $F$. Значит $F\in C^{2}(U)$. Вдобавок $\nabla F(\vec z^{\,*})=\vec 0$ по теореме о редукции, так что к $F$ применимо [достаточное условие безусловного экстремума](/aii/matan/2/day/13) — знак формы проверяется там [[kriteriy-silvestra|критерием Сильвестра]]: при $d^{2}\mathcal L>0$ на $T_{\vec x^{*}}$ точка $\vec z^{\,*}$ есть строгий локальный минимум $F$, то есть найдётся окрестность $U'\subset U$, в которой $F(\vec z)>F(\vec z^{\,*})$ при $\vec z\ne\vec z^{\,*}$ (строгость даётся лишь на своей окрестности, поэтому дальше работаем с $U'$, а не с $U$). Осталось вернуться к $f$: поточечная единственность верна и на суженной окрестности, поэтому по шагу 1 теоремы о редукции каждая допустимая точка цилиндра $V\times U'$ — а это окрестность точки $\vec x^{\,*}$ — имеет вид $(\varphi(\vec z),\vec z)$ с $\vec z\in U'$, и $f(\varphi(\vec z),\vec z)=F(\vec z)>F(\vec z^{\,*})=f(\vec x^{\,*})$ при $\vec z\ne\vec z^{\,*}$ — это и есть строгий условный минимум. Случаи максимума и знакопеременности разбирает та же теорема дня 13. $\qquad\blacksquare$
+$$\vec h=M\vec w=\Bigl(\frac{\partial\varphi}{\partial\vec z}\vec w,\ \vec w\Bigr)\ \Longrightarrow\ J\vec h=\frac{\partial\vec g}{\partial\vec y}\frac{\partial\varphi}{\partial\vec z}\vec w+\frac{\partial\vec g}{\partial\vec z}\vec w\overset{(\ast)}{=}\vec 0\ \Longrightarrow\ \vec h\in T_{\vec x^{*}};$$
+
+$$\vec h=(\vec h_y,\vec h_z)\in T_{\vec x^{*}}\ \Longrightarrow\ \frac{\partial\vec g}{\partial\vec y}\vec h_y+\frac{\partial\vec g}{\partial\vec z}\vec h_z=\vec 0\ \overset{\det\ne0}{\Longrightarrow}\ \vec h_y=-\Bigl(\frac{\partial\vec g}{\partial\vec y}\Bigr)^{-1}\frac{\partial\vec g}{\partial\vec z}\vec h_z=\frac{\partial\varphi}{\partial\vec z}\vec h_z\ \Longrightarrow\ \vec h=M\vec h_z;$$
+
+$$M\vec w=\vec 0\ \overset{\text{нижний блок}}{\Longrightarrow}\ \vec w=\vec 0\quad\Longrightarrow\quad \text{знак }d^{2}F(\vec z^{\,*})\text{ на }\mathbb R^{\,n-m}\setminus\lbrace\vec 0\rbrace\ =\ \text{знак }d^{2}\mathcal L(\vec x^{\,*})\text{ на }T_{\vec x^{*}}\setminus\lbrace\vec 0\rbrace.$$
+
+**Шаг 3 — $F\in C^{2}(U)$.**
+
+$$f,g_i\in C^{2},\ \ \mathcal L=f-\sum_i\lambda_i^{*}g_i\ \Longrightarrow\ \frac{\partial^{2}\mathcal L}{\partial x_p\partial x_q}\in C;\qquad \vec x(\vec z)=(\varphi(\vec z),\vec z),\ \ \varphi\in C^{2}\ \Longrightarrow\ \frac{\partial x_p}{\partial z_j},\ \frac{\partial^{2}x_p}{\partial z_j\partial z_k}\in C;$$
+
+$$\vec x(\cdot)\in C\ \Longrightarrow\ \vec z\mapsto\frac{\partial^{2}\mathcal L}{\partial x_p\partial x_q}(\vec x(\vec z))\in C\ \Longrightarrow\ \frac{\partial^{2}F}{\partial z_j\partial z_k}\in C\ \Longrightarrow\ F\in C^{2}(U).$$
+
+Всё это читается прямо по формуле шага 1. Линейная комбинация с постоянными коэффициентами не портит непрерывности; класс гладкости $\varphi$ теорема о неявной функции наследует у связей; вторые производные $\mathcal L$ берутся в точке $\vec x(\vec z)$, а $\vec x(\cdot)$ непрерывно — работает [непрерывность композиции](/aii/matan/1/day/28); вся правая часть собрана из этих непрерывных функций конечным числом умножений и сложений, поэтому непрерывна по [арифметике непрерывных функций](/aii/matan/1/day/28); тем же рассуждением, но на один порядок ниже, непрерывны и первые производные $F$.
+
+**Шаг 4 — достаточное условие для $F$ и возврат к $f$.**
+
+$$F\in C^{2},\ \ \nabla F(\vec z^{\,*})=\vec 0,\ \ d^{2}\mathcal L(\vec x^{\,*})>0\ \text{на}\ T_{\vec x^{*}}\setminus\lbrace\vec 0\rbrace\ \overset{\text{шаг 2}}{\Longrightarrow}\ d^{2}F(\vec z^{\,*})>0\ \text{на}\ \mathbb R^{\,n-m}\setminus\lbrace\vec 0\rbrace;$$
+
+$$\overset{\text{дост. условие}}{\Longrightarrow}\ \exists\,U'\subset U\ \ \forall\vec z\in U'\setminus\lbrace\vec z^{\,*}\rbrace:\qquad F(\vec z)>F(\vec z^{\,*});$$
+
+$$\mathcal D\cap(V\times U')=\lbrace(\varphi(\vec z),\vec z):\ \vec z\in U'\rbrace\ \Longrightarrow\ f(\varphi(\vec z),\vec z)=F(\vec z)>F(\vec z^{\,*})=f(\vec x^{\,*})\quad\forall\vec z\in U'\setminus\lbrace\vec z^{\,*}\rbrace.\qquad\blacksquare$$
+
+Равенство $\nabla F(\vec z^{\,*})=\vec 0$ даёт теорема о редукции, поэтому к $F$ применимо [достаточное условие безусловного экстремума](/aii/matan/2/day/13), где знак формы проверяется [[kriteriy-silvestra|критерием Сильвестра]]. Строгость даётся лишь на своей окрестности, поэтому дальше работаем с $U'$, а не с $U$: поточечная единственность верна и на суженной окрестности, значит по шагу 1 теоремы о редукции каждая допустимая точка цилиндра $V\times U'$ — а это окрестность точки $\vec x^{\,*}$ — имеет вид $(\varphi(\vec z),\vec z)$ с $\vec z\in U'$. Последняя строка и есть строгий условный минимум. Случаи максимума и знакопеременности разбирает та же теорема дня 13.
 
 Руками это считают через **[[okaymlennyy-gessian|окаймлённый гессиан]]** $\overline H=\begin{pmatrix}0&J\\ J^{T}&H(\mathcal L)\end{pmatrix}$ размера $(n+m)\times(n+m)$: смотрят угловые миноры $\Delta_k$ порядков $k=2m+1,\dots,n+m$. Все знаки $(-1)^{m}$ — минимум; чередование, начиная с $(-1)^{m+1}$, — максимум.
 

@@ -26,15 +26,19 @@ export const day02: Day = {
 
 $$\boxed{\ (f\pm g)'(x_0)=f'(x_0)\pm g'(x_0),\qquad (\lambda f)'(x_0)=\lambda f'(x_0),\qquad C'=0.\ }$$
 
-**Доказательство.** Положим $h=f+g$ и выпишем разностное отношение, сгруппировав приращения по функциям:
+**Доказательство.**
 
-$$\frac{\Delta h}{\Delta x}=\frac{\bigl(f(x_0+\Delta x)+g(x_0+\Delta x)\bigr)-\bigl(f(x_0)+g(x_0)\bigr)}{\Delta x}=\frac{\Delta f}{\Delta x}+\frac{\Delta g}{\Delta x}.$$
+$$h:=f+g,\qquad\frac{\Delta h}{\Delta x}\overset{\text{опр.}}{=}\frac{\bigl(f(x_0+\Delta x)+g(x_0+\Delta x)\bigr)-\bigl(f(x_0)+g(x_0)\bigr)}{\Delta x}\overset{\text{группируем}}{=}\frac{\Delta f}{\Delta x}+\frac{\Delta g}{\Delta x}.$$
 
-Оба слагаемых имеют предел при $\Delta x\to0$ — это и есть условие теоремы (без него теорема о пределе суммы неприменима: сумма может иметь предел там, где слагаемые его не имеют, пример — $f=|x|$, $g=-|x|$ в нуле). По [[arifmetika-predelov|арифметике пределов]], [доказанной в первом семестре](/aii/matan/1/day/27),
+$$\exists\,f'(x_0)\ \wedge\ \exists\,g'(x_0)\ \overset{\text{арифм. пределов}}{\Longrightarrow}\ h'(x_0)=\lim_{\Delta x\to0}\frac{\Delta f}{\Delta x}+\lim_{\Delta x\to0}\frac{\Delta g}{\Delta x}=f'(x_0)+g'(x_0).$$
 
-$$h'(x_0)=\lim_{\Delta x\to0}\frac{\Delta f}{\Delta x}+\lim_{\Delta x\to0}\frac{\Delta g}{\Delta x}=f'(x_0)+g'(x_0).$$
+$$\forall\lambda\in\mathbb R:\quad\frac{\lambda\,\Delta f}{\Delta x}=\lambda\,\frac{\Delta f}{\Delta x}\ \overset{\Delta x\to0}{\Longrightarrow}\ (\lambda f)'(x_0)=\lambda f'(x_0).$$
 
-Для $\lambda f$ постоянная выносится из разностного отношения ещё до предела: $\frac{\lambda\Delta f}{\Delta x}=\lambda\frac{\Delta f}{\Delta x}$, поэтому $(\lambda f)'(x_0)=\lambda f'(x_0)$. Разность отдельного разбора не требует: $f-g=f+(-1)g$, причём $(-1)g$ дифференцируема в $x_0$ с производной $-g'(x_0)$ по только что доказанному про $\lambda f$, а сумма двух дифференцируемых разобрана в первой половине; вместе они дают $(f-g)'(x_0)=f'(x_0)-g'(x_0)$. Для $f\equiv C$ приращение тождественно нулевое, значит и предел нулевой. $\qquad\blacksquare$
+$$f-g=f+(-1)g\ \overset{\lambda=-1}{\Longrightarrow}\ \bigl((-1)g\bigr)'(x_0)=-g'(x_0)\ \overset{\text{случай суммы}}{\Longrightarrow}\ (f-g)'(x_0)=f'(x_0)-g'(x_0).$$
+
+$$f\equiv C\ \Longrightarrow\ \Delta f\equiv0\ \Longrightarrow\ C'(x_0)=\lim_{\Delta x\to0}\frac{0}{\Delta x}=0.\qquad\blacksquare$$
+
+Существование обоих пределов во второй строке — это и есть условие теоремы; сам переход оправдан [[arifmetika-predelov|арифметикой пределов]], [доказанной в первом семестре](/aii/matan/1/day/27). Без этого условия теорема о пределе суммы неприменима: сумма может иметь предел там, где слагаемые его не имеют, пример — $f=|x|$, $g=-|x|$ в нуле. В третьей строке постоянная вынесена из разностного отношения ещё до предела.
 
 В списке нет равенства $(fg)'=f'g'$, и это не пропуск: проверка на одночленах ломает его сразу — $(x\cdot x)'=2x$, а $x'\cdot x'=1$. Произведение требует отдельного вывода, и он геометрический.`
 		},
@@ -45,17 +49,17 @@ $$h'(x_0)=\lim_{\Delta x\to0}\frac{\Delta f}{\Delta x}+\lim_{\Delta x\to0}\frac{
 
 $$(fg)'(x_0)=f'(x_0)\,g(x_0)+f(x_0)\,g'(x_0).$$
 
-**Доказательство.** Нарисуем произведение как площадь прямоугольника и посмотрим, из чего складывается приращение площади. Стороны — $f$ и $g$, площадь $S=fg$. Сдвинем аргумент на $\Delta x$: стороны станут $f+\Delta f$ и $g+\Delta g$, и
+**Доказательство.**
 
-$$\Delta S=(f+\Delta f)(g+\Delta g)-fg=\underbrace{\Delta f\cdot g}_{\text{полоска снизу}}+\underbrace{f\cdot\Delta g}_{\text{полоска сбоку}}+\underbrace{\Delta f\cdot\Delta g}_{\text{угловой квадратик}}.$$
+$$S:=fg,\qquad\Delta S\overset{\text{опр.}}{=}(f+\Delta f)(g+\Delta g)-fg\overset{\text{раскрыли}}{=}\underbrace{\Delta f\cdot g}_{\text{полоска снизу}}+\underbrace{f\cdot\Delta g}_{\text{полоска сбоку}}+\underbrace{\Delta f\cdot\Delta g}_{\text{угловой квадратик}}.$$
 
-Делим всё на $\Delta x$:
+$$\frac{\Delta S}{\Delta x}\overset{\,:\,\Delta x}{=}\frac{\Delta f}{\Delta x}\,g+f\,\frac{\Delta g}{\Delta x}+\frac{\Delta f}{\Delta x}\,\Delta g.$$
 
-$$\frac{\Delta S}{\Delta x}=\frac{\Delta f}{\Delta x}\,g+f\,\frac{\Delta g}{\Delta x}+\frac{\Delta f}{\Delta x}\,\Delta g.$$
+$$\exists\,f'(x_0)\ \Longrightarrow\ \frac{\Delta f}{\Delta x}\xrightarrow[\Delta x\to0]{}f'(x_0),\qquad\exists\,g'(x_0)\ \overset{\text{дифф.}\Rightarrow\text{непр.}}{\Longrightarrow}\ \Delta g\xrightarrow[\Delta x\to0]{}0.$$
 
-Третье слагаемое — уже не «одно приращение на $\Delta x$», а произведение готового разностного отношения на **само** приращение $\Delta g$. Первый множитель стремится к $f'(x_0)$, второй — к нулю (дифференцируемость влечёт непрерывность — доказано в [дне 1](/aii/matan/2/day/1)), поэтому по [арифметике предела функции](/aii/matan/1/day/27) весь член гаснет: он [[kvadratichno-maloe|квадратично мал]], то есть лежит в [[asimptoticheskie-klassy|$\bar o(\Delta x)$]]. Остаётся
+$$\overset{\text{арифм. пределов}}{\Longrightarrow}\ \frac{\Delta f}{\Delta x}\,\Delta g\xrightarrow[\Delta x\to0]{}f'(x_0)\cdot0=0\ \Longrightarrow\ \boxed{\ (fg)'(x_0)=f'(x_0)\,g(x_0)+f(x_0)\,g'(x_0).\ }\qquad\blacksquare$$
 
-$$\boxed{\ (fg)'(x_0)=f'(x_0)\,g(x_0)+f(x_0)\,g'(x_0).\ }\qquad\blacksquare$$
+Первая строка — приращение площади прямоугольника: стороны $f$ и $g$ после сдвига аргумента на $\Delta x$ становятся $f+\Delta f$ и $g+\Delta g$. Третье слагаемое — уже не «одно приращение на $\Delta x$», а произведение готового разностного отношения на **само** приращение $\Delta g$; непрерывность взята из [дня 1](/aii/matan/2/day/1), предел произведения — из [арифметики предела функции](/aii/matan/1/day/27). Этот член [[kvadratichno-maloe|квадратично мал]], то есть лежит в [[asimptoticheskie-klassy|$\bar o(\Delta x)$]].
 
 **Идея для запоминания:** приращение площади — это две полоски плюс угол, и угол не считается, потому что он «прирост на прирост»; тот же приём отбрасывания $\bar o$ работал в разборе определения производной (день 1), и он же вернётся в производной Фреше, где $\bar o$ выписывают отдельной буквой $A(\Delta h)$.`
 		},
@@ -66,17 +70,17 @@ $$\boxed{\ (fg)'(x_0)=f'(x_0)\,g(x_0)+f(x_0)\,g'(x_0).\ }\qquad\blacksquare$$
 
 $$\boxed{\ \Bigl(\frac fg\Bigr)'(x_0)=\frac{f'(x_0)\,g(x_0)-f(x_0)\,g'(x_0)}{g^{2}(x_0)}.\ }$$
 
-**Доказательство.** Разбиваем задачу надвое: сначала обратная величина, потом [[pravilo-leybnica|правило Лейбница]]. Для $\frac1g$ считаем прямо по определению, но сперва убедимся, что рядом с $x_0$ дробь вообще определена. Функция $g$ непрерывна в $x_0$ (дифференцируемость влечёт непрерывность, [день 1](/aii/matan/2/day/1)), поэтому по $\varepsilon=\frac{|g(x_0)|}{2}>0$ найдётся $\delta>0$ такое, что $|g(x)-g(x_0)|<\frac{|g(x_0)|}{2}$ при $|x-x_0|<\delta$; тогда по неравенству треугольника
+**Доказательство.** Схема: сначала $\frac1g$ прямо по определению, затем [[pravilo-leybnica|правило Лейбница]].
 
-$$|g(x)|\ \ge\ |g(x_0)|-|g(x)-g(x_0)|\ >\ \frac{|g(x_0)|}{2}\ >\ 0.$$
+$$\exists\,g'(x_0)\ \overset{\text{дифф.}\Rightarrow\text{непр.}}{\Longrightarrow}\ \forall\varepsilon>0\ \exists\delta>0:\ |x-x_0|<\delta\ \Longrightarrow\ |g(x)-g(x_0)|<\varepsilon.$$
 
-В этой окрестности знаменатель от нуля отделён, и можно считать:
+$$\varepsilon:=\frac{|g(x_0)|}{2}\overset{g(x_0)\ne0}{>}0\ \Longrightarrow\ \forall x,\ |x-x_0|<\delta:\quad|g(x)|\ \overset{\text{нер-во треуг.}}{\ge}\ |g(x_0)|-|g(x)-g(x_0)|\ >\ \frac{|g(x_0)|}{2}\ >\ 0.$$
 
-$$\frac{1}{\Delta x}\Bigl(\frac{1}{g(x_0+\Delta x)}-\frac{1}{g(x_0)}\Bigr)=-\frac{\Delta g}{\Delta x}\cdot\frac{1}{g(x_0+\Delta x)\,g(x_0)}\ \longrightarrow\ -\frac{g'(x_0)}{g^{2}(x_0)}$$
+$$\frac{1}{\Delta x}\Bigl(\frac{1}{g(x_0+\Delta x)}-\frac{1}{g(x_0)}\Bigr)\overset{\text{общий знам.}}{=}-\frac{\Delta g}{\Delta x}\cdot\frac{1}{g(x_0+\Delta x)\,g(x_0)}\ \overset{\text{арифм. пределов}}{\longrightarrow}\ -\frac{g'(x_0)}{g^{2}(x_0)}.$$
 
-(предел знаменателя равен $g^{2}(x_0)\ne0$, поэтому переход к пределу в произведении законен по [арифметике предела функции](/aii/matan/1/day/27)). Теперь $\frac fg=f\cdot\frac1g$ — произведение, к которому применимо правило Лейбница:
+$$\frac fg=f\cdot\frac1g\ \overset{\text{Лейбниц}}{\Longrightarrow}\ \Bigl(\frac fg\Bigr)'=f'\cdot\frac1g+f\cdot\Bigl(-\frac{g'}{g^{2}}\Bigr)=\frac{f'}{g}-\frac{fg'}{g^{2}}=\frac{f'g-fg'}{g^{2}}.\qquad\blacksquare$$
 
-$$\Bigl(\frac fg\Bigr)'=f'\cdot\frac1g+f\cdot\Bigl(-\frac{g'}{g^{2}}\Bigr)=\frac{f'}{g}-\frac{fg'}{g^{2}}=\frac{f'g-fg'}{g^{2}}.\qquad\blacksquare$$
+Первые две строки нужны затем, что рядом с $x_0$ дробь обязана быть определена: знаменатель в этой окрестности от нуля отделён. Непрерывность взята из [дня 1](/aii/matan/2/day/1). В третьей строке предел знаменателя равен $g^{2}(x_0)\ne0$, поэтому переход к пределу в произведении законен по [арифметике предела функции](/aii/matan/1/day/27).
 
 **Отрицательные степени.** Заодно достроена таблица [дня 1](/aii/matan/2/day/1): там $(x^{n})'=n\,x^{n-1}$ выводилось для $n\in\mathbb N_1$, а теперь при $x\ne0$
 
@@ -104,21 +108,25 @@ $$\lim_{\Delta x\to0}\frac{(\Delta x)^{2}+\Delta x}{\Delta x}=\lim_{\nabla x\to\
 
 $$\boxed{\ (fg)^{(n)}=\sum_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n-k)},\qquad \binom nk=C_n^k.\ }$$
 
-**Доказательство** — индукцией по $n$: дифференцируем формулу ещё раз и собираем подобные, сложение биномиальных коэффициентов сделает всё само.
+**Доказательство** — индукцией по $n$.
 
-**База** $n=1$: правая часть равна $\binom10 f g'+\binom11 f'g=f'g+fg'$ — это [[pravilo-leybnica|правило Лейбница]], добытое из приращения площади.
+**База** $n=1$:
 
-**Шаг.** Пусть равенство верно для $n$. Дифференцируем его по [[lineynost-proizvodnoy|линейности]] почленно, а к каждому произведению $f^{(k)}g^{(n-k)}$ применяем правило Лейбница:
+$$\sum_{k=0}^{1}\binom1k f^{(k)}g^{(1-k)}=\binom10 f g'+\binom11 f'g=f'g+fg'\overset{\text{Лейбниц}}{=}(fg)'.$$
 
-$$(fg)^{(n+1)}=\sum_{k=0}^{n}\binom nk\Bigl(f^{(k+1)}g^{(n-k)}+f^{(k)}g^{(n-k+1)}\Bigr).$$
+**Шаг.** Пусть формула верна для $n$.
 
-В первой сумме сделаем сдвиг индекса $j=k+1$ (это единственный содержательный ход всего вывода):
+$$(fg)^{(n+1)}\overset{\text{линейность}}{=}\sum_{k=0}^{n}\binom nk\Bigl(f^{(k)}g^{(n-k)}\Bigr)'\overset{\text{Лейбниц}}{=}\sum_{k=0}^{n}\binom nk\Bigl(f^{(k+1)}g^{(n-k)}+f^{(k)}g^{(n-k+1)}\Bigr)$$
 
-$$(fg)^{(n+1)}=\sum_{j=1}^{n+1}\binom{n}{j-1}f^{(j)}g^{(n+1-j)}+\sum_{k=0}^{n}\binom nk f^{(k)}g^{(n+1-k)}.$$
+$$\overset{j=k+1}{=}\sum_{j=1}^{n+1}\binom{n}{j-1}f^{(j)}g^{(n+1-j)}+\sum_{k=0}^{n}\binom nk f^{(k)}g^{(n+1-k)}\overset{\text{собрали}}{=}\sum_{k=0}^{n+1}\Bigl(\binom{n}{k-1}+\binom nk\Bigr)f^{(k)}g^{(n+1-k)}.$$
 
-Теперь обе суммы записаны в одних и тех же слагаемых $f^{(k)}g^{(n+1-k)}$, и коэффициент при каждом равен $\binom{n}{k-1}+\binom nk=\binom{n+1}{k}$ — это правило Паскаля. Оно проверяется прямо по определению $\binom nk=\frac{n!}{k!\,(n-k)!}$: при $1\le k\le n$ приводим обе дроби к общему знаменателю $k!\,(n+1-k)!$, домножая первую на $k$, а вторую на $n+1-k$:
+$$\forall k,\ 1\le k\le n:\qquad\binom{n}{k-1}+\binom nk\overset{\text{опр.}}{=}\frac{n!}{(k-1)!\,(n-k+1)!}+\frac{n!}{k!\,(n-k)!}\overset{\text{общий знам.}}{=}\frac{n!\,k+n!\,(n+1-k)}{k!\,(n+1-k)!}=\frac{(n+1)!}{k!\,(n+1-k)!}=\binom{n+1}{k}.$$
 
-$$\binom{n}{k-1}+\binom nk=\frac{n!}{(k-1)!\,(n-k+1)!}+\frac{n!}{k!\,(n-k)!}=\frac{n!\,k+n!\,(n+1-k)}{k!\,(n+1-k)!}=\frac{(n+1)!}{k!\,(n+1-k)!}=\binom{n+1}{k}.$$ Крайние члены тоже сходятся: при $k=0$ и $k=n+1$ недостающие коэффициенты равны нулю по соглашению $\binom{n}{-1}=\binom{n}{n+1}=0$. Получаем формулу для $n+1$, и по индукции она верна для всех $n\in\mathbb N_1$ ([[n-nol-n-odin|натуральные без нуля]]; при $n=0$ формула тривиальна). $\qquad\blacksquare$
+$$k\in\{0,\ n+1\}:\qquad\binom{n}{-1}=\binom{n}{n+1}=0\ \Longrightarrow\ \binom{n}{k-1}+\binom nk=\binom{n+1}{k}.$$
+
+$$\Longrightarrow\ (fg)^{(n+1)}=\sum_{k=0}^{n+1}\binom{n+1}{k}f^{(k)}g^{(n+1-k)}.\qquad\blacksquare$$
+
+База — это [[pravilo-leybnica|правило Лейбница]], добытое из приращения площади; почленное дифференцирование суммы — [[lineynost-proizvodnoy|линейность]]. Единственный содержательный ход всего вывода — сдвиг индекса $j=k+1$; дальше работает правило Паскаля, проверенное прямо по определению $\binom nk=\frac{n!}{k!\,(n-k)!}$: обе дроби приведены к общему знаменателю $k!\,(n+1-k)!$ домножением первой на $k$, второй на $n+1-k$. Крайние члены тоже сходятся — недостающие коэффициенты равны нулю по соглашению. По индукции формула верна для всех $n\in\mathbb N_1$ ([[n-nol-n-odin|натуральные без нуля]]; при $n=0$ формула тривиальна).
 
 **Идея для запоминания:** это бином Ньютона, у которого показатели степеней заменены порядками производных, — и держится он на том же правиле Паскаля; вырастает же он из тех самых двух полосок прямоугольника, продифференцированных ещё $n-1$ раз.`
 		},
@@ -131,29 +139,37 @@ $$\bigl(g(f(x))\bigr)'_x\Big|_{x_0}=g'_f\bigl(f(x_0)\bigr)\cdot f'(x_0),$$
 
 где $g'_f$ — производная внешней функции **по её собственному аргументу**.
 
-**Доказательство.** Вставим в разностное отношение промежуточное приращение — умножим и разделим на $\Delta f$. Обозначим $y=g(f(x))$ и $\Delta f=f(x_0+\Delta x)-f(x_0)$, тогда
+**Доказательство.** Черновой ход — вставить в разностное отношение промежуточное приращение.
 
-$$\frac{\Delta y}{\Delta x}=\frac{g(f(x_0)+\Delta f)-g(f(x_0))}{\Delta x}=\frac{\Delta y}{\Delta f}\cdot\frac{\Delta f}{\Delta x}.$$
+$$y:=g(f(x)),\quad\Delta f:=f(x_0+\Delta x)-f(x_0):\qquad\frac{\Delta y}{\Delta x}=\frac{g(f(x_0)+\Delta f)-g(f(x_0))}{\Delta x}\overset{\text{умн./дел. на }\Delta f}{=}\frac{\Delta y}{\Delta f}\cdot\frac{\Delta f}{\Delta x}.$$
 
-При $\Delta x\to0$ имеем $\Delta f\to0$ (дифференцируемость влечёт непрерывность — [день 1](/aii/matan/2/day/1)), поэтому первый множитель стремится к производной внешней функции **по её собственному аргументу**, а второй — к $f'(x_0)$:
+$$\Delta x\to0\ \overset{\text{дифф.}\Rightarrow\text{непр.}}{\Longrightarrow}\ \Delta f\to0\ \Longrightarrow\ \frac{\Delta y}{\Delta f}\to g'_f\bigl(f(x_0)\bigr),\quad\frac{\Delta f}{\Delta x}\to f'(x_0)\ \Longrightarrow\ \boxed{\ \bigl(g(f(x))\bigr)'_x=g'_f\cdot f'_x\ }$$
 
-$$\boxed{\ \bigl(g(f(x))\bigr)'_x=g'_f\cdot f'_x\ }$$
+Первый множитель стремится к производной внешней функции **по её собственному аргументу**; непрерывность взята из [дня 1](/aii/matan/2/day/1). Одно место требует ремонта: деление на $\Delta f$ незаконно, если $\Delta f=0$ при сколь угодно малых $\Delta x$ (скажем, $f\equiv\mathrm{const}$). Починка стандартная.
 
-Одно место в этой выкладке требует ремонта: деление на $\Delta f$ незаконно, если $\Delta f=0$ при сколь угодно малых $\Delta x$ (скажем, $f\equiv\mathrm{const}$). Починка стандартная: положим
+$$\varphi(s):=\frac{g\bigl(f(x_0)+s\bigr)-g\bigl(f(x_0)\bigr)}{s}\ \ (s\ne0),\qquad \varphi(0):=g'_f\bigl(f(x_0)\bigr).$$
 
-$$\varphi(s)=\frac{g\bigl(f(x_0)+s\bigr)-g\bigl(f(x_0)\bigr)}{s}\ \ (s\ne0),\qquad \varphi(0)=g'_f\bigl(f(x_0)\bigr).$$
+$$\Delta f\ne0\ \overset{\text{опр. }\varphi}{\Longrightarrow}\ \Delta y=\varphi(\Delta f)\,\Delta f;\qquad \Delta f=0\ \Longrightarrow\ \Delta y=0=\varphi(0)\cdot0\ \Longrightarrow\ \forall\Delta x:\ \ \Delta y=\varphi(\Delta f)\,\Delta f.$$
 
-Тогда тождество $\Delta y=\varphi(\Delta f)\,\Delta f$ верно **всегда**: при $\Delta f\ne0$ это определение $\varphi$, при $\Delta f=0$ обе части нулевые. Функция $\varphi$ непрерывна в нуле, потому что $\lim_{s\to0}\varphi(s)$ — это по определению производная $g$ в точке $f(x_0)$, то есть само значение $\varphi(0)$.
+$$\lim_{s\to0}\varphi(s)\overset{\text{опр. }g'_f}{=}g'_f\bigl(f(x_0)\bigr)=\varphi(0)\ \Longrightarrow\ \varphi\ \text{непрерывна в }0.$$
 
-Осталось проверить, что $\varphi(\Delta f)\to\varphi(0)$ при $\Delta x\to0$. Теорема о пределе композиции здесь не годится: она требует, чтобы внутренняя функция не попадала в предельную точку, а $\Delta f$ как раз может обращаться в нуль. Зато непрерывность внешней функции делает попадание безвредным, и проверка идёт по определению. По $\varepsilon>0$ возьмём $\sigma>0$ так, что $|\varphi(s)-\varphi(0)|<\varepsilon$ при всех $|s|<\sigma$, **включая** $s=0$ — вот здесь и работает непрерывность. По этому $\sigma$ возьмём $\delta>0$ так, что $|\Delta f|<\sigma$ при $0<|\Delta x|<\delta$; это возможно, поскольку $\Delta f\to0$. Тогда при $0<|\Delta x|<\delta$ выполнено $|\varphi(\Delta f)-\varphi(0)|<\varepsilon$. Значит
+$$\forall\varepsilon>0\ \exists\sigma>0:\ |s|<\sigma\ \Longrightarrow\ |\varphi(s)-\varphi(0)|<\varepsilon\quad(\text{включая }s=0);$$
 
-$$\frac{\Delta y}{\Delta x}=\varphi(\Delta f)\cdot\frac{\Delta f}{\Delta x}\ \xrightarrow[\Delta x\to0]{}\ g'_f\bigl(f(x_0)\bigr)\cdot f'(x_0)$$
+$$\Delta f\xrightarrow[\Delta x\to0]{}0\ \Longrightarrow\ \exists\delta>0:\ 0<|\Delta x|<\delta\ \Longrightarrow\ |\Delta f|<\sigma\ \Longrightarrow\ |\varphi(\Delta f)-\varphi(0)|<\varepsilon.$$
 
-по [арифметике предела функции](/aii/matan/1/day/27), и деления на $\Delta f$ в этой записи нет вовсе. $\qquad\blacksquare$
+$$\Longrightarrow\ \frac{\Delta y}{\Delta x}=\varphi(\Delta f)\cdot\frac{\Delta f}{\Delta x}\ \xrightarrow[\Delta x\to0]{}\ g'_f\bigl(f(x_0)\bigr)\cdot f'(x_0).\qquad\blacksquare$$
+
+Оговорка «включая $s=0$» — то самое место, где работает непрерывность $\varphi$. Теорема о пределе композиции здесь не годится: она требует, чтобы внутренняя функция не попадала в предельную точку, а $\Delta f$ как раз может обращаться в нуль; зато непрерывность внешней функции делает попадание безвредным, и проверка идёт по определению. Последний переход — [арифметика предела функции](/aii/matan/1/day/27), и деления на $\Delta f$ в этой записи нет вовсе.
 
 **Лемма (экспонента положительна).** $e^{t}>0$ при всех $t\in\mathbb R$.
 
-**Доказательство.** При $t\ge0$ все члены ряда $e^{t}=\sum_{n\ge0}\frac{t^{n}}{n!}$ неотрицательны, а нулевой равен единице, поэтому каждая частичная сумма не меньше $1$; по [лемме о предельном переходе в нестрогом неравенстве](/aii/matan/2/day/1) то же верно и для суммы ряда: $e^{t}\ge1>0$. При $t<0$ число $-t$ положительно, и работает [теорема сложения](/aii/matan/2/day/1), принятая там во входных данных: $e^{t}e^{-t}=e^{0}=1$, где $e^{0}=1$ читается прямо из ряда. Значит $e^{t}=1/e^{-t}$, а $e^{-t}\ge1$ по уже разобранному случаю, откуда $e^{t}>0$. $\qquad\blacksquare$
+**Доказательство.**
+
+$$t\ge0\ \Longrightarrow\ \forall n\ \ \frac{t^{n}}{n!}\ge0\ \ \wedge\ \ \frac{t^{0}}{0!}=1\ \Longrightarrow\ \forall N\ \ \sum_{n=0}^{N}\frac{t^{n}}{n!}\ge1\ \overset{\text{пред. переход в }\ge}{\Longrightarrow}\ e^{t}=\sum_{n\ge0}\frac{t^{n}}{n!}\ge1>0.$$
+
+$$t<0\ \Longrightarrow\ -t>0,\qquad e^{t}e^{-t}\overset{\text{т. сложения}}{=}e^{0}\overset{\text{ряд}}{=}1\ \Longrightarrow\ e^{t}=\frac{1}{e^{-t}}\ \overset{-t>0}{\Longrightarrow}\ e^{-t}\ge1\ \Longrightarrow\ e^{t}>0.\qquad\blacksquare$$
+
+Предельный переход в нестрогом неравенстве — [лемма из дня 1](/aii/matan/2/day/1); [теорема сложения](/aii/matan/2/day/1) принята там во входных данных.
 
 Лемма нужна везде, где ниже пишется $\ln$ от экспоненты: логарифм определён только на $(0;+\infty)$, и без неё запись $\ln\bigl(e^{\,g\ln f}\bigr)$ не имела бы смысла.
 

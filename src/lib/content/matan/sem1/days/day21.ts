@@ -102,15 +102,21 @@ $$\boxed{\ f_n\ \text{— сх. в себе},\ \ f_{n_k}\to f\ \Longrightarrow\ 
 
 **Доказательство.** Приём тот же, что и в первой теореме, но перевалочным пунктом служит не предел, а член подпоследовательности:
 
-$$\rho(f_n,f)\le\rho(f_n,f_{n_k})+\rho(f_{n_k},f).$$
+$$\rho(f_n,f)\ \overset{\text{нер-во треугольника}}{\le}\ \underbrace{\rho(f_n,f_{n_k})}_{\text{фундаментальность}}+\underbrace{\rho(f_{n_k},f)}_{\text{сходимость }f_{n_k}}.$$
 
-Правое слагаемое — про сходимость подпоследовательности: оно меньше $\varepsilon_{f_n}/2$ при $k>N_{f_{n_k}}\bigl(\tfrac{\varepsilon_{f_n}}{2}\bigr)$. Левое — про фундаментальность: номер $n_k$ записывается как $n+p$ при $p=n_k-n\in\mathbb N_1$, поэтому оно меньше $\varepsilon_{f_n}/2$ при $n>N_\varphi\bigl(\tfrac{\varepsilon_{f_n}}{2}\bigr)$. Условие теоремы работает именно в левом слагаемом: **без фундаментальности оно ничем не оценивается** — подпоследовательность о своих соседях по исходной последовательности ничего не знает.
+Оцениваем слагаемые по отдельности, каждое своей половиной бюджета:
 
-Осталось согласовать два номера, взяв больший:
+$$k>N_{f_{n_k}}\bigl(\tfrac{\varepsilon_{f_n}}{2}\bigr)\ \Longrightarrow\ \rho(f_{n_k},f)<\tfrac{\varepsilon_{f_n}}{2},$$
 
-$$N_{f_n}(\varepsilon_{f_n})=\max\Bigl(N_{f_{n_k}}\bigl(\tfrac{\varepsilon_{f_n}}{2}\bigr),\ N_\varphi\bigl(\tfrac{\varepsilon_{f_n}}{2}\bigr)\Bigr).$$
+$$n_k=n+p,\ \ p=n_k-n\in\mathbb N_1,\qquad n>N_\varphi\bigl(\tfrac{\varepsilon_{f_n}}{2}\bigr)\ \Longrightarrow\ \rho(f_n,f_{n+p})<\tfrac{\varepsilon_{f_n}}{2}.$$
 
-Для $n>N_{f_n}$ подберём $k$ так, чтобы одновременно $k>N_{f_{n_k}}$ и $n_k>n$ — это возможно, потому что номера $n_k$ строго возрастают и уходят в бесконечность. Тогда $\rho(f_n,f)<\tfrac{\varepsilon_{f_n}}{2}+\tfrac{\varepsilon_{f_n}}{2}=\varepsilon_{f_n}$. $\qquad\blacksquare$
+Согласуем номера, взяв больший:
+
+$$N_{f_n}(\varepsilon_{f_n})=\max\Bigl(N_{f_{n_k}}\bigl(\tfrac{\varepsilon_{f_n}}{2}\bigr),\ N_\varphi\bigl(\tfrac{\varepsilon_{f_n}}{2}\bigr)\Bigr),$$
+
+$$n>N_{f_n}\ \overset{n_k\ \text{строго растут}}{\Longrightarrow}\ \exists k:\ k>N_{f_{n_k}}\ \wedge\ n_k>n\ \Longrightarrow\ \rho(f_n,f)<\tfrac{\varepsilon_{f_n}}{2}+\tfrac{\varepsilon_{f_n}}{2}=\varepsilon_{f_n}.\qquad\blacksquare$$
+
+Условие теоремы работает ровно в левом слагаемом: без фундаментальности $\rho(f_n,f_{n_k})$ ничем не оценивается — подпоследовательность о своих соседях по исходной последовательности ничего не знает.
 
 Побочный вывод: у фундаментальной последовательности **все** сходящиеся подпоследовательности имеют один и тот же предел — иначе вся последовательность сходилась бы к двум разным точкам, что противоречит единственности предела в метрическом пространстве.`
 		},

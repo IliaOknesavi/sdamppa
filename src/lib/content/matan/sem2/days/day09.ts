@@ -221,6 +221,8 @@ $$\boxed{\ \exists\,\vec c\in\operatorname{In}D:\quad\nabla f(\vec c)=\vec 0.\ }
 
 $$D\ \text{компакт}\ \overset{\text{Гейне–Борель}}{\Longrightarrow}\ \operatorname{cl}D=D\ \overset{\operatorname{cl}D\,=\,D\cup\partial D}{\Longrightarrow}\ \partial D\subset D\ \overset{\operatorname{In}D\,=\,D\setminus\partial D}{\Longrightarrow}\ D=\operatorname{In}D\sqcup\partial D.$$
 
+Определения замыкания и [[vnutrennost|внутренности]] взяты из [дня 18 первого семестра](/aii/matan/1/day/18).
+
 **Шаг 2 (крайние значения достигаются).**
 
 $$f\in C(D),\ D\ \text{компакт}\ \overset{\text{образ компакта}}{\Longrightarrow}\ f(D)\ \text{компакт в }\mathbb R\ \Longrightarrow\ \exists\,\vec x_m,\vec x_M\in D:\quad f(\vec x_m)=m:=\min_D f,\quad f(\vec x_M)=M:=\max_D f.$$

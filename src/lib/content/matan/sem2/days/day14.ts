@@ -114,35 +114,79 @@ $$\boxed{\ \exists\,\alpha,\beta>0\ \ \exists!\ \varphi:B_\alpha(\vec x_0)\to(z_
 
 **Доказательство.** Приём: превратить условие $F'_z\ne0$ в строгую монотонность по $z$, а сам корень добыть теоремой о промежуточном значении.
 
-Пусть $F'_z(\vec x_0,z_0)=c>0$ (случай $c<0$ сводится заменой $F$ на $-F$). Производная $F'_z$ непрерывна — это и означает $F\in C^1$. Возьмём в определении непрерывности $\varepsilon=c/2$: найдётся шар вокруг $(\vec x_0,z_0)$, в котором $|F'_z-c|<\tfrac c2$, то есть $F'_z>\tfrac c2>0$. Это [[sohranenie-znaka|сохранение знака]] целиком, в одну строку. Выберем $\beta>0$ так, чтобы отрезок $\{\vec x_0\}\times[z_0-\beta;\,z_0+\beta]$ лежал в этом шаре.
+**Шаг 1 — знак $F'_z$ на целом цилиндре.** Пусть $F'_z(\vec x_0,z_0)=c>0$ (случай $c<0$ сводится заменой $F$ на $-F$).
 
-Функция одной переменной $z\mapsto F(\vec x_0,z)$ имеет на отрезке производную $F'_z$, а значит [непрерывна](/aii/matan/2/day/1); производная положительна, поэтому функция строго возрастает — это [лемма о монотонной функции](/aii/matan/2/day/5). В середине отрезка она равна нулю, следовательно
+$$F\in C^1(U)\ \Longrightarrow\ F'_z\in C(U)\ \overset{\varepsilon=c/2}{\Longrightarrow}\ \exists\,W\ni(\vec x_0,z_0)\ \ \forall(\vec x,z)\in W:\ \ |F'_z-c|<\tfrac c2\ \Longrightarrow\ F'_z>\tfrac c2>0;$$
 
-$$F(\vec x_0,z_0-\beta)<0<F(\vec x_0,z_0+\beta).$$
+$$\exists\,\beta>0:\qquad \lbrace\vec x_0\rbrace\times[z_0-\beta;\,z_0+\beta]\subset W.$$
 
-Оба неравенства строгие, а $F$ непрерывна: непрерывные частные производные дают [дифференцируемость по Фреше](/aii/matan/2/day/9), и из разложения $F(\vec p+\vec u)-F(\vec p)=\langle\nabla F(\vec p)\mid\vec u\rangle+\bar o(\|\vec u\|)$ правая часть стремится к нулю вместе с $\vec u$ — это и есть непрерывность в точке $\vec p$. Поэтому то же сохранение знака, применённое к функциям $\vec x\mapsto F(\vec x,z_0\pm\beta)$ с $\varepsilon$, равным половине модуля их значения в $\vec x_0$, даёт: найдётся $\alpha>0$ такое, что
+Непрерывность $F'_z$ — это и есть $F\in C^1$; средний переход — [[sohranenie-znaka|сохранение знака]] целиком, в одну строку.
 
-$$\forall\vec x\in B_\alpha(\vec x_0):\qquad F(\vec x,z_0-\beta)<0<F(\vec x,z_0+\beta).$$
+**Шаг 2 — смена знака на вертикальном отрезке.**
 
-Уменьшив при необходимости $\alpha$, считаем вдобавок, что весь цилиндр $B_\alpha(\vec x_0)\times[z_0-\beta;\,z_0+\beta]$ лежит в окрестности из первого шага, — тогда на каждом вертикальном отрезке $F'_z>\tfrac c2>0$.
+$$\exists\,F'_z\ \text{на}\ [z_0-\beta;z_0+\beta]\ \Longrightarrow\ F(\vec x_0,\cdot)\in C[z_0-\beta;z_0+\beta];$$
 
-Зафиксируем такой $\vec x$. Функция $z\mapsto F(\vec x,z)$ непрерывна на отрезке и меняет знак — по [[teorema-o-promezhutochnom-znachenii|теореме о промежуточном значении]] ([доказательство — в дне 28 первого семестра](/aii/matan/1/day/28), шаги 3–4) корень существует; она строго возрастает (её производная $F'_z$ положительна на всём отрезке — снова [лемма о монотонной функции](/aii/matan/2/day/5)) — значит корень **один**. Он и объявляется значением $\varphi(\vec x)$. Существование дала теорема о промежуточном значении, единственность — монотонность.
+$$F'_z>0\ \Longrightarrow\ \bigl(z_1<z_2\ \Rightarrow\ F(\vec x_0,z_1)<F(\vec x_0,z_2)\bigr)\ \overset{F(\vec x_0,z_0)=0}{\Longrightarrow}\ F(\vec x_0,z_0-\beta)<0<F(\vec x_0,z_0+\beta).$$
 
-Непрерывность $\varphi$ — то же построение с меньшим $\beta$: для любого $\beta'<\beta$ найдётся свой $\alpha'$, и при $\vec x\in B_{\alpha'}(\vec x_0)$ единственный корень лежит уже в $(z_0-\beta';z_0+\beta')$, то есть $|\varphi(\vec x)-\varphi(\vec x_0)|<\beta'$. Это непрерывность в центре шара; в остальных его точках она получается тем же построением, запущенным из точки $(\vec x_1,\varphi(\vec x_1))$ с настолько малым собственным $\beta$, чтобы новый вертикальный отрезок лежал внутри старого. Все посылки там выполнены: $F(\vec x_1,\varphi(\vec x_1))=0$ и $F'_z>\tfrac c2>0$ во всём цилиндре. Построенная им функция совпадает с $\varphi$, потому что её значения лежат в старом отрезке, а корень на нём единствен. Дифференцируемость $\varphi$ приходится добывать отдельно: [[differencirovanie-tozhdestva|дифференцирование тождества]] её уже предполагает — цепное правило без неё не применить. Зафиксируем $\vec x\in B_\alpha(\vec x_0)$, обозначим $\vec p=(\vec x,\varphi(\vec x))$ и $\Delta\varphi=\varphi(\vec x+\vec h)-\varphi(\vec x)$, а в разложение Фреше для $F$ в точке $\vec p$ подставим приращение $\vec u=(\vec h,\ \Delta\varphi)$. Значения $F$ на обоих концах нулевые по тождеству, поэтому
+Первый переход: наличие производной на отрезке даёт [непрерывность](/aii/matan/2/day/1). Второй: положительная производная даёт строгое возрастание — [лемма о монотонной функции](/aii/matan/2/day/5).
 
-$$\langle\nabla_{\vec x}F(\vec p)\mid\vec h\rangle+F'_z(\vec p)\,\Delta\varphi=\rho(\vec h),\qquad \rho\in\bar o\bigl(\|\vec h\|+|\Delta\varphi|\bigr)$$
+**Шаг 3 — отрезок раздувается в цилиндр.**
 
-(здесь $\max\bigl(\|\vec h\|,|\Delta\varphi|\bigr)\le\|\vec u\|\le\|\vec h\|+|\Delta\varphi|$, так что классы $\bar o(\|\vec u\|)$ и $\bar o(\|\vec h\|+|\Delta\varphi|)$ — один и тот же класс).
+$$F\in C^1\ \overset{\text{непрер. частные}}{\Longrightarrow}\ F\ \text{диф. по Фреше}\ \Longrightarrow\ F(\vec p+\vec u)-F(\vec p)=\langle\nabla F(\vec p)\mid\vec u\rangle+\bar o(\|\vec u\|)\longrightarrow0\ \ (\vec u\to\vec 0)\ \Longrightarrow\ F\in C(U);$$
 
-Сначала оценим $|\Delta\varphi|$ через $\|\vec h\|$. Положим $M=\|\nabla_{\vec x}F(\vec p)\|$; по [неравенству Коши–Буняковского](/aii/matan/2/day/7) первое слагаемое не превосходит $M\|\vec h\|$ по модулю. Возьмём в определении класса $\bar o$ значение $\varepsilon=c/4$: найдётся $\sigma>0$, при котором $|\rho|\le\tfrac c4\bigl(\|\vec h\|+|\Delta\varphi|\bigr)$, как только $\|\vec h\|+|\Delta\varphi|<\sigma$. Из уже доказанной непрерывности $\varphi$ следует $\Delta\varphi\to0$ при $\vec h\to\vec 0$, поэтому это условие выполнено при всех достаточно малых $\|\vec h\|$. Пользуясь $F'_z(\vec p)>\tfrac c2$, получаем
+$$F(\vec x_0,z_0\pm\beta)\ne0\ \overset{\text{сохр. знака}}{\Longrightarrow}\ \exists\,\alpha>0\ \ \forall\vec x\in B_\alpha(\vec x_0):\qquad F(\vec x,z_0-\beta)<0<F(\vec x,z_0+\beta);$$
 
-$$\tfrac c2\,|\Delta\varphi|\le\bigl|F'_z(\vec p)\,\Delta\varphi\bigr|\le M\|\vec h\|+\tfrac c4\bigl(\|\vec h\|+|\Delta\varphi|\bigr)\ \Longrightarrow\ \tfrac c4\,|\Delta\varphi|\le\Bigl(M+\tfrac c4\Bigr)\|\vec h\|,$$
+$$\alpha\ \text{уменьшаем}:\ \ B_\alpha(\vec x_0)\times[z_0-\beta;z_0+\beta]\subset W\ \Longrightarrow\ F'_z>\tfrac c2>0\ \text{на каждом вертикальном отрезке}.$$
 
-то есть $|\Delta\varphi|\le K\|\vec h\|$ с постоянной $K=\tfrac{4M}{c}+1$, от $\vec h$ не зависящей.
+Непрерывные частные производные дают [дифференцируемость по Фреше](/aii/matan/2/day/9), а в разложении Фреше правая часть стремится к нулю вместе с $\vec u$ — это и есть непрерывность в точке $\vec p$. Сохранение знака применено к функциям $\vec x\mapsto F(\vec x,z_0\pm\beta)$ с $\varepsilon$, равным половине модуля их значения в $\vec x_0$.
 
-Теперь остаток пересчитывается на $\|\vec h\|$. Для любого $\varepsilon'>0$ возьмём в определении $\bar o$ число $\varepsilon=\varepsilon'/(1+K)$; при достаточно малых $\|\vec h\|$ тогда $|\rho|\le\varepsilon\bigl(\|\vec h\|+|\Delta\varphi|\bigr)\le\varepsilon(1+K)\|\vec h\|=\varepsilon'\|\vec h\|$, значит $\rho\in\bar o(\|\vec h\|)$. Делим равенство на $F'_z(\vec p)\ne0$:
+**Шаг 4 — корень существует и он один.**
 
-$$\Delta\varphi=-\frac{\bigl\langle\nabla_{\vec x}F(\vec p)\mid\vec h\bigr\rangle}{F'_z(\vec p)}+\bar o\bigl(\|\vec h\|\bigr)\qquad\text{при }\vec h\to\vec 0.$$
+$$\forall\vec x\in B_\alpha(\vec x_0):\quad F(\vec x,\cdot)\in C[z_0-\beta;z_0+\beta]\ \wedge\ F(\vec x,z_0-\beta)<0<F(\vec x,z_0+\beta)\ \overset{\text{ТПЗ}}{\Longrightarrow}\ \exists\,z:\ F(\vec x,z)=0;$$
+
+$$F'_z>\tfrac c2>0\ \overset{\text{монотонность}}{\Longrightarrow}\ F(\vec x,\cdot)\ \text{строго возрастает}\ \Longrightarrow\ \exists!\,z\ \Longrightarrow\ \varphi(\vec x):=z.$$
+
+ТПЗ — [[teorema-o-promezhutochnom-znachenii|теорема о промежуточном значении]] ([доказательство — в дне 28 первого семестра](/aii/matan/1/day/28), шаги 3–4); строгое возрастание — снова [лемма о монотонной функции](/aii/matan/2/day/5). Существование дала теорема о промежуточном значении, единственность — монотонность.
+
+**Шаг 5 — непрерывность $\varphi$.**
+
+$$\forall\beta'<\beta\ \ \exists\,\alpha'>0\ \ \forall\vec x\in B_{\alpha'}(\vec x_0):\qquad \varphi(\vec x)\in(z_0-\beta';z_0+\beta')\ \iff\ |\varphi(\vec x)-\varphi(\vec x_0)|<\beta'$$
+
+— то же построение шагов 1–4 с меньшим $\beta$; это непрерывность в центре шара. В остальных его точках:
+
+$$F(\vec x_1,\varphi(\vec x_1))=0\ \wedge\ F'_z>\tfrac c2>0\ \text{во всём цилиндре}\ \Longrightarrow\ \text{шаги 1–4 запускаются из}\ (\vec x_1,\varphi(\vec x_1));$$
+
+$$\beta_1\ \text{так мало, что}\ [\varphi(\vec x_1)-\beta_1;\varphi(\vec x_1)+\beta_1]\subset[z_0-\beta;z_0+\beta]\ \ \wedge\ \ \exists!\ \text{корень на}\ [z_0-\beta;z_0+\beta]\ \Longrightarrow\ \varphi_1=\varphi.$$
+
+Построенная новым запуском функция совпадает с $\varphi$, потому что её значения лежат в старом отрезке, а корень на нём единствен.
+
+**Шаг 6 — разложение Фреше на графике.** Дифференцируемость $\varphi$ приходится добывать отдельно: [[differencirovanie-tozhdestva|дифференцирование тождества]] её уже предполагает — цепное правило без неё не применить.
+
+$$\vec x\in B_\alpha(\vec x_0),\qquad \vec p:=(\vec x,\varphi(\vec x)),\qquad \Delta\varphi:=\varphi(\vec x+\vec h)-\varphi(\vec x),\qquad \vec u:=(\vec h,\ \Delta\varphi);$$
+
+$$F(\vec p+\vec u)=0=F(\vec p)\ \overset{\text{Фреше для }F}{\Longrightarrow}\ \langle\nabla_{\vec x}F(\vec p)\mid\vec h\rangle+F'_z(\vec p)\,\Delta\varphi=\rho(\vec h);$$
+
+$$\max\bigl(\|\vec h\|,|\Delta\varphi|\bigr)\le\|\vec u\|\le\|\vec h\|+|\Delta\varphi|\ \Longrightarrow\ \bar o(\|\vec u\|)=\bar o\bigl(\|\vec h\|+|\Delta\varphi|\bigr)\ \Longrightarrow\ \rho\in\bar o\bigl(\|\vec h\|+|\Delta\varphi|\bigr).$$
+
+Оба значения $F$ нулевые по тождеству $F(\vec x,\varphi(\vec x))\equiv0$; два класса $\bar o$ в третьей строке — один и тот же класс.
+
+**Шаг 7 — оценка $|\Delta\varphi|$ через $\|\vec h\|$.**
+
+$$M:=\|\nabla_{\vec x}F(\vec p)\|\ \overset{\text{Коши–Буняковский}}{\Longrightarrow}\ \bigl|\langle\nabla_{\vec x}F(\vec p)\mid\vec h\rangle\bigr|\le M\|\vec h\|;$$
+
+$$\varepsilon=\tfrac c4\ \text{в определении}\ \bar o\ \Longrightarrow\ \exists\,\sigma>0:\ \ \|\vec h\|+|\Delta\varphi|<\sigma\ \Longrightarrow\ |\rho|\le\tfrac c4\bigl(\|\vec h\|+|\Delta\varphi|\bigr);$$
+
+$$\varphi\in C\ \Longrightarrow\ \Delta\varphi\to0\ \ (\vec h\to\vec 0)\ \Longrightarrow\ \|\vec h\|+|\Delta\varphi|<\sigma\ \text{при всех достаточно малых}\ \|\vec h\|;$$
+
+$$\tfrac c2\,|\Delta\varphi|\overset{F'_z(\vec p)>c/2}{\le}\bigl|F'_z(\vec p)\,\Delta\varphi\bigr|\le M\|\vec h\|+\tfrac c4\bigl(\|\vec h\|+|\Delta\varphi|\bigr)\ \Longrightarrow\ \tfrac c4\,|\Delta\varphi|\le\Bigl(M+\tfrac c4\Bigr)\|\vec h\|\ \Longrightarrow\ |\Delta\varphi|\le K\|\vec h\|,\quad K=\tfrac{4M}{c}+1.$$
+
+Постоянная $K$ от $\vec h$ не зависит; первое неравенство третьей строки — [неравенство Коши–Буняковского](/aii/matan/2/day/7).
+
+**Шаг 8 — пересчёт остатка и деление.**
+
+$$\forall\varepsilon'>0\ \ \varepsilon:=\frac{\varepsilon'}{1+K}\ \Longrightarrow\ \exists\,\delta>0\ \forall\|\vec h\|<\delta:\ \ |\rho|\le\varepsilon\bigl(\|\vec h\|+|\Delta\varphi|\bigr)\overset{|\Delta\varphi|\le K\|\vec h\|}{\le}\varepsilon(1+K)\|\vec h\|=\varepsilon'\|\vec h\|\ \Longrightarrow\ \rho\in\bar o\bigl(\|\vec h\|\bigr);$$
+
+$$F'_z(\vec p)\ne0\ \Longrightarrow\ \Delta\varphi=-\frac{\bigl\langle\nabla_{\vec x}F(\vec p)\mid\vec h\bigr\rangle}{F'_z(\vec p)}+\bar o\bigl(\|\vec h\|\bigr)\qquad\text{при }\vec h\to\vec 0.$$
 
 Справа — линейная по $\vec h$ функция плюс остаток класса $\bar o(\|\vec h\|)$, а это в точности определение дифференцируемости $\varphi$ в точке $\vec x$ по Фреше. Осталась принадлежность классу $C^1$; она получается ниже, в секции про формулу производной, из непрерывности правой части формулы $z'_{x_i}=-F'_{x_i}/F'_z$. $\qquad\blacksquare$`
 		},

@@ -38,11 +38,23 @@ $$f\le g\ \text{на}\ [a;b]\ \Rightarrow\ \int_a^b f\,dx\le\int_a^b g\,dx,\qqua
 
 **Лемма (о пределе по рангу).** Пусть числа $S(\lambda,\vec\xi)$ и $T(\lambda,\vec\xi)$ имеют в указанном смысле пределы $A$ и $B$. Тогда, во-первых, $\alpha S+\beta T$ имеет предел $\alpha A+\beta B$; во-вторых, если $S(\lambda,\vec\xi)\le T(\lambda,\vec\xi)$ при всех $\lambda$ и $\vec\xi$, то $A\le B$.
 
-**Доказательство леммы.** Первое. По $\varepsilon>0$ берём $\delta_1$, отвечающее для $S$ порогу $\frac{\varepsilon}{2(|\alpha|+1)}$, и $\delta_2$, отвечающее для $T$ порогу $\frac{\varepsilon}{2(|\beta|+1)}$. Тогда при $\lambda_R<\min(\delta_1,\delta_2)$
+**Доказательство леммы.**
 
-$$\bigl|\alpha S+\beta T-(\alpha A+\beta B)\bigr|\le|\alpha|\,|S-A|+|\beta|\,|T-B|<\frac\varepsilon2+\frac\varepsilon2=\varepsilon.$$
+**Линейность.**
 
-Второе. Пусть, напротив, $A>B$. Возьмём $\varepsilon=\frac{A-B}{2}>0$, по нему $\delta_1$ и $\delta_2$, а затем какое-нибудь разбиение ранга меньше $\min(\delta_1,\delta_2)$ с любым набором $\vec\xi$ — оно существует. На нём $S>A-\varepsilon=\frac{A+B}{2}=B+\varepsilon>T$, что противоречит условию $S\le T$. $\qquad\blacksquare$
+$$\forall\varepsilon>0:\quad \delta_1:=\delta_S\Bigl(\tfrac{\varepsilon}{2(|\alpha|+1)}\Bigr),\qquad \delta_2:=\delta_T\Bigl(\tfrac{\varepsilon}{2(|\beta|+1)}\Bigr),\qquad \delta:=\min(\delta_1,\delta_2),$$
+
+$$\lambda_R<\delta\ \Longrightarrow\ \bigl|\alpha S+\beta T-(\alpha A+\beta B)\bigr|\ \overset{\text{неравенство треугольника}}{\le}\ |\alpha|\,|S-A|+|\beta|\,|T-B|\ <\ \frac\varepsilon2+\frac\varepsilon2=\varepsilon.$$
+
+Единицы в знаменателях страхуют случаи $\alpha=0$ и $\beta=0$.
+
+**Монотонность.** От противного: пусть $S\le T$ при всех $\lambda,\vec\xi$, но $A>B$.
+
+$$\varepsilon:=\frac{A-B}{2}>0,\qquad \delta:=\min\bigl(\delta_S(\varepsilon),\delta_T(\varepsilon)\bigr),\qquad \exists\,\lambda:\ \lambda_R<\delta\ \ (\text{годится любое достаточно мелкое}),$$
+
+$$\Longrightarrow\ S>A-\varepsilon=\frac{A+B}{2}=B+\varepsilon>T,$$
+
+что противоречит $S\le T$. $\qquad\blacksquare$
 
 [[lineynost-integrala|Линейность]]: сумма $\sum_i(\alpha f+\beta g)(\xi_i)\lambda_i$ распадается на $\alpha\sum_i f(\xi_i)\lambda_i+\beta\sum_i g(\xi_i)\lambda_i$ при **одном и том же** разбиении и одном наборе точек $\vec\xi$ — дальше первый пункт леммы даёт и существование предела (то есть интегрируемость $\alpha f+\beta g$), и его значение $\alpha\int f+\beta\int g$. Интеграл от константы считается прямо: $\sum_i C\lambda_i=C\sum_i\lambda_i=C(b-a)$ при любом разбиении, поэтому и в пределе $C(b-a)$.
 

@@ -32,29 +32,55 @@ $$\boxed{\;(f^-)'(y_0)=\frac{1}{f'(x_0)},\qquad y_0=f(x_0)\;}$$
 
 Оговорка про интервал существенна: если бы $x_0$ был концом промежутка, приращение $\Delta x$ имело бы только один знак и обе производные в формуле оказались бы односторонними.
 
-**Доказательство.** Перевернём разностное отношение: у прямой и обратной функции оно одно и то же, только читается в другую сторону. Пусть для определённости $f$ строго возрастает; для убывающей всё дословно так же с переставленными неравенствами.
+**Доказательство.** Приём — перевернуть разностное отношение: у прямой и обратной функции оно одно и то же, только читается в другую сторону. Пусть для определённости $f$ строго возрастает; для убывающей всё дословно так же с переставленными неравенствами.
 
-**Шаг 1. Обратная функция тоже строго возрастает.** Пусть $\hat e<\hat e'$ — точки $\hat E$, и $\hat d=f^-(\hat e)$, $\hat d'=f^-(\hat e')$. Будь $\hat d\ge\hat d'$, возрастание $f$ дало бы $\hat e=f(\hat d)\ge f(\hat d')=\hat e'$ — противоречие. Значит $\hat d<\hat d'$. Заодно введём обозначение $\Delta y=f(x_0+\Delta x)-f(x_0)$ и отметим, что при $\Delta x\ne0$ выходит $\Delta y\ne0$: [[strogaya-monotonnost|строгая монотонность]] запрещает двум разным аргументам давать одно значение, так что делить на $\Delta y$ законно.
+**Шаг 1. Обратная функция тоже строго возрастает.**
 
-**Шаг 2. Вокруг $y_0$ лежит целый отрезок значений.** Отрезок $I=\bigl[x_0-\tfrac\eta2;\,x_0+\tfrac\eta2\bigr]$ содержится в $\hat D$ и является [[lsk|линейно связным компактом]]: компактность даёт [теорема Бореля–Лебега](/aii/matan/1/day/22), а путём между двумя точками отрезка служит содержащий их кусок самого отрезка. Теорема, которой мы сейчас воспользуемся, требует связности, а не линейной связности, поэтому добавим недостающее звено: [линейная связность влечёт связность](/aii/matan/1/day/28) — это отдельно доказанная там импликация ЛСО $\Rightarrow$ СО. Функция $f$ на $I$ непрерывна. По [теореме об образе компакта](/aii/matan/1/day/28) образ $f(I)$ — это отрезок $[m;M]$, где $m$ и $M$ — наименьшее и наибольшее значения $f$ на $I$; возрастание опознаёт их концами: $m=f\bigl(x_0-\tfrac\eta2\bigr)<y_0<f\bigl(x_0+\tfrac\eta2\bigr)=M$. Значит $[m;M]\subset\hat E$, и разностное отношение обратной функции определено при всех $\Delta y$ с $0<|\Delta y|<\delta_0$, где $\delta_0=\min(M-y_0,\ y_0-m)>0$. Предел при $\Delta y\to0$ осмыслен, и берётся он с обеих сторон.
+$$\forall\hat e,\hat e'\in\hat E,\ \hat e<\hat e',\quad\hat d:=f^-(\hat e),\ \hat d':=f^-(\hat e'):\qquad\hat d\ge\hat d'\ \overset{f\uparrow}{\Longrightarrow}\ \hat e=f(\hat d)\ge f(\hat d')=\hat e'\ \Longrightarrow\ \text{противоречие},$$
 
-**Шаг 3. Малому $\Delta y$ отвечает малое $\Delta x$.** Обозначим $\Delta x(\Delta y)=f^-(y_0+\Delta y)-x_0$. Возьмём произвольное $\varepsilon\in\bigl(0;\tfrac\eta2\bigr]$ и положим
+$$\Longrightarrow\ \hat d<\hat d',\qquad\text{т. е. }f^-\uparrow.$$
 
-$$\delta=\min\bigl(f(x_0+\varepsilon)-y_0,\ y_0-f(x_0-\varepsilon)\bigr)>0$$
+$$\Delta y:=f(x_0+\Delta x)-f(x_0),\qquad\Delta x\ne0\ \overset{f\uparrow}{\Longrightarrow}\ \Delta y\ne0.$$
 
-(обе точки $x_0\pm\varepsilon$ лежат в $\hat D$, а положительность обеих разностей — это возрастание). Пусть $0<|\Delta y|<\delta$. Тогда $f(x_0-\varepsilon)<y_0+\Delta y<f(x_0+\varepsilon)$, и шаг 1, применённый к этим трём точкам $\hat E$, даёт $x_0-\varepsilon<f^-(y_0+\Delta y)<x_0+\varepsilon$, то есть $|\Delta x(\Delta y)|<\varepsilon$. Это в точности $\Delta x(\Delta y)\to0$ при $\Delta y\to0$. Кроме того, $\Delta x(\Delta y)\ne0$ при $\Delta y\ne0$: равенство $f^-(y_0+\Delta y)=x_0=f^-(y_0)$ противоречило бы строгому возрастанию $f^-$ из шага 1. Итого $\Delta y$ пробегает [[vykolotaya-okrestnost|выколотую окрестность]] нуля, и $\Delta x$ вместе с ним.
+Последняя строка — про [[strogaya-monotonnost|строгую монотонность]]: она запрещает двум разным аргументам давать одно значение, так что делить на $\Delta y$ законно.
 
-**Шаг 4. Переворот отношения.** Здесь работает первое тождество обратимости, $f\bigl(f^-(\hat e)\bigr)=\hat e$: применим его к $\hat e=y_0+\Delta y$ — это законно, потому что шаг 2 поместил весь отрезок $[m;M]$ внутрь $\hat E$. Тогда при $\Delta x=\Delta x(\Delta y)=f^-(y_0+\Delta y)-x_0$ выходит $f(x_0+\Delta x)=f\bigl(f^-(y_0+\Delta y)\bigr)=y_0+\Delta y$, то есть $\Delta x$ и $\Delta y$ — приращения одной и той же пары точек. Поэтому
+**Шаг 2. Вокруг $y_0$ лежит целый отрезок значений.**
 
-$$\frac{f^-(y_0+\Delta y)-f^-(y_0)}{\Delta y}=\frac{\Delta x}{\Delta y}=h\bigl(\Delta x(\Delta y)\bigr),\qquad h(t)=\cfrac{1}{\cfrac{f(x_0+t)-f(x_0)}{t}}.$$
+$$I:=\Bigl[x_0-\tfrac\eta2;\ x_0+\tfrac\eta2\Bigr]\subset\hat D;\qquad I\ \text{— компакт};\qquad I\ \text{— ЛСО}\ \Longrightarrow\ I\ \text{— СО}.$$
 
-Функция $h$ определена при $0<|t|<\eta$: знаменатель дроби внутри отличен от нуля по шагу 1. Сама эта дробь стремится при $t\to0$ к $f'(x_0)\ne0$ — это определение производной, — поэтому по [арифметике пределов](/aii/matan/1/day/27) (правило частного, законное ровно потому, что предел знаменателя не ноль)
+$$f\in C(I)\ \overset{\text{образ компакта}}{\Longrightarrow}\ f(I)=[m;M],\quad m=\min_I f,\ M=\max_I f\ \overset{f\uparrow}{\Longrightarrow}\ m=f\Bigl(x_0-\tfrac\eta2\Bigr)<y_0<f\Bigl(x_0+\tfrac\eta2\Bigr)=M.$$
 
-$$\lim_{t\to0}h(t)=\frac{1}{f'(x_0)}.$$
+$$\Longrightarrow\ [m;M]\subset\hat E,\qquad\delta_0:=\min(M-y_0,\ y_0-m)>0\ \Longrightarrow\ \forall\Delta y,\ 0<|\Delta y|<\delta_0\ \ \exists\ \frac{f^-(y_0+\Delta y)-f^-(y_0)}{\Delta y}.$$
 
-**Шаг 5. Подстановка.** Интересующая нас функция переменной $\Delta y$ — это композиция $h\circ\Delta x(\cdot)$. Шаг 3 дал оба условия, при которых работает [теорема о пределе композиции](/aii/matan/1/day/27): внутренняя функция стремится к нулю и не принимает значение нуль в выколотой окрестности. Значит
+Отрезок $I$ — [[lsk|линейно связный компакт]]: компактность даёт [теорема Бореля–Лебега](/aii/matan/1/day/22), а путём между двумя точками отрезка служит содержащий их кусок самого отрезка. Теорема, которой мы пользуемся, требует связности, а не линейной связности, поэтому в первую выкладку добавлено недостающее звено: [линейная связность влечёт связность](/aii/matan/1/day/28) — это отдельно доказанная там импликация ЛСО $\Rightarrow$ СО. Сам образ найден по [теореме об образе компакта](/aii/matan/1/day/28). Предел при $\Delta y\to0$ осмыслен, и берётся он с обеих сторон.
 
-$$(f^-)'(y_0)=\lim_{\Delta y\to0}h\bigl(\Delta x(\Delta y)\bigr)=\frac{1}{f'(x_0)}.\qquad\blacksquare$$
+**Шаг 3. Малому $\Delta y$ отвечает малое $\Delta x$.**
+
+$$\Delta x(\Delta y):=f^-(y_0+\Delta y)-x_0;\qquad\forall\varepsilon\in\Bigl(0;\tfrac\eta2\Bigr]\quad\delta:=\min\bigl(f(x_0+\varepsilon)-y_0,\ y_0-f(x_0-\varepsilon)\bigr)\overset{f\uparrow}{>}0.$$
+
+$$0<|\Delta y|<\delta\ \Longrightarrow\ f(x_0-\varepsilon)<y_0+\Delta y<f(x_0+\varepsilon)\ \overset{\text{шаг 1}}{\Longrightarrow}\ x_0-\varepsilon<f^-(y_0+\Delta y)<x_0+\varepsilon\ \Longrightarrow\ |\Delta x(\Delta y)|<\varepsilon,$$
+
+$$\text{т. е.}\qquad\Delta x(\Delta y)\xrightarrow[\Delta y\to0]{}0.$$
+
+$$\Delta y\ne0\ \wedge\ \Delta x(\Delta y)=0\ \Longrightarrow\ f^-(y_0+\Delta y)=x_0=f^-(y_0)\ \overset{f^-\uparrow\ (\text{шаг 1})}{\Longrightarrow}\ \text{противоречие}\ \Longrightarrow\ \Delta x(\Delta y)\ne0.$$
+
+Обе точки $x_0\pm\varepsilon$ лежат в $\hat D$, а положительность обеих разностей в определении $\delta$ — это возрастание. Итого $\Delta y$ пробегает [[vykolotaya-okrestnost|выколотую окрестность]] нуля, и $\Delta x$ вместе с ним.
+
+**Шаг 4. Переворот отношения.**
+
+$$[m;M]\subset\hat E\ \overset{\text{шаг 2}}{\Longrightarrow}\ f\bigl(f^-(y_0+\Delta y)\bigr)=y_0+\Delta y\ \overset{\Delta x=\Delta x(\Delta y)}{\Longrightarrow}\ f(x_0+\Delta x)=y_0+\Delta y.$$
+
+$$\Longrightarrow\ \frac{f^-(y_0+\Delta y)-f^-(y_0)}{\Delta y}=\frac{\Delta x}{\Delta y}=h\bigl(\Delta x(\Delta y)\bigr),\qquad h(t)=\cfrac{1}{\cfrac{f(x_0+t)-f(x_0)}{t}}.$$
+
+$$\frac{f(x_0+t)-f(x_0)}{t}\ne0\ \ (0<|t|<\eta)\ \overset{\text{шаг 1}}{\Longrightarrow}\ \exists\,h(t);\qquad\frac{f(x_0+t)-f(x_0)}{t}\xrightarrow[t\to0]{}f'(x_0)\ne0\ \overset{\text{арифм. пределов}}{\Longrightarrow}\ \lim_{t\to0}h(t)=\frac{1}{f'(x_0)}.$$
+
+Первое тождество обратимости $f\bigl(f^-(\hat e)\bigr)=\hat e$ применено к $\hat e=y_0+\Delta y$ — это законно, потому что шаг 2 поместил весь отрезок $[m;M]$ внутрь $\hat E$; значит $\Delta x$ и $\Delta y$ — приращения одной и той же пары точек. Предел дроби внутри $h$ — это определение производной, а правило частного из [арифметики пределов](/aii/matan/1/day/27) законно ровно потому, что предел знаменателя не ноль.
+
+**Шаг 5. Подстановка.**
+
+$$\Delta x(\Delta y)\xrightarrow[\Delta y\to0]{}0\ \wedge\ \Delta x(\Delta y)\ne0\ \overset{\text{шаг 3}}{\Longrightarrow}\ (f^-)'(y_0)=\lim_{\Delta y\to0}h\bigl(\Delta x(\Delta y)\bigr)\overset{\text{предел композиции}}{=}\lim_{t\to0}h(t)=\frac{1}{f'(x_0)}.\qquad\blacksquare$$
+
+Интересующая нас функция переменной $\Delta y$ — это композиция $h\circ\Delta x(\cdot)$; шаг 3 дал оба условия, при которых работает [теорема о пределе композиции](/aii/matan/1/day/27): внутренняя функция стремится к нулю и не принимает значение нуль в выколотой окрестности.
 
 Невырожденность $f'(x_0)\ne0$ работала в шаге 4 — без неё правило частного неприменимо, и предел мог бы не существовать.`
 		},
@@ -132,13 +158,15 @@ $$\Delta f=f'(x)\,\Delta x+\bar o(\Delta x)\big|_{\Delta x\to0}.$$
 
 $$d^{\,r}f=f^{(r)}(x)\,dx^{\,r}.$$
 
-**Доказательство.** Будем считать $d$ самостоятельным оператором и применим его дважды. Приращение аргумента выбирается независимо от $x$, поэтому при повторном применении $d$ множитель $dx$ ведёт себя как константа и выносится наружу:
+**Доказательство.** Считаем $d$ самостоятельным оператором; приращение $dx$ выбрано независимо от $x$, поэтому при повторном применении $d$ ведёт себя как константа.
 
-$$d^2f=d(df)=d\bigl(f'(x)\,dx\bigr)=dx\cdot d\bigl(f'(x)\bigr)=dx\cdot f''(x)\,dx=f''(x)\,dx^2.$$
+$$d^2f=d(df)\overset{df=f'\,dx}{=}d\bigl(f'(x)\,dx\bigr)\overset{dx=\mathrm{const}}{=}dx\cdot d\bigl(f'(x)\bigr)\overset{\text{опр. }d}{=}dx\cdot f''(x)\,dx=f''(x)\,dx^2.$$
 
-Общий случай — индукция по $r$. База $r=1$ есть само определение $df=f'(x)\,dx$. Переход: пусть уже $d^{\,r-1}f=f^{(r-1)}(x)\,dx^{\,r-1}$. Множитель $dx^{\,r-1}$ от $x$ не зависит, поэтому выносится за знак $d$, а к оставшейся функции $f^{(r-1)}$ применяется определение дифференциала:
+Общий случай — индукция по $r$.
 
-$$d^{\,r}f=d\bigl(f^{(r-1)}(x)\,dx^{\,r-1}\bigr)=dx^{\,r-1}\cdot d\bigl(f^{(r-1)}(x)\bigr)=dx^{\,r-1}\cdot f^{(r)}(x)\,dx,$$
+$$r=1:\qquad d^{\,1}f=df\overset{\text{опр.}}{=}f'(x)\,dx.$$
+
+$$d^{\,r-1}f=f^{(r-1)}(x)\,dx^{\,r-1}\ \Longrightarrow\ d^{\,r}f=d\bigl(f^{(r-1)}(x)\,dx^{\,r-1}\bigr)\overset{dx^{\,r-1}=\mathrm{const}}{=}dx^{\,r-1}\cdot d\bigl(f^{(r-1)}(x)\bigr)\overset{\text{опр. }d}{=}dx^{\,r-1}\cdot f^{(r)}(x)\,dx,$$
 
 $$\boxed{\;d^2f=f''(x)\,dx^2,\qquad d^rf=f^{(r)}(x)\,dx^r\;}$$
 

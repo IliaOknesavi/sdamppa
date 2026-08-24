@@ -54,13 +54,19 @@ $$\boxed{\ \bigcup_{k\in I}U_k\supset[\alpha;\beta],\ U_k\in\tau\ \Longrightarro
 
 **Доказательство.** Пойдём методом отмеченных точек: вместо деления отрезка пополам будем продвигаться вправо от $\alpha$. Точку $a\in[\alpha;\beta]$ назовём **[[otmechennaya-tochka|отмеченной]]**, если существует $I_m\subset I$, $|I_m|<\aleph_0$, с $\bigcup_{k\in I_m}U_k\supset[\alpha;a]$.
 
-*База.* Точка $\alpha$ отмечена: она чем-то покрыта, $\alpha\in U_{k_0}$, и одного этого множества хватает на $[\alpha;\alpha]=\{\alpha\}$.
+**База.**
 
-*Шаг.* Пусть $a$ отмечена и $a<\beta$; возьмём накрывающее её $U_{k_a}\ni a$. Так как $\mathbb R$ [[metrizuemost|метризуемо]], внутрь произвольной [[okrestnost|окрестности]] влезает [[shar|шар]] (здесь нужна именно метрика, топология сама этого не даёт):
+$$\alpha\in[\alpha;\beta]\subset\bigcup_k U_k\ \Longrightarrow\ \exists k_0:\ \alpha\in U_{k_0},\qquad U_{k_0}\supset\lbrace\alpha\rbrace=[\alpha;\alpha]\ \Longrightarrow\ \alpha\ \text{отмечена}.$$
 
-$$\exists\varepsilon>0:\quad (a-\varepsilon;\,a+\varepsilon)\subset U_{k_a}.$$
+**Шаг.** Пусть $a$ отмечена набором $I_m$ и $a<\beta$.
 
-Присоединив $U_{k_a}$ к конечному набору для $[\alpha;a]$, получаем конечный набор, накрывающий $[\alpha;\,a+\tfrac{\varepsilon}{2}]$: отмеченной стала точка правее, продвижение сделано на $\varepsilon/2$.
+$$a\in\bigcup_k U_k\ \Longrightarrow\ \exists k_a:\ a\in U_{k_a}\ \overset{\mathbb R\ \text{метризуемо}}{\Longrightarrow}\ \exists\varepsilon>0:\ (a-\varepsilon;\,a+\varepsilon)\subset U_{k_a}.$$
+
+Метрика здесь нужна именно как метрика: топология сама вписать шар в окрестность не позволяет.
+
+$$\bigcup_{k\in I_m}U_k\supset[\alpha;a],\quad U_{k_a}\supset\bigl[a;\,a+\tfrac\varepsilon2\bigr]\ \Longrightarrow\ \bigcup_{k\in I_m\cup\lbrace k_a\rbrace}U_k\supset\Bigl[\alpha;\,a+\frac\varepsilon2\Bigr],$$
+
+$$\bigl|I_m\cup\lbrace k_a\rbrace\bigr|<\aleph_0\ \Longrightarrow\ a+\frac\varepsilon2\ \text{отмечена: продвижение на }\frac\varepsilon2.$$
 
 *Завершение.* Хочется сказать так: шаги не мельчают быстрее, чем позволяет наименьший из радиусов $\varepsilon_i$, поэтому марш достигает $\beta$ за конечное число продвижений. В таком виде шаг незаконен — наименьший радиус берётся по набору, конечность которого и есть доказываемое; законное завершение идёт через супремум множества отмеченных точек и разобрано ниже, там же, где вскрыт сам шаг с минимумом. Как только $\beta$ отмечена, конечное подпокрытие всего отрезка построено.`
 		},

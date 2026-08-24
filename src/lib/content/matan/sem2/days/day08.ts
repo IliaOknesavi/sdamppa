@@ -34,27 +34,31 @@ $$g(x)=\lim_{\|\Delta x\|\to0}\frac{\|f(x+\Delta x)-f(x)\|}{\|\Delta x\|}.$$
 
 Тогда для линейного $f(x)=Ax$ верно следующее: **(а)** выражение под знаком предела равно $\|Ae\|$, где $e=\Delta x/\|\Delta x\|$, то есть зависит только от направления, но не от величины приращения; **(б)** для $A=\mathrm{id}$, $A=-\mathrm{id}$ и $A=R(\pi/2)$ получается одно и то же $g\equiv1$ — три различных оператора конструкция не различает; **(в)** для $A=\mathrm{diag}(3,1)$ предела не существует вовсе. Следовательно, $g$ не определяет $f$ ни в одном из двух случаев: либо предел есть и не информативен, либо его нет.
 
-**Доказательство.** Подставим в неудачное определение линейное отображение — на нём всё видно без предельных переходов. Пусть $f(x)=Ax$, где $A$ — [[lineynyy-operator|линейный оператор]]. Тогда
+**Доказательство.** Пусть $f(x)=Ax$, где $A$ — [[lineynyy-operator|линейный оператор]]: на нём всё видно без предельных переходов.
 
-$$\frac{\|f(x+\Delta x)-f(x)\|}{\|\Delta x\|}=\frac{\|A\,\Delta x\|}{\|\Delta x\|}=\|Ae\|,\qquad e=\frac{\Delta x}{\|\Delta x\|}$$
+$$e:=\frac{\Delta x}{\|\Delta x\|}\ \Longrightarrow\ A\,\Delta x\overset{\text{лин. }A}{=}A\bigl(\|\Delta x\|\,e\bigr)=\|\Delta x\|\,Ae\ \Longrightarrow\ \frac{\|f(x+\Delta x)-f(x)\|}{\|\Delta x\|}=\frac{\|A\,\Delta x\|}{\|\Delta x\|}\overset{\text{однородн.}}{=}\|Ae\|.$$
 
-(здесь $A\,\Delta x=A\bigl(\|\Delta x\|\,e\bigr)=\|\Delta x\|\,Ae$ по линейности $A$, а масштаб вынесся из нормы по её [[odnorodnost|однородности]] — и это уже приговор: под знаком $\|\Delta x\|\to0$ осталась зависимость только от направления $e$, которое ничем не зафиксировано). Это пункт **(а)**.
+Масштаб вынесся из нормы по её [[odnorodnost|однородности]] — и это уже приговор: под знаком $\|\Delta x\|\to0$ осталась зависимость только от направления $e$, которое ничем не зафиксировано. Это пункт **(а)**.
 
-Возьмём в $\mathbb R^2$ поворот $R(\varphi)$, то есть $R(\varphi)\vec e=(e_1\cos\varphi-e_2\sin\varphi,\ e_1\sin\varphi+e_2\cos\varphi)$. Он сохраняет [[evklidova-norma|евклидову норму]], и это прямой счёт: перекрёстные слагаемые $\mp2e_1e_2\cos\varphi\sin\varphi$ взаимно уничтожаются, остаётся
+$$R(\varphi)\vec e=(e_1\cos\varphi-e_2\sin\varphi,\ e_1\sin\varphi+e_2\cos\varphi)\quad\text{в }\mathbb R^2;$$
 
-$$\|R(\varphi)\vec e\|^{2}=(e_1\cos\varphi-e_2\sin\varphi)^{2}+(e_1\sin\varphi+e_2\cos\varphi)^{2}=(e_1^{2}+e_2^{2})(\cos^{2}\varphi+\sin^{2}\varphi)=\|\vec e\|^{2}.$$
+$$\|R(\varphi)\vec e\|^{2}=(e_1\cos\varphi-e_2\sin\varphi)^{2}+(e_1\sin\varphi+e_2\cos\varphi)^{2}\overset{\text{перекрёстные сократились}}{=}(e_1^{2}+e_2^{2})(\cos^{2}\varphi+\sin^{2}\varphi)=\|\vec e\|^{2};$$
 
-Значит $\|R(\varphi)e\|=1$ при любом $\varphi$ и любом единичном $e$. Для $A=\mathrm{id}$ это верно по определению единичного вектора, для $A=-\mathrm{id}$ — по [однородности нормы](/aii/matan/1/day/9): $\|-e\|=|-1|\cdot\|e\|=1$. Итого
+$$\Longrightarrow\ \|R(\varphi)e\|=1\ \ \forall\varphi\ \ \forall e,\ \|e\|=1;\qquad\|\mathrm{id}\,e\|=\|e\|=1;\qquad\|-\mathrm{id}\,e\|=\|-e\|\overset{\text{однородн.}}{=}|-1|\cdot\|e\|=1;$$
 
-$$g\equiv1\quad\text{для }A=\mathrm{id},\qquad A=-\mathrm{id},\qquad A=R(\pi/2).$$
+$$\Longrightarrow\ g\equiv1\quad\text{для }A=\mathrm{id},\qquad A=-\mathrm{id},\qquad A=R(\pi/2).$$
 
-Три заведомо разных отображения — одна и та же «производная»: тождественное, его противоположность и поворот на прямой угол неразличимы. Это пункт **(б)**.
+Поворот сохраняет [[evklidova-norma|евклидову норму]] прямым счётом: перекрёстные слагаемые $\mp2e_1e_2\cos\varphi\sin\varphi$ взаимно уничтожаются. Пометка «однородн.» в третьей выкладке — [однородность нормы](/aii/matan/1/day/9). Три заведомо разных отображения — одна и та же «производная»: тождественное, его противоположность и поворот на прямой угол неразличимы. Это пункт **(б)**.
 
-Теперь $A=\mathrm{diag}(3,1)$. Здесь $\|Ae_1\|=3$, $\|Ae_2\|=1$, и предел при $\|\Delta x\|\to0$ **не существует**. Допустим, он равен $L$. По определению предела для $\varepsilon=\tfrac12$ нашлось бы $\delta>0$, при котором дробь отличается от $L$ меньше чем на $\tfrac12$ сразу для **всех** $\Delta x$ с $0<\|\Delta x\|<\delta$. Возьмём $\Delta x=te_1$ и $\Delta x=te_2$ с одним и тем же $0<t<\delta$: дробь равна $3$ в первом случае и $1$ во втором, поэтому
+$$A=\mathrm{diag}(3,1)\ \Longrightarrow\ \|Ae_1\|=3,\qquad\|Ae_2\|=1;$$
 
-$$2=|3-1|\le|3-L|+|L-1|<\tfrac12+\tfrac12=1$$
+$$\exists\lim_{\|\Delta x\|\to0}\frac{\|A\,\Delta x\|}{\|\Delta x\|}=L\ \overset{\varepsilon=1/2}{\Longrightarrow}\ \exists\delta>0\ \ \forall\Delta x,\ 0<\|\Delta x\|<\delta:\ \Bigl|\frac{\|A\,\Delta x\|}{\|\Delta x\|}-L\Bigr|<\tfrac12;$$
 
-— противоречие. Это пункт **(в)**. $\qquad\blacksquare$
+$$\Delta x=te_1:\ \frac{\|A\,\Delta x\|}{\|\Delta x\|}=\|Ae_1\|=3,\qquad\Delta x=te_2:\ \frac{\|A\,\Delta x\|}{\|\Delta x\|}=\|Ae_2\|=1\qquad(0<t<\delta);$$
+
+$$\Longrightarrow\ 2=|3-1|\le|3-L|+|L-1|<\tfrac12+\tfrac12=1$$
+
+— противоречие, то есть предел при $\|\Delta x\|\to0$ **не существует**. Это пункт **(в)**. $\qquad\blacksquare$
 
 Итог симметричный: конструкция либо не даёт предела, либо даёт его, но не определяет $f$. Чиним единственным доступным способом — требуем не значение предела, а сам оператор:
 
@@ -109,21 +113,25 @@ $$\boxed{\ f\in C(x_0)\quad\wedge\quad \forall h\in H_1:\ dF(x_0,h)=A h\ }$$
 
 то есть из [[differenciruemost-po-freshe|дифференцируемости по Фреше]] следуют непрерывность в точке и существование [[proizvodnaya-gato|производной Гато]] по всякому направлению, причём последняя равна значению оператора.
 
-**Доказательство.** Непрерывность. Возьмём в условии $\alpha\in\bar o(\|h\|)$ значение $\varepsilon=1$: найдётся $\delta_1>0$ такое, что $\|\alpha(h)\|\le\|h\|$ при $\|h\|<\delta_1$. Тогда по [[poluadditivnost|неравенству треугольника]] и доказанной выше оценке $\|Ah\|\le\|A\|\cdot\|h\|$
+**Доказательство.** Непрерывность.
 
-$$\|f(x_0+h)-f(x_0)\|\le\|Ah\|+\|\alpha(h)\|\le\bigl(\|A\|+1\bigr)\|h\|$$
+$$\alpha\in\bar o(\|h\|)\ \overset{\varepsilon=1}{\Longrightarrow}\ \exists\delta_1>0\ \ \forall h,\ \|h\|<\delta_1:\ \|\alpha(h)\|\le\|h\|;$$
 
-(здесь и работает ограниченность $A$: без неё $\|Ah\|$ нечем оценить). Значит для любого $\varepsilon>0$ годится
+$$\|f(x_0+h)-f(x_0)\|=\|Ah+\alpha(h)\|\overset{\triangle}{\le}\|Ah\|+\|\alpha(h)\|\overset{\|Ah\|\le\|A\|\cdot\|h\|}{\le}\bigl(\|A\|+1\bigr)\|h\|;$$
 
-$$\delta(\varepsilon)=\min\Bigl(\delta_1,\ \frac{\varepsilon}{\|A\|+1}\Bigr),$$
+$$\forall\varepsilon>0\quad\delta(\varepsilon)=\min\Bigl(\delta_1,\ \frac{\varepsilon}{\|A\|+1}\Bigr):\qquad\|h\|<\delta(\varepsilon)\ \Longrightarrow\ \|f(x_0+h)-f(x_0)\|<\varepsilon.$$
 
-и это явная формула, а не слова «значит, непрерывна».
+Пометка $\triangle$ — [[poluadditivnost|неравенство треугольника]], вторая пометка — доказанная выше оценка; здесь и работает ограниченность $A$: без неё $\|Ah\|$ нечем оценить. Это явная формула, а не слова «значит, непрерывна».
 
-Производная Гато. При $h=0$ дробь тождественно нулевая и предел равен $A\bar0=\bar0$. Фиксируем $h\ne0$ и берём $t\to0$, $t\ne0$. По линейности $A(th)=tAh$, поэтому
+Производная Гато.
 
-$$\frac{f(x_0+th)-f(x_0)}{t}=Ah+\frac{\alpha(th)}{t},\qquad \Bigl\|\frac{\alpha(th)}{t}\Bigr\|=\|h\|\cdot\frac{\|\alpha(th)\|}{\|th\|}\xrightarrow[t\to0]{}0$$
+$$h=0:\qquad\frac{f(x_0+t\cdot0)-f(x_0)}{t}=0\ \Longrightarrow\ dF(x_0,0)=A\bar0=\bar0;$$
 
-(во второй дроби $\|th\|=|t|\,\|h\|\to0$, так что работает то же самое ō-условие). Предел существует и равен $Ah$. $\qquad\blacksquare$
+$$h\ne0,\ t\to0,\ t\ne0:\qquad\frac{f(x_0+th)-f(x_0)}{t}\overset{A(th)=tAh}{=}Ah+\frac{\alpha(th)}{t},\qquad\Bigl\|\frac{\alpha(th)}{t}\Bigr\|=\|h\|\cdot\frac{\|\alpha(th)\|}{\|th\|}\xrightarrow[t\to0]{}0$$
+
+$$\Longrightarrow\ dF(x_0,h)=Ah.$$
+
+Во второй дроби $\|th\|=|t|\,\|h\|\to0$, так что работает то же самое ō-условие. $\qquad\blacksquare$
 
 Обратное неверно: у $f(x,y)=\dfrac{x^3}{x^2+y^2}$ с $f(0,0)=0$ производная Гато в нуле существует по каждому направлению, но не линейна, — поэтому производной Фреше нет, хотя $f$ непрерывна; счёт и разбор — [день 9](/aii/matan/2/day/9).`
 		},

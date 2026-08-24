@@ -59,43 +59,67 @@ $$\boxed{\ \nabla f(\vec x^{\,*})=\sum_{i=1}^{m}\lambda_i^{*}\,\nabla g_i(\vec x
 
 **Доказательство.** Приём: пройти сквозь точку по самому допустимому множеству и применить теорему Ферма к одномерному следу.
 
-Шаг 1. Обозначим через $T$ ядро [[matrica-yakobi|матрицы Якоби]] связей — множество направлений, вдоль которых все связи в первом порядке не меняются:
+**Шаг 1 — касательное пространство.** Обозначим через $T$ ядро [[matrica-yakobi|матрицы Якоби]] связей — множество направлений, вдоль которых все связи в первом порядке не меняются:
 
-$$T=\{\vec h\in\mathbb R^n:\ \langle\nabla g_i(\vec x^{\,*})\mid\vec h\rangle=0,\ i=1\ldots m\}.$$
+$$T=\{\vec h\in\mathbb R^n:\ \langle\nabla g_i(\vec x^{\,*})\mid\vec h\rangle=0,\ i=1\ldots m\};$$
 
-Это [[kasatelnoe-prostranstvo|касательное пространство]] к $\mathcal D$; по линейной независимости градиентов ранг матрицы равен $m$, значит $\dim T=n-m$ (факт 1 из блока выше).
+$$\nabla g_1(\vec x^{\,*}),\dots,\nabla g_m(\vec x^{\,*})\ \text{лин. независимы}\ \Longrightarrow\ \operatorname{rank}J=m\ \overset{\text{факт 1}}{\Longrightarrow}\ \dim T=n-m.$$
 
-Шаг 2. Для каждого $\vec h\in T$ найдётся дифференцируемый путь $\gamma:(-\delta;\delta)\to\mathcal D$ с $\gamma(0)=\vec x^{\,*}$ и $\gamma'(0)=\vec h$. Здесь — и только здесь — работает [[teorema-o-neyavnoy-funkcii|теорема о неявной функции]] в векторной версии.
+Это [[kasatelnoe-prostranstvo|касательное пространство]] к $\mathcal D$.
+
+**Шаг 2 — путь по допустимому множеству.**
+
+$$\forall\vec h\in T\ \ \exists\,\gamma:(-\delta;\delta)\to\mathcal D,\ \gamma\ \text{дифференцируем}:\qquad \gamma(0)=\vec x^{\,*},\quad \gamma'(0)=\vec h.$$
+
+Здесь — и только здесь — работает [[teorema-o-neyavnoy-funkcii|теорема о неявной функции]] в векторной версии.
 
 **Векторная теорема о неявной функции, принимаемая без доказательства.** Пусть все $g_i$ принадлежат $C^1$ в окрестности точки $(\vec y^{\,*},\vec z^{\,*})\in\mathbb R^{m}\times\mathbb R^{\,n-m}$, пусть $\vec g(\vec y^{\,*},\vec z^{\,*})=\vec 0$ и $\det\frac{\partial\vec g}{\partial\vec y}(\vec y^{\,*},\vec z^{\,*})\ne0$. Тогда на некоторой окрестности $U(\vec z^{\,*})$ существует единственное отображение $\varphi\in C^1(U)$, для которого $\varphi(\vec z^{\,*})=\vec y^{\,*}$ и $\vec g(\varphi(\vec z),\vec z)=\vec 0$ при всех $\vec z\in U$. Целиком эта формулировка выписана в [дне 14](/aii/matan/2/day/14) и там же принята без доказательства; доказан там только скалярный случай $m=1$. Причина та же, что названа в дне 14: полный вывод — индукция по числу связей с $m$-кратным применением скалярной версии либо принцип сжимающих отображений, и в обоих вариантах это отдельная теорема размером с целый день.
 
-Построение пути. По факту 3 из блока выше выберем $m$ линейно независимых столбцов $J$ и перенумеруем координаты так, чтобы это были первые $m$: $\vec x=(\vec y,\vec z)$, причём $\det\frac{\partial\vec g}{\partial\vec y}(\vec x^{\,*})\ne0$. Теорема даёт $\varphi$ на окрестности $U(\vec z^{\,*})$; разложим $\vec h=(\vec h_y,\vec h_z)$, возьмём $\delta>0$ настолько малым, что $\vec z^{\,*}+t\vec h_z\in U$ при $|t|<\delta$, и положим
+Построение пути.
+
+$$\text{факт 3}\ \Longrightarrow\ \exists\ m\ \text{лин. независимых столбцов }J\ \Longrightarrow\ \text{перенумеровка}:\ \vec x=(\vec y,\vec z),\quad \det\frac{\partial\vec g}{\partial\vec y}(\vec x^{\,*})\ne0;$$
+
+$$\Longrightarrow\ \exists\,\varphi\ \text{на}\ U(\vec z^{\,*});\qquad \vec h=(\vec h_y,\vec h_z);\qquad \exists\,\delta>0:\ \ |t|<\delta\ \Rightarrow\ \vec z^{\,*}+t\vec h_z\in U;$$
 
 $$\gamma(t)=\bigl(\varphi(\vec z^{\,*}+t\vec h_z),\ \vec z^{\,*}+t\vec h_z\bigr),\qquad |t|<\delta .$$
 
-Тогда $\gamma(0)=\vec x^{\,*}$, и весь путь лежит в $\mathcal D$ — ровно по тождеству $\vec g(\varphi(\vec z),\vec z)=\vec 0$. Дифференцируемость: нижние $n-m$ координат линейны по $t$, а каждая верхняя есть $t\mapsto\varphi_l(\vec z^{\,*}+t\vec h_z)$ — композиция поля класса $C^1$ с прямой. Непрерывные частные производные дают [дифференцируемость по Фреше](/aii/matan/2/day/9), а тогда по [цепному правилу вдоль кривой](/aii/matan/2/day/9) производная этой композиции равна $\langle\nabla\varphi_l\mid\vec h_z\rangle$. Собирая все $l$, получаем
+$$\gamma(0)=\vec x^{\,*};\qquad \vec g(\varphi(\vec z),\vec z)=\vec 0\ \Longrightarrow\ \gamma(t)\in\mathcal D\ \ \forall\,|t|<\delta.$$
 
-$$\gamma'(0)=\Bigl(\frac{\partial\varphi}{\partial\vec z}\vec h_z,\ \vec h_z\Bigr).$$
+Дифференцируемость $\gamma$:
 
-Теперь продифференцируем в нуле само тождество $g_i(\gamma(t))=0$ — тем же цепным правилом, применённым к полю $g_i$ и кривой $\gamma$: слева выходит $\langle\nabla g_i(\vec x^{\,*})\mid\gamma'(0)\rangle$, справа нуль. Все $m$ равенств вместе — это, в матричной записи,
+$$\text{нижние }n-m\ \text{координаты линейны по }t;\qquad t\mapsto\varphi_l(\vec z^{\,*}+t\vec h_z)\ \overset{\varphi\in C^1}{\Longrightarrow}\ \text{Фреше}\ \overset{\text{цепное правило}}{\Longrightarrow}\ \tfrac{d}{dt}\bigl|_{t=0}=\langle\nabla\varphi_l\mid\vec h_z\rangle;$$
 
-$$\frac{\partial\vec g}{\partial\vec y}\Bigl(\frac{\partial\varphi}{\partial\vec z}\vec h_z\Bigr)+\frac{\partial\vec g}{\partial\vec z}\vec h_z=\vec 0 .$$
+$$\text{собираем все}\ l\ \Longrightarrow\ \gamma'(0)=\Bigl(\frac{\partial\varphi}{\partial\vec z}\vec h_z,\ \vec h_z\Bigr).$$
 
-С другой стороны, $\vec h\in T$ означает $J\vec h=\vec 0$, то есть $\frac{\partial\vec g}{\partial\vec y}\vec h_y+\frac{\partial\vec g}{\partial\vec z}\vec h_z=\vec 0$. Вычитаем одно равенство из другого:
+Непрерывные частные производные дают [дифференцируемость по Фреше](/aii/matan/2/day/9), а производная композиции поля класса $C^1$ с прямой берётся по [цепному правилу вдоль кривой](/aii/matan/2/day/9).
 
-$$\frac{\partial\vec g}{\partial\vec y}\Bigl(\frac{\partial\varphi}{\partial\vec z}\vec h_z-\vec h_y\Bigr)=\vec 0 .$$
+$$g_i(\gamma(t))\equiv0\ \overset{\text{цепное правило}}{\Longrightarrow}\ \bigl\langle\nabla g_i(\vec x^{\,*})\mid\gamma'(0)\bigr\rangle=0,\ i=\overline{1,m}\ \iff\ \frac{\partial\vec g}{\partial\vec y}\Bigl(\frac{\partial\varphi}{\partial\vec z}\vec h_z\Bigr)+\frac{\partial\vec g}{\partial\vec z}\vec h_z=\vec 0;$$
 
-Матрица слева обратима, поэтому скобка нулевая: $\frac{\partial\varphi}{\partial\vec z}\vec h_z=\vec h_y$. Подставляя это в выписанное выше $\gamma'(0)$, получаем $\gamma'(0)=(\vec h_y,\vec h_z)=\vec h$ — путь с нужным касательным вектором построен.
+$$\vec h\in T\ \iff\ J\vec h=\vec 0\ \iff\ \frac{\partial\vec g}{\partial\vec y}\vec h_y+\frac{\partial\vec g}{\partial\vec z}\vec h_z=\vec 0;$$
 
-Шаг 3. Функция одной переменной $u(t)=f(\gamma(t))$ определена в окрестности нуля, и все её аргументы допустимы; путь непрерывен, поэтому, уменьшив $\delta$, добьёмся ещё и $\gamma(t)\in U_{\vec x^{*}}$. Значит $t=0$ — внутренняя точка обычного локального экстремума $u$, и по [[teorema-ferma|теореме Ферма]], доказанной в [дне 4](/aii/matan/2/day/4), $u'(0)=0$. По [цепному правилу вдоль кривой](/aii/matan/2/day/9) (здесь и нужна дифференцируемость $f$, а не только существование частных производных)
+$$\text{вычитаем}\ \Longrightarrow\ \frac{\partial\vec g}{\partial\vec y}\Bigl(\frac{\partial\varphi}{\partial\vec z}\vec h_z-\vec h_y\Bigr)=\vec 0\ \overset{\det\ne0}{\Longrightarrow}\ \frac{\partial\varphi}{\partial\vec z}\vec h_z=\vec h_y\ \Longrightarrow\ \gamma'(0)=(\vec h_y,\vec h_z)=\vec h.$$
 
-$$u'(0)=\langle\nabla f(\vec x^{\,*})\mid\gamma'(0)\rangle=\langle\nabla f(\vec x^{\,*})\mid\vec h\rangle=0 .$$
+Путь с нужным касательным вектором построен.
 
-Шаг 4. Полученное верно для всех $\vec h\in T$, то есть $\nabla f(\vec x^{\,*})\in T^{\perp}$. Но $T$ по построению есть $L^{\perp}$, где
+**Шаг 3 — теорема Ферма для одномерного следа.**
 
-$$L=\operatorname{span}\bigl\{\nabla g_1(\vec x^{\,*}),\dots,\nabla g_m(\vec x^{\,*})\bigr\}$$
+$$u(t):=f(\gamma(t)),\quad \gamma(t)\in\mathcal D;\qquad \gamma\in C\ \Longrightarrow\ \delta\ \text{уменьшаем}:\ \gamma(t)\in U_{\vec x^{*}}\ \Longrightarrow\ t=0\ \text{— локальный экстремум}\ u;$$
 
-— [[lineynaya-obolochka-gradientov|линейная оболочка градиентов связей]] (букву $\mathcal L$ сегодня занимает функция Лагранжа, поэтому оболочка записана через $\operatorname{span}$). В конечномерном пространстве двойное [[ortogonalnoe-dopolnenie|ортогональное дополнение]] возвращает исходное подпространство, $(L^{\perp})^{\perp}=L$ (факт 2 из блока выше), поэтому $\nabla f(\vec x^{\,*})\in L$ — а это и есть требуемое разложение. Коэффициенты $\lambda_i^{*}$ определены однозначно: если $\sum_i\lambda_i\nabla g_i(\vec x^{\,*})=\sum_i\mu_i\nabla g_i(\vec x^{\,*})$, то $\sum_i(\lambda_i-\mu_i)\nabla g_i(\vec x^{\,*})=\vec 0$, а по [[lineynaya-nezavisimost|линейной независимости]] градиентов все разности нулевые. $\qquad\blacksquare$`
+$$t=0\ \text{внутренняя}\ \overset{\text{Ферма}}{\Longrightarrow}\ u'(0)=0\ \overset{\text{цепное правило}}{\Longrightarrow}\ u'(0)=\langle\nabla f(\vec x^{\,*})\mid\gamma'(0)\rangle=\langle\nabla f(\vec x^{\,*})\mid\vec h\rangle=0 .$$
+
+[[teorema-ferma|Теорема Ферма]] доказана в [дне 4](/aii/matan/2/day/4); переход к скалярному произведению — [цепное правило вдоль кривой](/aii/matan/2/day/9), и здесь нужна дифференцируемость $f$, а не только существование частных производных.
+
+**Шаг 4 — снятие ортогональности.**
+
+$$\forall\vec h\in T:\ \langle\nabla f(\vec x^{\,*})\mid\vec h\rangle=0\ \iff\ \nabla f(\vec x^{\,*})\in T^{\perp};$$
+
+$$L=\operatorname{span}\bigl\{\nabla g_1(\vec x^{\,*}),\dots,\nabla g_m(\vec x^{\,*})\bigr\},\qquad T=L^{\perp};$$
+
+$$\nabla f(\vec x^{\,*})\in(L^{\perp})^{\perp}\overset{\text{факт 2}}{=}L\ \iff\ \exists\,\lambda_1^{*},\dots,\lambda_m^{*}:\ \ \nabla f(\vec x^{\,*})=\sum_{i=1}^{m}\lambda_i^{*}\nabla g_i(\vec x^{\,*});$$
+
+$$\sum_i\lambda_i\nabla g_i(\vec x^{\,*})=\sum_i\mu_i\nabla g_i(\vec x^{\,*})\ \Longrightarrow\ \sum_i(\lambda_i-\mu_i)\nabla g_i(\vec x^{\,*})=\vec 0\ \overset{\text{лин. незав.}}{\Longrightarrow}\ \lambda_i=\mu_i .\qquad\blacksquare$$
+
+Здесь $L$ — [[lineynaya-obolochka-gradientov|линейная оболочка градиентов связей]] (букву $\mathcal L$ сегодня занимает функция Лагранжа, поэтому оболочка записана через $\operatorname{span}$); равенство $(L^{\perp})^{\perp}=L$ — это [[ortogonalnoe-dopolnenie|двойное ортогональное дополнение]] в конечномерном пространстве, факт 2 из блока выше; последний переход — [[lineynaya-nezavisimost|линейная независимость]] градиентов.`
 		},
 		{
 			kind: 'note',
