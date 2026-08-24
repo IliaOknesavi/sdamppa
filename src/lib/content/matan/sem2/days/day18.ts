@@ -54,21 +54,41 @@ $$U(f,\lambda)-U(f,\lambda^*)\le p\,\Omega\,\lambda_R<\frac\varepsilon2.$$
 
 Складывая, получаем $\overline I\le U(f,\lambda)<\overline I+\varepsilon$ — а это и есть $\lim_{\lambda_R\to0}U=\overline I$ с явной $\delta(\varepsilon)=\varepsilon/(2p\Omega)$. (При $p=0$ эталонное разбиение есть $\lbrace a,b\rbrace$, тогда $U(f,\lambda)\le U(f,\lbrace a,b\rbrace)<\overline I+\varepsilon/2$ сразу для любого $\lambda$ и годится любое $\delta$.) $\qquad\blacksquare$
 
-**Доказательство критерия.** Замкнём круг $2\Rightarrow3\Rightarrow1\Rightarrow2$; обратная импликация $3\Rightarrow2$ очевидна: если предел нулевой, подходящие разбиения существуют.
+**Доказательство критерия.** Замыкаем круг $2\Rightarrow3\Rightarrow1\Rightarrow2$. Импликация $3\Rightarrow2$ отдельного вывода не требует: нулевой предел означает, что подходящие разбиения существуют.
 
-*Шаг 1 (2 $\Rightarrow$ верхний интеграл равен нижнему).* Из $L(f,\lambda)\le\underline{\int}\le\overline{\int}\le U(f,\lambda)$ следует $0\le\overline{\int}-\underline{\int}\le U(f,\lambda)-L(f,\lambda)<\varepsilon$ для каждого $\varepsilon$, то есть $\overline{\int}=\underline{\int}=:I$.
+**Шаг 1 ($2\Rightarrow\overline{\int}=\underline{\int}$).**
 
-*Шаг 2 (2 $\Rightarrow$ 3).* По теореме Дарбу $U(f,\lambda)\to\overline{\int}$ и $L(f,\lambda)\to\underline{\int}$ по базе мелкости, а по шагу 1 эти два числа равны. Значит $\sum_i h_i\lambda_i=U-L\to0$. Явная $\delta$ собирается из двух половин: берём общее эталонное разбиение $\lambda^0$ с $U(f,\lambda^0)-L(f,\lambda^0)<\varepsilon/2$ (тогда оно годится сразу для $U$ и для $L$) и складываем две оценки предыдущего доказательства:
+$$L(f,\lambda)\le\underline{\textstyle\int}\le\overline{\textstyle\int}\le U(f,\lambda)\ \Longrightarrow\ 0\le\overline{\textstyle\int}-\underline{\textstyle\int}\le U(f,\lambda)-L(f,\lambda)<\varepsilon\quad\forall\varepsilon>0,$$
 
-$$\sum_i h_i\lambda_i<\frac\varepsilon2+2p\,\Omega\,\lambda_R<\varepsilon\quad\text{при}\quad \lambda_R<\delta=\frac{\varepsilon}{4p\,\Omega}.$$
+$$\Longrightarrow\ \overline{\textstyle\int}=\underline{\textstyle\int}=:I.$$
 
-Вот и рабочая формула: $\delta(\varepsilon)=\varepsilon/(4p\Omega)$, где $p$ — число внутренних точек эталонного разбиения, $\Omega$ — колебание $f$ на всём отрезке. Записана она для $p\ge1$ и $\Omega>0$; оба вырожденных случая закрываются без неё, и годится любое $\delta$. При $\Omega=0$ функция постоянна, все колебания нулевые и $\sum_i h_i\lambda_i=0$ при каждом разбиении. При $p=0$ эталонным служит $\lambda^0=\lbrace a;b\rbrace$, а всякое $\lambda$ — его измельчение, поэтому по лемме Дарбу $U(f,\lambda)-L(f,\lambda)\le U(f,\lambda^0)-L(f,\lambda^0)<\varepsilon/2$ сразу для любого $\lambda$.
+**Шаг 2 ($2\Rightarrow3$).**
 
-*Шаг 3 (3 $\Rightarrow$ 1).* Из пункта 3 следует пункт 2, а значит по шагу 1 определено число $I=\overline{\int}=\underline{\int}$. Оно и любая интегральная сумма лежат в одном отрезке: $L(f,\lambda)\le I\le U(f,\lambda)$ и $L(f,\lambda)\le I(f,\lambda,\vec\xi)\le U(f,\lambda)$. Длина этого отрезка меньше $\varepsilon$ при $\lambda_R<\delta$, значит $|I(f,\lambda,\vec\xi)-I|\le U-L<\varepsilon$ — с тем же $\delta(\varepsilon)$ и сразу для всех $\vec\xi$.
+$$\overset{\text{Дарбу}}{\Longrightarrow}\ U(f,\lambda)\to\overline{\textstyle\int},\quad L(f,\lambda)\to\underline{\textstyle\int}\ \overset{\text{шаг 1}}{\Longrightarrow}\ \sum_i h_i\lambda_i=U-L\to0.$$
 
-*Шаг 4 (1 $\Rightarrow$ 2).* Возьмём $\delta=\delta(\varepsilon/4)$ из пункта 1 и любое $\lambda$ с $\lambda_R<\delta$. По определению супремума найдутся $\xi_i\in\Delta_i$ с $f(\xi_i)>M_i-\frac{\varepsilon}{4(b-a)}$ — иначе число $M_i-\frac{\varepsilon}{4(b-a)}$ было бы верхней границей значений на $\Delta_i$, меньшей наименьшей из них; умножая на $\lambda_i$ и складывая, получаем $I(f,\lambda,\vec\xi)>U-\varepsilon/4$. Тем же счётом по инфимуму находится $\vec\eta$ с $I(f,\lambda,\vec\eta)<L+\varepsilon/4$. Тогда
+Явная $\delta$ собирается из двух половин: берём эталонное разбиение $\lambda^0$ с $U(f,\lambda^0)-L(f,\lambda^0)<\varepsilon/2$ и складываем с оценкой предыдущего доказательства:
 
-$$U-L<\bigl(I(f,\lambda,\vec\xi)-I\bigr)+\bigl(I-I(f,\lambda,\vec\eta)\bigr)+\frac\varepsilon2<\frac\varepsilon4+\frac\varepsilon4+\frac\varepsilon2=\varepsilon.\qquad\blacksquare$$`
+$$\sum_i h_i\lambda_i<\frac\varepsilon2+2p\,\Omega\,\lambda_R<\varepsilon\qquad\text{при}\qquad \lambda_R<\delta=\frac{\varepsilon}{4p\,\Omega}.$$
+
+Здесь $p$ — число внутренних точек эталонного разбиения, $\Omega$ — колебание $f$ на всём отрезке; формула записана для $p\ge1$ и $\Omega>0$, оба вырожденных случая разобраны выше.
+
+**Шаг 3 ($3\Rightarrow1$).**
+
+$$3\Rightarrow2\ \overset{\text{шаг 1}}{\Longrightarrow}\ \exists\,I=\overline{\textstyle\int}=\underline{\textstyle\int},\qquad L(f,\lambda)\le I\le U(f,\lambda),\quad L(f,\lambda)\le I(f,\lambda,\vec\xi)\le U(f,\lambda),$$
+
+$$\Longrightarrow\ \bigl|I(f,\lambda,\vec\xi)-I\bigr|\ \le\ U-L\ <\ \varepsilon\qquad\text{при }\lambda_R<\delta,$$
+
+и это сразу для всех наборов $\vec\xi$: оба числа заперты в одном отрезке длины меньше $\varepsilon$.
+
+**Шаг 4 ($1\Rightarrow2$).** Берём $\delta=\delta(\varepsilon/4)$ из пункта 1 и любое $\lambda$ с $\lambda_R<\delta$.
+
+$$M_i=\sup_{\Delta_i}f\ \overset{\text{опр. супремума}}{\Longrightarrow}\ \exists\,\xi_i\in\Delta_i:\ f(\xi_i)>M_i-\frac{\varepsilon}{4(b-a)},$$
+
+$$\overset{\cdot\,\lambda_i,\ \text{суммируем}}{\Longrightarrow}\ I(f,\lambda,\vec\xi)>U-\frac\varepsilon4;\qquad\text{зеркально по инфимуму}\quad\exists\,\vec\eta:\ I(f,\lambda,\vec\eta)<L+\frac\varepsilon4,$$
+
+$$U-L<\bigl(I(f,\lambda,\vec\xi)-I\bigr)+\bigl(I-I(f,\lambda,\vec\eta)\bigr)+\frac\varepsilon2<\frac\varepsilon4+\frac\varepsilon4+\frac\varepsilon2=\varepsilon.\qquad\blacksquare$$
+
+Шаг про супремум устроен так: будь $f(\xi)\le M_i-\frac{\varepsilon}{4(b-a)}$ при всех $\xi\in\Delta_i$, это число оказалось бы верхней границей меньше точной — противоречие с определением $M_i$.`
 		},
 		{
 			kind: 'note',

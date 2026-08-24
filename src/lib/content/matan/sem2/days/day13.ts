@@ -161,25 +161,43 @@ $$\Delta_k=\det A_{(k)}=\det S^{T}\cdot\det D\cdot\det S=d_1\cdots d_k>0.$$
 
 $$\boxed{\ Q>0\Rightarrow\text{строгий минимум};\quad Q<0\Rightarrow\text{строгий максимум};\quad Q\ \text{неопределена}\Rightarrow\text{седло}\ }$$
 
-**Доказательство.** Приём: отделить форму от нуля снизу, а остаток задавить сверху — так, чтобы он заведомо не перевесил главный член.
+**Доказательство.** Разбирается случай $Q>0$; остальные два сводятся к нему. Внешних фактов три: [формула Тейлора в локальной форме для скалярных полей](/aii/matan/2/day/12), [теорема Гейне–Бореля](/aii/matan/1/day/23) и [теорема об образе компакта](/aii/matan/1/day/28).
 
-По [[formula-teylora-pole|формуле Тейлора]] второго порядка в [локальной форме (Пеано) для скалярных полей](/aii/matan/2/day/12) при $\vec h\to\vec 0$
+$$\nabla f(\vec x_0)=\vec 0\ \overset{\text{Тейлор, форма Пеано}}{\Longrightarrow}\ f(\vec x_0+\vec h)-f(\vec x_0)=\underbrace{\langle\nabla f(\vec x_0)\mid\vec h\rangle}_{=\,0}+\tfrac12Q(\vec h)+r(\vec h),\qquad r\in\bar o\bigl(\|\vec h\|^2\bigr).$$
 
-$$f(\vec x_0+\vec h)-f(\vec x_0)=\underbrace{\langle\nabla f(\vec x_0)\mid\vec h\rangle}_{=\,0\ \text{по условию}}+\tfrac12Q(\vec h)+r(\vec h),\qquad r(\vec h)\in\bar o\bigl(\|\vec h\|^2\bigr).$$
+**Шаг 1 (форма отделена от нуля на сфере).**
 
-*Шаг 1 — оценка формы снизу.* Единичная сфера $S=\{\vec e:\|\vec e\|=1\}$ ограничена по своему определению и замкнута: из неравенства треугольника $\|\vec a\|\le\|\vec a-\vec b\|+\|\vec b\|$ и симметричного ему следует $\bigl|\,\|\vec a\|-\|\vec b\|\,\bigr|\le\|\vec a-\vec b\|$, то есть норма непрерывна с $\delta(\varepsilon)=\varepsilon$; дополнение к $S$ — это прообраз открытого множества $\mathbb R\setminus\{1\}$ при отображении $\vec h\mapsto\|\vec h\|$, а [прообраз открытого при непрерывном отображении открыт](/aii/matan/1/day/28). Замкнутое и ограниченное множество в $\mathbb R^n$ — [компакт](/aii/matan/1/day/23). Форма $Q$ непрерывна: координатные функции $\vec h\mapsto h_i$ непрерывны (из $|h_i-h_i'|\le\|\vec h-\vec h'\|$ годится $\delta(\varepsilon)=\varepsilon$), а $Q$ собирается из них конечным числом умножений и сложений — работает [арифметика непрерывных функций](/aii/matan/1/day/28). Значит $Q$ непрерывна на компакте $S$, а непрерывная функция на компакте достигает точных граней — это шаги 1–2 доказательства [[obraz-kompakta|теоремы об образе компакта]], [выписанного в дне 28 первого семестра](/aii/matan/1/day/28) (связность там нужна только для промежуточных значений, а здесь она не требуется — при $n=1$ сфера и вовсе состоит из двух точек). Минимум достигается:
+$$S=\lbrace\vec e:\ \|\vec e\|=1\rbrace\ \text{ограничена и замкнута}\ \overset{\text{Гейне–Борель}}{\Longrightarrow}\ S\ \text{— компакт},$$
 
-$$m=\min_{\|\vec e\|=1}Q(\vec e)=Q(\vec e_*)>0$$
+$$Q\ \text{непрерывна на }S\ \overset{\text{образ компакта}}{\Longrightarrow}\ \exists\,\vec e_*\in S:\quad m:=\min_{S}Q=Q(\vec e_*)\ \overset{Q>0,\ \vec e_*\ne\vec 0}{>}\ 0.$$
 
-— строго положителен именно потому, что $\vec e_*\ne\vec 0$ и форма положительно определена. (Без компактности сферы мы получили бы лишь $\inf\ge0$, а нулевой инфимум всё испортил бы.) По однородности $Q(\vec h)=\|\vec h\|^2Q(\vec h/\|\vec h\|)\ge m\|\vec h\|^2$ при всех $\vec h$.
+Компактность здесь несущая: без неё вышел бы только $\inf\ge0$, а нулевой инфимум обнулил бы всю оценку.
 
-*Шаг 2 — задавить остаток.* Запись $r\in\bar o(\|\vec h\|^2)$ означает: $\forall\varepsilon>0\ \exists\delta_r(\varepsilon)>0$ такое, что $\|\vec h\|<\delta_r(\varepsilon)\Rightarrow|r(\vec h)|\le\varepsilon\|\vec h\|^2$. Возьмём $\varepsilon$ равным четверти минимума формы, $\varepsilon=m/4$:
+**Шаг 2 (перенос на все векторы однородностью).**
 
-$$f(\vec x_0+\vec h)-f(\vec x_0)\ \ge\ \tfrac12m\|\vec h\|^2-\tfrac m4\|\vec h\|^2=\tfrac m4\|\vec h\|^2>0\qquad\text{при }0<\|\vec h\|<\delta.$$
+$$\vec h\ne\vec 0\ \Longrightarrow\ Q(\vec h)=\|\vec h\|^2\,Q\Bigl(\tfrac{\vec h}{\|\vec h\|}\Bigr)\ \overset{\text{шаг 1}}{\ge}\ m\,\|\vec h\|^2.$$
 
-Радиус выписывается явно: $\delta=\delta_r(m/4)$, где $m=\min_{\|\vec e\|=1}\langle\vec e\mid H\vec e\rangle$ — это и есть та окрестность $U_{\vec x_0}$, которая требуется в определении строгого локального минимума.
+**Шаг 3 (остаток задавлен).**
 
-Случай $Q<0$ сводится к разобранному заменой $f\mapsto-f$ ([[gessian|гессиан]] меняет знак, минимум становится максимумом). Случай неопределённой $Q$: найдутся единичные $\vec e_+,\vec e_-$ с $Q(\vec e_+)=2a>0$ и $Q(\vec e_-)=-2b<0$. Вдоль луча $\vec h=t\vec e_+$ при $\varepsilon=a/2$ получаем $f(\vec x_0+t\vec e_+)-f(\vec x_0)\ge at^2-\tfrac a2t^2>0$, а вдоль $\vec e_-$ зеркально $\le-\tfrac b2t^2<0$. В любой сколь угодно малой окрестности есть точки и выше, и ниже $f(\vec x_0)$ — экстремума нет, это [[sedlovaya-tochka|седловая точка]]. $\qquad\blacksquare$`
+$$r\in\bar o\bigl(\|\vec h\|^2\bigr)\ \iff\ \forall\varepsilon>0\ \exists\delta_r(\varepsilon)>0\ \forall\,\|\vec h\|<\delta_r(\varepsilon):\ |r(\vec h)|\le\varepsilon\|\vec h\|^2,$$
+
+$$\overset{\varepsilon:=m/4,\ \ \delta:=\delta_r(m/4)}{\Longrightarrow}\ \forall\,0<\|\vec h\|<\delta:\quad f(\vec x_0+\vec h)-f(\vec x_0)\ \ge\ \tfrac12m\|\vec h\|^2-\tfrac m4\|\vec h\|^2=\tfrac m4\|\vec h\|^2\ >\ 0.$$
+
+Радиус выписан явно: $\delta=\delta_r(m/4)$ при $m=\min_{\|\vec e\|=1}\langle\vec e\mid H\vec e\rangle$ — это и есть окрестность из определения строгого локального минимума.
+
+**Случай $Q<0$.**
+
+$$f\mapsto-f\ \Longrightarrow\ H\mapsto-H,\ \ Q\mapsto-Q>0\ \overset{\text{разобранное}}{\Longrightarrow}\ \text{строгий минимум у }-f\ \Longrightarrow\ \text{строгий максимум у }f.$$
+
+**Случай неопределённой $Q$.**
+
+$$\exists\,\vec e_\pm\in S:\quad Q(\vec e_+)=2a>0,\qquad Q(\vec e_-)=-2b<0,$$
+
+$$\vec h=t\vec e_+,\ \ \varepsilon=a/2:\quad f(\vec x_0+t\vec e_+)-f(\vec x_0)\ \ge\ at^2-\tfrac a2t^2=\tfrac a2t^2\ >\ 0,$$
+
+$$\vec h=t\vec e_-,\ \ \varepsilon=b/2:\quad f(\vec x_0+t\vec e_-)-f(\vec x_0)\ \le\ -bt^2+\tfrac b2t^2=-\tfrac b2t^2\ <\ 0.$$
+
+В любой сколь угодно малой окрестности нашлись точки и выше, и ниже $f(\vec x_0)$ — экстремума нет, это [[sedlovaya-tochka|седловая точка]]. $\qquad\blacksquare$`
 		},
 		{
 			kind: 'note',
