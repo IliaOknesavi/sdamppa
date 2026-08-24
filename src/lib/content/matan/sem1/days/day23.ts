@@ -34,15 +34,27 @@ $$\boxed{\forall (x_n)\subset[\alpha;\beta]\ \ \exists\, n_1<n_2<\dots\ \ \exist
 
 Квантор $\forall$ здесь существен: подпоследовательность выделяется из **любой** последовательности отрезка, а не из какой-то удачно подобранной.
 
-**Доказательство.** От противного. Пусть ни одна точка $a\in[\alpha;\beta]$ не является пределом никакой подпоследовательности. Тогда для каждой $a$ найдётся $\varepsilon_a>0$ такое, что интервал $U_a=(a-\varepsilon_a;a+\varepsilon_a)$ содержит члены последовательности лишь с конечным числом номеров (иначе, если в любой окрестности $a$ сидят члены со сколь угодно большими номерами, рекурсивный выбор $n_{k+1}=\min\{n>n_k:\ |x_n-a|<1/(k+1)\}$ даёт подпоследовательность с пределом $a$).
+**Доказательство.** От противного: пусть ни одна точка отрезка не является пределом никакой подпоследовательности.
 
-Набор $\{U_a\}_{a\in[\alpha;\beta]}$ — открытое [[otkrytoe-pokrytie|покрытие]] отрезка. По [[borel-lebeg|теореме Бореля–Лебега]] ([день 22](/aii/matan/1/day/22)) выделяем конечное подпокрытие $U_{a_1},\dots,U_{a_t}$. Каждое из них содержит конечное множество номеров, а их всего $t$ штук, значит
+$$\forall a\in[\alpha;\beta]\ \ \exists\varepsilon_a>0:\quad U_a=(a-\varepsilon_a;\,a+\varepsilon_a),\qquad \bigl|\lbrace n:\ x_n\in U_a\rbrace\bigr|<\aleph_0.$$
 
-$$\mathbb N_1=\bigl\{n:\ x_n\in[\alpha;\beta]\bigr\}\subset\bigcup_{j=1}^{t}\{n:\ x_n\in U_{a_j}\}$$
+Иначе — если в любой окрестности $a$ сидят члены со сколь угодно большими номерами — рекурсия
 
-оказывается конечным объединением конечных множеств — противоречие с бесконечностью $\mathbb N_1$.
+$$n_{k+1}=\min\Bigl\lbrace n>n_k:\ |x_n-a|<\tfrac1{k+1}\Bigr\rbrace$$
 
-Значит, искомая $x^*$ существует, и построенная выше рекурсия даёт $|x_{n_k}-x^*|<1/k$, то есть явную оценку: для заданного $\varepsilon>0$ годится $N(\varepsilon)=\lceil 1/\varepsilon\rceil$. $\qquad\blacksquare$`
+давала бы подпоследовательность с пределом $a$, вопреки предположению. Дальше — покрытие:
+
+$$\lbrace U_a\rbrace_{a\in[\alpha;\beta]}\ \text{— открытое [[otkrytoe-pokrytie|покрытие]] отрезка}\ \overset{\text{Борель–Лебег}}{\Longrightarrow}\ \exists\,U_{a_1},\dots,U_{a_t}:\ [\alpha;\beta]\subset\bigcup_{j=1}^{t}U_{a_j},$$
+
+$$\mathbb N_1=\bigl\lbrace n:\ x_n\in[\alpha;\beta]\bigr\rbrace\subset\bigcup_{j=1}^{t}\lbrace n:\ x_n\in U_{a_j}\rbrace\ \Longrightarrow\ |\mathbb N_1|<\aleph_0$$
+
+— конечное объединение конечных множеств, что противоречит бесконечности $\mathbb N_1$.
+
+$$\Longrightarrow\ \exists\,x^{*}\in[\alpha;\beta]\ \text{— предел некоторой подпоследовательности},$$
+
+$$\text{рекурсия выше}\ \Longrightarrow\ |x_{n_k}-x^{*}|<\tfrac1k\ \Longrightarrow\ N(\varepsilon)=\bigl\lceil 1/\varepsilon\bigr\rceil.\qquad\blacksquare$$
+
+Ссылка на [теорему Бореля–Лебега](/aii/matan/1/day/22) — единственный внешний факт.`
 		},
 		{
 			kind: 'derivation',

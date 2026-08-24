@@ -193,6 +193,8 @@ $$\sum_{j,k}|I_{j,k}|=\sup_F\sum_{I\in F}|I|\ \le\ \frac{\varepsilon}{2}\ <\ \va
 
 $$[c;d]\ \text{компакт}\ \overset{\text{Борель–Лебег}}{\Longrightarrow}\ \exists\,k_1,\dots,k_m:\quad[c;d]\subset\bigcup_{j=1}^{m}I_{k_j}.$$
 
+Компактность отрезка — [теорема Бореля–Лебега](/aii/matan/1/day/22).
+
 **Индукция по $m$:** если $m$ интервалов накрывают отрезок $[c;d]$, то $\sum_{j=1}^{m}|I_{k_j}|>d-c$.
 
 $$\text{база }m=1:\quad [c;d]\subset(\alpha;\beta)\ \Longrightarrow\ \alpha<c\le d<\beta\ \Longrightarrow\ \beta-\alpha>d-c;$$

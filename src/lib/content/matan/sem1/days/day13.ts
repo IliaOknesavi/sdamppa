@@ -30,21 +30,23 @@ $$\lim_{n\to\infty}x_n=A\ \wedge\ \lim_{n\to\infty}x_n=B\ \Rightarrow\ A=B.$$
 
 $$\boxed{\ \forall B\in\mathbb R:\ \lim_{n\to\infty}x_n=B\ \Rightarrow\ A=B\ }$$
 
-**Доказательство.** Ведём его [[ot-protivnogo|от противного]]: пусть $A\ne B$. Тогда $|A-B|>0$, и число
+**Доказательство.** [[ot-protivnogo|От противного]]: пусть $A\ne B$.
 
-$$\varepsilon=\frac{|A-B|}{3}>0$$
+$$A\ne B\ \Longrightarrow\ |A-B|>0\ \Longrightarrow\ \varepsilon:=\frac{|A-B|}{3}>0.$$
 
-годится в качестве эпсилон в обоих определениях (положительность здесь принципиальна — в определение предела нельзя подставить $\varepsilon\le0$). Выпишем оба определения с общим $\varepsilon$ и своими [[n-ot-epsilon|номерами]]:
+Положительность здесь принципиальна: в определение предела нельзя подставить $\varepsilon\le0$. Выписываем оба определения с этим $\varepsilon$ и согласуем номера:
 
-$$\exists N_A(\varepsilon)\ \forall n>N_A:\ |x_n-A|<\varepsilon,\qquad \exists N_B(\varepsilon)\ \forall n>N_B:\ |x_n-B|<\varepsilon.$$
+$$\exists N_A\ \forall n>N_A:\ |x_n-A|<\varepsilon,\qquad \exists N_B\ \forall n>N_B:\ |x_n-B|<\varepsilon,$$
 
-Согласуем их: $N(\varepsilon)=\max\bigl(N_A(\varepsilon),\,N_B(\varepsilon)\bigr)$ — начиная с этого номера верны сразу оба неравенства.
+$$N(\varepsilon):=\max\bigl(N_A(\varepsilon),\,N_B(\varepsilon)\bigr)\ \Longrightarrow\ \forall n>N(\varepsilon)\ \text{верны оба неравенства сразу}.$$
 
-Возьмём любое $n>N(\varepsilon)$ и оценим расстояние между самими кандидатами в предел, вставив между ними член последовательности (в этом весь приём):
+Теперь вставляем член последовательности между кандидатами — в этом весь приём:
 
-$$|A-B|=\bigl|(A-x_n)+(x_n-B)\bigr|\le|x_n-A|+|x_n-B|<2\varepsilon=\tfrac23|A-B|.$$
+$$|A-B|\overset{\pm\,x_n}{=}\bigl|(A-x_n)+(x_n-B)\bigr|\ \overset{\text{нер-во треугольника}}{\le}\ |x_n-A|+|x_n-B|\ <\ 2\varepsilon=\tfrac23|A-B|,$$
 
-Разделим на $|A-B|>0$ (делить можно ровно потому, что предположено $A\ne B$) и получим $1<\tfrac23$ — ложь. Значит предположение неверно и $A=B$. $\qquad\blacksquare$`
+$$\overset{:\,|A-B|>0}{\Longrightarrow}\ 1<\tfrac23\ \ \text{— ложь}\ \Longrightarrow\ A=B.\qquad\blacksquare$$
+
+Делить на $|A-B|$ законно ровно потому, что предположено $A\ne B$; [неравенство треугольника](/aii/matan/1/day/5) доказано в дне 5.`
 		},
 		{
 			kind: 'definition',

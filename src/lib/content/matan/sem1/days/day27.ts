@@ -34,19 +34,37 @@ $$f\in o(g)\iff L=0,\quad f\in O(g)\iff L\in[0;\infty),\quad f\in\Theta(g)\iff L
 
 $$\boxed{\ \lim_{x\to x_0}\bigl(f(x)\pm g(x)\bigr)=A\pm B,\qquad \lim_{x\to x_0}f(x)g(x)=AB,\qquad \lim_{x\to x_0}\frac{f(x)}{g(x)}=\frac AB\ \ (B\ne0).\ }$$
 
-**Доказательство.** Приём — **переложить работу на последовательности**: [[opredelenie-geyne|определение по Гейне]] превращает утверждение о функции в уже доказанное утверждение об арифметике пределов последовательностей ([день 12](/aii/matan/1/day/12)).
+**Доказательство.** Приём — переложить работу на последовательности: [[opredelenie-geyne|определение по Гейне]] превращает утверждение о функции в уже доказанное утверждение об [арифметике пределов последовательностей](/aii/matan/1/day/12).
 
-Возьмём произвольную допустимую $\{x_n\}$: $x_n\to x_0$, $x_n\ne x_0$, $\{x_n\}\subset\mathring U_{x_0}\subset D(f)\cap D(g)$. Одна и та же последовательность обслуживает обе функции — вот зачем в условии стоит пересечение областей определения. По Гейне $f_n\to A$ и $g_n\to B$, дальше работает готовая арифметика: $f_n+g_n\to A+B$, $f_ng_n\to AB$, $f_n/g_n\to A/B$ при $B\ne0$. Последовательность была произвольной, значит по Гейне в обратную сторону получаем все три равенства для функций.
+$$\forall\lbrace x_n\rbrace:\ \ x_n\to x_0,\ \ x_n\ne x_0,\ \ \lbrace x_n\rbrace\subset\mathring U_{x_0}\subset D(f)\cap D(g)$$
 
-Гейне даёт факт, но не даёт явной $\delta(\varepsilon)$; выпишем её напрямую. Для суммы ресурс $\varepsilon$ делится пополам:
+$$\overset{\text{Гейне}}{\Longrightarrow}\ f_n\to A,\ g_n\to B\ \overset{\text{арифметика для }\lbrace\cdot\rbrace}{\Longrightarrow}\ f_n+g_n\to A+B,\quad f_ng_n\to AB,\quad \frac{f_n}{g_n}\to\frac AB\ \ (B\ne0),$$
 
-$$\bigl|f(x)+g(x)-(A+B)\bigr|\leqslant|f(x)-A|+|g(x)-B|<\frac\varepsilon2+\frac\varepsilon2=\varepsilon,\qquad \delta_{f+g}(\varepsilon)=\min\Bigl\{\delta_f\Bigl(\frac\varepsilon2\Bigr),\ \delta_g\Bigl(\frac\varepsilon2\Bigr)\Bigr\}.$$
+$$\overset{\lbrace x_n\rbrace\ \text{произвольна},\ \text{Гейне обратно}}{\Longrightarrow}\ \text{все три равенства для функций}.$$
 
-Для произведения сначала нужен служебный вызов определения: при $x\in\mathring B_{x_0}(\delta_g(1))$ выполнено $|g(x)|<|B|+1$. Тогда из $|fg-AB|\leqslant|f-A|\,|g|+|A|\,|g-B|$ получаем
+Одна и та же последовательность обслуживает обе функции — вот зачем в условии стоит пересечение областей определения.
 
-$$\delta_{fg}(\varepsilon)=\min\Bigl\{\delta_g(1),\ \delta_f\Bigl(\frac{\varepsilon}{2(|B|+1)}\Bigr),\ \delta_g\Bigl(\frac{\varepsilon}{2(|A|+1)}\Bigr)\Bigr\}.$$
+Гейне даёт факт, но не даёт явной $\delta(\varepsilon)$. Выпишем её напрямую.
 
-Для частного добавляется отделение знаменателя от нуля: при $x\in\mathring B_{x_0}\bigl(\delta_g(|B|/2)\bigr)$ имеем $|g(x)|>|B|/2$, после чего схема та же. $\qquad\blacksquare$
+**Сумма** — бюджет делится пополам:
+
+$$\bigl|f(x)+g(x)-(A+B)\bigr|\ \overset{\triangle}{\leqslant}\ |f(x)-A|+|g(x)-B|\ <\ \frac\varepsilon2+\frac\varepsilon2=\varepsilon,$$
+
+$$\delta_{f+g}(\varepsilon)=\min\Bigl\lbrace\delta_f\bigl(\tfrac\varepsilon2\bigr),\ \delta_g\bigl(\tfrac\varepsilon2\bigr)\Bigr\rbrace.$$
+
+**Произведение** — сначала служебный вызов определения, чтобы ограничить $g$:
+
+$$x\in\mathring B_{x_0}\bigl(\delta_g(1)\bigr)\ \Longrightarrow\ |g(x)|<|B|+1,$$
+
+$$|fg-AB|\overset{\pm\,Ag}{=}\bigl|(f-A)g+A(g-B)\bigr|\ \overset{\triangle}{\leqslant}\ |f-A|\,|g|+|A|\,|g-B|,$$
+
+$$\delta_{fg}(\varepsilon)=\min\Bigl\lbrace\delta_g(1),\ \delta_f\Bigl(\tfrac{\varepsilon}{2(|B|+1)}\Bigr),\ \delta_g\Bigl(\tfrac{\varepsilon}{2(|A|+1)}\Bigr)\Bigr\rbrace.$$
+
+**Частное** — добавляется отделение знаменателя от нуля:
+
+$$x\in\mathring B_{x_0}\bigl(\delta_g(|B|/2)\bigr)\ \Longrightarrow\ |g(x)|>\frac{|B|}{2}\ >\ 0,$$
+
+после чего схема та же, что у произведения. $\qquad\blacksquare$
 
 Тем же способом переносится и таблица бесконечностей: для бесконечно малой $f$ и бесконечно больших $F,G$ определены строки $\lim f/F=0$, затем $\lim F/f=\infty$ (при $f\ne0$ в выколотой окрестности) и $\lim(F+G)=\infty$ (при согласованных знаках), а $F/G$ и $F-G$ помечены **undefined** — контрпримерная пара для них разобрана в [дне 26](/aii/matan/1/day/26). Первые две строки доказываются в задаче 2, там же видно, откуда берётся оговорка про нули $f$.`
 		},
