@@ -64,7 +64,7 @@ const matan: SubjectMeta = {
 	id: 'matan',
 	name: 'Математический анализ',
 	short: 'Матан',
-	blurb: 'Курс, который начинается не с вещественной прямой, а с аксиоматики ZFC: топология и метрика раньше пределов.',
+	blurb: 'Курс, который начинается не с вещественной прямой, а с аксиоматики ZFC: топология, метрика и норма идут раньше пределов, а ℝ появляется как частный случай.',
 	accent: '#7f00ff',
 	glyph: '∫',
 	semesters: [1, 2],
@@ -77,6 +77,16 @@ const pytorch: SubjectMeta = {
 	blurb: 'Исчерпывающий курс по PyTorch: от тензора и autograd до CNN, трансформеров и продакшна. Живые numpy-демо в браузере + настоящий torch в один клик в Colab.',
 	accent: '#ee4c2c',
 	glyph: '∇',
+	semesters: [1],
+	ready: true
+};
+const ml: SubjectMeta = {
+	id: 'ml',
+	name: 'Основы машинного обучения',
+	short: 'ML',
+	blurb: 'Классический ML до уровня стажировки в Яндексе: от kNN и линейных моделей до CatBoost, метрик и валидации. Каждый алгоритм — руками на numpy со сверкой sklearn прямо в браузере, плюс разбор реальных вопросов ML-секций.',
+	accent: '#16a34a',
+	glyph: 'ŷ',
 	semesters: [1],
 	ready: true
 };
@@ -100,6 +110,16 @@ const harness: SubjectMeta = {
 	semesters: [1],
 	ready: true
 };
+const coscientist: SubjectMeta = {
+	id: 'coscientist',
+	name: 'CoScientist: разбор мультиагентной системы',
+	short: 'CoScientist',
+	blurb: 'Онбординг-разбор боевой мультиагентной LLM-системы ITMO-NSS (Google ADK + FEDOT.MAS + RAG): сборка из system.yaml, жизненный цикл запроса, два потока (литература и генерация молекул), запуск и ловушки — по актуальному коду. Плюс интерактивный атлас всех 108 файлов, история изменений и разбор незакрытых веток.',
+	accent: '#7c5cff',
+	glyph: '⚗',
+	semesters: [1],
+	ready: true
+};
 
 export const directionsMeta: DirectionMeta[] = [
 	{
@@ -112,12 +132,12 @@ export const directionsMeta: DirectionMeta[] = [
 	},
 	{
 		id: 'dl',
-		name: 'DL-фреймворки',
-		short: 'DL',
-		blurb: 'Открытый стек глубокого обучения по той же системе. Python-ООП как фундамент и PyTorch.',
+		name: 'Машинное обучение и DL',
+		short: 'ML/DL',
+		blurb: 'Открытый ML-стек по той же системе: Python-ООП как фундамент, классический ML до уровня стажировки и PyTorch.',
 		accent: '#ee4c2c',
 		extra: true,
-		subjects: [oop, pytorch]
+		subjects: [oop, ml, pytorch]
 	},
 	{
 		id: 'agents',
@@ -126,7 +146,7 @@ export const directionsMeta: DirectionMeta[] = [
 		blurb: 'Дополнительные материалы по агентной инженерии. Первый — перевод открытого гайда по харнессам.',
 		accent: '#22a39f',
 		extra: true,
-		subjects: [harness]
+		subjects: [harness, coscientist]
 	}
 ];
 
