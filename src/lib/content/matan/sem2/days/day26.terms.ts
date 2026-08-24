@@ -65,12 +65,4 @@ export const day26Terms: Glossary = {
 		related: ['uslovnaya-shodimost', 'absolyutnaya-shodimost']
 	},
 
-	'neobhodimoe-uslovie-shodimosti': {
-		id: 'neobhodimoe-uslovie-shodimosti',
-		term: 'Необходимое условие сходимости ряда',
-		short: String.raw`У сходящегося ряда члены стремятся к нулю.`,
-		formula: String.raw`\sum_{n=1}^{\infty}f_n\ \text{сх.}\ \Rightarrow\ \lim_{n\to\infty}f_n=0`,
-		body: String.raw`Если ряд сходится, его члены стремятся к нулю. Это [[priznak-i-svoystvo|свойство]], а не признак: обратное неверно, и работает условие только на расходимость.`,
-		related: ['priznak-i-svoystvo', 'chastichnaya-summa', 'predel-posledovatelnosti']
-	}
 };

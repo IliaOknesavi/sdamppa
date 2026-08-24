@@ -14,7 +14,7 @@ export const day22Terms: Glossary = {
 		term: 'Покрытие',
 		short: String.raw`Семейство множеств, объединение которых накрывает $X$.`,
 		formula: String.raw`\bigcup_{k\in I}U_k\supset X`,
-		body: String.raw`**Покрытием** множества $X$ называют семейство $\{U_k\}_{k\in I}$, объединение которого содержит $X$. Мощность индексного множества $I$ ничем не ограничена: покрытие бывает конечным, счётным, континуальным. Само по себе понятие бессодержательно — работать оно начинает, когда элементы требуют [[otkrytoe-pokrytie|открытыми]] и пытаются выделить [[podpokrytie|подпокрытие]].`,
+		body: String.raw`**Покрытием** множества $X$ называют семейство $\{U_k\}_{k\in I}$, объединение которого содержит $X$. Мощность индексного множества $I$ ничем не ограничена: покрытие бывает конечным, счётным, континуальным. Производные от него понятия — [[otkrytoe-pokrytie|открытое покрытие]] и [[podpokrytie|подпокрытие]].`,
 		related: ['otkrytoe-pokrytie', 'podpokrytie', 'kompakt']
 	},
 
@@ -32,7 +32,7 @@ export const day22Terms: Glossary = {
 		term: 'Подпокрытие',
 		short: String.raw`Покрытие из элементов исходного; конечность пишется как $|K|<\aleph_0$.`,
 		formula: String.raw`K\subset I,\ |K|<\aleph_0:\quad \bigcup_{k\in K}U_{\alpha_k}\supset X`,
-		body: String.raw`**Подпокрытие** получается прореживанием индексного множества исходного [[pokrytie|покрытия]]: берётся $K\subset I$, и требуется, чтобы выбранные множества по-прежнему накрывали $X$. Добавлять новые множества или подменять старые нельзя. Конечность подпокрытия записывают [[alef-nol|кардинальным неравенством]] $|K|<\aleph_0$, а в формулировке [[borel-lebeg|Бореля–Лебега]] — равенством $|I_n|=n\in\mathbb N_0$, то есть числом, которое доказательство обязано предъявить.`,
+		body: String.raw`**Подпокрытие** получается прореживанием индексного множества исходного [[pokrytie|покрытия]]: берётся $K\subset I$, и требуется, чтобы выбранные множества по-прежнему накрывали $X$. Добавлять новые множества или подменять старые нельзя. Конечность подпокрытия записывают [[alef-nol|кардинальным неравенством]] $|K|<\aleph_0$.`,
 		related: ['pokrytie', 'alef-nol', 'kompakt', 'borel-lebeg']
 	},
 
@@ -41,7 +41,7 @@ export const day22Terms: Glossary = {
 		term: 'Теорема Бореля–Лебега',
 		short: String.raw`Любой отрезок $[\alpha;\beta]\subset\mathbb R$ — компакт.`,
 		formula: String.raw`\bigcup_{k\in I}U_k\supset[\alpha;\beta]\ \Rightarrow\ \exists I_n\subset I,\ |I_n|=n\in\mathbb N_0:\ \bigcup_{k\in I_n}U_k\supset[\alpha;\beta]`,
-		body: String.raw`Теорема утверждает, что отрезок — [[kompakt|компакт]]. Доказательство методом [[otmechennaya-tochka|отмеченных точек]] («продвижение вправо» шагами $\varepsilon_i/2$) завершается супремумом множества отмеченных точек и потому опирается на полноту $\mathbb R$; альтернативный путь — деление отрезка пополам с леммой о вложенных отрезках. Конечность подпокрытия выражена как $|I_n|=n\in\mathbb N_0$ ([[n-nol-n-odin|ℕ₀ против ℕ₁]]), то есть доказательство обязано кончиться числом.`,
+		body: String.raw`Теорема утверждает, что любой отрезок $[\alpha;\beta]\subset\mathbb R$ — [[kompakt|компакт]]: из всякого [[otkrytoe-pokrytie|открытого покрытия]] отрезка выделяется конечное подпокрытие. Конечность выражена как $|I_n|=n\in\mathbb N_0$ ([[n-nol-n-odin|ℕ₀ против ℕ₁]]), то есть доказательство обязано кончиться числом.`,
 		related: ['otmechennaya-tochka', 'kompakt', 'geyne-borel', 'metrizuemost']
 	},
 
@@ -50,8 +50,8 @@ export const day22Terms: Glossary = {
 		term: 'Отмеченная точка',
 		short: String.raw`Точка $a$, для которой $[\alpha;a]$ уже покрыт конечным набором.`,
 		formula: String.raw`a\ \text{отмечена}\iff \exists I_m\subset I,\ |I_m|<\aleph_0:\ \bigcup_{k\in I_m}U_k\supset[\alpha;a]`,
-		body: String.raw`Точка, выбранная внутри куска [[razbienie|разбиения]] для подсчёта [[integralnaya-summa|интегральной суммы]]. Выбор произволен: у интегрируемой функции предел сумм от него не зависит.`,
-		related: ['razbienie', 'integralnaya-summa']
+		body: String.raw`Точка $a\in[\alpha;\beta]$ **отмечена**, если начальный кусок $[\alpha;a]$ уже накрыт конечным поднабором исходного [[pokrytie|покрытия]] $\{U_k\}_{k\in I}$, то есть если для $[\alpha;a]$ [[podpokrytie|конечное подпокрытие]] уже построено: $\exists I_m\subset I$, $|I_m|<\aleph_0$, $\bigcup_{k\in I_m}U_k\supset[\alpha;a]$.`,
+		related: ['pokrytie', 'podpokrytie', 'kompakt']
 	},
 
 	'geyne-borel': {
@@ -77,7 +77,7 @@ export const day22Terms: Glossary = {
 		term: 'Метризуемость',
 		short: String.raw`Топология порождена метрикой: в любую окрестность влезает шар.`,
 		formula: String.raw`x\in U\in\tau_\rho\ \Rightarrow\ \exists\varepsilon>0:\ B_\varepsilon(x)\subset U`,
-		body: String.raw`Пространство метризуемо, если его топология индуцирована метрикой: шары образуют базу, и потому внутрь любой [[okrestnost|окрестности]] точки вписывается [[shar|шар]] с центром в ней. В доказательстве [[borel-lebeg|Бореля–Лебега]] этим переходом абстрактное $U_\alpha$ заменяется на интервал $(\alpha-\varepsilon;\alpha+\varepsilon)$. Без метризуемости шага с $\varepsilon$ не существует, и метод отмеченных точек не запускается.`,
+		body: String.raw`Пространство метризуемо, если его топология индуцирована метрикой: шары образуют базу, и потому внутрь любой [[okrestnost|окрестности]] точки вписывается [[shar|шар]] с центром в ней — переход от абстрактного $U$ к интервалу $(\alpha-\varepsilon;\alpha+\varepsilon)$ законен только здесь.`,
 		related: ['shar', 'okrestnost', 'borel-lebeg', 'metriki-rho']
 	},
 

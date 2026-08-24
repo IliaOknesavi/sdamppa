@@ -50,7 +50,7 @@ export const day24Terms: Glossary = {
 		term: 'Необходимый признак сходимости ряда',
 		short: String.raw`Сходится $\Rightarrow$ член стремится к нулю. Обратное неверно.`,
 		formula: String.raw`\sum_{n=1}^{\infty}a_n\ \text{сходится}\ \Longrightarrow\ \lim_{n\to\infty}a_n=0`,
-		body: String.raw`Если [[chislovoy-ryad|ряд]] [[skhodimost-ryada|сходится]], то $\lim a_n=0$. Строго говоря, это [[priznak-i-svoystvo|свойство]] сходящегося ряда, а не признак: полезен он контрапозицией — из $a_n\not\to0$ следует [[raskhodimost-ryada|расходимость]]. Обращение ложно, контрпример — [[garmonicheskiy-ryad|гармонический ряд]]. Получается взятием $p=1$ в блочной оценке [[kriteriy-koshi-ryad|критерия Коши]], хотя годится и короткий путь $a_n=S_n-S_{n-1}\to c-c=0$.`,
+		body: String.raw`Если [[chislovoy-ryad|ряд]] [[skhodimost-ryada|сходится]], то $\lim a_n=0$. Строго говоря, это [[priznak-i-svoystvo|свойство]] сходящегося ряда, а не признак: полезен он контрапозицией — из $a_n\not\to0$ следует [[raskhodimost-ryada|расходимость]]. Обращение ложно, контрпример — [[garmonicheskiy-ryad|гармонический ряд]].`,
 		related: ['skhodimost-ryada', 'garmonicheskiy-ryad', 'kriteriy-koshi-ryad', 'priznak-i-svoystvo']
 	},
 
@@ -68,7 +68,7 @@ export const day24Terms: Glossary = {
 		term: 'Остаток ряда (остаточный хвост)',
 		short: String.raw`$r_m=c-S_m$ — то, что осталось после $m$-го члена.`,
 		formula: String.raw`r_m=\sum_{n=m+1}^{\infty}a_n=c-S_m`,
-		body: String.raw`**Остаток** — хвост [[chislovoy-ryad|ряда]], начинающийся с номера $m+1$. Теорема об остаточном хвосте: ряд [[skhodimost-ryada|сходится]] $\iff$ все остатки существуют и $r_m\to0$. Оговорка про существование не лишняя: запись $r_m=\sum_{n=m+1}^{\infty}a_n$ уже требует сходимости хвостового ряда, а хвосты сходятся только вместе с исходным рядом — у $\sum\frac1n$ ни одного остатка как числа нет. Рабочее следствие $c=S_m+r_m$ означает, что $r_m$ — погрешность обрыва ряда на $m$-м члене.`,
+		body: String.raw`**Остаток** — хвост [[chislovoy-ryad|ряда]], начинающийся с номера $m+1$; равносильно $r_m=c-S_m$, то есть погрешность обрыва ряда на $m$-м члене. Теорема об остаточном хвосте: ряд [[skhodimost-ryada|сходится]] $\iff$ все остатки существуют и $r_m\to0$. Оговорка про существование не лишняя: запись $r_m=\sum_{n=m+1}^{\infty}a_n$ уже требует сходимости хвостового ряда, а хвосты сходятся только вместе с исходным — у $\sum\frac1n$ ни одного остатка как числа нет.`,
 		related: ['skhodimost-ryada', 'chastichnaya-summa', 'kriteriy-koshi-ryad']
 	},
 
@@ -77,7 +77,7 @@ export const day24Terms: Glossary = {
 		term: 'Гармонический ряд',
 		short: String.raw`$\sum1/n$ расходится, хотя $a_n\to0$ — контрпример к обращению признака.`,
 		formula: String.raw`\sum_{n=1}^{\infty}\frac1n,\qquad S_n=1+\frac12+\dots+\frac1n`,
-		body: String.raw`Ряд $\sum 1/n$. Его члены стремятся к нулю, а сам он расходится, поэтому служит опорным контрпримером к обращению [[neobhodimoe-uslovie-shodimosti|необходимого условия сходимости]]. Расходимость логарифмическая.`,
+		body: String.raw`Ряд $\sum 1/n$. Его члены стремятся к нулю, а сам он расходится, поэтому служит опорным контрпримером к обращению [[neobkhodimyy-priznak|необходимого условия сходимости]]. Расходимость логарифмическая.`,
 		related: ['chastichnaya-summa', 'ryad-dirihle']
 	},
 

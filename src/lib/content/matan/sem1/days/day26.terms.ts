@@ -30,7 +30,7 @@ export const day26Terms: Glossary = {
 		term: 'Топология лучей на ℕ₁',
 		short: String.raw`Открыты только лучи $[n;+\infty)\cap\mathbb N_1$ и пустое множество.`,
 		formula: String.raw`\tau=\{\varnothing\}\cup\{U_n=[n;+\infty)\cap\mathbb N_1\}`,
-		body: String.raw`**Топология лучей** на [[n-nol-n-odin|$\mathbb N_1$]] объявляет открытыми лучи $U_n=[n;+\infty)\cap\mathbb N_1$: их конечное пересечение — луч с $\max$, объединение — луч с $\min$. Лучи образуют [[baza-topologii|базу окрестностей]] присоединённого символа $\infty$, и тогда [[predel-posledovatelnosti|предел последовательности]] становится частным случаем [[predel-funkcii|предела функции]] $\mathbb N_1\to M$. Технически всё держится на словаре «выколотая окрестность $\leftrightarrow$ номер $N$»: хвост $[N;+\infty)$ и есть выколотая окрестность бесконечности.`,
+		body: String.raw`**Топология лучей** на [[n-nol-n-odin|$\mathbb N_1$]] объявляет открытыми лучи $U_n=[n;+\infty)\cap\mathbb N_1$: их конечное пересечение — луч с $\max$, объединение — луч с $\min$. Лучи образуют [[baza-topologii|базу окрестностей]] присоединённого символа $\infty$: хвост $[N;+\infty)$ и есть выколотая окрестность бесконечности.`,
 		related: ['n-nol-n-odin', 'predel-posledovatelnosti', 'baza-topologii', 'predel-funkcii']
 	},
 
@@ -39,7 +39,7 @@ export const day26Terms: Glossary = {
 		term: 'Бесконечный предел',
 		short: String.raw`$\lim f=\infty$, если по любой $\{x_n\}\to x_0$ значения $f_n$ неограниченны.`,
 		formula: String.raw`\lim_{x\to x_0}f(x)=\infty\iff \forall\{x_n\}\to x_0,\ x_n\ne x_0:\ \{f_n\}\ \text{неогр.}`,
-		body: String.raw`**Бесконечный предел** определён по [[opredelenie-geyne|Гейне]] через [[neogranichennost|неограниченность]] последовательности значений, а не через $|f(x)|>E$. Выигрыш — общность: определение живёт в пространстве без модуля и без порядка. Расплата — потеря знака: $+\infty$ и $-\infty$ не различаются, из-за чего случай $F+G=\infty$ в арифметике [[undefined-neopredelennost|бесконечностей]] требует оговорки о согласованности знаков.`,
+		body: String.raw`**Бесконечный предел** определён по [[opredelenie-geyne|Гейне]] через [[neogranichennost|неограниченность]] последовательности значений, а не через $|f(x)|>E$. Выигрыш — общность: определение живёт в пространстве без модуля и без порядка. Расплата — потеря знака: $+\infty$ и $-\infty$ не различаются.`,
 		related: ['neogranichennost', 'opredelenie-geyne', 'undefined-neopredelennost', 'predel-funkcii']
 	},
 
@@ -48,7 +48,7 @@ export const day26Terms: Glossary = {
 		term: 'Неограниченность последовательности',
 		short: String.raw`Почти все члены выходят из любого шара и больше в него не возвращаются.`,
 		formula: String.raw`\forall\varepsilon>0\ \forall m\in M\ \exists N\ \forall n>N:\ \rho(x_n,m)>\varepsilon`,
-		body: String.raw`**Неограниченность** — метрическое понятие: для любой точки $m$ почти все члены лежат вне [[shar|шара]] $B_m(\varepsilon)$. В [[topologicheskoe-prostranstvo|топологическом пространстве]] аналога нет. Топология её не различает, поэтому топологической версии нет. Через неограниченность определяется [[beskonechnyy-predel|бесконечный предел]].`,
+		body: String.raw`**Неограниченность** — метрическое понятие: для любой точки $m$ почти все члены лежат вне [[shar|шара]] $B_m(\varepsilon)$. В [[topologicheskoe-prostranstvo|топологическом пространстве]] аналога нет: топология её не различает.`,
 		related: ['beskonechnyy-predel', 'metricheskoe-prostranstvo', 'topologicheskoe-prostranstvo', 'shar']
 	},
 
@@ -57,7 +57,7 @@ export const day26Terms: Glossary = {
 		term: 'Неопределённость',
 		short: String.raw`$\infty/\infty$ и $\infty-\infty$: символ ответа не задаёт.`,
 		formula: String.raw`\lim\frac{F}{G}\ \text{и}\ \lim(F-G)\ \text{не определены}`,
-		body: String.raw`В арифметике бесконечно больших определены случаи $\lim f/F=0$ для бесконечно малой $f$, $\lim F/f=\infty$ — для бесконечно малой $f$, не обращающейся в нуль вблизи $x_0$, — и $\lim(F+G)=\infty$, а $\lim F/G$ и $\lim(F-G)$ не определены. Обоснование — контрпримерная пара: $F=1/x^2$ и $G_\lambda=\lambda/x^2$ при $x\to0$ дают в отношении любое значение $1/\lambda$. Случай $F+G$ верен лишь при согласованных знаках: раз [[beskonechnyy-predel|бесконечный предел]] задан через [[neogranichennost|неограниченность]], пара $1/x^2$ и $-1/x^2$ его ломает.`,
+		body: String.raw`В арифметике [[beskonechnyy-predel|бесконечно больших]] определены случаи $\lim f/F=0$ для бесконечно малой $f$, $\lim F/f=\infty$ — для бесконечно малой $f$, не обращающейся в нуль вблизи $x_0$, — и $\lim(F+G)=\infty$, но лишь при согласованных знаках, поскольку определение через [[neogranichennost|неограниченность]] знака не хранит. **Не определены** $\lim F/G$ и $\lim(F-G)$: пара $F=1/x^2$ и $G_\lambda=\lambda/x^2$ при $x\to0$ даёт в отношении любое значение $1/\lambda$.`,
 		related: ['beskonechnyy-predel', 'neogranichennost', 'asimptoticheskie-klassy']
 	}
 };

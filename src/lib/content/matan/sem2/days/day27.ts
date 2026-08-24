@@ -52,7 +52,7 @@ $$\sum_{n>N}a_n\ \le\ \sum_{n>N}q^{\,n}=\frac{q^{\,N+1}}{1-q}.$$
 
 $$\sqrt[n]{a_n}>L-\varepsilon=1\quad\Longrightarrow\quad a_n>1.$$
 
-Значит $a_n\not\to0$, а стремление членов к нулю — [[neobhodimoe-uslovie-shodimosti|свойство всякого сходящегося ряда]], [доказанное в дне 24](/aii/matan/1/day/24); ряд расходится. Тот же вывод даёт и геометрическая [[mazhoranta-i-minoranta|миноранта]] $q'=\frac{L+1}{2}>1$: взяв $\varepsilon=\frac{L-1}{2}$, получаем $\sqrt[n]{a_n}>L-\varepsilon=q'$ и $a_n>(q')^{n}$, то есть члены растут в прогрессии.
+Значит $a_n\not\to0$, а стремление членов к нулю — [[neobkhodimyy-priznak|свойство всякого сходящегося ряда]], [доказанное в дне 24](/aii/matan/1/day/24); ряд расходится. Тот же вывод даёт и геометрическая [[mazhoranta-i-minoranta|миноранта]] $q'=\frac{L+1}{2}>1$: взяв $\varepsilon=\frac{L-1}{2}$, получаем $\sqrt[n]{a_n}>L-\varepsilon=q'$ и $a_n>(q')^{n}$, то есть члены растут в прогрессии.
 
 *Случай $L=1$.* Контрпримеры: $\sum\frac1n$ и $\sum\frac{1}{n^{2}}$ дают одно и то же $L=1$ и разные ответы. $\qquad\blacksquare$
 
