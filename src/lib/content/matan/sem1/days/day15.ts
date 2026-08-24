@@ -127,7 +127,7 @@ $$\varepsilon_0:=\frac{S-A}{2}>0,\quad N_0:=N(\varepsilon_0)\ \Longrightarrow\ \
 
 то есть весь хвост отстоит от супремума не меньше чем на $\varepsilon_0$ (здесь единственный раз работает сходимость). Обозначим $M=\max_{n\le N_0}f_n$ — [максимум конечного набора существует](/aii/matan/1/day/5).
 
-$$S=\max\bigl(M,\ \sup_{n>N_0}f_n\bigr),\qquad \sup_{n>N_0}f_n\ \le\ S-\varepsilon_0\ <\ S\ \Longrightarrow\ M=S,$$
+$$S=\max\bigl(M,\ \sup_{n>N_0}f_n\bigr)\quad(\text{супремум объединения — максимум супремумов частей}),\qquad \sup_{n>N_0}f_n\ \le\ S-\varepsilon_0\ <\ S\ \Longrightarrow\ M=S,$$
 
 то есть супремум достигается на префиксе. Для инфимума зеркально, с $s:=\inf_n f_n$ и $\varepsilon_0=\frac{A-s}{2}$. $\qquad\blacksquare$
 
