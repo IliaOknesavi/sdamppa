@@ -7,7 +7,7 @@ export const day22Terms: Glossary = {
 		term: 'Неприводимый над $\\mathbb R$ многочлен',
 		short: String.raw`Линейный многочлен или квадратный трёхчлен с $D<0$.`,
 		formula: String.raw`x-a\quad\text{или}\quad x^2+px+q,\ \ D=p^2-4q<0`,
-		body: String.raw`Многочлен, не разложимый в произведение многочленов меньшей степени с вещественными коэффициентами. Над $\mathbb R$ такими бывают только линейные и квадратные с отрицательным дискриминантом.`,
+		body: String.raw`[[prostranstvo-mnogochlenov|Многочлен]], не разложимый в произведение многочленов меньшей степени с [[veshchestvennye-chisla|вещественными]] коэффициентами. Над $\mathbb R$ такими бывают только линейные и квадратные с отрицательным дискриминантом.`,
 		related: ['sopryazhennye-korni', 'kratnost-kornya', 'prosteyshaya-drob']
 	},
 
@@ -34,7 +34,7 @@ export const day22Terms: Glossary = {
 		term: 'Рациональная параметризация кривой',
 		short: String.raw`Точки кривой выражаются рациональными функциями одного параметра.`,
 		formula: String.raw`y^2=ax^2+bx+c:\qquad x=x(t),\ y=y(t)\ \text{— рациональные}`,
-		body: String.raw`Задание точек кривой дробями от одного параметра. Стандартный приём получения — провести прямую через фиксированную точку кривой и взять вторую точку пересечения.`,
+		body: String.raw`Задание точек кривой рациональными [[funkciya|функциями]] от одного параметра. Стандартный приём получения — провести прямую через фиксированную точку кривой и взять вторую точку пересечения.`,
 		related: ['rod-krivoy', 'podstanovka-eylera']
 	},
 
@@ -115,7 +115,7 @@ export const day22Terms: Glossary = {
 		term: 'Рекуррентная формула для $I_k$',
 		short: String.raw`Понижает степень знаменателя в $\int\frac{dt}{(t^2+a^2)^k}$ на единицу.`,
 		formula: String.raw`I_{k+1}=\frac{t}{2ka^2(t^2+a^2)^k}+\frac{2k-1}{2ka^2}I_k,\qquad I_1=\frac1a\operatorname{arctg}\frac ta`,
-		body: String.raw`Формула, сводящая интеграл $I_{k+1}$ к $I_k$; за $k-1$ шагов приводит к арктангенсу. Проверяется прямым дифференцированием правой части.`,
+		body: String.raw`Формула, сводящая [[neopredelennyy-integral|интеграл]] $I_{k+1}$ к $I_k$; за $k-1$ шагов приводит к арктангенсу. Проверяется прямым [[operator-differencirovaniya|дифференцированием]] правой части.`,
 		related: ['prosteyshaya-drob', 'vydelenie-polnogo-kvadrata']
 	},
 
@@ -124,7 +124,7 @@ export const day22Terms: Glossary = {
 		term: 'Подстановка Эйлера',
 		short: String.raw`Три замены, рационализующие $R(x,\sqrt{ax^2+bx+c})$.`,
 		formula: String.raw`a>0:\ \sqrt{ax^2+bx+c}=t\pm x\sqrt a;\quad c>0:\ =xt\pm\sqrt c;\quad \exists x_1:\ =t(x-x_1)`,
-		body: String.raw`Три подстановки, после которых $x$, $dx$ и сам корень выражаются рациональными функциями новой переменной. Вместе они покрывают все невырожденные квадратные трёхчлены под корнем.`,
+		body: String.raw`Три [[zamena-peremennoy|подстановки]], после которых $x$, $dx$ и сам корень выражаются рациональными [[funkciya|функциями]] новой переменной. Вместе они покрывают все невырожденные квадратные трёхчлены под корнем.`,
 		related: ['racionalnaya-parametrizaciya', 'zamena-peremennoy', 'prosteyshaya-drob']
 	},
 
@@ -133,7 +133,7 @@ export const day22Terms: Glossary = {
 		term: 'Тригонометрическая подстановка',
 		short: String.raw`Три замены под три вида корня: $\sin$, $\operatorname{tg}$ и $1/\cos$.`,
 		formula: String.raw`\sqrt{a^2-x^2}:\ x=a\sin t;\quad \sqrt{a^2+x^2}:\ x=a\operatorname{tg}t;\quad \sqrt{x^2-a^2}:\ x=\frac{a}{\cos t}`,
-		body: String.raw`Замены, снимающие корень с помощью тригонометрических тождеств $1-\sin^2t=\cos^2t$, $1+\operatorname{tg}^2t=1/\cos^2t$ и $1/\cos^2t-1=\operatorname{tg}^2t$.`,
+		body: String.raw`[[zamena-peremennoy|Замены]], снимающие корень с помощью тригонометрических тождеств $1-\sin^2t=\cos^2t$, $1+\operatorname{tg}^2t=1/\cos^2t$ и $1/\cos^2t-1=\operatorname{tg}^2t$.`,
 		related: ['zamena-peremennoy', 'vydelenie-polnogo-kvadrata', 'universalnaya-podstanovka']
 	},
 
@@ -142,7 +142,7 @@ export const day22Terms: Glossary = {
 		term: 'Дробно-линейная подстановка',
 		short: String.raw`Замена $t^n=\frac{ax+b}{cx+d}$ убирает корень степени $n$.`,
 		formula: String.raw`t^{\,n}=\frac{ax+b}{cx+d}\ \Longrightarrow\ x=\frac{d\,t^{\,n}-b}{a-c\,t^{\,n}}`,
-		body: String.raw`Замена, при которой новая переменная сама и есть корень, а $x$ выражается через неё рациональной функцией — значит, рационален и $dx$. Несколько разных корней снимаются общей заменой с показателем, равным их НОК.`,
+		body: String.raw`[[zamena-peremennoy|Замена]], при которой новая переменная сама и есть корень, а $x$ выражается через неё рациональной [[funkciya|функцией]] — значит, рационален и $dx$. Несколько разных корней снимаются общей заменой с показателем, равным их НОК.`,
 		related: ['zamena-peremennoy', 'prosteyshaya-drob']
 	},
 
@@ -151,7 +151,7 @@ export const day22Terms: Glossary = {
 		term: 'Универсальная подстановка $t=\\operatorname{tg}\\frac x2$',
 		short: String.raw`Рационализует интеграл от рациональной функции синуса и косинуса.`,
 		formula: String.raw`\sin x=\frac{2t}{1+t^2},\qquad \cos x=\frac{1-t^2}{1+t^2},\qquad dx=\frac{2\,dt}{1+t^2}`,
-		body: String.raw`Замена, превращающая любое рациональное выражение от $\sin x$ и $\cos x$ в рациональную функцию новой переменной. Работает всегда, но заметно повышает степень знаменателя.`,
+		body: String.raw`[[zamena-peremennoy|Замена]], превращающая любое рациональное выражение от $\sin x$ и $\cos x$ в рациональную [[funkciya|функцию]] новой переменной. Работает всегда, но заметно повышает степень знаменателя.`,
 		related: ['racionalnaya-parametrizaciya', 'zamena-peremennoy', 'prosteyshaya-drob']
 	},
 

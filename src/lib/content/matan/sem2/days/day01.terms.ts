@@ -30,7 +30,7 @@ export const day01Terms: Glossary = {
 		term: 'Кратность корня полинома',
 		short: String.raw`Степень $t$ множителя $(x-c)$ в разложении полинома.`,
 		formula: String.raw`P=(x-c)^t\,Q,\qquad Q(c)\neq0`,
-		body: String.raw`Корень $c$ полинома $P$ имеет **кратность** $t$, если $P=(x-c)^tQ$ и $Q(c)\neq0$, то есть множитель $(x-c)$ выделяется ровно $t$ раз. При $t=1$ корень называют простым.`,
+		body: String.raw`Корень $c$ [[formalnaya-proizvodnaya-polinoma|полинома]] $P$ имеет **кратность** $t$, если $P=(x-c)^tQ$ и $Q(c)\neq0$, то есть множитель $(x-c)$ выделяется ровно $t$ раз. При $t=1$ корень называют простым.`,
 		related: ['formalnaya-proizvodnaya-polinoma', 'kommutativnoe-kolco']
 	},
 
@@ -66,7 +66,7 @@ export const day01Terms: Glossary = {
 		term: 'Нотация Ньютона',
 		short: String.raw`Точка сверху: $\dot y$, $\ddot y$ — производная по времени.`,
 		formula: String.raw`\dot y,\qquad \ddot y`,
-		body: String.raw`Производная обозначается точкой над функцией: $\dot y$, $\ddot y$. Запись пришла из механики, поэтому аргумент подразумевается единственный и это время; выше второго порядка практически не используется.`,
+		body: String.raw`[[proizvodnaya|Производная]] обозначается точкой над [[funkciya|функцией]]: $\dot y$, $\ddot y$. Запись пришла из механики, поэтому аргумент подразумевается единственный и это время; выше второго порядка практически не используется.`,
 		related: ['notaciya-leybnica', 'notaciya-lagranzha']
 	},
 
@@ -75,7 +75,7 @@ export const day01Terms: Glossary = {
 		term: 'Нотация Лейбница',
 		short: String.raw`Дробь $dy/dx$; переменная дифференцирования видна явно.`,
 		formula: String.raw`\frac{dy}{dx},\qquad \frac{d^2y}{dx^2}`,
-		body: String.raw`Производная записывается дробью $\frac{dy}{dx}$, вторая — как $\frac{d^2y}{dx^2}$. Единственная из трёх нотаций, где явно назван аргумент дифференцирования, поэтому она обязательна там, где переменных несколько.`,
+		body: String.raw`[[proizvodnaya|Производная]] записывается дробью $\frac{dy}{dx}$, вторая — как $\frac{d^2y}{dx^2}$. Единственная из трёх нотаций, где явно назван аргумент [[operator-differencirovaniya|дифференцирования]], поэтому она обязательна там, где переменных несколько.`,
 		related: ['notaciya-nyutona', 'notaciya-lagranzha', 'operator-differencirovaniya']
 	},
 
@@ -84,7 +84,7 @@ export const day01Terms: Glossary = {
 		term: 'Нотация Лагранжа',
 		short: String.raw`Штрих: $y'$, $y''$, $y^{(n)}$; с индексом — $f'_x$.`,
 		formula: String.raw`y',\quad y'',\quad y^{(n)},\qquad f'_x`,
-		body: String.raw`Производная обозначается штрихом: $y'$, $y''$, далее $y^{(n)}$. Самая компактная запись; переменная в ней не видна, поэтому при необходимости её дописывают индексом — $f'_x$.`,
+		body: String.raw`[[proizvodnaya|Производная]] обозначается штрихом: $y'$, $y''$, далее $y^{(n)}$. Самая компактная запись; переменная в ней не видна, поэтому при необходимости её дописывают индексом — $f'_x$.`,
 		related: ['notaciya-nyutona', 'notaciya-leybnica']
 	},
 
@@ -174,7 +174,7 @@ export const day01Terms: Glossary = {
 		term: 'Машинный эпсилон',
 		short: String.raw`Относительная точность арифметики: $\approx2{,}2\cdot10^{-16}$ для double.`,
 		formula: String.raw`\varepsilon_{\text{маш}}=\min\{\varepsilon>0:\ 1+\varepsilon\ne1\}`,
-		body: String.raw`**Машинный эпсилон** — наименьшее число, которое при сложении с единицей ещё меняет результат; для двойной точности это $\approx2{,}2\cdot10^{-16}$. Он задаёт уровень, ниже которого вычитание близких чисел теряет значащие цифры.`,
+		body: String.raw`**Машинный эпсилон** — наименьшее [[veshchestvennye-chisla|число]], которое при сложении с единицей ещё меняет результат; для двойной точности это $\approx2{,}2\cdot10^{-16}$. Он задаёт уровень, ниже которого вычитание близких чисел в [[raznostnoe-otnoshenie|разностном отношении]] теряет значащие цифры.`,
 		related: ['raznostnoe-otnoshenie', 'veshchestvennye-chisla']
 	},
 
@@ -183,7 +183,7 @@ export const day01Terms: Glossary = {
 		term: 'Формула Эйлера',
 		short: String.raw`$e^{ix}=\cos x+i\sin x$.`,
 		formula: String.raw`e^{ix}=\cos x+i\sin x`,
-		body: String.raw`**Формула Эйлера** связывает комплексную экспоненту с тригонометрией: $e^{ix}=\cos x+i\sin x$. При $x=\pi$ она даёт $e^{i\pi}+1=0$; умножение на $i$ в ней отвечает повороту на $90^\circ$.`,
+		body: String.raw`**Формула Эйлера** связывает [[bashnya-chislovyh-sistem|комплексную]] экспоненту с тригонометрией: $e^{ix}=\cos x+i\sin x$. При $x=\pi$ она даёт $e^{i\pi}+1=0$; умножение на $i$ в ней отвечает повороту на $90^\circ$.`,
 		related: ['tablichnye-proizvodnye', 'sobstvennyy-vektor']
 	}
 };

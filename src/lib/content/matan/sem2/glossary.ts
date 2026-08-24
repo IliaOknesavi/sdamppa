@@ -13,7 +13,7 @@ const own: Glossary = {
 		term: 'Скалярное произведение ⟨a | b⟩',
 		short: String.raw`Запись $\langle\vec a\mid\vec b\rangle$; то же, что $(\vec a,\vec b)$.`,
 		formula: String.raw`\langle \vec a\mid \vec b\rangle = (\vec a)^{T}\vec b = \sum_i a_i b_i`,
-		body: String.raw`Скалярное произведение векторов, записанное угловыми скобками с вертикальной чертой; равносильные записи — $(\vec a,\vec b)$ и $\vec a\cdot\vec b$. Матрицу внутри скобки можно перебрасывать на другую сторону: $\langle a\mid Hb\rangle=\langle H^{T}a\mid b\rangle$.`,
+		body: String.raw`Скалярное произведение [[lineynoe-prostranstvo|векторов]], записанное угловыми скобками с вертикальной чертой; равносильные записи — $(\vec a,\vec b)$ и $\vec a\cdot\vec b$. [[matrica|Матрицу]] внутри скобки можно перебрасывать на другую сторону: $\langle a\mid Hb\rangle=\langle H^{T}a\mid b\rangle$.`,
 		related: ['lineynoe-prostranstvo', 'matrica']
 	},
 
@@ -30,7 +30,7 @@ const own: Glossary = {
 		term: 'Классы гладкости',
 		short: String.raw`$C^r$ — $r$ раз непрерывно дифференцируемые функции.`,
 		formula: String.raw`C^0\supset C^1\supset C^2\supset\dots\supset C^{\infty}`,
-		body: String.raw`$C^r(X)$ — функции, у которых существуют и непрерывны все производные до порядка $r$ включительно. Вложения строгие: существование производной её непрерывности не гарантирует.`,
+		body: String.raw`$C^r(X)$ — функции, у которых существуют и [[nepreryvnost|непрерывны]] все [[proizvodnaya-vysshego-poryadka|производные]] до порядка $r$ включительно. Вложения строгие: существование производной её непрерывности не гарантирует.`,
 		related: ['proizvodnaya-vysshego-poryadka', 'nepreryvnost']
 	},
 
@@ -65,7 +65,7 @@ const own: Glossary = {
 		term: 'Множество меры нуль',
 		short: String.raw`Покрывается интервалами суммарной длины меньше любого $\varepsilon$.`,
 		formula: String.raw`\forall\varepsilon>0\ \exists\{I_k\}:\ S\subset\bigcup_k I_k,\ \sum_k |I_k|<\varepsilon`,
-		body: String.raw`Множество имеет **меру нуль**, если для любого $\varepsilon>0$ его можно накрыть счётным набором интервалов суммарной длины меньше $\varepsilon$. Существенно именно условие на сумму: накрыть можно что угодно, вопрос в цене.`,
+		body: String.raw`[[mnozhestvo|Множество]] имеет **меру нуль**, если для любого $\varepsilon>0$ его можно [[pokrytie-intervalami|накрыть счётным набором интервалов]] суммарной длины меньше $\varepsilon$. Существенно именно условие на сумму: накрыть можно что угодно, вопрос в цене.`,
 		related: ['pokrytie-intervalami', 'schetnoe-mnozhestvo']
 	},
 

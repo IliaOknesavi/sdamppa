@@ -43,7 +43,7 @@ export const day20Terms: Glossary = {
 		term: 'Аддитивность интеграла по отрезку',
 		short: String.raw`$\int_a^b+\int_b^c=\int_a^c$.`,
 		formula: String.raw`\int_a^b f+\int_b^c f=\int_a^c f`,
-		body: String.raw`Интеграл по объединению смежных отрезков равен сумме интегралов. Вместе с соглашениями $\int_a^a=0$ и $\int_a^b=-\int_b^a$ равенство верно при любом взаимном расположении трёх точек.`,
+		body: String.raw`[[opredelennyy-integral|Интеграл]] по объединению смежных [[otrezok|отрезков]] равен сумме интегралов. Вместе с соглашениями $\int_a^a=0$ и $\int_a^b=-\int_b^a$ равенство верно при любом взаимном расположении трёх точек.`,
 		related: ['opredelennyy-integral', 'lineynost-integrala']
 	},
 
@@ -61,7 +61,7 @@ export const day20Terms: Glossary = {
 		term: 'Монотонность интеграла',
 		short: String.raw`Неравенство между функциями сохраняется после интегрирования.`,
 		formula: String.raw`f\le g\ \Rightarrow\ \int_a^b f\,dx\le\int_a^b g\,dx`,
-		body: String.raw`Если на отрезке $f\le g$ и обе функции интегрируемы, то и их интегралы связаны тем же неравенством. Требуется $a<b$: при перевёрнутых пределах знак меняется.`,
+		body: String.raw`Если на [[otrezok|отрезке]] $f\le g$ и обе функции [[klass-r|интегрируемы]], то и их [[opredelennyy-integral|интегралы]] связаны тем же неравенством. Требуется $a<b$: при перевёрнутых пределах знак меняется.`,
 		related: ['opredelennyy-integral', 'ocenka-modulya-integrala']
 	},
 
@@ -79,7 +79,7 @@ export const day20Terms: Glossary = {
 		term: 'Теорема о среднем для интеграла',
 		short: String.raw`Непрерывная $f$ принимает своё среднее по отрезку в некоторой точке.`,
 		formula: String.raw`\int_a^b f(t)\,dt=f(\xi)\,(b-a),\qquad \xi\in[a;b]`,
-		body: String.raw`Для непрерывной на отрезке функции найдётся точка $\xi$, в которой $\int_a^b f=f(\xi)(b-a)$. Непрерывность существенна: у $\operatorname{sign}$ на $[-1;1]$ среднее равно нулю, а значения нуль не принимают.`,
+		body: String.raw`Для [[nepreryvnost|непрерывной]] на [[otrezok|отрезке]] функции найдётся точка $\xi$, в которой $\int_a^b f=f(\xi)(b-a)$. Непрерывность существенна: у $\operatorname{sign}$ на $[-1;1]$ среднее равно нулю, а значения нуль не принимают.`,
 		related: ['nepreryvnost', 'teorema-o-promezhutochnom-znachenii', 'monotonnost-integrala']
 	},
 

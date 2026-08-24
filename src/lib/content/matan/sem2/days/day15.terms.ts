@@ -79,7 +79,7 @@ export const day15Terms: Glossary = {
 		term: 'Ортогональное дополнение',
 		short: String.raw`Векторы, перпендикулярные всему подпространству $L$.`,
 		formula: String.raw`L^{\perp}=\{\vec h:\ \langle\vec v\mid\vec h\rangle=0\ \ \forall\vec v\in L\},\qquad (L^{\perp})^{\perp}=L`,
-		body: String.raw`Множество векторов, ортогональных каждому вектору подпространства $L$. Это снова подпространство, причём $\dim L+\dim L^{\perp}=n$, а в конечномерном случае двойное дополнение возвращает исходное.`,
+		body: String.raw`[[mnozhestvo|Множество]] векторов, [[braket|ортогональных]] каждому вектору подпространства $L$. Это снова [[lineynoe-prostranstvo|подпространство]], причём $\dim L+\dim L^{\perp}=n$, а в конечномерном случае двойное дополнение возвращает исходное.`,
 		related: ['braket', 'lineynoe-prostranstvo', 'lineynaya-nezavisimost']
 	},
 

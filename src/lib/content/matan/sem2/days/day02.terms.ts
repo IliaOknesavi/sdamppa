@@ -70,7 +70,7 @@ export const day02Terms: Glossary = {
 		term: 'Логарифмическое дифференцирование',
 		short: String.raw`Приём для $f(x)^{g(x)}$: логарифмируем, потом дифференцируем.`,
 		formula: String.raw`\bigl(f^{g}\bigr)'=f^{g}\Bigl(g'\ln f+\frac{gf'}{f}\Bigr)`,
-		body: String.raw`Приём для выражений, где переменны и основание, и показатель: обе части $\ln y=g\ln f$ дифференцируют, получая $\frac{y'}{y}=g'\ln f+\frac{gf'}{f}$, и умножают на $y$. Требуется $f>0$, иначе логарифм не определён.`,
+		body: String.raw`Приём для выражений, где переменны и основание, и показатель: обе части $\ln y=g\ln f$ дифференцируют по [[cepnoe-pravilo|цепному правилу]] и [[pravilo-leybnica|правилу Лейбница]], получая $\frac{y'}{y}=g'\ln f+\frac{gf'}{f}$, и умножают на $y$. Требуется $f>0$, иначе логарифм не определён.`,
 		related: ['cepnoe-pravilo', 'pravilo-leybnica']
 	},
 

@@ -97,7 +97,7 @@ export const day23Terms: Glossary = {
 		term: 'Индикатор области',
 		short: String.raw`Единица внутри области, нуль снаружи.`,
 		formula: String.raw`I_D(\vec x)=\begin{cases}1,&\vec x\in D,\\ 0,&\vec x\notin D.\end{cases}`,
-		body: String.raw`Функция-выключатель, равная единице на множестве и нулю вне его. Домножение на неё позволяет заменить интеграл по области интегралом по объемлющему прямоугольнику.`,
+		body: String.raw`[[funkciya|Функция]]-выключатель, равная единице на [[mnozhestvo|множестве]] и нулю вне его. Домножение на неё позволяет заменить интеграл по области интегралом по объемлющему прямоугольнику.`,
 		related: ['prodolzhenie-nulem', 'funkciya']
 	},
 
@@ -115,7 +115,7 @@ export const day23Terms: Glossary = {
 		term: 'Перестановка повторных пределов',
 		short: String.raw`В общем случае незаконна: $\frac{m}{m+n}$ даёт $0$ и $1$.`,
 		formula: String.raw`\lim_{m\to\infty}\lim_{n\to\infty}\frac{m}{m+n}=0\ne1=\lim_{n\to\infty}\lim_{m\to\infty}\frac{m}{m+n}`,
-		body: String.raw`Обмен местами двух последовательных предельных переходов. Он не обязан сохранять результат: у двойной последовательности $\frac m{m+n}$ два порядка дают $0$ и $1$.`,
+		body: String.raw`Обмен местами двух последовательных [[predel-posledovatelnosti|предельных переходов]]. Он не обязан сохранять результат: у двойной [[posledovatelnost|последовательности]] $\frac m{m+n}$ два порядка дают $0$ и $1$.`,
 		related: ['predel-posledovatelnosti', 'absolyutnaya-integriruemost']
 	},
 

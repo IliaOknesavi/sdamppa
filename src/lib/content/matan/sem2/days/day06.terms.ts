@@ -25,7 +25,7 @@ export const day06Terms: Glossary = {
 		term: 'Неопределённость $\\frac00$',
 		short: String.raw`Предел отношения двух бесконечно малых.`,
 		formula: String.raw`\lim f=\lim g=0,\qquad \lim\frac fg=\ ?`,
-		body: String.raw`Предел отношения, у которого числитель и знаменатель стремятся к нулю. Пределами $f$ и $g$ ответ не определяется: $\frac xx\to1$, $\frac{x^2}{x}\to0$, $\frac{x}{x^3}\to\infty$, а у $\frac{x\sin(1/x)}{x}$ предела нет.`,
+		body: String.raw`[[predel-funkcii|Предел]] отношения, у которого числитель и знаменатель [[beskonechno-malaya-funkciya|стремятся к нулю]]. Пределами $f$ и $g$ ответ не определяется: $\frac xx\to1$, $\frac{x^2}{x}\to0$, $\frac{x}{x^3}\to\infty$, а у $\frac{x\sin(1/x)}{x}$ предела нет.`,
 		related: ['neopredelennost-beskonechnost', 'pravilo-lopitalya', 'predel-funkcii']
 	},
 
@@ -61,7 +61,7 @@ export const day06Terms: Glossary = {
 		term: 'Средние Чезаро',
 		short: String.raw`Среднее арифметическое сходящейся последовательности идёт к тому же пределу.`,
 		formula: String.raw`a_n\to a\ \Rightarrow\ \frac{a_1+a_2+\dots+a_n}{n}\to a`,
-		body: String.raw`Если $a_n\to a$, то и средние арифметические $\frac{a_1+\dots+a_n}{n}$ сходятся к $a$. Обратное неверно: у $a_n=(-1)^n$ средние стремятся к нулю, а сама последовательность расходится.`,
+		body: String.raw`Если $a_n\to a$, то и средние арифметические $\frac{a_1+\dots+a_n}{n}$ [[predel-posledovatelnosti|сходятся]] к $a$. Обратное неверно: у $a_n=(-1)^n$ средние стремятся к нулю, а сама [[posledovatelnost|последовательность]] расходится.`,
 		related: ['teorema-shtolca', 'predel-posledovatelnosti']
 	},
 

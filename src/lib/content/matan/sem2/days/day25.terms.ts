@@ -25,7 +25,7 @@ export const day25Terms: Glossary = {
 		term: 'Сходимость интеграла',
 		short: String.raw`Существование конечного предела усечённых интегралов.`,
 		formula: String.raw`\int_a^{+\infty}f\ \text{сходится}\iff\exists\lim_{A\to+\infty}\int_a^{A}f(x)\,dx\in\mathbb R`,
-		body: String.raw`Несобственный интеграл **сходится**, если предел интегралов по срезанной области существует и конечен. Если особенностей несколько, промежуток режут так, чтобы в каждом куске была одна, и требуют сходимости каждого куска по своему параметру.`,
+		body: String.raw`[[nesobstvennyy-integral-i-roda|Несобственный интеграл]] **сходится**, если предел интегралов по срезанной области существует и конечен. Если [[osobaya-tochka|особенностей]] несколько, промежуток режут так, чтобы в каждом куске была одна, и требуют сходимости каждого куска по своему параметру.`,
 		related: ['rashodimost-integrala', 'nesobstvennyy-integral-i-roda', 'osobaya-tochka']
 	},
 
@@ -43,7 +43,7 @@ export const day25Terms: Glossary = {
 		term: 'Особая точка',
 		short: String.raw`Место, около которого интеграл Римана не определён.`,
 		formula: String.raw`\lim_{x\to a+0}|f(x)|=+\infty`,
-		body: String.raw`Точка, вблизи которой обычное определение интеграла неприменимо: функция уходит в бесконечность либо сама область неограниченна. Особую точку внутри промежутка обязательно выделяют, разрезая по ней промежуток.`,
+		body: String.raw`Точка, вблизи которой обычное определение [[opredelennyy-integral|интеграла]] неприменимо: функция [[beskonechno-bolshaya-funkciya|уходит в бесконечность]] либо сама область неограниченна. Особую точку внутри промежутка обязательно выделяют, разрезая по ней промежуток.`,
 		related: ['nesobstvennyy-integral-ii-roda', 'shodimost-integrala', 'glavnoe-znachenie']
 	},
 
@@ -52,7 +52,7 @@ export const day25Terms: Glossary = {
 		term: 'Граница $1/\\varepsilon$',
 		short: String.raw`Оба рода обслуживает один параметр $\varepsilon\to+0$.`,
 		formula: String.raw`\int_a^{+\infty}f=\lim_{\varepsilon\to+0}\int_a^{1/\varepsilon}f`,
-		body: String.raw`Запись предельного перехода, при которой граница срезания ставится в точку $1/\varepsilon$. Замена $A=1/\varepsilon$ — биекция, поэтому такая запись равносильна переходу $A\to+\infty$.`,
+		body: String.raw`Запись [[predel-funkcii|предельного перехода]], при которой граница срезания ставится в точку $1/\varepsilon$. Замена $A=1/\varepsilon$ — [[biekciya|биекция]], поэтому такая запись равносильна переходу $A\to+\infty$.`,
 		related: ['shodimost-integrala', 'nesobstvennyy-integral-i-roda']
 	},
 
@@ -106,7 +106,7 @@ export const day25Terms: Glossary = {
 		term: 'Квадратурная формула',
 		short: String.raw`Приближение интеграла конечной суммой значений функции.`,
 		formula: String.raw`\int_a^b f(x)\,dx\approx\sum_{k} w_k\,f(x_k)`,
-		body: String.raw`Численное приближение интеграла: узлы $x_k$ и веса $w_k$ подбирают так, чтобы формула была точна на многочленах невысокой степени.`,
+		body: String.raw`Численное приближение [[opredelennyy-integral|интеграла]]: узлы $x_k$ и веса $w_k$ подбирают так, чтобы формула была точна на [[prostranstvo-mnogochlenov|многочленах]] невысокой степени.`,
 		related: ['integralnaya-summa', 'opredelennyy-integral']
 	},
 

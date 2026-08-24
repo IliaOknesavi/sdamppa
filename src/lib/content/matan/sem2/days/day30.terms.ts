@@ -7,7 +7,7 @@ export const day30Terms: Glossary = {
 		term: 'Дифференциал длины дуги',
 		short: String.raw`Гипотенуза треугольника с катетами $dx$ и $df$.`,
 		formula: String.raw`d\ell=\sqrt{df^2+dx^2}=dx\sqrt{1+f'^2}`,
-		body: String.raw`Длина бесконечно малого участка кривой: на нём кривая заменяется гипотенузой прямоугольного треугольника с катетами $dx$ и $df=f'\,dx$.`,
+		body: String.raw`Длина бесконечно малого участка [[dlina-krivoy|кривой]]: на нём кривая заменяется гипотенузой прямоугольного треугольника, катеты которого — [[differencial|дифференциалы]] $dx$ и $df=f'\,dx$.`,
 		related: ['differencial', 'dlina-krivoy']
 	},
 
@@ -52,7 +52,7 @@ export const day30Terms: Glossary = {
 		term: 'Вариация функции',
 		short: String.raw`Супремум сумм модулей приращений по всем разбиениям.`,
 		formula: String.raw`V_a^b(f)=\sup_{\lambda}\sum_i\bigl|f(x_{i+1})-f(x_i)\bigr|`,
-		body: String.raw`Сколько функция суммарно набегает вверх и вниз. Конечность вариации называют ограниченной вариацией; для $f\in C^1$ она равна $\int_a^b|f'|\,dx$.`,
+		body: String.raw`Сколько [[funkciya|функция]] суммарно набегает вверх и вниз. Конечность вариации называют ограниченной вариацией; для [[klassy-differenciruemosti|гладких]] $f\in C^1$ она равна $\int_a^b|f'|\,dx$.`,
 		related: ['supremum', 'razbienie', 'spryamlyaemaya-krivaya']
 	},
 

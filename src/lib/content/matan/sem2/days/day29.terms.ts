@@ -7,7 +7,7 @@ export const day29Terms: Glossary = {
 		term: 'Поточечная сходимость',
 		short: String.raw`Свой номер $N(\varepsilon,x)$ в каждой точке.`,
 		formula: String.raw`\forall x\in D\ \forall\varepsilon>0\ \exists N(\varepsilon,x)\ \forall n>N:\ |f_n(x)-f(x)|<\varepsilon`,
-		body: String.raw`Сходимость последовательности функций, проверяемая отдельно в каждой точке: квантор по $x$ стоит снаружи, поэтому номер вправе зависеть и от $\varepsilon$, и от точки.`,
+		body: String.raw`Сходимость последовательности функций, проверяемая отдельно в каждой точке: [[kvantory|квантор]] по $x$ стоит снаружи, поэтому [[n-ot-epsilon|номер]] вправе зависеть и от $\varepsilon$, и от точки.`,
 		related: ['ravnomernaya-shodimost', 'predel-posledovatelnosti']
 	},
 
