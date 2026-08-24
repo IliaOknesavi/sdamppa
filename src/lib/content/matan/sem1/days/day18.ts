@@ -93,7 +93,7 @@ $$\boxed{\operatorname{cl}A=A'\cup\operatorname{Isol}(A)}$$
 
 **Доказательство.** Приём — разбор по принадлежности точки множеству $A$; выколотость снимается там, где точка в $A$ не лежит.
 
-($\supset$) Включение $\operatorname{Isol}(A)\subset A\subset\operatorname{cl}A$ очевидно, и им же покрыт случай $x\in A'\cap A$. Пусть теперь $x\in A'$, но $x\notin A$. Любая $U_x$ содержит $\mathring U_x$, поэтому
+($\supset$) Включение $\operatorname{Isol}(A)\subset A$ — это определение $\operatorname{Isol}(A)=A\setminus A'$, а $A\subset\operatorname{cl}A=A\cup\partial A$ — включение в объединение; им же покрыт случай $x\in A'\cap A$. Пусть теперь $x\in A'$, но $x\notin A$. Любая $U_x$ содержит $\mathring U_x$, поэтому
 
 $$U_x\cap A\ \supset\ \mathring U_x\cap A\ne\varnothing;$$
 

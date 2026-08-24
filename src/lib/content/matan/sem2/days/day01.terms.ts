@@ -165,7 +165,7 @@ export const day01Terms: Glossary = {
 		term: 'Замечательные пределы',
 		short: String.raw`$\dfrac{\sin t}{t}\to1$ и $\dfrac{e^t-1}{t}\to1$ при $t\to0$.`,
 		formula: String.raw`\lim_{t\to0}\frac{\sin t}{t}=1,\qquad \lim_{t\to0}\frac{e^t-1}{t}=1`,
-		body: String.raw`Два эталонных [[predel-funkcii|предела]]: первый замечательный $\frac{\sin t}{t}\to1$ и второй в экспоненциальной форме $\frac{e^t-1}{t}\to1$. Оба раскрывают неопределённость $\frac00$, к которой сводятся остальные выкладки с элементарными функциями.`,
+		body: String.raw`Два [[predel-funkcii|предела]], к которым сводятся выкладки с элементарными функциями: первый замечательный $\frac{\sin t}{t}\to1$ и второй в экспоненциальной форме $\frac{e^t-1}{t}\to1$. Оба раскрывают неопределённость $\frac00$.`,
 		related: ['predel-funkcii', 'tablichnye-proizvodnye']
 	},
 

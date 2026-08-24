@@ -215,15 +215,39 @@ $$\varphi'(t)=dF\bigl(S(t),\ \vec b-\vec a\bigr)=\bigl\langle\nabla f(S(t))\mid\
 
 $$\boxed{\ \exists\,\vec c\in\operatorname{In}D:\quad\nabla f(\vec c)=\vec 0.\ }$$
 
-**Доказательство.** Сначала разберём $D$ на две части. По [теореме Гейне–Бореля](/aii/matan/1/day/23) компакт в $\mathbb R^n$ замкнут, поэтому $\operatorname{cl}D=D\cup\partial D=D$, то есть $\partial D\subset D$; а [[vnutrennost|внутренность]] по определению есть $\operatorname{In}D=D\setminus\partial D$ ([день 18](/aii/matan/1/day/18)). Значит $D=\operatorname{In}D\sqcup\partial D$.
+**Доказательство.** Внешних фактов ровно три, все доказаны в курсе: [теорема Гейне–Бореля](/aii/matan/1/day/23) — компакт в $\mathbb R^n$ замкнут; шаги 1–2 [теоремы об образе компакта](/aii/matan/1/day/28) — образ компакта компактен, а компакт в $\mathbb R$ содержит свои точные грани (связность $D$ там не нужна, она работает только в шагах 3–4); [теорема Ферма в $\operatorname{End}(\mathbb R)$](/aii/matan/2/day/4).
 
-Дальше — Вейерштрасс. Шаги 1–2 доказательства [теоремы об образе компакта](/aii/matan/1/day/28) связностью $D$ не пользуются (связность работает только в шагах 3–4) и дают: образ $f(D)$ компактен в $\mathbb R$, а компакт в $\mathbb R$ содержит свои точные грани. Значит найдутся $\vec x_m,\vec x_M\in D$ со значениями $m=\min_Df$ и $M=\max_Df$.
+**Шаг 1 (разбиение области).**
 
-*Случай $m=M$.* Тогда $f$ постоянна на $D$. Возьмём любую точку $\vec c\in\operatorname{In}D$ — по условию внутренность непуста — и любой номер $i$. Вокруг $\vec c$ есть шар $B_\rho(\vec c)\subset D$, поэтому $g(t)=f(\vec c+t\vec e_i)$ определена и постоянна при $|t|<\rho$; её производная в нуле равна нулю, а по определению частной производной эта производная и есть $\frac{\partial f}{\partial x_i}(\vec c)$. Номер $i$ произволен: $\nabla f(\vec c)=\vec 0$.
+$$D\ \text{компакт}\ \overset{\text{Гейне–Борель}}{\Longrightarrow}\ \operatorname{cl}D=D\ \overset{\operatorname{cl}D\,=\,D\cup\partial D}{\Longrightarrow}\ \partial D\subset D\ \overset{\operatorname{In}D\,=\,D\setminus\partial D}{\Longrightarrow}\ D=\operatorname{In}D\sqcup\partial D.$$
 
-*Случай $m<M$.* Обе точки $\vec x_m,\vec x_M$ на границе лежать не могут: там $f\equiv\kappa$, и вышло бы $m=\kappa=M$. Пусть $\vec c$ — та из них, что попала в $\operatorname{In}D$; в ней $f$ принимает наибольшее или наименьшее по всему $D$ значение. Внутренняя точка входит в $D$ вместе с шаром $B_\rho(\vec c)$, поэтому $\vec c$ — точка локального экстремума. Фиксируем $i$ и берём сужение на прямую $g(t)=f(\vec c+t\vec e_i)$ при $|t|<\rho$: в нуле у $g$ локальный экстремум, ноль — внутренняя точка её области определения, а производная $g'(0)=\frac{\partial f}{\partial x_i}(\vec c)$ существует по условию теоремы. По [теореме Ферма в $\operatorname{End}(\mathbb R)$](/aii/matan/2/day/4) $g'(0)=0$. Номер $i$ произволен: $\nabla f(\vec c)=\vec 0$. $\qquad\blacksquare$
+**Шаг 2 (крайние значения достигаются).**
 
-Выпуклость $D$ в доказательстве не участвует — работают только компактность и непустая внутренность. В карточке и в дне 5 она стоит рядом потому, что там же применяется Лагранж, которому отрезок между точками нужен целиком. А вот требование $\operatorname{In}D\ne\varnothing$ существенно: у отрезка в $\mathbb R^2$ внутренних точек нет вовсе, и утверждать про них нечего.
+$$f\in C(D),\ D\ \text{компакт}\ \overset{\text{образ компакта}}{\Longrightarrow}\ f(D)\ \text{компакт в }\mathbb R\ \Longrightarrow\ \exists\,\vec x_m,\vec x_M\in D:\quad f(\vec x_m)=m:=\min_D f,\quad f(\vec x_M)=M:=\max_D f.$$
+
+**Шаг 3 (сужение на прямую).** Для $\vec c\in\operatorname{In}D$ берём $\rho>0$ с $B_\rho(\vec c)\subset D$ и полагаем
+
+$$g_i(t):=f(\vec c+t\,\vec e_i),\quad|t|<\rho;\qquad g_i'(0)\overset{\text{опр. частной произв.}}{=}\frac{\partial f}{\partial x_i}(\vec c)\quad(\text{существует по условию}).$$
+
+**Случай $m=M$.**
+
+$$m=M\ \Longrightarrow\ f\equiv m\ \text{на }D\ \Longrightarrow\ g_i\equiv m\ \Longrightarrow\ g_i'(0)=0\quad\forall i\ \Longrightarrow\ \nabla f(\vec c)=\vec 0,$$
+
+и такая $\vec c$ существует ровно потому, что по условию $\operatorname{In}D\ne\varnothing$.
+
+**Случай $m<M$.**
+
+$$\vec x_m\in\partial D\ \wedge\ \vec x_M\in\partial D\ \overset{f|_{\partial D}\equiv\kappa}{\Longrightarrow}\ m=\kappa=M\ \ \text{— противоречие с }m<M,$$
+
+$$\overset{\text{шаг 1}}{\Longrightarrow}\ \exists\,\vec c\in\{\vec x_m,\vec x_M\}\cap\operatorname{In}D.$$
+
+В этой точке $f$ принимает наибольшее или наименьшее по всему $D$ значение, а вместе с ней в $D$ лежит целый шар:
+
+$$B_\rho(\vec c)\subset D\ \Longrightarrow\ \vec c\ \text{— точка локального экстремума }f\ \Longrightarrow\ t=0\ \text{— точка локального экстремума }g_i,$$
+
+$$0\in\operatorname{In}(-\rho;\rho),\quad\exists\,g_i'(0)\ \overset{\text{Ферма}}{\Longrightarrow}\ g_i'(0)=0\quad\forall i\ \overset{\text{шаг 3}}{\Longrightarrow}\ \nabla f(\vec c)=\vec 0.\qquad\blacksquare$$
+
+Выпуклость $D$ в доказательстве не участвует — работают только компактность и непустая внутренность. В карточке и в [дне 5](/aii/matan/2/day/5) она стоит рядом потому, что там же применяется Лагранж, которому отрезок между точками нужен целиком. А вот требование $\operatorname{In}D\ne\varnothing$ существенно: у отрезка в $\mathbb R^2$ внутренних точек нет вовсе, и утверждать про них нечего.
 
 **Идея для запоминания:** это тот же приём подгонки под уже доказанную теорему, что и в дне 5, только вычитают там из значений (хорду), а здесь сжимают аргумент — параметризация превращает поле в элемент $\mathrm{End}(\mathbb R)$, и весь одномерный арсенал начинает работать.`
 		},

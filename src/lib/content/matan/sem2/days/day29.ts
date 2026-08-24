@@ -68,7 +68,16 @@ $$\rho(f_1,f_2)=\sup_{x\in[a;b]}\bigl|f_1(x)-f_2(x)\bigr|$$
 
 $$f_n\rightrightarrows f\ \text{ на }[a;b]\iff \rho(f_n,f)\xrightarrow[n\to\infty]{}0.$$
 
-**Доказательство.** «$\forall x:\ |f_n(x)-f(x)|<\varepsilon$» и «$\sup_x|f_n(x)-f(x)|\le\varepsilon$» — одно и то же условие, записанное до и после взятия супремума: из первого супремум не превосходит $\varepsilon$, из второго значение в каждой точке не превосходит $\varepsilon$. Строгость восстанавливается переходом от $\varepsilon$ к $\varepsilon/2$. $\qquad\blacksquare$
+**Доказательство.** Супремум переводит «для всех $x$» в одно число и обратно:
+
+$$\forall x\in[a;b]:\ |f_n(x)-f(x)|\le\varepsilon\quad\iff\quad \rho(f_n,f)=\sup_{x}|f_n(x)-f(x)|\le\varepsilon.$$
+
+Осталось разобраться со строгостью:
+
+$$\forall\varepsilon>0\ \exists N\ \forall n>N\ \forall x:\ |f_n(x)-f(x)|<\varepsilon
+\ \overset{\varepsilon\,\to\,\varepsilon/2}{\Longrightarrow}\ \rho(f_n,f)\le\tfrac\varepsilon2<\varepsilon,$$
+
+$$\rho(f_n,f)<\varepsilon\ \Longrightarrow\ \forall x:\ |f_n(x)-f(x)|\le\rho(f_n,f)<\varepsilon.\qquad\blacksquare$$
 
 Выигрыш немедленный: равномерная сходимость оказывается обычной сходимостью последовательности точек в метрическом пространстве, и на функции переносятся шары, окрестности, [[skhodyashchayasya-v-sebe|фундаментальность]], [[polnota|полнота]].
 
@@ -240,13 +249,23 @@ $$\left|\int_a^b(f_n-f)\,dx\right|\le(b-a)\cdot\rho(f_n,f).$$
 
 **Теорема (мажорантный признак Вейерштрасса).** Пусть $|u_n(x)|\le a_n$ сразу при всех $x\in D$ и числовой ряд $\sum a_n$ сходится. Тогда $\sum u_n$ сходится на $D$ равномерно.
 
-**Доказательство.** Зафиксируем $x\in D$. Ряд $\sum|u_n(x)|$ сходится по [поэлементному признаку сравнения](/aii/matan/1/day/25) — мажорантой служит $\sum a_n$, — а тогда по [лемме о сходимости по модулям](/aii/matan/2/day/1) сходится и сам ряд $\sum u_n(x)$. Обозначим его сумму $S(x)$, а частичную сумму — $S_n(x)$.
+**Доказательство.** Внешних фактов три, все доказаны в курсе: [поэлементный признак сравнения](/aii/matan/1/day/25), [лемма о сходимости по модулям](/aii/matan/2/day/1), [оценка модуля суммы ряда](/aii/matan/2/day/1).
 
-Оценим отклонение равномерно по $x$. Разность $S(x)-S_n(x)$ есть сумма хвоста $\sum_{k>n}u_k(x)$, и по [оценке модуля суммы ряда](/aii/matan/2/day/1)
+**Шаг 1 (сходимость в каждой точке).** Фиксируем $x\in D$.
 
-$$\bigl|S(x)-S_n(x)\bigr|\ \le\ \sum_{k>n}\bigl|u_k(x)\bigr|\ \le\ \sum_{k>n}a_k=r_n,$$
+$$|u_n(x)|\le a_n,\quad \textstyle\sum a_n\ \text{сходится}\ \ \overset{\text{сравнение}}{\Longrightarrow}\ \ \sum_n|u_n(x)|\ \text{сходится}\ \ \overset{\text{по модулям}}{\Longrightarrow}\ \ \exists\ S(x):=\sum_{n}u_n(x).$$
 
-где $r_n$ — [остаток сходящегося ряда](/aii/matan/1/day/24). Правая часть от $x$ не зависит вовсе и стремится к нулю, поэтому по $\varepsilon>0$ найдётся номер $N$ с $r_n<\varepsilon$ при $n>N$, и этот номер годится сразу для всех точек $D$ — а это и есть определение [[ravnomernaya-shodimost|равномерной сходимости]]. $\qquad\blacksquare$ [[mazhoranta-i-minoranta|Мажоранта]] не зависит от $x$ — отсюда и равномерность, а вместе с ней право на почленное интегрирование степенных рядов.
+**Шаг 2 (оценка хвоста, в которую $x$ не входит).**
+
+$$\bigl|S(x)-S_n(x)\bigr|=\Bigl|\sum_{k>n}u_k(x)\Bigr|\ \overset{\text{оценка модуля суммы}}{\le}\ \sum_{k>n}\bigl|u_k(x)\bigr|\ \overset{|u_k|\le a_k}{\le}\ \sum_{k>n}a_k=:r_n.$$
+
+**Шаг 3 (один номер на все точки).**
+
+$$\textstyle\sum a_n\ \text{сходится}\ \Longrightarrow\ r_n\to0\ \Longrightarrow\ \forall\varepsilon>0\ \exists N\ \forall n>N:\ r_n<\varepsilon,$$
+
+$$\Longrightarrow\ \forall n>N\ \ \forall x\in D:\quad\bigl|S(x)-S_n(x)\bigr|\ \overset{\text{шаг 2}}{\le}\ r_n<\varepsilon.\qquad\blacksquare$$
+
+Здесь $r_n$ — [остаток сходящегося ряда](/aii/matan/1/day/24); номер $N$ выбран по нему одному, а $x$ в $r_n$ не входит — в этом и состоит равномерность. [[mazhoranta-i-minoranta|Мажоранта]] не зависит от $x$ — отсюда и равномерность, а вместе с ней право на почленное интегрирование степенных рядов.
 - **Статус условия.** Равномерность — достаточное условие перестановки, то есть [[priznak-i-svoystvo|признак, а не свойство]]: задача 5 показывает семейство, где предельный переход верен без всякой равномерности.`
 		}
 	],

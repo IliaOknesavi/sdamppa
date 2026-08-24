@@ -147,15 +147,53 @@ $$\sum_{k=1}^{N}\frac{\varepsilon}{2^{k+1}}=\frac\varepsilon2\bigl(1-2^{-N}\bigr
 
 **Лемма (свойства меры нуль).** (i) Подмножество множества меры нуль имеет меру нуль. (ii) Не более чем счётное объединение множеств меры нуль имеет меру нуль. (iii) Отрезок $[c;d]$ при $c<d$ меры нуль не имеет.
 
-**Доказательство.** (i) Годится то же покрытие: оно накрывает и подмножество, а сумма длин не изменилась.
+**Доказательство.**
 
-(ii) Пусть $\mu(S_j)=0$ при $j\in\mathbb N_1$. Накроем $S_j$ семейством $\lbrace I_{j,k}\rbrace_{k\in\mathbb N_1}$ суммарной длины меньше $\varepsilon/2^{j+1}$ — это возможно, потому что $\varepsilon/2^{j+1}$ тоже положительно. Все эти интервалы вместе занумерованы парами $(j,k)$, а пары нумеруются слоями: в слое $w=j+k$ ровно $w-1$ пар, слои конечны и идут подряд, так что паре достаётся номер
+**(i)**
 
-$$\nu(j,k)=\frac{(w-1)(w-2)}{2}+j,\qquad w=j+k,$$
+$$S'\subset S,\quad S\subset\bigcup_k I_k,\ \ \sum_k|I_k|<\varepsilon\quad\Longrightarrow\quad S'\subset\bigcup_k I_k,\ \ \sum_k|I_k|<\varepsilon\quad\Longrightarrow\quad \mu(S')=0.$$
 
-и разным парам — разные номера. Значит семейство $\lbrace I_{j,k}\rbrace$ не более чем счётно. Любая конечная его часть задевает лишь конечное число строк, то есть укладывается в первые $J$ строк при некотором $J$; взятые из строки $j$ длины дают в сумме меньше $\varepsilon/2^{j+1}$ (это часть неотрицательной суммы всей строки), поэтому вся конечная часть даёт меньше $\sum_{j\le J}\varepsilon/2^{j+1}<\varepsilon/2$. Точная верхняя грань конечных частичных сумм тем самым не превосходит $\varepsilon/2<\varepsilon$. Тот же приём «режем бюджет пополам», что и в теореме, только этажом выше.
+**(ii)** Пусть $\mu(S_j)=0$ при $j\in\mathbb N_1$ и дано $\varepsilon>0$. Бюджет режем на строки:
 
-(iii) Пусть $[c;d]\subset\bigcup_k I_k$, $c<d$. Отрезок — компакт ([теорема Бореля–Лебега](/aii/matan/1/day/22)), значит из покрытия открытыми интервалами извлекается конечное подпокрытие $I_{k_1},\dots,I_{k_m}$. Докажем индукцией по $m$: **сумма длин любых $m$ интервалов, накрывающих $[c;d]$, больше $d-c$.** База $m=1$: из $[c;d]\subset(\alpha;\beta)$ следует $\alpha<c\le d<\beta$, то есть $\beta-\alpha>d-c$. Шаг: пусть утверждение верно для $m-1$ интервалов и любого отрезка. Точка $c$ накрыта каким-то $(\alpha_1;\beta_1)$ из набора, и $\alpha_1<c$. Если $\beta_1>d$, то уже $\beta_1-\alpha_1>d-c$. Иначе $c<\beta_1\le d$, то есть $\beta_1\in[c;d]$; при этом $\beta_1\notin(\alpha_1;\beta_1)$, и ни одна точка отрезка $[\beta_1;d]$ в этот интервал не попадает (все они не меньше $\beta_1$). Значит $[\beta_1;d]$ накрыт оставшимися $m-1$ интервалами, их суммарная длина по предположению индукции больше $d-\beta_1$, а $\beta_1-\alpha_1>\beta_1-c$; складывая, получаем сумму больше $d-c$. Итак $\sum_k|I_k|\ge\sum_j|I_{k_j}|>d-c$, и при $\varepsilon\le d-c$ подходящего покрытия нет. $\qquad\blacksquare$`
+$$\forall j\ \ \exists\,\lbrace I_{j,k}\rbrace_{k\in\mathbb N_1}:\qquad S_j\subset\bigcup_k I_{j,k},\qquad \sum_k|I_{j,k}|<\frac{\varepsilon}{2^{\,j+1}}.$$
+
+Счётность объединённого семейства — явная нумерация пар слоями $w=j+k$:
+
+$$\nu(j,k)=\frac{(w-1)(w-2)}{2}+j,\qquad 1\le j\le w-1,$$
+
+$$\nu\ \text{инъективна}\quad\Longrightarrow\quad \lbrace I_{j,k}\rbrace_{j,k}\ \text{не более чем счётно}.$$
+
+Оценка произвольной конечной подсемьи $F$:
+
+$$F\ \text{конечно}\ \Longrightarrow\ \exists J:\ F\subset\lbrace I_{j,k}:\ j\le J\rbrace,$$
+
+$$\sum_{I\in F}|I|\ \le\ \sum_{j=1}^{J}\sum_k|I_{j,k}|\ \overset{\text{выбор строк}}{<}\ \sum_{j=1}^{J}\frac{\varepsilon}{2^{\,j+1}}\ <\ \frac{\varepsilon}{2},$$
+
+$$\sum_{j,k}|I_{j,k}|=\sup_F\sum_{I\in F}|I|\ \le\ \frac{\varepsilon}{2}\ <\ \varepsilon\quad\Longrightarrow\quad \mu\Bigl(\bigcup_j S_j\Bigr)=0.$$
+
+Первое неравенство в средней строке — потому что часть неотрицательной суммы не больше всей суммы; последнее — потому что $j$ начинается с единицы, и ряд справа не дотягивает до $\varepsilon/2$. Приём тот же, что в теореме, только этажом выше: там бюджет резался по точкам разрыва, здесь — по строкам.
+
+**(iii)** Пусть $c<d$, все $I_k$ — интервалы и $[c;d]\subset\bigcup_k I_k$.
+
+$$[c;d]\ \text{компакт}\ \overset{\text{Борель–Лебег}}{\Longrightarrow}\ \exists\,k_1,\dots,k_m:\quad[c;d]\subset\bigcup_{j=1}^{m}I_{k_j}.$$
+
+**Индукция по $m$:** если $m$ интервалов накрывают отрезок $[c;d]$, то $\sum_{j=1}^{m}|I_{k_j}|>d-c$.
+
+$$\text{база }m=1:\quad [c;d]\subset(\alpha;\beta)\ \Longrightarrow\ \alpha<c\le d<\beta\ \Longrightarrow\ \beta-\alpha>d-c;$$
+
+$$\text{шаг: }\ c\in(\alpha_1;\beta_1)\ \text{для некоторого интервала набора}\ \Longrightarrow\ \alpha_1<c;$$
+
+$$\beta_1>d\ \Longrightarrow\ \beta_1-\alpha_1>d-c\ \ \text{— уже готово};$$
+
+$$\beta_1\le d\ \Longrightarrow\ \beta_1\in[c;d],\quad [\beta_1;d]\cap(\alpha_1;\beta_1)=\varnothing\ \Longrightarrow\ [\beta_1;d]\subset\bigcup_{j\ge2}I_{k_j},$$
+
+$$\sum_{j\ge2}|I_{k_j}|\ \overset{\text{предп. индукции}}{>}\ d-\beta_1,\qquad \beta_1-\alpha_1\ \overset{\alpha_1<c}{>}\ \beta_1-c,$$
+
+$$\sum_{j=1}^{m}|I_{k_j}|\ >\ (d-\beta_1)+(\beta_1-c)\ =\ d-c.$$
+
+Итог:
+
+$$\sum_k|I_k|\ \ge\ \sum_{j=1}^{m}|I_{k_j}|\ >\ d-c\quad\Longrightarrow\quad\text{при }\varepsilon\le d-c\ \text{подходящего покрытия нет}.\qquad\blacksquare$$`
 		},
 		{
 			kind: 'note',

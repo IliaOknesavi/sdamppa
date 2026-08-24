@@ -102,25 +102,49 @@ $$\boxed{\ \underline\lim_{n\to\infty}\frac{a_{n+1}}{a_n}\ \le\ \underline\lim_{
 
 В частности, если существует $\lim\frac{a_{n+1}}{a_n}=c$, то существует и $\lim\sqrt[n]{a_n}=c$: радикальный признак даёт ответ всюду, где его даёт [[priznak-dalambera|признак Д’Аламбера]]. Обратное неверно.
 
-**Доказательство.** Сравним два прибора на одной шкале — покажем, что корень зажат между отношениями. Всё рассуждение опирается на одно свойство [[verhniy-i-nizhniy-predely|верхнего и нижнего пределов]], которое читается прямо с их определения через огибающие $S_n=\sup_{k\ge n}x_k$, $i_n=\inf_{k\ge n}x_k$ и равенств $\overline\lim x_n=\inf_nS_n$, $\underline\lim x_n=\sup_ni_n$ (в расширенной шкале это определение — соглашение выше; для ограниченной последовательности те же равенства [доказаны в дне 20](/aii/matan/1/day/20)):
+**Доказательство.** Обозначения: $S_n=\sup_{k\ge n}x_k$, $i_n=\inf_{k\ge n}x_k$, и по определению [[verhniy-i-nizhniy-predely|верхнего и нижнего пределов]] $\overline\lim x_n=\inf_nS_n$, $\underline\lim x_n=\sup_ni_n$ (для ограниченной последовательности эти равенства [доказаны в дне 20](/aii/matan/1/day/20); в расширенной шкале они приняты за определение в соглашении выше).
 
-**(†)** если $c>\overline\lim x_n$, то $x_n<c$ при всех достаточно больших $n$. Действительно, $\inf_nS_n<c$, значит $c$ не является нижней гранью набора $\{S_n\}$ и найдётся $N$ с $S_N<c$; тогда $x_n\le S_N<c$ при всех $n\ge N$. Зеркально: если $c<\underline\lim x_n$, то $\sup_ni_n>c$, найдётся $N$ с $i_N>c$, и $x_n\ge i_N>c$ при всех $n\ge N$.
+**(†) Отсечка.**
 
-*Правое неравенство.* Пусть $\beta=\overline\lim\frac{a_{n+1}}{a_n}$; при $\beta=+\infty$ доказывать нечего. Возьмём любое $c>\beta$; по (†) найдётся $N$ такое, что при $n\ge N$ выполнено $\frac{a_{n+1}}{a_n}<c$. Раскрутим это по индукции:
+$$c>\overline\lim x_n=\inf_nS_n\ \Longrightarrow\ \exists N:\ S_N<c\ \Longrightarrow\ \forall n\ge N:\ x_n\le S_N<c;$$
 
-$$a_n<a_N\,c^{\,n-N}=\bigl(a_N c^{-N}\bigr)\,c^{\,n}\qquad(n>N).$$
+$$c<\underline\lim x_n=\sup_ni_n\ \Longrightarrow\ \exists N:\ i_N>c\ \Longrightarrow\ \forall n\ge N:\ x_n\ge i_N>c.$$
 
-Извлекаем корень — он монотонен, как разобрано в пункте (б) леммы, — и константу в скобках обозначаем $C>0$:
+**Правое неравенство.** Пусть $\beta=\overline\lim\frac{a_{n+1}}{a_n}$; при $\beta=+\infty$ доказывать нечего. Берём любое $c>\beta$.
 
-$$\sqrt[n]{a_n}<c\cdot\sqrt[n]{C}\xrightarrow[n\to\infty]{}c$$
+$$\overset{(\dagger)}{\Longrightarrow}\ \exists N\ \forall n\ge N:\ \frac{a_{n+1}}{a_n}<c\ \overset{\text{индукция по }n}{\Longrightarrow}\ a_n<a_Nc^{\,n-N}=C\,c^{\,n},\quad C:=a_Nc^{-N}>0,\ \ n>N,$$
 
-(предел правой части — это пункт (б) той же леммы). Отсюда $\overline\lim\sqrt[n]{a_n}\le c$: по любому $\varepsilon>0$ найдётся $N_1$ с $c\sqrt[n]{C}<c+\varepsilon$ при $n>N_1$, и, увеличив при необходимости $N_1$ до $\max(N,N_1)$, добьёмся того, что при $n>N_1$ работает и оценка $\sqrt[n]{a_n}<c\sqrt[n]{C}$ (она получена только при $n>N$). Тогда $\sqrt[n]{a_n}<c+\varepsilon$ при $n>N_1$, значит $S_{N_1+1}\le c+\varepsilon$ для огибающей корней, а $\overline\lim\sqrt[n]{a_n}=\inf_nS_n\le S_{N_1+1}\le c+\varepsilon$; произвольность $\varepsilon$ даёт $\overline\lim\sqrt[n]{a_n}\le c$ (иначе годилось бы $\varepsilon$, равное половине разности). Поскольку и $c>\beta$ было любым, правое неравенство цепочки доказано.
+$$\overset{\text{корень монотонен, п. (б) леммы}}{\Longrightarrow}\ \sqrt[n]{a_n}<c\,\sqrt[n]{C}\ \xrightarrow[n\to\infty]{\ \text{п. (б) леммы}\ }\ c.$$
 
-*Левое неравенство* — зеркальная выкладка. Пусть $\gamma=\underline\lim\frac{a_{n+1}}{a_n}$; при $\gamma=0$ доказывать нечего, потому что корни неотрицательны. Возьмём любое $c$ с $0<c<\gamma$; по (†) найдётся $N$ с $\frac{a_{n+1}}{a_n}>c$ при $n\ge N$, откуда по индукции $a_n>C'c^{\,n}$ с $C'=a_Nc^{-N}>0$ и $\sqrt[n]{a_n}>c\sqrt[n]{C'}\to c$. По любому $\varepsilon>0$ найдётся $N_1$ с $c\sqrt[n]{C'}>c-\varepsilon$ при $n>N_1$; увеличив $N_1$ до $\max(N,N_1)$, получаем при $n>N_1$ и $\sqrt[n]{a_n}>c\sqrt[n]{C'}>c-\varepsilon$, значит $i_{N_1+1}\ge c-\varepsilon$ и $\underline\lim\sqrt[n]{a_n}=\sup_ni_n\ge c-\varepsilon$; произвольность $\varepsilon$ и произвольность $c<\gamma$ дают $\underline\lim\sqrt[n]{a_n}\ge\gamma$.
+$$\forall\varepsilon>0\ \ \exists N_1\ge N\ \ \forall n>N_1:\quad \sqrt[n]{a_n}<c\,\sqrt[n]{C}<c+\varepsilon\ \Longrightarrow\ S_{N_1+1}\le c+\varepsilon,$$
 
-*Среднее неравенство* получается прямо из граней: при любых $n,m$ и $r=\max(n,m)$ выполнено $i_n\le i_r\le S_r\le S_m$ (огибающие монотонны — это свойство граней вложенных хвостов, отмеченное в соглашении выше, и ограниченности оно не требует), поэтому $\sup_ni_n\le\inf_mS_m$.
+$$\overline\lim\sqrt[n]{a_n}=\inf_nS_n\le S_{N_1+1}\le c+\varepsilon\ \ \forall\varepsilon>0\ \Longrightarrow\ \overline\lim\sqrt[n]{a_n}\le c\ \ \forall c>\beta\ \Longrightarrow\ \overline\lim\sqrt[n]{a_n}\le\beta.$$
 
-Если предел отношения существует и равен $c$, то крайние члены цепочки совпадают с $c$ по критерию [«предел существует ровно тогда, когда огибающие сомкнулись»](/aii/matan/1/day/20); критерий дня 20 сформулирован для ограниченной последовательности, и здесь это выполнено — сходящаяся последовательность $\frac{a_{n+1}}{a_n}$ [ограничена](/aii/matan/1/day/15). Значит совпадают и все четыре члена цепочки: $\underline\lim\sqrt[n]{a_n}=\overline\lim\sqrt[n]{a_n}=c$. Отсюда и $\lim\sqrt[n]{a_n}=c$, снова по тому же критерию: из $\inf_nS_n=c<+\infty$ следует $S_{N_2}<c+1$ при некотором $N_2$, то есть хвост $\{\sqrt[n]{a_n}\}_{n\ge N_2}$ ограничен сверху числом $c+1$, а снизу нулём — критерий к нему применим, его огибающие при $n\ge N_2$ те же самые и смыкаются на $c$; отбрасывание первых $N_2$ членов на определение предела не влияет, потому что в нём участвуют только номера, большие наперёд заданного. Обратное неверно: крайние члены могут разойтись, а средние — сойтись, и пример ниже именно такой. $\qquad\blacksquare$
+**Левое неравенство** — зеркально. Пусть $\gamma=\underline\lim\frac{a_{n+1}}{a_n}$; при $\gamma=0$ доказывать нечего, корни неотрицательны. Берём $0<c<\gamma$.
+
+$$\overset{(\dagger)}{\Longrightarrow}\ \exists N\ \forall n\ge N:\ \frac{a_{n+1}}{a_n}>c\ \Longrightarrow\ a_n>C'c^{\,n},\quad C'=a_Nc^{-N}>0\ \Longrightarrow\ \sqrt[n]{a_n}>c\,\sqrt[n]{C'}\to c,$$
+
+$$\forall\varepsilon>0\ \ \exists N_1\ge N\ \ \forall n>N_1:\ \sqrt[n]{a_n}>c-\varepsilon\ \Longrightarrow\ i_{N_1+1}\ge c-\varepsilon\ \Longrightarrow\ \underline\lim\sqrt[n]{a_n}\ge c-\varepsilon,$$
+
+$$\varepsilon>0\ \text{и}\ c<\gamma\ \text{произвольны}\ \Longrightarrow\ \underline\lim\sqrt[n]{a_n}\ge\gamma.$$
+
+**Среднее неравенство.**
+
+$$\forall n,m,\quad r=\max(n,m):\qquad i_n\le i_r\le S_r\le S_m\quad\Longrightarrow\quad \sup_ni_n\le\inf_mS_m.$$
+
+Хвосты вложены, грани вложенных множеств упорядочены — ограниченность здесь не нужна.
+
+**Если предел отношения существует и равен $c$.**
+
+$$\Bigl\{\tfrac{a_{n+1}}{a_n}\Bigr\}\ \text{сходится}\ \overset{\text{сходящаяся ограничена}}{\Longrightarrow}\ \text{ограничена}\ \overset{\text{огибающие сомкнулись}}{\Longrightarrow}\ \beta=\gamma=c\ \overset{\text{цепочка}}{\Longrightarrow}\ \underline\lim\sqrt[n]{a_n}=\overline\lim\sqrt[n]{a_n}=c.$$
+
+Ссылки на два использованных факта: [сходящаяся последовательность ограничена](/aii/matan/1/day/15) и критерий [«предел существует ровно тогда, когда огибающие сомкнулись»](/aii/matan/1/day/20). Критерий требует ограниченности, и она есть:
+
+$$\inf_nS_n=c<+\infty\ \Longrightarrow\ \exists N_2:\ S_{N_2}<c+1\ \Longrightarrow\ 0\le\sqrt[n]{a_n}<c+1\quad(n\ge N_2),$$
+
+а отбрасывание первых $N_2$ членов не меняет ни огибающих при $n\ge N_2$, ни определения предела: в нём участвуют только номера больше наперёд заданного. Значит $\lim\sqrt[n]{a_n}=c$.
+
+Обратное неверно: крайние члены цепочки могут разойтись, а средние — сойтись; пример ниже именно такой. $\qquad\blacksquare$
 
 **Пример, где Д’Аламбер молчит, а Коши отвечает.** Возьмём $a_n=2^{-n-(-1)^{n}}$, то есть $1,\ \frac18,\ \frac14,\ \frac1{32},\ \frac1{16},\dots$ — прогрессию со знаменателем $\frac12$, у которой соседи попарно переставлены. Отношение скачет:
 
