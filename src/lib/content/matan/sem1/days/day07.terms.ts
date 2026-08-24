@@ -31,7 +31,7 @@ export const day07Terms: Glossary = {
 		term: 'Неравенство треугольника',
 		short: String.raw`Объезд через третью точку не бывает короче прямого пути.`,
 		formula: String.raw`\rho(x,y)+\rho(y,z)\geqslant\rho(x,z)`,
-		body: String.raw`Третья аксиома [[metrika|метрики]]: $\rho(x,y)+\rho(y,z)\geqslant\rho(x,z)$ для всех $x,y,z$. Словами — «сумма двух сторон не меньше третьей». Для [[p-metrika|$p$-метрики]] неравенство верно лишь при $k\geqslant 1$ — это неравенство Минковского; при $k<1$ оно ломается уже на тройке $(0,0)$, $(1,0)$, $(1,1)$.`,
+		body: String.raw`Для [[modul-chisla|модуля]] — доказанное неравенство $|x+y|\le|x|+|y|$ ([день 5](/aii/matan/1/day/5)); для [[metrika|метрики]] — третья аксиома: $\rho(x,y)+\rho(y,z)\geqslant\rho(x,z)$ при всех $x,y,z$. Словами — «сумма двух сторон не меньше третьей». Для [[p-metrika|$p$-метрики]] неравенство верно лишь при $k\geqslant 1$ — это неравенство Минковского; при $k<1$ оно ломается уже на тройке $(0,0)$, $(1,0)$, $(1,1)$.`,
 		related: ['metrika', 'p-metrika', 'inducirovannaya-topologiya', 'shar']
 	},
 
