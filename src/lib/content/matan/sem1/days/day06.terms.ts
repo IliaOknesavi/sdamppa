@@ -121,4 +121,13 @@ $$\overline{\bigcup_{i\in I}x_i}=\bigcap_{i\in I}\overline{x_i}.$$
 Точное определение: $\tau$ — наименьшее семейство, содержащее все интервалы и замкнутое относительно этих двух операций. Интервалы образуют его базу — всякое открытое множество есть объединение интервалов, лучи в том числе: $(-\infty;x)=\bigcup_{n\in\mathbb N_1}(x-n;x)$. Конечность в пересечении существенна: $\bigcap_n(-1/n;1/n)=\{0\}$, а одноточечное множество из интервалов не собирается. [[komponenta-svyaznosti|Открыто-замкнуты]] здесь только $\varnothing$ и $\mathbb R$.`,
 		related: ['topologiya', 'otkrytoe-mnozhestvo', 'komponenta-svyaznosti', 'topologicheskoe-prostranstvo']
 	}
+	'topologiya-podprostranstva': {
+		id: 'topologiya-podprostranstva',
+		term: 'Топология подпространства',
+		short: String.raw`Открытые в $D$ — это следы открытых в $S$: $U\cap D$.`,
+		formula: String.raw`\tau_D=\{\,U\cap D\ :\ U\in\tau\,\}`,
+		body: String.raw`На подмножестве $D\subset S$ **топология подпространства** объявляет открытыми пересечения $U\cap D$ по всем $U\in\tau$. Аксиомы [[topologiya|топологии]] наследуются, потому что пересечение с $D$ переставимо с объединением и с конечным пересечением. Не путать с [[inducirovannaya-topologiya|топологией, индуцированной метрикой]]: та строится из расстояния, эта — из объемлющей топологии.`,
+		related: ['topologiya', 'podmnozhestvo', 'otkrytoe-mnozhestvo']
+	},
+
 };
