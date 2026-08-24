@@ -46,13 +46,17 @@ $$\Delta y:=f(x_0+\Delta x)-f(x_0),\qquad\Delta x\ne0\ \overset{f\uparrow}{\Long
 
 **Шаг 2. Вокруг $y_0$ лежит целый отрезок значений.**
 
-$$I:=\Bigl[x_0-\tfrac\eta2;\ x_0+\tfrac\eta2\Bigr]\subset\hat D;\qquad I\ \text{— компакт};\qquad I\ \text{— ЛСО}\ \Longrightarrow\ I\ \text{— СО}.$$
+$$I:=\Bigl[x_0-\tfrac\eta2;\ x_0+\tfrac\eta2\Bigr]\subset\hat D,\qquad I\ \text{— ЛСО}\ \Longrightarrow\ I\ \text{— СО}.$$
 
-$$f\in C(I)\ \overset{\text{образ компакта}}{\Longrightarrow}\ f(I)=[m;M],\quad m=\min_I f,\ M=\max_I f\ \overset{f\uparrow}{\Longrightarrow}\ m=f\Bigl(x_0-\tfrac\eta2\Bigr)<y_0<f\Bigl(x_0+\tfrac\eta2\Bigr)=M.$$
+$$m:=f\Bigl(x_0-\tfrac\eta2\Bigr),\quad M:=f\Bigl(x_0+\tfrac\eta2\Bigr)\ \overset{f\uparrow}{\Longrightarrow}\ m<y_0<M,\qquad m,M\in f(I)\ \text{по построению}.$$
 
-$$\Longrightarrow\ [m;M]\subset\hat E,\qquad\delta_0:=\min(M-y_0,\ y_0-m)>0\ \Longrightarrow\ \forall\Delta y,\ 0<|\Delta y|<\delta_0\ \ \exists\ \frac{f^-(y_0+\Delta y)-f^-(y_0)}{\Delta y}.$$
+$$f\in C(I),\ I\ \text{— СО}\ \overset{\text{шаги 3–4}}{\Longrightarrow}\ f(I)\ \text{— промежуток}\ \Longrightarrow\ [m;M]\subset f(I)\subset\hat E,$$
 
-Отрезок $I$ — [[lsk|линейно связный компакт]]: компактность даёт [теорема Бореля–Лебега](/aii/matan/1/day/22), а путём между двумя точками отрезка служит содержащий их кусок самого отрезка. Теорема, которой мы пользуемся, требует связности, а не линейной связности, поэтому в первую выкладку добавлено недостающее звено: [линейная связность влечёт связность](/aii/matan/1/day/28) — это отдельно доказанная там импликация ЛСО $\Rightarrow$ СО. Сам образ найден по [теореме об образе компакта](/aii/matan/1/day/28). Предел при $\Delta y\to0$ осмыслен, и берётся он с обеих сторон.
+$$\delta_0:=\min(M-y_0,\ y_0-m)>0\ \Longrightarrow\ \forall\Delta y,\ 0<|\Delta y|<\delta_0\ \ \exists\ \frac{f^-(y_0+\Delta y)-f^-(y_0)}{\Delta y}.$$
+
+Здесь работает ровно половина [теоремы об образе компакта](/aii/matan/1/day/28) — её шаги 3–4, то есть Больцано–Коши: образ связного связен, а связное в $\mathbb R$ есть промежуток. Шаги 1–2 той же теоремы (Вейерштрасс) отвечают за то, что $\min$ и $\max$ достигаются, и здесь они не нужны: крайние значения дала [[strogaya-monotonnost|строгая монотонность]] — это просто значения в концах отрезка, а принадлежность их образу видна по построению. Компактность $I$ поэтому в шаге не участвует вовсе.
+
+Отрезок $I$ линейно связен: путём между двумя его точками служит содержащий их кусок самого отрезка. Связность нужна именно в форме СО, поэтому в выкладку добавлено недостающее звено — [линейная связность влечёт связность](/aii/matan/1/day/28), отдельно доказанная там импликация ЛСО $\Rightarrow$ СО. Предел при $\Delta y\to0$ осмыслен, и берётся он с обеих сторон.
 
 **Шаг 3. Малому $\Delta y$ отвечает малое $\Delta x$.**
 
