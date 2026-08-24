@@ -105,7 +105,7 @@ $\mathbb R$ сепарабельно (годится $\mathbb Q$), $\mathbb R^n$
 		formula: String.raw`\forall a<b\ \ \exists q\in\mathbb Q:\ a<q<b`,
 		body: String.raw`**Плотность $\mathbb Q$ в $\mathbb R$**: в любом интервале $(a;b)$ найдётся рациональное число. Конструктивное доказательство идёт по десятичным разрядам: шаг вверх $y=\bigl(\lfloor x/\varepsilon\rfloor+1\bigr)\cdot\varepsilon$ с рациональным шагом $\varepsilon$ даёт рациональное число строго правее $x$ и не дальше чем на $\varepsilon$.
 
-Через принцип Архимеда (день 5) то же самое делается в две строки: берём $n>\frac{1}{b-a}$ и $m=\lfloor na\rfloor+1$, тогда $a<\frac mn\le a+\frac1n<b$. Отсюда сразу [[vsyudu-plotnoe|всюду плотность]] $\mathbb Q$ и [[separabelnost|сепарабельность]] $\mathbb R$.`,
+Через принцип Архимеда ([день 5](/aii/matan/1/day/5)) то же самое делается в две строки: берём $n>\frac{1}{b-a}$ и $m=\lfloor na\rfloor+1$, тогда $a<\frac mn\le a+\frac1n<b$. Отсюда сразу [[vsyudu-plotnoe|всюду плотность]] $\mathbb Q$ и [[separabelnost|сепарабельность]] $\mathbb R$.`,
 		related: ['vsyudu-plotnoe', 'separabelnost', 'topologiya-r']
 	},
 

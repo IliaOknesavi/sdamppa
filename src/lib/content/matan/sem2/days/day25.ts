@@ -49,11 +49,19 @@ $$\lim_{\varepsilon\to+0}\int_a^{1/\varepsilon}f(x)\,dx\qquad\text{и}\qquad\lim
 
 **Лемма (о замене параметра).** Пусть $F:(0;+\infty)\to\mathbb R$. Предел $\lim\limits_{\varepsilon\to+0}F\bigl(\tfrac1\varepsilon\bigr)$ существует тогда и только тогда, когда существует $\lim\limits_{A\to+\infty}F(A)$, и в этом случае оба предела равны.
 
-**Доказательство.** Обе стороны разворачиваются в определение предела, а переход между ними — это тождество $A=1/\varepsilon$.
+**Доказательство.** Обе стороны — развёрнутые определения предела, мост между ними один: $A=1/\varepsilon$, и на $(0;+\infty)$ переход к обратным разворачивает неравенство.
 
-Пусть $\lim\limits_{A\to+\infty}F(A)=L$: по каждому $\eta>0$ найдётся $M>0$ такое, что $|F(A)-L|<\eta$ при всех $A>M$. Положим $\delta=\frac1M$. Если $0<\varepsilon<\delta$, то $\frac1\varepsilon>\frac1\delta=M$ (обе части положительны, а переход к обратным меняет знак неравенства), поэтому $\bigl|F\bigl(\frac1\varepsilon\bigr)-L\bigr|<\eta$. Это и есть определение предела $F\bigl(\frac1\varepsilon\bigr)\to L$ при $\varepsilon\to+0$.
+$(\Leftarrow)$ Пусть $\lim\limits_{A\to+\infty}F(A)=L$.
 
-Обратно, пусть $\lim\limits_{\varepsilon\to+0}F\bigl(\frac1\varepsilon\bigr)=L$: по каждому $\eta>0$ найдётся $\delta>0$ такое, что $\bigl|F\bigl(\frac1\varepsilon\bigr)-L\bigr|<\eta$ при всех $0<\varepsilon<\delta$. Положим $M=\frac1\delta$. Если $A>M$, то число $\varepsilon=\frac1A$ удовлетворяет $0<\varepsilon<\delta$, а $F\bigl(\frac1\varepsilon\bigr)=F(A)$, значит $|F(A)-L|<\eta$. Оба предела, стало быть, существуют одновременно и равны одному и тому же $L$. $\qquad\blacksquare$
+$$\forall\eta>0\ \exists M>0\ \forall A>M:\ |F(A)-L|<\eta\ \overset{\delta:=1/M}{\Longrightarrow}\ \forall\,0<\varepsilon<\delta:\ \tfrac1\varepsilon>\tfrac1\delta=M,$$
+
+$$\Longrightarrow\ \Bigl|F\bigl(\tfrac1\varepsilon\bigr)-L\Bigr|<\eta\ \Longrightarrow\ \lim_{\varepsilon\to+0}F\bigl(\tfrac1\varepsilon\bigr)=L.$$
+
+$(\Rightarrow)$ Зеркально.
+
+$$\forall\eta>0\ \exists\delta>0\ \forall\,0<\varepsilon<\delta:\ \Bigl|F\bigl(\tfrac1\varepsilon\bigr)-L\Bigr|<\eta\ \overset{M:=1/\delta}{\Longrightarrow}\ \forall A>M:\ \varepsilon:=\tfrac1A\in(0;\delta),$$
+
+$$F\bigl(\tfrac1\varepsilon\bigr)=F(A)\ \Longrightarrow\ |F(A)-L|<\eta\ \Longrightarrow\ \lim_{A\to+\infty}F(A)=L.\qquad\blacksquare$$
 
 Обе записи, стало быть, равносильны, и выбор буквы под знаком предела — дело вкуса. А вот смешанная форма $\lim_{\varepsilon\to\infty}\int_a^{1/\varepsilon}$ бессмысленна — при $\varepsilon\to\infty$ граница $1/\varepsilon$ стремится к нулю, и при $a>0$ интеграл просто меняет ориентацию. Лемма разрешает менять букву, но не освобождает от проверки, куда едет верхний предел интегрирования.
 

@@ -8,7 +8,7 @@ import type { Glossary } from '$lib/types';
 // Канонический глоссарий склеивается последним и перекрывает совпадения,
 // поэтому одноимённые карточки заводить нельзя.
 // Карточки supremum, infimum, predel-posledovatelnosti и
-// teorema-o-dvuh-gorodovyh намеренно продублированы из дней 14–15, чтобы день
+// teorema-o-dvuh-gorodovyh намеренно продублированы из [дней 14–15](/aii/matan/1/day/14), чтобы день
 // резолвился независимо.
 export const day20Terms: Glossary = {
 	'verkhniy-predel': {
@@ -73,7 +73,7 @@ export const day20Terms: Glossary = {
 		formula: String.raw`x_n\ \text{ограничена}\ \Rightarrow\ \exists\,n_1<n_2<\dots:\ \lim_{k\to\infty}x_{n_k}=\overline{\lim_{n\to\infty}}\,x_n`,
 		body: String.raw`Из всякой ограниченной последовательности извлекается сходящаяся [[podposledovatelnost|подпоследовательность]].
 
-Доказательство здесь идёт **через порядок**, а не через топологию: $\varepsilon$-форма [[supremum|супремума]] с шагом $\frac1k$ вытаскивает из хвоста член, отстоящий от $S_{m_k}$ меньше чем на $\frac1k$, а строгое возрастание номеров обеспечивается сдвигом $m_{k+1}=n_k+1$. Явный номер: $K(\varepsilon)=\max(\lceil 2/\varepsilon\rceil,\ N_S(\frac\varepsilon2))$. Попутно доказывается больше: предел построенной подпоследовательности — ровно [[verkhniy-predel|верхний предел]]. В днях 22–23 та же теорема выводится заново из конечного подпокрытия.`,
+Доказательство здесь идёт **через порядок**, а не через топологию: $\varepsilon$-форма [[supremum|супремума]] с шагом $\frac1k$ вытаскивает из хвоста член, отстоящий от $S_{m_k}$ меньше чем на $\frac1k$, а строгое возрастание номеров обеспечивается сдвигом $m_{k+1}=n_k+1$. Явный номер: $K(\varepsilon)=\max(\lceil 2/\varepsilon\rceil,\ N_S(\frac\varepsilon2))$. Попутно доказывается больше: предел построенной подпоследовательности — ровно [[verkhniy-predel|верхний предел]]. В [днях 22–23](/aii/matan/1/day/22) та же теорема выводится заново из конечного подпокрытия.`,
 		related: ['podposledovatelnost', 'verkhniy-predel', 'kriteriy-verhnego-nizhnego', 'supremum']
 	},
 
@@ -103,7 +103,7 @@ export const day20Terms: Glossary = {
 		term: 'Теорема о монотонной ограниченной',
 		short: String.raw`Монотонная ограниченная последовательность сходится к своей точной грани.`,
 		formula: String.raw`x_n\nearrow,\ x_n\le C\ \Rightarrow\ \exists\lim x_n=\sup_n x_n`,
-		body: String.raw`Теорема Вейерштрасса (день 19): неубывающая ограниченная сверху последовательность сходится, причём её предел равен [[supremum|супремуму]]; зеркально — невозрастающая ограниченная снизу сходится к [[infimum|инфимуму]].
+		body: String.raw`Теорема Вейерштрасса ([день 19](/aii/matan/1/day/19)): неубывающая ограниченная сверху последовательность сходится, причём её предел равен [[supremum|супремуму]]; зеркально — невозрастающая ограниченная снизу сходится к [[infimum|инфимуму]].
 
 В сегодняшнем дне она работает мотором: [[verhnyaya-ogibayushchaya|$S_i$]] не возрастает и ограничена снизу числом $i_1$, [[nizhnyaya-ogibayushchaya|$i_n$]] не убывает и ограничена сверху числом $S_1$ — значит [[verkhniy-predel|верхний]] и [[nizhniy-predel|нижний]] пределы существуют у **любой** ограниченной последовательности.`,
 		related: ['supremum', 'infimum', 'verhnyaya-ogibayushchaya', 'verkhniy-predel']

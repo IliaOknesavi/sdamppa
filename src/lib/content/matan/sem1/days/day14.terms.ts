@@ -61,7 +61,7 @@ export const day14Terms: Glossary = {
 		formula: String.raw`\forall\varepsilon_f>0\ \exists N_f\ \forall n>N_f:\ |f_n|<\varepsilon_f`,
 		body: String.raw`**Бесконечно малая (б.м.)** — последовательность, предел которой равен нулю. Рабочая запись: $|f_n|<\varepsilon_f$ при $n>N_f(\varepsilon_f)$; эталонный пример — $f_n=1/n^4$.
 
-В теореме дня 14 радиус $t_n$ — именно б.м., причём неотрицательная, поэтому модуль снимается: $|t_n-0|=t_n$. Свойства б.м. и связанные с ними [[asimptoticheskie-klassy|асимптотические классы]] разбираются в днях 15–17.`,
+В теореме дня 14 радиус $t_n$ — именно б.м., причём неотрицательная, поэтому модуль снимается: $|t_n-0|=t_n$. Свойства б.м. и связанные с ними [[asimptoticheskie-klassy|асимптотические классы]] разбираются в [днях 15–17](/aii/matan/1/day/15).`,
 		related: ['predel-posledovatelnosti', 'styagivayushchiesya-shary', 'asimptoticheskie-klassy']
 	}
 };

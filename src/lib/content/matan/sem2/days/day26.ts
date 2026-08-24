@@ -65,13 +65,13 @@ $$f(x)\in O\bigl(g(x)\bigr),\qquad \lim_{x\to\infty}\frac{f(x)}{g(x)}=k<\infty.$
 
 Тогда $\displaystyle\boxed{\ \int_a^{\infty}g\ \text{сх.}\Rightarrow\int_a^{\infty}f\ \text{сх.};\qquad \int_a^{\infty}f\ \text{расх.}\Rightarrow\int_a^{\infty}g\ \text{расх.}\ }$
 
-**Доказательство.** Приём: зафиксировать $\varepsilon=1$ и вернуться к обычному сравнению. По определению предела отношения найдётся порог $M=M_{f/g}(1)$ такой, что
+**Доказательство.** Приём: зафиксировать $\varepsilon=1$ в определении предела отношения и вернуться к обычному сравнению. Внешних фактов два: [аддитивность интеграла](/aii/matan/2/day/20) и [арифметика предела](/aii/matan/1/day/27).
 
-$$\forall x>M:\quad \left|\frac{f(x)}{g(x)}-k\right|<1\ \Longrightarrow\ \frac{f(x)}{g(x)}<k+1\ \Longrightarrow\ 0\le f(x)<(k+1)\,g(x)$$
+$$\lim_{x\to+\infty}\frac{f(x)}{g(x)}=k\ \overset{\varepsilon=1}{\Longrightarrow}\ \exists M>a\ \ \forall x>M:\quad\left|\frac{f(x)}{g(x)}-k\right|<1\ \Longrightarrow\ \frac{f(x)}{g(x)}<k+1\ \overset{g>0}{\Longrightarrow}\ 0\le f(x)<(k+1)\,g(x).$$
 
-(домножать на $g$ можно без смены знака, потому что $g>0$). Порог можно считать бо́льшим $a$ — увеличив его, условие не испортишь.
+Порог законно считать бо́льшим $a$: увеличение $M$ условие не портит. Дальше сходимость решается одним хвостом:
 
-Сходимость решается только хвостом $[M;+\infty)$, и это ровно одна строка: по [аддитивности](/aii/matan/2/day/20) при $A>M$ выполнено $\int_a^{A}f=\int_a^{M}f+\int_M^{A}f$, первое слагаемое от $A$ не зависит, поэтому предел при $A\to+\infty$ есть у левой части тогда и только тогда, когда он есть у второго слагаемого ([арифметика предела](/aii/matan/1/day/27)).
+$$A>M\ \overset{\text{аддитивность}}{\Longrightarrow}\ \int_a^{A}f=\underbrace{\int_a^{M}f}_{\text{от }A\text{ не зависит}}+\int_M^{A}f\ \overset{\text{арифметика предела}}{\Longrightarrow}\ \exists\lim_{A\to+\infty}\int_a^{A}f\iff\exists\lim_{A\to+\infty}\int_M^{A}f.$$
 
 На хвосте работает [[priznak-sravneniya-integralov|признак сравнения]] с [[mazhoranta-i-minoranta|мажорантой]] $(k+1)g$: по [линейности интеграла](/aii/matan/2/day/20) $\int_M^{A}(k+1)g=(k+1)\int_M^{A}g$, а постоянный множитель выносится из предела ([арифметика предела](/aii/matan/1/day/27)), так что мажоранта интегрируема в несобственном смысле вместе с $g$. Отсюда сходимость $\int_M^\infty f$, а с ней и $\int_a^\infty f$. Вторая импликация — контрапозиция. $\qquad\blacksquare$
 

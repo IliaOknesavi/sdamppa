@@ -6,7 +6,7 @@ import type { Glossary } from '$lib/types';
 // priznak-i-svoystvo и прочие.
 // Карточки predel-posledovatelnosti, shodyashchayasya-posledovatelnost,
 // beskonechno-malaya, beskonechno-bolshaya и neopredelennost продублированы
-// из дней 11–16 намеренно: день должен резолвиться независимо от того,
+// из [дней 11–16](/aii/matan/1/day/11) намеренно: день должен резолвиться независимо от того,
 // открыт ли предыдущий.
 export const day17Terms: Glossary = {
 	'o-bolshoe': {
@@ -38,7 +38,7 @@ export const day17Terms: Glossary = {
 		formula: String.raw`f_n\in\Theta(g_n)\iff\lim_{n\to\infty}\frac{f_n}{g_n}=c,\ \ c\ne0`,
 		body: String.raw`**$\Theta$** задана двумя условиями сразу: конечны и $\lim f_n/g_n=C_1$, и $\lim g_n/f_n=C_2$. Из тождества $\frac{f_n}{g_n}\cdot\frac{g_n}{f_n}=1$ и арифметики пределов следует $C_1C_2=1$, а значит ни один из пределов не нулевой — в определении это не выписано, но выводится.
 
-Отсюда два описания через [[o-bolshoe|$\underline O$]]: $\Theta(g_n)=\underline O(g_n)\cap\Omega(g_n)$ и $\Theta(g_n)=\underline O(g_n)\setminus\overline o(g_n)$. $\Theta$ — отношение эквивалентности, её классы называют [[poryadok-rosta|порядками роста]]; на языке $\Theta$ сформулирован признак сравнения рядов (день 25).`,
+Отсюда два описания через [[o-bolshoe|$\underline O$]]: $\Theta(g_n)=\underline O(g_n)\cap\Omega(g_n)$ и $\Theta(g_n)=\underline O(g_n)\setminus\overline o(g_n)$. $\Theta$ — отношение эквивалентности, её классы называют [[poryadok-rosta|порядками роста]]; на языке $\Theta$ сформулирован признак сравнения рядов ([день 25](/aii/matan/1/day/25)).`,
 		related: ['o-bolshoe', 'omega-bolshaya', 'poryadok-rosta', 'ekvivalentnye-posledovatelnosti']
 	},
 
@@ -93,7 +93,7 @@ export const day17Terms: Glossary = {
 		formula: String.raw`f_n\sim_\Theta g_n\iff \lim_{n\to\infty}\frac{f_n}{g_n}=c\ne0`,
 		body: String.raw`Принадлежность [[teta-klass|$\Theta$]] рефлексивна ($f_n/f_n=1$), симметрична ($c\mapsto1/c$) и транзитивна ($c\cdot d$), то есть это отношение эквивалентности; его классы и называют **порядками роста** — $n$, $n\log n$, $n^2$, $2^n$.
 
-[[o-bolshoe|$\underline O$]] задаёт лишь предпорядок «не быстрее»: $\sqrt n\in\underline O(n)$, но $n\notin\underline O(\sqrt n)$. Порядок этот **частичный**: пары с колеблющимся отношением (например, $n(2+\sin n)$ и $n$) не сравнимы ни одним из пяти классов.`,
+[[o-bolshoe|$\underline O$]] задаёт лишь предпорядок «не быстрее»: $\sqrt n\in\underline O(n)$, но $n\notin\underline O(\sqrt n)$. До порядка он не дотягивает дважды: антисимметричности нет ($n$ и $2n$ лежат друг в друге), и пары с колеблющимся отношением (например, $n(2+\sin n)$ и $n$) не сравнимы ни одним из пяти классов.`,
 		related: ['teta-klass', 'o-bolshoe', 'ekvivalentnye-posledovatelnosti', 'asimptoticheskie-klassy']
 	},
 

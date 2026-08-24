@@ -85,7 +85,7 @@ export const day28Terms: Glossary = {
 		short: String.raw`Образ компактной связной области — отрезок $[m;M]$ целиком.`,
 		formula: String.raw`f(D)=[m;M],\qquad m=\min f(D),\ \ M=\max f(D)`,
 		body: String.raw`Если $f:T\to\mathbb R$ непрерывна, а $D$ — [[kompakt|компакт]] и [[svyaznaya-oblast|связная область]], то $f(D)=[m;M]$, то есть достигаются все промежуточные значения. Это **Вейерштрасс и Больцано–Коши в одной формулировке**: компактность даёт замкнутость образа и законность $\min$ и $\max$ вместо $\inf$ и $\sup$, связность — отсутствие дыр. Оба условия неулучшаемы: на $(0;1)$ нет $\max$, на $[0;1]\cup[2;3]$ в образе дыра.`,
-		related: ['kompakt', 'svyaznaya-oblast', 'topologicheskaya-nepreryvnost', 'teorema-kantora']
+		related: ['kompakt', 'svyaznaya-oblast', 'topologicheskaya-nepreryvnost', 'ravnomernaya-nepreryvnost']
 	},
 
 };

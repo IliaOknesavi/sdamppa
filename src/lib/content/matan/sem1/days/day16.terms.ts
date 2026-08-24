@@ -7,7 +7,7 @@ import type { Glossary } from '$lib/types';
 // skhodyashchayasya-v-sebe, priznak-i-svoystvo и прочие.
 // Карточки predel-posledovatelnosti, posledovatelnost,
 // shodyashchayasya-posledovatelnost, ogranichennost-posledovatelnosti и
-// n-ot-epsilon продублированы из дней 11–15 намеренно: день должен
+// n-ot-epsilon продублированы из [дней 11–15](/aii/matan/1/day/11) намеренно: день должен
 // резолвиться независимо от того, открыт ли предыдущий.
 export const day16Terms: Glossary = {
 	'beskonechno-bolshaya': {

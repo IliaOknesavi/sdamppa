@@ -85,7 +85,7 @@ export const day27Terms: Glossary = {
 		term: 'Теорема о сжатой функции',
 		short: String.raw`Зажатая между двумя функциями с общим пределом наследует этот предел.`,
 		formula: String.raw`f\leqslant h\leqslant g\ \text{на}\ \mathring B_{x_0}(r),\ \lim f=\lim g=A\ \Rightarrow\ \lim h=A`,
-		body: String.raw`**Теорема о сжатой функции** — функциональный аналог «двух городовых» (день 14) для [[end-r|$\operatorname{End}(\mathbb R)$]]. Доказательство в одну строку через [[kriteriy-sushchestvovaniya-predela|критерий]]: неравенство переносится на огибающие, и $A=\underline{\lim}f\leqslant\underline{\lim}h\leqslant\overline{\lim}h\leqslant\overline{\lim}g=A$. Явная дельта: $\delta_h(\varepsilon)=\min\{r,\delta_f(\varepsilon),\delta_g(\varepsilon)\}$. Шар в условии выколот: значение $h(x_0)$ на предел не влияет, поэтому теорема применима и к функциям, не определённым в $x_0$.`,
+		body: String.raw`**Теорема о сжатой функции** — функциональный аналог «двух городовых» ([день 14](/aii/matan/1/day/14)) для [[end-r|$\operatorname{End}(\mathbb R)$]]. Доказательство в одну строку через [[kriteriy-sushchestvovaniya-predela|критерий]]: неравенство переносится на огибающие, и $A=\underline{\lim}f\leqslant\underline{\lim}h\leqslant\overline{\lim}h\leqslant\overline{\lim}g=A$. Явная дельта: $\delta_h(\varepsilon)=\min\{r,\delta_f(\varepsilon),\delta_g(\varepsilon)\}$. Шар в условии выколот: значение $h(x_0)$ на предел не влияет, поэтому теорема применима и к функциям, не определённым в $x_0$.`,
 		related: ['kriteriy-sushchestvovaniya-predela', 'obobshchennaya-teorema-o-szhatoy', 'end-r', 'predel-funkcii']
 	},
 
@@ -103,7 +103,7 @@ export const day27Terms: Glossary = {
 		term: 'Предел композиции функций',
 		short: String.raw`Дельта композиции — это композиция дельт, но нужно условие $g(x)\ne y_0$.`,
 		formula: String.raw`\delta_{f\circ g}(\varepsilon)=\min\bigl\{r,\ \delta_g\bigl(\sigma_f(\varepsilon)\bigr)\bigr\}`,
-		body: String.raw`**Предел композиции**: если $\lim_{x\to x_0}g=y_0$, $\lim_{y\to y_0}f=A$ и $g(x)\ne y_0$ в некоторой [[vykolotaya-okrestnost|выколотой окрестности]] $x_0$, то $\lim_{x\to x_0}f(g(x))=A$. Приём — подставить дельту внешней функции внутрь как эпсилон внутренней. Без третьего условия утверждение ложно: при $g\equiv0$ и $f(y)=1$ при $y\ne0$, $f(0)=0$ композиция стремится к $0$, а не к $1$. Альтернатива — непрерывность $f$ в $y_0$ (день 28).`,
+		body: String.raw`**Предел композиции**: если $\lim_{x\to x_0}g=y_0$, $\lim_{y\to y_0}f=A$ и $g(x)\ne y_0$ в некоторой [[vykolotaya-okrestnost|выколотой окрестности]] $x_0$, то $\lim_{x\to x_0}f(g(x))=A$. Приём — подставить дельту внешней функции внутрь как эпсилон внутренней. Без третьего условия утверждение ложно: при $g\equiv0$ и $f(y)=1$ при $y\ne0$, $f(0)=0$ композиция стремится к $0$, а не к $1$. Альтернатива — непрерывность $f$ в $y_0$ ([день 28](/aii/matan/1/day/28)).`,
 		related: ['predel-funkcii', 'vykolotaya-okrestnost', 'arifmetika-predelov-funkcii', 'teorema-o-szhatoy-funkcii']
 	}
 };
