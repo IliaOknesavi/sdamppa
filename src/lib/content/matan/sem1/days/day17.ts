@@ -60,19 +60,29 @@ $$\exists C>0\ \exists N\ \forall n>N:\ \ |f_n|\le C\,|g_n|.$$
 
 $$\boxed{\ \overline o(g_n)\subset\underline O(g_n),\qquad \Theta(g_n)=\underline O(g_n)\cap\Omega(g_n),\qquad f_n\in\Theta(g_n)\Rightarrow C_1C_2=1\ }$$
 
-**Доказательство.** Первое включение — прямо по определению: условие $\lim f_n/g_n=0$ есть частный случай условия «предел существует и конечен», нулевое значение $C$ разрешено явно. Включение **строгое**: сама $g_n$ лежит в $\underline O(g_n)$, потому что $\lim g_n/g_n=1$, но в $\overline o(g_n)$ не лежит, потому что $1\ne0$.
+**Доказательство.** Первое включение — прямо по определению:
 
-Второе равенство тоже читается из определений: принадлежность $\Theta(g_n)$ — это буквально конъюнкция «$\lim f_n/g_n$ конечен» (то есть $f_n\in\underline O(g_n)$) и «$\lim g_n/f_n$ конечен» (то есть $f_n\in\Omega(g_n)$).
+$$f_n\in\overline o(g_n)\ \iff\ \lim_{n\to\infty}\frac{f_n}{g_n}=0\ \overset{C=0\ \text{разрешено}}{\Longrightarrow}\ \exists\lim_{n\to\infty}\frac{f_n}{g_n}=C\in\mathbb R\ \iff\ f_n\in\underline O(g_n).$$
 
-Содержательная часть — третье утверждение. На хвосте $f_n\ne0$ и $g_n\ne0$, поэтому при всех таких $n$ выполнено тождество
+Включение **строгое**:
 
-$$\frac{f_n}{g_n}\cdot\frac{g_n}{f_n}=1.$$
+$$\lim_{n\to\infty}\frac{g_n}{g_n}=1\in\mathbb R\ \Longrightarrow\ g_n\in\underline O(g_n),\qquad 1\ne0\ \Longrightarrow\ g_n\notin\overline o(g_n).$$
 
-Слева стоит произведение двух сходящихся последовательностей, и по арифметическому свойству предела произведения ([день 12](/aii/matan/1/day/12)) его предел равен $C_1C_2$; справа — стационарная единица с пределом $1$. По единственности предела
+Второе равенство тоже читается из определений:
 
-$$C_1C_2=1,$$
+$$f_n\in\Theta(g_n)\ \iff\ \underbrace{\exists\lim_{n\to\infty}\frac{f_n}{g_n}=C_1\in\mathbb R}_{f_n\in\underline O(g_n)}\ \ \text{и}\ \ \underbrace{\exists\lim_{n\to\infty}\frac{g_n}{f_n}=C_2\in\mathbb R}_{f_n\in\Omega(g_n)}.$$
 
-а значит **ни один из двух пределов не может быть нулевым** (произведение с нулём дало бы $0\ne1$). Отсюда $\Theta(g_n)\subset\underline O(g_n)\setminus\overline o(g_n)$: в $\Theta$ предел конечен и заведомо отличен от нуля, хотя в самом определении $\Theta$ этого не потребовано. Обратное включение доказано в следующей секции. $\qquad\blacksquare$`
+Содержательная часть — третье утверждение:
+
+$$\text{на хвосте}\ f_n\ne0,\ g_n\ne0\ \Longrightarrow\ \forall\ \text{такого}\ n:\ \frac{f_n}{g_n}\cdot\frac{g_n}{f_n}=1,$$
+
+$$\lim_{n\to\infty}\Bigl(\frac{f_n}{g_n}\cdot\frac{g_n}{f_n}\Bigr)\ \overset{\text{предел произведения}}{=}\ C_1C_2,\qquad \lim_{n\to\infty}1\ \overset{\text{стационарная}}{=}\ 1\ \overset{\text{единственность предела}}{\Longrightarrow}\ C_1C_2=1$$
+
+(предел произведения двух сходящихся — арифметика пределов, [день 12](/aii/matan/1/day/12)).
+
+$$C_1C_2=1\ \Longrightarrow\ C_1\ne0\ \ \text{и}\ \ C_2\ne0\ \Longrightarrow\ \Theta(g_n)\subset\underline O(g_n)\setminus\overline o(g_n)$$
+
+(**ни один из двух пределов не может быть нулевым**: произведение с нулём дало бы $0\ne1$). То есть в $\Theta$ предел конечен и заведомо отличен от нуля, хотя в самом определении $\Theta$ этого не потребовано. Обратное включение доказано в следующей секции. $\qquad\blacksquare$`
 		},
 		{
 			kind: 'derivation',

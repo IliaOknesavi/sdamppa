@@ -98,25 +98,37 @@ $$\eta(x_0)=\overline{\lim_{x\to x_0}}\,f(x)-\underline{\lim_{x\to x_0}}\,f(x)=\
 
 $$\boxed{\ \lim_{x\to x_0}f(x)=A\ \iff\ \overline{\lim_{x\to x_0}}\,f(x)=\underline{\lim_{x\to x_0}}\,f(x)=A\ \iff\ \overline{\lim_{x\to x_0}}\,f(x)=A\ \text{и}\ \eta(x_0)=0.\ }$$
 
-**Доказательство.** Приём — **зажать значение между огибающими**: всё держится на неравенстве $i(\delta)\leqslant f(x)\leqslant S(\delta)$, верном для любого $x\in\mathring B_{x_0}(\delta)$ прямо по определению точных граней.
+**Доказательство.** Приём — **зажать значение между огибающими**: всё держится на неравенстве, верном прямо по определению точных граней,
 
-$(\Rightarrow)$ Пусть $\lim f=A$. Возьмём $\varepsilon>0$ и $\delta_f(\varepsilon/2)$ из определения по Коши: при $x\in\mathring B_{x_0}(\delta_f)$ выполнено $A-\frac\varepsilon2<f(x)<A+\frac\varepsilon2$. Значит $A+\frac\varepsilon2$ — верхняя граница множества значений на этом шаре, а $A-\frac\varepsilon2$ — нижняя, и для всех $\delta\leqslant\delta_f$
+$$\forall\delta>0\ \ \forall x\in\mathring B_{x_0}(\delta):\qquad i(\delta)\ \leqslant\ f(x)\ \leqslant\ S(\delta).$$
 
-$$A-\frac\varepsilon2\ \leqslant\ i(\delta)\ \leqslant\ S(\delta)\ \leqslant\ A+\frac\varepsilon2$$
+$(\Rightarrow)$
 
-(нижняя оценка для $S$ и верхняя для $i$ нужны отдельно и получаются потому, что выколотый шар **непуст** — вот единственное место, где работает предельность точки $x_0$). Отсюда $|S(\delta)-A|<\varepsilon$ и $|i(\delta)-A|<\varepsilon$ при всех $\delta\leqslant\delta_f(\varepsilon/2)$, то есть
+$$\lim_{x\to x_0}f=A\ \overset{\text{Коши}}{\Longrightarrow}\ \forall\varepsilon>0\ \ \exists\delta_f\bigl(\tfrac\varepsilon2\bigr)>0\ \ \forall x\in\mathring B_{x_0}(\delta_f):\ \ A-\frac\varepsilon2<f(x)<A+\frac\varepsilon2$$
 
-$$\lim_{\delta\to0}S(\delta)=\lim_{\delta\to0}i(\delta)=A,\qquad \delta'_s(\varepsilon)=\delta_f\Bigl(\frac\varepsilon2\Bigr).$$
+$$\overset{A+\frac\varepsilon2\ \text{верхняя граница значений},\ A-\frac\varepsilon2\ \text{нижняя}}{\Longrightarrow}\ \forall\delta\leqslant\delta_f:\qquad A-\frac\varepsilon2\ \leqslant\ i(\delta)\ \leqslant\ S(\delta)\ \leqslant\ A+\frac\varepsilon2$$
 
-Деление $\varepsilon$ пополам здесь обязательно: нестрогие неравенства для граней превращаются в строгие оценки $|S-A|<\varepsilon$ только с запасом.
+$$\Longrightarrow\ \forall\delta\leqslant\delta_f\bigl(\tfrac\varepsilon2\bigr):\ \ |S(\delta)-A|<\varepsilon,\ \ |i(\delta)-A|<\varepsilon\ \Longrightarrow\ \lim_{\delta\to0}S(\delta)=\lim_{\delta\to0}i(\delta)=A,\qquad \delta'_s(\varepsilon)=\delta_f\Bigl(\frac\varepsilon2\Bigr).$$
 
-$(\Leftarrow)$ Пусть $\overline{\lim}f=\underline{\lim}f=A$ и $A$ конечно. По $\varepsilon>0$ найдём $\delta_1$ с $S(\delta)<A+\varepsilon$ при всех $\delta<\delta_1$ и $\delta_2$ с $i(\delta)>A-\varepsilon$ при всех $\delta<\delta_2$. Положим $\delta_f(\varepsilon)=\frac12\min\{\delta_1,\delta_2\}$ — половина берётся, чтобы оба строгих неравенства были уже выполнены. Тогда для любого $x\in\mathring B_{x_0}(\delta_f)$
+Нижняя оценка для $S$ и верхняя для $i$ нужны отдельно и получаются потому, что выколотый шар **непуст** — вот единственное место, где работает предельность точки $x_0$. Деление $\varepsilon$ пополам здесь обязательно: нестрогие неравенства для граней превращаются в строгие оценки $|S-A|<\varepsilon$ только с запасом.
 
-$$A-\varepsilon<i(\delta_f)\leqslant f(x)\leqslant S(\delta_f)<A+\varepsilon\ \Longrightarrow\ |f(x)-A|<\varepsilon,$$
+$(\Leftarrow)$ Пусть $A$ конечно.
 
-то есть определение по Коши выполнено с явной формулой $\delta_f(\varepsilon)=\frac12\min\{\delta_1(\varepsilon),\delta_2(\varepsilon)\}$.
+$$\overline{\lim}f=\underline{\lim}f=A\ \Longrightarrow\ \forall\varepsilon>0\ \ \exists\delta_1:\ \forall\delta<\delta_1\ \ S(\delta)<A+\varepsilon,\ \ \ \exists\delta_2:\ \forall\delta<\delta_2\ \ i(\delta)>A-\varepsilon$$
 
-Третья эквивалентность бесплатна: $\eta=\overline{\lim}f-\underline{\lim}f$, поэтому при конечном $\overline{\lim}f=A$ условие $\eta=0$ равносильно $\underline{\lim}f=A$. В кванторах она читается так: $\forall\varepsilon>0\ \exists\delta'>0\ \forall\delta<\delta':\ S(\delta)-i(\delta)\in B_0(\varepsilon)$. $\qquad\blacksquare$`
+$$\delta_f(\varepsilon):=\frac12\min\{\delta_1(\varepsilon),\delta_2(\varepsilon)\}\ \Longrightarrow\ \forall x\in\mathring B_{x_0}(\delta_f):\ \ A-\varepsilon<i(\delta_f)\leqslant f(x)\leqslant S(\delta_f)<A+\varepsilon$$
+
+$$\Longrightarrow\ |f(x)-A|<\varepsilon\ \overset{\text{Коши}}{\Longrightarrow}\ \lim_{x\to x_0}f=A.$$
+
+Половина в $\delta_f$ берётся, чтобы оба строгих неравенства были уже выполнены.
+
+Третья эквивалентность бесплатна:
+
+$$\eta=\overline{\lim}f-\underline{\lim}f,\qquad \overline{\lim}f=A\in\mathbb R\ \Longrightarrow\ \bigl(\eta=0\iff\underline{\lim}f=A\bigr).$$
+
+В кванторах она читается так:
+
+$$\forall\varepsilon>0\ \exists\delta'>0\ \forall\delta<\delta':\ \ S(\delta)-i(\delta)\in B_0(\varepsilon).\qquad\blacksquare$$`
 		},
 		{
 			kind: 'note',
@@ -138,13 +150,19 @@ $$f_n(x)=\begin{cases}5,&|x|<\frac1n,\\0,&|x|\geqslant\frac1n,\end{cases}\qquad 
 
 $$\boxed{\ \lim_{x\to x_0}h(x)=A.\ }$$
 
-**Доказательство.** Приём — **пропустить неравенство через огибающие**, чтобы вся работа досталась [[kriteriy-sushchestvovaniya-predela|критерию существования предела]]. Из $f\leqslant h\leqslant g$ на выколотом шаре следует $i_f(\delta)\leqslant i_h(\delta)$ и $S_h(\delta)\leqslant S_g(\delta)$ при $\delta<r$ (грань монотонна по функции). Переходим к пределу при $\delta\to0$ — [нестрогое неравенство переживает предельный переход](/aii/matan/1/day/14), и монотонные пределы здесь существуют по лемме выше:
+**Доказательство.** Приём — **пропустить неравенство через огибающие**, чтобы вся работа досталась [[kriteriy-sushchestvovaniya-predela|критерию существования предела]].
 
-$$A=\underline{\lim}\,f\ \leqslant\ \underline{\lim}\,h\ \leqslant\ \overline{\lim}\,h\ \leqslant\ \overline{\lim}\,g=A,$$
+$$\forall x\in\mathring B_{x_0}(r):\ \ f(x)\leqslant h(x)\leqslant g(x)\ \overset{\text{грань монотонна по функции}}{\Longrightarrow}\ \forall\delta<r:\ \ i_f(\delta)\leqslant i_h(\delta),\ \ S_h(\delta)\leqslant S_g(\delta)$$
 
-где крайние равенства — критерий, применённый к $f$ и $g$. Значит $\overline{\lim}h=\underline{\lim}h=A$, и тот же критерий в обратную сторону даёт $\lim h=A$. Явная дельта берётся напрямую: из $A-\varepsilon<f(x)$ и $g(x)<A+\varepsilon$ сразу $A-\varepsilon<h(x)<A+\varepsilon$, поэтому
+$$\overset{\delta\to0}{\Longrightarrow}\ A\overset{\text{критерий для }f}{=}\underline{\lim}\,f\ \leqslant\ \underline{\lim}\,h\ \leqslant\ \overline{\lim}\,h\ \leqslant\ \overline{\lim}\,g\overset{\text{критерий для }g}{=}A$$
 
-$$\delta_h(\varepsilon)=\min\bigl\{r,\ \delta_f(\varepsilon),\ \delta_g(\varepsilon)\bigr\}.\qquad\blacksquare$$
+$$\Longrightarrow\ \overline{\lim}h=\underline{\lim}h=A\ \overset{\text{критерий обратно}}{\Longrightarrow}\ \lim_{x\to x_0}h=A.$$
+
+Предельный переход при $\delta\to0$ законен, потому что [нестрогое неравенство переживает предельный переход](/aii/matan/1/day/14), а монотонные пределы огибающих существуют по лемме выше.
+
+Явная дельта берётся напрямую:
+
+$$A-\varepsilon<f(x),\ \ g(x)<A+\varepsilon\ \Longrightarrow\ A-\varepsilon<h(x)<A+\varepsilon\ \Longrightarrow\ \delta_h(\varepsilon)=\min\bigl\{r,\ \delta_f(\varepsilon),\ \delta_g(\varepsilon)\bigr\}.\qquad\blacksquare$$
 
 Шар в условии выколот не для красоты: значение $h(x_0)$ на предел не влияет, поэтому требовать неравенство $f\leqslant h\leqslant g$ в самой точке незачем — версия с выколотым шаром сильнее и применима, например, к $h(x)=\frac{\cos x-1}{x}$, которая в нуле вовсе не определена.
 
@@ -154,7 +172,9 @@ $$\delta_h(\varepsilon)=\min\bigl\{r,\ \delta_f(\varepsilon),\ \delta_g(\varepsi
 
 $$\rho_2\bigl(g(x),A\bigr)\ \leqslant\ \underbrace{\rho_2\bigl(g(x),f_n(x)\bigr)}_{<\ \varepsilon_n}\ +\ \underbrace{\rho_2\bigl(f_n(x),f(x)\bigr)}_{<\ \text{равномерная оценка}}\ +\ \underbrace{\rho_2\bigl(f(x),A\bigr)}_{<\ \text{из }\lim f=A}.$$
 
-По данному $\varepsilon$ берём $N$ с $\varepsilon_N<\frac\varepsilon3$ и $\sup_{\mathring B_{x_0}(r)}\rho_2(f_N,f)<\frac\varepsilon3$, после чего $\delta_g(\varepsilon)=\min\{r,\ \delta_N,\ \delta_f(\varepsilon/3)\}$: при $x\in\mathring B_{x_0}(\delta_g)$ первое слагаемое мало по условию сжатия (берём $x_1=x_2=x$), второе — по равномерной сходимости, третье — по определению предела $f$. $\qquad\blacksquare$
+$$\forall\varepsilon>0\ \ \exists N:\ \ \varepsilon_N<\frac\varepsilon3,\ \ \sup_{\mathring B_{x_0}(r)}\rho_2(f_N,f)<\frac\varepsilon3\ \Longrightarrow\ \delta_g(\varepsilon)=\min\Bigl\{r,\ \delta_N,\ \delta_f\bigl(\tfrac\varepsilon3\bigr)\Bigr\}$$
+
+$$\forall x\in\mathring B_{x_0}(\delta_g):\quad \rho_2\bigl(g(x),A\bigr)\ \leqslant\ \underbrace{\varepsilon_N}_{\text{сжатие},\ x_1=x_2=x}+\underbrace{\sup_{\mathring B_{x_0}(r)}\rho_2(f_N,f)}_{\text{равномерная сходимость}}+\underbrace{\rho_2\bigl(f(x),A\bigr)}_{\lim f=A}\ <\ \frac\varepsilon3+\frac\varepsilon3+\frac\varepsilon3=\varepsilon.\qquad\blacksquare$$
 
 Частный случай, где среднее слагаемое исчезает: если сама $f$ играет роль всего семейства, то есть $\rho_2\bigl(g(x),f(x')\bigr)<\varepsilon_n$ для всех $x,x'\in\mathring B_{x_0}(\delta_n)$, где $\delta_n\to0$, $\varepsilon_n\to0$ и $\lim f=A$, то ресурс делится уже пополам: при $\varepsilon_n<\frac\varepsilon2$ годится $\delta_g(\varepsilon)=\min\{\delta_n,\delta_f(\varepsilon/2)\}$.`
 		},

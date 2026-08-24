@@ -28,23 +28,25 @@ $$\lim_{n\to\infty}x_ny_n=AB,\qquad \lim_{n\to\infty}\frac{x_n}{y_n}=\frac AB\ \
 
 $$\boxed{\ \lim_{n\to\infty}(x_n+y_n)=A+B\ }$$
 
-**Доказательство.** Выпишем три определения — по одному на каждый объект, каждое со своей буквой ([[indeksaciya-epsilonov|эпсилон по объекту]]):
+**Доказательство.** Три определения — по одному на каждый объект, каждое со своей буквой ([[indeksaciya-epsilonov|эпсилон по объекту]]). Дано:
 
 $$\forall\varepsilon_x>0\ \ \exists N_x(\varepsilon_x)\ \ \forall n>N_x:\ |x_n-A|<\varepsilon_x,$$
 
-$$\forall\varepsilon_y>0\ \ \exists N_y(\varepsilon_y)\ \ \forall n>N_y:\ |y_n-B|<\varepsilon_y,$$
+$$\forall\varepsilon_y>0\ \ \exists N_y(\varepsilon_y)\ \ \forall n>N_y:\ |y_n-B|<\varepsilon_y;$$
 
-а получить надо третье: $\forall\varepsilon_{x+y}>0\ \exists N_{x+y}\ \forall n>N_{x+y}:\ |(x_n+y_n)-(A+B)|<\varepsilon_{x+y}$.
+получить надо третье:
 
-Сгруппируем отклонения и применим [[neravenstvo-treugolnika|неравенство треугольника]]:
+$$\forall\varepsilon_{x+y}>0\ \ \exists N_{x+y}\ \ \forall n>N_{x+y}:\ |(x_n+y_n)-(A+B)|<\varepsilon_{x+y}.$$
 
-$$|(x_n+y_n)-(A+B)|=|(x_n-A)+(y_n-B)|\le|x_n-A|+|y_n-B|.$$
+$$|(x_n+y_n)-(A+B)|\ \overset{\text{группировка}}{=}\ |(x_n-A)+(y_n-B)|\ \overset{\text{нер-во треугольника}}{\le}\ |x_n-A|+|y_n-B|$$
 
-Теперь [[raspredelenie-epsilon|распределим эпсилон]]: положим $\varepsilon_x=\varepsilon_y=\varepsilon_{x+y}/2$ и возьмём
+(звено $\le$ — это [[neravenstvo-treugolnika|неравенство треугольника]]).
 
-$$N_{x+y}(\varepsilon_{x+y})=\max\Bigl(N_x\bigl(\tfrac{\varepsilon_{x+y}}{2}\bigr),\ N_y\bigl(\tfrac{\varepsilon_{x+y}}{2}\bigr)\Bigr).$$
+$$\varepsilon_x:=\varepsilon_y:=\frac{\varepsilon_{x+y}}{2}\ \Longrightarrow\ N_{x+y}(\varepsilon_{x+y}):=\max\Bigl(N_x\bigl(\tfrac{\varepsilon_{x+y}}{2}\bigr),\ N_y\bigl(\tfrac{\varepsilon_{x+y}}{2}\bigr)\Bigr)$$
 
-(Максимум нужен потому, что каждое определение гарантирует свою оценку лишь со своего номера.) При $n>N_{x+y}$ обе оценки верны одновременно, и правая часть меньше $\tfrac{\varepsilon_{x+y}}2+\tfrac{\varepsilon_{x+y}}2=\varepsilon_{x+y}$. $\qquad\blacksquare$`
+— это [[raspredelenie-epsilon|распределение эпсилона]]; максимум нужен потому, что каждое определение гарантирует свою оценку лишь со своего номера.
+
+$$\forall n>N_{x+y}:\quad |(x_n+y_n)-(A+B)|\ \le\ |x_n-A|+|y_n-B|\ \overset{n>N_x,\ n>N_y}{<}\ \tfrac{\varepsilon_{x+y}}2+\tfrac{\varepsilon_{x+y}}2\ =\ \varepsilon_{x+y}.\qquad\blacksquare$$`
 		},
 		{
 			kind: 'derivation',
@@ -70,11 +72,19 @@ $$N_{x-y}(\varepsilon_{x-y})=\max\Bigl(N_x\bigl(\tfrac{\varepsilon_{x-y}}{2}\big
 
 $$\boxed{\ \lim_{n\to\infty}Cx_n=CA,\qquad N_{cx}(\varepsilon_{cx})=N_x\Bigl(\frac{\varepsilon_{cx}}{|C|}\Bigr)\ }$$
 
-**Доказательство.** Вынесем константу из-под модуля — это единственный содержательный шаг:
+**Доказательство.** Вынесение константы из-под модуля — единственный содержательный шаг:
 
-$$|Cx_n-CA|=|C|\cdot|x_n-A|.$$
+$$|Cx_n-CA|\ \overset{\text{однородность модуля}}{=}\ |C|\cdot|x_n-A|,$$
 
-Нам нужно $|C|\cdot|x_n-A|<\varepsilon_{cx}$, то есть $|x_n-A|<\varepsilon_{cx}/|C|$ (вот здесь и происходит деление на $|C|$ — именно поэтому в условии $C\ne0$). Число $\varepsilon_{cx}/|C|$ положительно, значит его законно подставить в определение предела $x_n$ на место $\varepsilon_x$: существует номер $N_x(\varepsilon_{cx}/|C|)$, начиная с которого $|x_n-A|<\varepsilon_{cx}/|C|$, а тогда и $|Cx_n-CA|<\varepsilon_{cx}$. Номер выписан явно, доказывать больше нечего. $\qquad\blacksquare$
+$$|C|\cdot|x_n-A|<\varepsilon_{cx}\ \overset{C\ne0}{\iff}\ |x_n-A|<\frac{\varepsilon_{cx}}{|C|}$$
+
+(вот здесь и происходит деление на $|C|$ — именно поэтому в условии $C\ne0$).
+
+$$\frac{\varepsilon_{cx}}{|C|}>0\ \overset{\varepsilon_x:=\varepsilon_{cx}/|C|}{\Longrightarrow}\ \exists N_x\Bigl(\frac{\varepsilon_{cx}}{|C|}\Bigr)\ \ \forall n>N_x\Bigl(\frac{\varepsilon_{cx}}{|C|}\Bigr):\ |x_n-A|<\frac{\varepsilon_{cx}}{|C|},$$
+
+$$\Longrightarrow\ \forall n>N_{cx}(\varepsilon_{cx})=N_x\Bigl(\frac{\varepsilon_{cx}}{|C|}\Bigr):\quad |Cx_n-CA|=|C|\cdot|x_n-A|<|C|\cdot\frac{\varepsilon_{cx}}{|C|}=\varepsilon_{cx}.\qquad\blacksquare$$
+
+Номер выписан явно, доказывать больше нечего.
 
 Случай $C=0$ выпадает не потому, что утверждение ложно: $0\cdot x_n\equiv0$ — стационарная последовательность, её предел равен $0=0\cdot A$, и годится любой номер, хоть $N=1$. Ложным становится **этот вывод**: делить на $|C|=0$ нельзя. Оговорка $C\ne0$ ограничивает приём, а не свойство предела.`
 		},
@@ -113,15 +123,19 @@ $$N_{xy}(\varepsilon_{xy})=\max\Bigl(N_x(1),\ N_x\bigl(\tfrac{\varepsilon_{xy}}{
 
 $$\boxed{\ \lim_{n\to\infty}\frac{x_n}{y_n}=\frac AB\ }$$
 
-**Доказательство.** Первый шаг — [[otdelennost-ot-nulya|отделённость от нуля]]. Подставим в определение $y_n$ значение $\varepsilon_y=|B|/2>0$: при $n>N_y(|B|/2)$
+**Доказательство.** Первый шаг — [[otdelennost-ot-nulya|отделённость от нуля]]: подстановка $\varepsilon_y:=|B|/2>0$ в определение предела $y_n$ даёт
 
-$$|y_n|\ \ge\ |B|-|y_n-B|\ >\ |B|-\frac{|B|}{2}=\frac{|B|}{2}\ >\ 0,$$
+$$\forall n>N_y\bigl(\tfrac{|B|}{2}\bigr):\quad |y_n|\ \overset{\text{нер-во треугольника}}{\ge}\ |B|-|y_n-B|\ \overset{n>N_y}{>}\ |B|-\frac{|B|}{2}=\frac{|B|}{2}\ >\ 0\ \Longrightarrow\ y_n\ne0,$$
 
-значит, дробь определена. Дальше — тот же промежуточный член, что и в произведении:
+то есть дробь определена. Дальше — тот же промежуточный член, что и в произведении:
 
 $$\frac{x_n}{y_n}-\frac AB=\frac{B(x_n-A)-A(y_n-B)}{y_nB},\qquad \Bigl|\frac{x_n}{y_n}-\frac AB\Bigr|\le\frac{2\bigl(|B|\,|x_n-A|+|A|\,|y_n-B|\bigr)}{|B|^2}$$
 
-(в знаменателе $|y_n|\,|B|$ заменено меньшим $|B|^2/2$ — дробь от этого только выросла). Теперь [[raspredelenie-epsilon|распределяем эпсилон]] неравными долями: $\varepsilon_x=\frac{\varepsilon|B|}{4}$, $\varepsilon_y=\frac{\varepsilon|B|^2}{4(|A|+1)}$ (знаменатель $|A|+1$, а не $|A|$, — чтобы годилось и при $A=0$):
+(в знаменателе $|y_n|\,|B|$ заменено меньшим $|B|^2/2$ — дробь от этого только выросла).
+
+$$\varepsilon_x:=\frac{\varepsilon|B|}{4},\qquad \varepsilon_y:=\frac{\varepsilon|B|^2}{4(|A|+1)}$$
+
+— [[raspredelenie-epsilon|распределение эпсилона]] неравными долями; знаменатель $|A|+1$, а не $|A|$, — чтобы годилось и при $A=0$. Тогда
 
 $$|B|\varepsilon_x+|A|\varepsilon_y\le\frac{\varepsilon|B|^2}{4}+\frac{\varepsilon|B|^2}{4}=\frac{\varepsilon|B|^2}{2}\ \Longrightarrow\ \Bigl|\frac{x_n}{y_n}-\frac AB\Bigr|<\frac{2}{|B|^2}\cdot\frac{\varepsilon|B|^2}{2}=\varepsilon,$$
 

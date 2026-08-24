@@ -28,25 +28,25 @@ $$\forall n\in\mathbb N_1:\quad x_n\le y_n\le z_n,\qquad\text{то есть}\qua
 
 $$\boxed{\ \lim_{n\to\infty}y_n=A,\qquad N_y(\varepsilon_y)=\max\bigl(N_x(\varepsilon_y),\ N_z(\varepsilon_y)\bigr).\ }$$
 
-**Доказательство.** Зафиксируем ресурс $\varepsilon_y>0$ и раздадим его конвоирам целиком, не деля: $\varepsilon_x=\varepsilon_z=\varepsilon_y$ (делить пополам нечего — оценка пойдёт по одной цепочке неравенств, а не по сумме двух слагаемых). Возьмём
+**Доказательство.** Фиксируем ресурс $\varepsilon_y>0$ и раздаём его конвоирам целиком, не деля:
 
-$$N_y(\varepsilon_y)=\max\bigl(N_x(\varepsilon_y),\ N_z(\varepsilon_y)\bigr);$$
+$$\varepsilon_x:=\varepsilon_z:=\varepsilon_y,\qquad N_y(\varepsilon_y):=\max\bigl(N_x(\varepsilon_y),\ N_z(\varepsilon_y)\bigr)$$
 
-тогда при $n>N_y$ работают **оба** определения предела сразу, то есть $|x_n-A|<\varepsilon_y$ и $|z_n-A|<\varepsilon_y$, а значит
+(делить пополам нечего — оценка пойдёт по одной цепочке неравенств, а не по сумме двух слагаемых).
 
-$$A-\varepsilon_y<x_n,\qquad z_n<A+\varepsilon_y.$$
+$$\forall n>N_y:\quad |x_n-A|\ \overset{n>N_x}{<}\ \varepsilon_y\ \ \text{и}\ \ |z_n-A|\ \overset{n>N_z}{<}\ \varepsilon_y\ \Longrightarrow\ A-\varepsilon_y<x_n,\qquad z_n<A+\varepsilon_y$$
 
-Дальше — разбор двух случаев по знаку разности $y_n-A$ (иначе модуль не раскрыть).
+(при $n>N_y$ работают **оба** определения предела сразу).
 
-Случай $y_n>A$. Здесь $|y_n-A|=y_n-A$, и работает правое неравенство сжатия $y_n\le z_n$:
+Дальше — разбор двух случаев по знаку разности $y_n-A$ (иначе модуль не раскрыть):
 
-$$|y_n-A|=y_n-A\le z_n-A<\varepsilon_y.$$
+$$y_n>A:\qquad |y_n-A|\ \overset{y_n-A>0}{=}\ y_n-A\ \overset{y_n\le z_n}{\le}\ z_n-A\ \overset{n>N_z}{<}\ \varepsilon_y,$$
 
-Случай $y_n\le A$. Здесь $|y_n-A|=A-y_n$, и работает левое неравенство $x_n\le y_n$:
+$$y_n\le A:\qquad |y_n-A|\ \overset{y_n-A\le0}{=}\ A-y_n\ \overset{x_n\le y_n}{\le}\ A-x_n\ \overset{n>N_x}{<}\ \varepsilon_y.$$
 
-$$|y_n-A|=A-y_n\le A-x_n<\varepsilon_y.$$
+Случаи исчерпывают всё, оценка в обоих одна и та же:
 
-Случаи исчерпывают всё, оценка в обоих одна и та же. Значит, $\forall n>N_y(\varepsilon_y):\ |y_n-A|<\varepsilon_y$, что и есть определение предела. $\qquad\blacksquare$`
+$$\Longrightarrow\ \forall n>N_y(\varepsilon_y):\ |y_n-A|<\varepsilon_y\ \iff\ \lim_{n\to\infty}y_n=A.\qquad\blacksquare$$`
 		},
 		{
 			kind: 'theorem',
@@ -127,21 +127,23 @@ $$\lim_{n\to\infty}f_n=f,\qquad \lim_{n\to\infty}t_n=0,\qquad \forall n:\ y_n\in
 
 $$\boxed{\ \lim_{n\to\infty}y_n=f,\qquad N_y(\varepsilon_y)=\max\Bigl(N_f\bigl(\tfrac{\varepsilon_y}{2}\bigr),\ N_t\bigl(\tfrac{\varepsilon_y}{2}\bigr)\Bigr).\ }$$
 
-**Доказательство.** Вставим промежуточную точку: расстояние от $f$ до $y_n$ пропустим через центр $f_n$. По [[neravenstvo-treugolnika|неравенству треугольника]]
+**Доказательство.** Промежуточная точка — центр $f_n$: расстояние от $f$ до $y_n$ пропускается через него, дальше работает [[neravenstvo-treugolnika|неравенство треугольника]].
 
-$$\rho(f,y_n)\le \rho(f,f_n)+\rho(f_n,y_n).$$
+$$\rho(f,y_n)\ \overset{\text{нер-во треугольника}}{\le}\ \rho(f,f_n)+\rho(f_n,y_n).$$
 
-Правое слагаемое уже оценено самим условием теоремы: $\rho(f_n,y_n)\le t_n$, а $\lim t_n=0$ означает $|t_n-0|=t_n<\varepsilon_t$ при $n>N_t(\varepsilon_t)$ (модуль снимается, потому что $t_n\ge0$ — радиус неотрицателен по смыслу). Левое слагаемое мало по определению $\lim f_n=f$: $\rho(f,f_n)<\varepsilon_f$ при $n>N_f(\varepsilon_f)$.
+$$\rho(f_n,y_n)\ \overset{\text{условие теоремы}}{\le}\ t_n\ \overset{t_n\ge0}{=}\ |t_n-0|\ \overset{\lim t_n=0,\ n>N_t(\varepsilon_t)}{<}\ \varepsilon_t$$
 
-Слагаемых теперь два, значит ресурс $\varepsilon_y$ делим пополам: $\varepsilon_f=\varepsilon_t=\dfrac{\varepsilon_y}{2}$. При
+(модуль снимается, потому что $t_n\ge0$ — радиус неотрицателен по смыслу).
 
-$$n>N_y(\varepsilon_y)=\max\Bigl(N_f\bigl(\tfrac{\varepsilon_y}{2}\bigr),\ N_t\bigl(\tfrac{\varepsilon_y}{2}\bigr)\Bigr)$$
+$$\rho(f,f_n)\ \overset{\lim f_n=f,\ n>N_f(\varepsilon_f)}{<}\ \varepsilon_f.$$
 
-обе оценки работают одновременно (в этом и смысл $\max$: он гарантирует, что мы вышли за оба порога), и
+$$\text{слагаемых два}\ \Longrightarrow\ \varepsilon_f:=\varepsilon_t:=\frac{\varepsilon_y}{2},\qquad N_y(\varepsilon_y):=\max\Bigl(N_f\bigl(\tfrac{\varepsilon_y}{2}\bigr),\ N_t\bigl(\tfrac{\varepsilon_y}{2}\bigr)\Bigr)$$
 
-$$\rho(f,y_n)<\frac{\varepsilon_y}{2}+\frac{\varepsilon_y}{2}=\varepsilon_y,$$
+(в этом и смысл $\max$: он гарантирует, что мы вышли за оба порога, и обе оценки работают одновременно).
 
-то есть $y_n\in B_{\varepsilon_y}(f)$ — это и есть определение $\lim y_n=f$ на языке шаров. $\qquad\blacksquare$`
+$$\forall n>N_y(\varepsilon_y):\quad \rho(f,y_n)\ <\ \frac{\varepsilon_y}{2}+\frac{\varepsilon_y}{2}\ =\ \varepsilon_y\ \Longrightarrow\ y_n\in B_{\varepsilon_y}(f)\ \iff\ \lim_{n\to\infty}y_n=f$$
+
+— последняя эквивалентность и есть определение предела на языке шаров. $\qquad\blacksquare$`
 		},
 		{
 			kind: 'note',

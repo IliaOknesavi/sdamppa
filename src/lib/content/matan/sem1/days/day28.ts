@@ -40,17 +40,23 @@ $$\boxed{\ f\ \text{непрерывна в каждой точке по }\varep
 
 **Доказательство.** Приём — вписывать шар: [[otkrytoe-mnozhestvo|открытость]] в метрике означает «вокруг каждой точки помещается шар», и обе стрелки сводятся к подбору его радиуса.
 
-$(\Rightarrow)$ Возьмём $V\in\tau_2$ и точку $x_0\in f^-(V)$. Раз $V$ открыто, найдётся $\varepsilon(x_0)>0$ с $B_{f(x_0)}(\varepsilon)\subset V$, а $\varepsilon$-$\delta$ непрерывность в $x_0$ даёт $\delta\bigl(x_0,\varepsilon(x_0)\bigr)$ с
+$(\Rightarrow)$
 
-$$f\bigl(B_{x_0}(\delta)\bigr)\subset B_{f(x_0)}(\varepsilon)\subset V,\qquad\text{а}\quad f(A)\subset V\iff A\subset f^-(V),$$
+$$\forall V\in\tau_2\ \ \forall x_0\in f^-(V)\ \overset{V\ \text{открыто}}{\Longrightarrow}\ \exists\varepsilon(x_0)>0:\ \ B_{f(x_0)}(\varepsilon)\subset V$$
 
-откуда $B_{x_0}(\delta)\subset f^-(V)$ (последняя равносильность — определение [[proobraz|прообраза]]). Каждая точка $f^-(V)$ внутренняя, то есть $f^-(V)\in\tau_1$.
+$$\overset{\varepsilon\text{-}\delta\ \text{в }x_0}{\Longrightarrow}\ \exists\delta\bigl(x_0,\varepsilon(x_0)\bigr)>0:\ \ f\bigl(B_{x_0}(\delta)\bigr)\subset B_{f(x_0)}(\varepsilon)\subset V\ \overset{f(A)\subset V\ \iff\ A\subset f^-(V)}{\Longrightarrow}\ B_{x_0}(\delta)\subset f^-(V)$$
 
-$(\Leftarrow)$ Фиксируем $x_0$ и $\varepsilon>0$. Шар $V=B_{f(x_0)}(\varepsilon)$ открыт в $\tau_2$, значит $U=f^-(V)$ открыто по условию и содержит $x_0$; вписываем в него шар:
+$$\Longrightarrow\ \text{каждая точка } f^-(V)\ \text{внутренняя}\ \Longrightarrow\ f^-(V)\in\tau_1.$$
 
-$$\delta(\varepsilon)=r,\ \text{где}\ B_{x_0}(r)\subset f^-\bigl(B_{f(x_0)}(\varepsilon)\bigr)$$
+Использованная равносильность $f(A)\subset V\iff A\subset f^-(V)$ — определение [[proobraz|прообраза]].
 
-— и из $\rho_1(x,x_0)<\delta$ следует $\rho_2(f(x),f(x_0))<\varepsilon$. $\qquad\blacksquare$
+$(\Leftarrow)$
+
+$$\forall x_0\ \ \forall\varepsilon>0:\ \ V=B_{f(x_0)}(\varepsilon)\in\tau_2\ \overset{\text{условие}}{\Longrightarrow}\ U=f^-(V)\in\tau_1,\ \ x_0\in U$$
+
+$$\overset{U\ \text{открыто}}{\Longrightarrow}\ \exists r>0:\ \ B_{x_0}(r)\subset f^-\bigl(B_{f(x_0)}(\varepsilon)\bigr),\qquad \delta(\varepsilon):=r$$
+
+$$\Longrightarrow\ \rho_1(x,x_0)<\delta\ \Longrightarrow\ \rho_2\bigl(f(x),f(x_0)\bigr)<\varepsilon.\qquad\blacksquare$$
 
 **Следствие 1 ([[nepreryvnost-kompozicii|непрерывность композиции]]).** Для $f:T_1\to T_2$, $g:T_2\to T_3$ прообраз композиции разворачивается справа налево:
 
@@ -95,19 +101,39 @@ $$H:[0;1]\times[0;1]\to D,\qquad H(\cdot,0)=\gamma_0,\quad H(\cdot,1)=\gamma_1.$
 			heading: 'ЛСО влечёт СО всегда, обратное — только там, где шары выпуклы',
 			body: String.raw`Протащим разбиение назад по пути. Если область распалась, то распадётся и отрезок, соединяющий точки из разных кусков, — а про отрезок мы знаем всё.
 
-Пусть $D$ — [[lineyno-svyaznaya-oblast|ЛСО]], но не [[svyaznaya-oblast|СО]]: $D=P\sqcup Q$, где $P,Q$ непусты, открыты в $D$ и не пересекаются. Возьмём $x\in P$, $y\in Q$ и соединяющий их [[put|путь]] $\gamma$. Прообразы
+**Шаг 1. Разрез области тянется назад по пути.** Пусть $D$ — [[lineyno-svyaznaya-oblast|ЛСО]], но не [[svyaznaya-oblast|СО]], а $\gamma$ — соединяющий [[put|путь]].
 
-$$\gamma^-(P),\ \gamma^-(Q)\ \text{открыты в }[0;1]$$
+$$D=P\sqcup Q,\ \ P,Q\ne\varnothing\ \text{открыты в } D,\ \ P\cap Q=\varnothing,\qquad x\in P,\ y\in Q,\qquad \gamma:[0;1]\to D,\ \ \gamma(0)=x,\ \gamma(1)=y$$
 
-(по топологическому определению непрерывности), не пересекаются, непусты ($0\in\gamma^-(P)$, $1\in\gamma^-(Q)$) и в объединении дают весь $[0;1]$. Осталось показать, что так нельзя.
+$$\overset{\text{топологическое определение непрерывности}}{\Longrightarrow}\ \gamma^-(P),\ \gamma^-(Q)\ \text{открыты в }[0;1],\quad \gamma^-(P)\cap\gamma^-(Q)=\varnothing,\quad 0\in\gamma^-(P),\ \ 1\in\gamma^-(Q),\quad \gamma^-(P)\cup\gamma^-(Q)=[0;1].$$
+
+**Шаг 2. Отрезок так разрезать нельзя.** Осталось опровергнуть
 
 $$[0;1]=A\sqcup B,\ A\ni 0,\ \text{оба открыты в }[0;1]\ \Rightarrow\ \text{противоречие}.$$
 
-Положим $c=\sup\{t\in[0;1]:[0;t]\subset A\}$ (супремум существует по аксиоме полноты — тот же ход, что в марше отмеченных точек, [день 22](/aii/matan/1/day/22)); тогда $[0;c)\subset A$. Если $c\in B$, открытость $B$ даёт полуинтервал $(c-\eta;c]\subset B$, где уже сидят точки $A$, — противоречие. Значит $c\in A$, и открытость $A$ добавляет окрестность: при $c<1$ получаем $[0;c+\eta/2]\subset A$ вопреки супремуму. Остаётся $c=1$, $A=[0;1]$, $B=\varnothing$. Отрезок связен, и потому
+Марш супремума:
+
+$$\text{аксиома полноты}\ \Longrightarrow\ \exists\ c:=\sup\{t\in[0;1]:[0;t]\subset A\},\qquad [0;c)\subset A$$
+
+$$c\in B\ \overset{B\ \text{открыто}}{\Longrightarrow}\ \exists\eta>0:\ (c-\eta;c]\subset B,\ \ \text{где уже сидят точки } A\ \Longrightarrow\ \text{противоречие}$$
+
+$$\Longrightarrow\ c\in A\ \overset{A\ \text{открыто}}{\Longrightarrow}\ \bigl(c<1\ \Rightarrow\ [0;c+\eta/2]\subset A\ \text{вопреки супремуму}\bigr)\ \Longrightarrow\ c=1,\ \ A=[0;1],\ \ B=\varnothing.$$
+
+Супремум здесь — тот же ход, что в марше отмеченных точек ([день 22](/aii/matan/1/day/22)).
+
+**Шаг 3. Вывод.** Отрезок связен, и потому
 
 $$\boxed{\ \text{ЛСО}\ \Rightarrow\ \text{СО в произвольном топологическом пространстве } T.\ }$$
 
-Обратная импликация требует, чтобы малые шары сами были ЛСО. В нормированном пространстве это так: обозначим через $A$ множество точек $D$, соединимых с фиксированной $x_0$ путём внутри $D$; вокруг каждой точки $D$ помещается шар, шар выпукл, отрезок склеивается с уже построенным путём — значит $A$ и $D\setminus A$ открыты, $A\ne\varnothing$, и связность даёт $A=D$. Одной метрики для эквивалентности ОЛСО $\Leftrightarrow$ ОСО не хватает. Контрпример — замкнутая синусоида тополога $M=\{(x,\sin\frac1x):0<x\leqslant1\}\cup\bigl(\{0\}\times[-1;1]\bigr)$: множество $D=M$ открыто в $M$ и связно, но пути от $(0;0)$ вправо не существует. Верная формулировка — «в нормированном» либо «в локально линейно связном». $\qquad\blacksquare$
+**Шаг 4. Обратная импликация** требует, чтобы малые шары сами были ЛСО. В нормированном пространстве это так:
+
+$$A:=\{x\in D:\ \exists\ \text{путь из } x_0\ \text{в } x\ \text{внутри } D\},\qquad A\ne\varnothing$$
+
+$$\text{вокруг каждой точки } D\ \text{помещается шар},\ \ \text{шар выпукл},\ \ \text{отрезок склеивается с уже построенным путём}$$
+
+$$\Longrightarrow\ A\ \text{и } D\setminus A\ \text{открыты}\ \overset{\text{связность}}{\Longrightarrow}\ A=D.$$
+
+Одной метрики для эквивалентности ОЛСО $\Leftrightarrow$ ОСО не хватает. Контрпример — замкнутая синусоида тополога $M=\{(x,\sin\frac1x):0<x\leqslant1\}\cup\bigl(\{0\}\times[-1;1]\bigr)$: множество $D=M$ открыто в $M$ и связно, но пути от $(0;0)$ вправо не существует. Верная формулировка — «в нормированном» либо «в локально линейно связном». $\qquad\blacksquare$
 
 **Идея для запоминания:** доказательство переносит беду с области на отрезок — тот же приём сведения к уже изученному объекту, что и в определении по Гейне ([день 26](/aii/matan/1/day/26)), где предел функции сводился к пределу последовательности.`
 		},
@@ -120,19 +146,41 @@ $$\boxed{\ E=f(D)=[m;M],\qquad\text{то есть}\ \forall y\in[m;M]\ \exists x
 
 **Доказательство.** Приём — трижды перебросить свойство через прообраз: компактность, связность и порядок обрабатываются по очереди.
 
-**Шаг 1. Образ компакта — компакт.** Возьмём открытое покрытие $\{V_\alpha\}_{\alpha\in I}\supset E$. Прообразы $f^-(V_\alpha)$ открыты (топологическое определение) и покрывают $D$: каждая точка $x\in D$ даёт $f(x)\in E$, то есть попадает в какое-то $V_\alpha$. Компактность $D$ выдаёт конечный набор $\alpha_1,\dots,\alpha_n$ с $D\subset\bigcup_k f^-(V_{\alpha_k})$, откуда
+**Шаг 1. Образ компакта — компакт.**
 
-$$E=f(D)\subset\bigcup_{k=1}^n V_{\alpha_k}$$
+$$\bigcup_{\alpha\in I}V_\alpha\supset E,\ \ V_\alpha\ \text{открыты}\ \overset{\text{топологическое определение}}{\Longrightarrow}\ f^-(V_\alpha)\ \text{открыты},\qquad \forall x\in D:\ f(x)\in E\ \Longrightarrow\ \exists\alpha:\ f(x)\in V_\alpha$$
 
-(использовано только $f(f^-(V))\subset V$). Конечное подпокрытие построено — $E$ компакт.
+$$\Longrightarrow\ D\subset\bigcup_{\alpha\in I}f^-(V_\alpha)\ \overset{D\ \text{компакт}}{\Longrightarrow}\ \exists\alpha_1,\dots,\alpha_n:\ D\subset\bigcup_{k=1}^n f^-(V_{\alpha_k})\ \overset{f(f^-(V))\subset V}{\Longrightarrow}\ E=f(D)\subset\bigcup_{k=1}^n V_{\alpha_k}$$
 
-**Шаг 2. Почему $\min$ и $\max$, а не $\inf$ и $\sup$.** По теореме Гейне–Бореля ([день 23](/aii/matan/1/day/23)) компакт в $\mathbb R$ замкнут и ограничен. Ограниченность даёт $\inf E$ и $\sup E$, замкнутость — их принадлежность $E$: точная грань есть точка прикосновения, а [[zamykanie|замкнутое множество]] содержит все свои. Значит $m=\min E$, $M=\max E$ законны — и законны **только** из-за компактности: у $f(x)=x$ на $(0;1)$ точные грани есть, а наибольшего и наименьшего значения нет.
+$$\Longrightarrow\ \text{конечное подпокрытие построено}\ \Longrightarrow\ E\ \text{компакт}.$$
 
-**Шаг 3. Образ связного — связен.** Пусть $E=P\sqcup Q$, где $P=E\cap W_1$ и $Q=E\cap W_2$ непусты и не пересекаются, а $W_i$ открыты в $\mathbb R$. Тогда $f^-(W_1)\cap D$ и $f^-(W_2)\cap D$ открыты в $D$, непусты, не пересекаются (общая точка дала бы точку $E$ в $W_1\cap W_2$) и покрывают $D$ — разрез $D$ вопреки связности. Значит $E$ связно.
+**Шаг 2. Почему $\min$ и $\max$, а не $\inf$ и $\sup$.**
 
-**Шаг 4. Связное в $\mathbb R$ — промежуток.** Пусть $y_1,y_2\in E$, $y_1<y<y_2$, но $y\notin E$. Тогда $E\cap(-\infty;y)$ и $E\cap(y;+\infty)$ непусты, открыты в $E$, не пересекаются и покрывают $E$ — снова разрез. Значит с любыми двумя точками $E$ содержит всё между ними.
+$$E\ \text{компакт в }\mathbb R\ \overset{\text{Гейне–Борель}}{\Longrightarrow}\ E\ \text{замкнуто и ограничено}$$
 
-Собираем: $m,M\in E$ по шагу 2, поэтому по шагу 4 $[m;M]\subset E$, а $E\subset[m;M]$ верно по смыслу $\min$ и $\max$. Итого $E=[m;M]$. $\qquad\blacksquare$
+$$\overset{\text{ограниченность}}{\Longrightarrow}\ \exists\inf E,\ \sup E\ \overset{\text{замкнутость}}{\Longrightarrow}\ \inf E,\ \sup E\in E\ \Longrightarrow\ m=\min E,\ \ M=\max E.$$
+
+Теорема Гейне–Бореля — [день 23](/aii/matan/1/day/23). Вторая стрелка работает потому, что точная грань есть точка прикосновения, а [[zamykanie|замкнутое множество]] содержит все свои. Законны $\min$ и $\max$ **только** из-за компактности: у $f(x)=x$ на $(0;1)$ точные грани есть, а наибольшего и наименьшего значения нет.
+
+**Шаг 3. Образ связного — связен.**
+
+$$E=P\sqcup Q,\ \ P=E\cap W_1\ne\varnothing,\ \ Q=E\cap W_2\ne\varnothing,\ \ P\cap Q=\varnothing,\ \ W_1,W_2\ \text{открыты в }\mathbb R$$
+
+$$\Longrightarrow\ f^-(W_1)\cap D,\ \ f^-(W_2)\cap D\ \ \text{открыты в } D,\ \ \ne\varnothing,\ \ \text{не пересекаются},\ \ \text{покрывают } D$$
+
+$$\Longrightarrow\ \text{разрез } D\ \text{вопреки связности}\ \Longrightarrow\ E\ \text{связно}.$$
+
+Непересечение прообразов: общая точка дала бы точку $E$ в $W_1\cap W_2$.
+
+**Шаг 4. Связное в $\mathbb R$ — промежуток.**
+
+$$y_1,y_2\in E,\ \ y_1<y<y_2,\ \ y\notin E\ \Longrightarrow\ E\cap(-\infty;y),\ \ E\cap(y;+\infty)\ \ \ne\varnothing,\ \ \text{открыты в } E,\ \ \text{не пересекаются},\ \ \text{покрывают } E$$
+
+$$\Longrightarrow\ \text{снова разрез}\ \Longrightarrow\ \forall y_1,y_2\in E:\ \ [y_1;y_2]\subset E.$$
+
+**Сборка.**
+
+$$m,M\in E\ (\text{шаг }2)\ \overset{\text{шаг }4}{\Longrightarrow}\ [m;M]\subset E,\qquad E\subset[m;M]\ \text{по смыслу }\min\ \text{и}\ \max\ \Longrightarrow\ E=[m;M].\qquad\blacksquare$$
 
 Это одна теорема вместо двух: шаги 1–2 — **Вейерштрасс**, шаги 3–4 — **Больцано–Коши**. Отрезок разложен на два независимых свойства — компактность и связность, — и каждое отвечает за свою половину вывода. Оба условия неулучшаемы (задача 5).`
 		},
@@ -147,23 +195,31 @@ $$\forall\varepsilon>0\ \exists\delta>0\ \forall x,x'\in D:\ \rho_1(x,x')<\delta
 
 **Теорема Кантора.** [[ravnomernaya-nepreryvnost|Непрерывная на компакте функция равномерно непрерывна на нём.]]
 
-**Доказательство.** Пусть $f$ непрерывна на компакте $K$ и дано $\varepsilon>0$. По непрерывности в точке для каждого $x\in K$ найдётся $\delta_x>0$ такое, что
+**Доказательство.** Дано: $f$ непрерывна на компакте $K$, задано $\varepsilon>0$.
 
-$$\rho_1(y,x)<\delta_x\ \Longrightarrow\ \rho_2\bigl(f(y),f(x)\bigr)<\frac{\varepsilon}{2}.$$
+**Шаг 1. Локальные дельты.**
 
-Шары половинного радиуса $B_x\!\left(\frac{\delta_x}{2}\right)$ покрывают $K$: каждая точка лежит в своём. Это открытое покрытие, и по [[borel-lebeg|теореме Бореля–Лебега]] из него извлекается конечное подпокрытие — шары с центрами $x_1,\dots,x_m$. Положим
+$$\forall x\in K\ \ \exists\delta_x>0:\qquad \rho_1(y,x)<\delta_x\ \Longrightarrow\ \rho_2\bigl(f(y),f(x)\bigr)<\frac{\varepsilon}{2}.$$
+
+**Шаг 2. Половинные радиусы и конечное подпокрытие.**
+
+$$K\subset\bigcup_{x\in K}B_x\!\left(\frac{\delta_x}{2}\right)\ \text{открытое покрытие}\ \overset{\text{Борель–Лебег}}{\Longrightarrow}\ \exists x_1,\dots,x_m:\ \ K\subset\bigcup_{i=1}^m B_{x_i}\!\left(\frac{\delta_{x_i}}{2}\right).$$
+
+Шары половинного радиуса покрывают $K$ потому, что каждая точка лежит в своём; конечное подпокрытие извлекает [[borel-lebeg|теорема Бореля–Лебега]].
+
+**Шаг 3. Одно $\delta$ на всё множество.**
 
 $$\delta=\min_{1\le i\le m}\frac{\delta_{x_i}}{2}>0$$
 
 (минимум конечного набора положительных чисел положителен — здесь и работает конечность подпокрытия).
 
-Проверим это $\delta$. Пусть $y,y'\in K$ и $\rho_1(y,y')<\delta$. Точка $y$ накрыта каким-то шаром подпокрытия: $\rho_1(y,x_i)<\frac{\delta_{x_i}}{2}<\delta_{x_i}$, значит $\rho_2\bigl(f(y),f(x_i)\bigr)<\frac{\varepsilon}{2}$. Для второй точки применим неравенство треугольника:
+**Шаг 4. Проверка этого $\delta$.**
 
-$$\rho_1(y',x_i)\le\rho_1(y',y)+\rho_1(y,x_i)<\delta+\frac{\delta_{x_i}}{2}\le\frac{\delta_{x_i}}{2}+\frac{\delta_{x_i}}{2}=\delta_{x_i},$$
+$$y,y'\in K,\ \ \rho_1(y,y')<\delta\ \Longrightarrow\ \exists i:\ \rho_1(y,x_i)<\frac{\delta_{x_i}}{2}<\delta_{x_i}\ \overset{\text{шаг }1}{\Longrightarrow}\ \rho_2\bigl(f(y),f(x_i)\bigr)<\frac{\varepsilon}{2}$$
 
-откуда и $\rho_2\bigl(f(y'),f(x_i)\bigr)<\frac{\varepsilon}{2}$. Складывая через ту же точку $x_i$:
+$$\rho_1(y',x_i)\ \overset{\triangle}{\le}\ \rho_1(y',y)+\rho_1(y,x_i)<\delta+\frac{\delta_{x_i}}{2}\le\frac{\delta_{x_i}}{2}+\frac{\delta_{x_i}}{2}=\delta_{x_i}\ \overset{\text{шаг }1}{\Longrightarrow}\ \rho_2\bigl(f(y'),f(x_i)\bigr)<\frac{\varepsilon}{2}$$
 
-$$\rho_2\bigl(f(y),f(y')\bigr)\le\rho_2\bigl(f(y),f(x_i)\bigr)+\rho_2\bigl(f(x_i),f(y')\bigr)<\varepsilon.$$
+$$\Longrightarrow\ \rho_2\bigl(f(y),f(y')\bigr)\ \overset{\triangle}{\le}\ \rho_2\bigl(f(y),f(x_i)\bigr)+\rho_2\bigl(f(x_i),f(y')\bigr)<\varepsilon.$$
 
 Выбранное $\delta$ не зависит от точки — это и есть равномерность. $\qquad\blacksquare$
 

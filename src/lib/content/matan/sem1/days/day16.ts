@@ -62,21 +62,19 @@ $$\boxed{h_n\ \text{— бесконечно большая}}$$
 
 **Доказательство.** Приём — [[otdelennost-ot-nulya|отделить $g_n$ от нуля]] и минорировать произведение.
 
-Из сходимости: $\forall\varepsilon_g>0\ \exists N_g\ \forall n>N_g:\ |g_n-C|<\varepsilon_g$, то есть весь хвост лежит в коридоре
+$$\forall\varepsilon_g>0\ \ \exists N_g\ \ \forall n>N_g:\quad |g_n-C|<\varepsilon_g\ \iff\ C-\varepsilon_g<g_n<C+\varepsilon_g$$
 
-$$C-\varepsilon_g<g_n<C+\varepsilon_g.$$
+— весь хвост лежит в коридоре.
 
-Возьмём $\varepsilon_g=\dfrac{|C|}2$ (**здесь и работает оговорка $C\ne0$**: при $C=0$ положительного $\varepsilon_g$, отсекающего ноль, не существует). Коридор перестаёт содержать ноль, и величина отделённости
+$$\varepsilon_g:=\frac{|C|}2\ \overset{C\ne0}{>}\ 0\ \Longrightarrow\ \tilde\varepsilon:=\min\bigl(|C-\varepsilon_g|,\ |C+\varepsilon_g|\bigr)=\frac{|C|}2>0$$
 
-$$\tilde\varepsilon=\min\bigl(|C-\varepsilon_g|,\ |C+\varepsilon_g|\bigr)=\frac{|C|}2>0$$
+(**здесь и работает оговорка $C\ne0$**: при $C=0$ положительного $\varepsilon_g$, отсекающего ноль, не существует; коридор перестаёт содержать ноль).
 
-даёт при $n>N_g$ оценку $|g_n|\ge\tilde\varepsilon$, а с ней и минорирующую оценку $|h_n|=|F_n|\,|g_n|\ge\tilde\varepsilon\,|F_n|$.
+$$\forall n>N_g:\quad |g_n|\ \ge\ \tilde\varepsilon\ \Longrightarrow\ |h_n|=|F_n|\,|g_n|\ \ge\ \tilde\varepsilon\,|F_n|.$$
 
-Осталось загнать $|F_n|$ выше нужного уровня. Пусть задан порог $\varepsilon_h$; применим определение б.б. с $\varepsilon_F=\dfrac{\varepsilon_h}{\tilde\varepsilon}$ (порог для $F_n$ выбираем сами — определение даёт номер для любого):
+$$\varepsilon_F:=\frac{\varepsilon_h}{\tilde\varepsilon}\ \Longrightarrow\ \forall n>N_F(\varepsilon_F):\quad |h_n|\ \ge\ \tilde\varepsilon\,|F_n|\ \overset{|F_n|>\varepsilon_F}{>}\ \tilde\varepsilon\cdot\frac{\varepsilon_h}{\tilde\varepsilon}=\varepsilon_h$$
 
-$$|h_n|\ \ge\ \tilde\varepsilon\,|F_n|\ >\ \tilde\varepsilon\cdot\frac{\varepsilon_h}{\tilde\varepsilon}=\varepsilon_h.$$
-
-Явный номер:
+(порог для $F_n$ выбираем сами — определение даёт номер для любого). Явный номер:
 
 $$N_h(\varepsilon_h)=\max\Bigl(N_g\Bigl(\frac{|C|}2\Bigr),\ N_F\Bigl(\frac{2\varepsilon_h}{|C|}\Bigr)\Bigr).\qquad\blacksquare$$`
 		},
@@ -89,13 +87,15 @@ $$\boxed{h_n\ \text{— бесконечно большая}}$$
 
 **Доказательство.** Приём тот же, что и в предыдущей теореме, но отделять от нуля ничего не надо: второй множитель отделяет себя сам.
 
-Применим определение б.б. к $\tilde F_n$, взяв порог $\varepsilon_{\tilde F}=1$: найдётся номер $N_{\tilde F}(1)$, начиная с которого $|\tilde F_n|>1$. Тогда при всех $n>N_{\tilde F}(1)$
+$$\varepsilon_{\tilde F}:=1\ \Longrightarrow\ \exists N_{\tilde F}(1)\ \ \forall n>N_{\tilde F}(1):\ |\tilde F_n|>1,$$
 
-$$|h_n|=|F_n|\cdot|\tilde F_n|\ >\ |F_n|\cdot 1=|F_n|.$$
+$$\forall n>N_{\tilde F}(1):\quad |h_n|=|F_n|\cdot|\tilde F_n|\ \overset{|\tilde F_n|>1}{>}\ |F_n|\cdot 1=|F_n|.$$
 
-Теперь для заданного порога $\varepsilon_h$ возьмём $\varepsilon_F=\varepsilon_h$: при $n>N_F(\varepsilon_h)$ выполнено $|F_n|>\varepsilon_h$. Собирая оба условия,
+$$\varepsilon_F:=\varepsilon_h\ \Longrightarrow\ \forall n>N_F(\varepsilon_h):\ |F_n|>\varepsilon_h.$$
 
-$$|h_n|>|F_n|>\varepsilon_h,\qquad N_h(\varepsilon_h)=\max\bigl(N_{\tilde F}(1),\ N_F(\varepsilon_h)\bigr).\qquad\blacksquare$$
+Собирая оба условия:
+
+$$\forall n>N_h(\varepsilon_h)=\max\bigl(N_{\tilde F}(1),\ N_F(\varepsilon_h)\bigr):\quad |h_n|>|F_n|>\varepsilon_h.\qquad\blacksquare$$
 
 Знаки в выкладке нигде не участвовали, всё идёт через модули: произведение двух б.б. остаётся б.б. независимо от того, уходят ли сомножители вверх или вниз. Поэтому для произведения двух б.б. таблицы исходов не будет, а для разности — будет.`
 		},
