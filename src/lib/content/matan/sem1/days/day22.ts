@@ -62,7 +62,7 @@ $$\alpha\in[\alpha;\beta]\subset\bigcup_k U_k\ \Longrightarrow\ \exists k_0:\ \a
 
 $$a\in\bigcup_k U_k\ \Longrightarrow\ \exists k_a:\ a\in U_{k_a}\ \overset{\mathbb R\ \text{метризуемо}}{\Longrightarrow}\ \exists\varepsilon>0:\ (a-\varepsilon;\,a+\varepsilon)\subset U_{k_a}.$$
 
-Метрика здесь нужна именно как метрика: топология сама вписать шар в окрестность не позволяет.
+Метрика здесь нужна именно как метрика: [[metrizuemost|метризуемость]] $\mathbb R$ позволяет вписать [[shar|шар]] в произвольную [[okrestnost|окрестность]], топология сама этого не даёт.
 
 $$\bigcup_{k\in I_m}U_k\supset[\alpha;a],\quad U_{k_a}\supset\bigl[a;\,a+\tfrac\varepsilon2\bigr]\ \Longrightarrow\ \bigcup_{k\in I_m\cup\lbrace k_a\rbrace}U_k\supset\Bigl[\alpha;\,a+\frac\varepsilon2\Bigr],$$
 

@@ -12,7 +12,7 @@ export const day04Terms: Glossary = {
 		term: 'Фон-неймановская конструкция ℕ₀',
 		short: String.raw`Число как множество всех меньших: $0=\varnothing$, $n+1=n\cup\{n\}$.`,
 		formula: String.raw`0:=\varnothing,\qquad n+1:=n\cup\{n\}`,
-		body: String.raw`**Конструкция фон Неймана** кодирует натуральные числа множествами: нуль — это $\varnothing$, а следующее число получается присоединением самого себя, $n+1=n\cup\{n\}$. Отсюда $1=\{\varnothing\}$, $2=\{\varnothing,\{\varnothing\}\}$ и вообще $n=\{0,1,\dots,n-1\}$.`,
+		body: String.raw`**Конструкция фон Неймана** кодирует [[n-nol-n-odin|натуральные числа]] множествами так, чтобы выполнялись [[aksiomy-peano|аксиомы Пеано]]: нуль — это $\varnothing$, а следующее число получается присоединением самого себя, $n+1=n\cup\{n\}$. Отсюда $1=\{\varnothing\}$, $2=\{\varnothing,\{\varnothing\}\}$ и вообще $n=\{0,1,\dots,n-1\}$.`,
 		related: ['aksiomy-peano', 'n-nol-n-odin', 'celye-chisla']
 	},
 

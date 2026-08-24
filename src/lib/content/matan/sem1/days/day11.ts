@@ -67,7 +67,7 @@ $$(4)\Rightarrow(3):\qquad \forall\varepsilon>0\ \ U_A:=B_A(\varepsilon)\ \overs
 
 $$\overset{(4)}{\Longrightarrow}\ \exists N\ \forall n>N:\ f(n)\in\mathring U_A\subset B_A(\varepsilon)\ \Longrightarrow\ (3).$$
 
-Последнее включение и есть причина односторонности: в проколотый шар попасть труднее, чем в целый.
+Здесь $B_A(\varepsilon)$ — [[okrestnost|окрестность]] точки $A$, потому что открытый шар открыт ([день 7](/aii/matan/1/day/7)). Последнее включение и есть причина односторонности: в проколотый шар попасть труднее, чем в целый.
 
 $$(3)\Rightarrow(4):\qquad\text{неверно — контрпример в следующей секции}.\qquad\blacksquare$$
 

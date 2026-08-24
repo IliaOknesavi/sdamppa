@@ -48,7 +48,7 @@ export const day26Terms: Glossary = {
 		term: 'Неограниченность последовательности',
 		short: String.raw`Почти все члены выходят из любого шара и больше в него не возвращаются.`,
 		formula: String.raw`\forall\varepsilon>0\ \forall m\in M\ \exists N\ \forall n>N:\ \rho(x_n,m)>\varepsilon`,
-		body: String.raw`**Неограниченность** — метрическое понятие: для любой точки $m$ почти все члены лежат вне [[shar|шара]] $B_m(\varepsilon)$. Топология её не различает, поэтому топологической версии нет. Через неограниченность определяется [[beskonechnyy-predel|бесконечный предел]].`,
+		body: String.raw`**Неограниченность** — метрическое понятие: для любой точки $m$ почти все члены лежат вне [[shar|шара]] $B_m(\varepsilon)$. В [[topologicheskoe-prostranstvo|топологическом пространстве]] аналога нет. Топология её не различает, поэтому топологической версии нет. Через неограниченность определяется [[beskonechnyy-predel|бесконечный предел]].`,
 		related: ['beskonechnyy-predel', 'metricheskoe-prostranstvo', 'topologicheskoe-prostranstvo', 'shar']
 	},
 
