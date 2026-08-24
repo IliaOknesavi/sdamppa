@@ -92,11 +92,7 @@ export const day06Terms: Glossary = {
 		formula: String.raw`\overline{\bigcup_{i\in I}x_i}=\bigcap_{i\in I}\overline{x_i}`,
 		body: String.raw`**Правило де Моргана** переводит объединения в пересечения через [[dopolnenie|дополнение]]:
 
-$$\overline{\bigcup_{i\in I}x_i}=\bigcap_{i\in I}\overline{x_i}.$$
-
-Доказательство пробным элементом: $\xi$ лежит в левой части тогда и только тогда, когда $\xi$ не лежит ни в одном $x_i$, то есть когда $\xi$ принадлежит каждому $\overline{x_i}$ сразу.
-
-Это рабочий инструмент перехода «[[otkrytoe-mnozhestvo|открытое]] $\leftrightarrow$ [[zamknutoe-mnozhestvo|замкнутое]]»: раз объединение открытых открыто, то пересечение замкнутых замкнуто. Иллюстрации на прямой: $\mathbb R\setminus[x;y]=(-\infty;x)\cup(y;+\infty)$, а дополнение объединения двух непересекающихся отрезков — три интервала.`,
+$$\overline{\bigcup_{i\in I}x_i}=\bigcap_{i\in I}\overline{x_i}.$$`,
 		related: ['dopolnenie', 'zamknutoe-mnozhestvo', 'otkrytoe-mnozhestvo']
 	},
 
@@ -120,7 +116,7 @@ $$\overline{\bigcup_{i\in I}x_i}=\bigcap_{i\in I}\overline{x_i}.$$
 
 Точное определение: $\tau$ — наименьшее семейство, содержащее все интервалы и замкнутое относительно этих двух операций. Интервалы образуют его базу — всякое открытое множество есть объединение интервалов, лучи в том числе: $(-\infty;x)=\bigcup_{n\in\mathbb N_1}(x-n;x)$. Конечность в пересечении существенна: $\bigcap_n(-1/n;1/n)=\{0\}$, а одноточечное множество из интервалов не собирается. [[komponenta-svyaznosti|Открыто-замкнуты]] здесь только $\varnothing$ и $\mathbb R$.`,
 		related: ['topologiya', 'otkrytoe-mnozhestvo', 'komponenta-svyaznosti', 'topologicheskoe-prostranstvo']
-	}
+	},
 	'topologiya-podprostranstva': {
 		id: 'topologiya-podprostranstva',
 		term: 'Топология подпространства',

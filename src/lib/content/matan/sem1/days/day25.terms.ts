@@ -74,9 +74,7 @@ export const day25Terms: Glossary = {
 		formula: String.raw`\frac{1}{k^2}<\frac{1}{k(k-1)}=\frac{1}{k-1}-\frac{1}{k}`,
 		body: String.raw`**Телескопическая оценка** — замена каждого слагаемого разностью двух дробей, после которой сумма блока схлопывается до крайних членов:
 
-$$\sum_{k=n+1}^{n+p}\frac{1}{k^2}<\frac1n-\frac1{n+p}<\frac1n.$$
-
-Это корректное доказательство сходимости $\sum1/n^2$: правая часть **не зависит от $p$**, поэтому [[kriteriy-koshi-ryad|критерий Коши]] проходит с явным $N(\varepsilon)=\lceil1/\varepsilon\rceil$. Грубая оценка $p/n^2\to0$ вместо неё не годится: она верна лишь при фиксированном $p$, и та же цепочка «доказала» бы сходимость [[garmonicheskiy-ryad|гармонического ряда]].`,
+$$\sum_{k=n+1}^{n+p}\frac{1}{k^2}<\frac1n-\frac1{n+p}<\frac1n.$$`,
 		related: ['kriteriy-koshi-ryad', 'ryad-dirihle', 'garmonicheskiy-ryad']
 	},
 

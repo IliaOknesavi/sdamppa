@@ -102,7 +102,21 @@ $$x\ \text{открыто}\iff x\in\tau,\qquad x\ \text{замкнуто}\iff \o
 
 Отсюда главная оговорка темы: «открытое» и «замкнутое» — **не** взаимоисключающие свойства. Множество может быть открытым и не замкнутым, замкнутым и не открытым, ни тем ни другим — а может быть **обоими сразу**, и такое множество называется [[komponenta-svyaznosti|компонентой связности]].
 
-Рабочий инструмент перехода «открытое $\leftrightarrow$ замкнутое» — [[de-morgan|правило де Моргана]]: раз объединение открытых открыто, то пересечение замкнутых замкнуто. Пригодится и то, что дополнение однозначно задаётся двумя свойствами: из $x\cap y=\varnothing$ и $x\cup y=S$ следует $y=\overline x_S$. Доказывается пробным элементом $\xi$: из $\xi\in y$ следует $\xi\notin x$, то есть $y\subset\overline x_S$; из $\xi\notin x$ вместе с $x\cup y=S$ следует $\xi\in y$, то есть $\overline x_S\subset y$; дальше работает теорема о равенстве множеств по двойному включению ([день 1](/aii/matan/1/day/1)).`
+Рабочий инструмент перехода «открытое $\leftrightarrow$ замкнутое» — [[de-morgan|правило де Моргана]]:
+
+$$\overline{\bigcup_{i\in I}x_i}=\bigcap_{i\in I}\overline{x_i},\qquad \overline{\bigcap_{i\in I}x_i}=\bigcup_{i\in I}\overline{x_i}.$$
+
+**Доказательство** — пробным элементом:
+
+$$\xi\in\overline{\bigcup_i x_i}\iff \xi\notin\bigcup_i x_i\iff \forall i:\ \xi\notin x_i\iff \forall i:\ \xi\in\overline{x_i}\iff \xi\in\bigcap_i\overline{x_i},$$
+
+и второе равенство получается из первого подстановкой $x_i\mapsto\overline{x_i}$ вместе с $\overline{\overline{x}}=x$. $\qquad\blacksquare$
+
+Отсюда и нужный перенос: множество замкнуто, если его дополнение открыто, поэтому
+
+$$x_i\ \text{замкнуты}\ \Longrightarrow\ \overline{x_i}\in\tau\ \overset{\text{аксиома об объединении}}{\Longrightarrow}\ \bigcup_i\overline{x_i}\in\tau\ \overset{\text{де Морган}}{\Longrightarrow}\ \overline{\bigcap_i x_i}\in\tau\ \Longrightarrow\ \bigcap_i x_i\ \text{замкнуто}.$$
+
+Симметрично конечное объединение замкнутых замкнуто — там работает аксиома о конечном пересечении. Пригодится и то, что дополнение однозначно задаётся двумя свойствами: из $x\cap y=\varnothing$ и $x\cup y=S$ следует $y=\overline x_S$. Доказывается пробным элементом $\xi$: из $\xi\in y$ следует $\xi\notin x$, то есть $y\subset\overline x_S$; из $\xi\notin x$ вместе с $x\cup y=S$ следует $\xi\in y$, то есть $\overline x_S\subset y$; дальше работает теорема о равенстве множеств по двойному включению ([день 1](/aii/matan/1/day/1)).`
 		},
 		{
 			kind: 'theorem',
